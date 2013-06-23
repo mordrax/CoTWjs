@@ -1,0 +1,39 @@
+.welcome {
+    width:32px;
+    height:32px;
+    background:url('../resources/cotwsprites01.gif') 0 0;
+}
+
+#hero {
+    width:32px;
+    height:32px;
+    background:url('../resources/cotwsprites01.gif') 320px 320px;
+}
+
+#compass{
+    background: url('../images/compass_rose.png');
+    background-position:0px 0px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+#touch{
+    background: url('../images/touch.png');
+    background-position:0px 0px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+.touchSegment{
+    background: url('../images/touch_segment.png');
+    background-position:0px 0px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
