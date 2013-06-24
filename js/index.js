@@ -195,9 +195,6 @@ function getTile(x,y) {
 
 function render(){
     //console.log("render")
-
-
-
     translate.x += Math.sin( input.angle ) * Math.floor(input.distance);
     translate.y += Math.cos( input.angle ) * Math.floor(input.distance);
 
