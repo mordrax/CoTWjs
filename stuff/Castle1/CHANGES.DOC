@@ -1,0 +1,115 @@
+This file is a quick summary of the changes from 1.0 to 1.1,
+and of some of the new features that have been added.  Some
+of the text below only applies to game two.
+
+New Features:
+1.	Game Difficulty:
+	You can now set the difficulty of your game in the
+	Character Creation dialog.  Choices are Easy, 
+	Intermediate, Difficult, and Experts Only.  1.0 is
+	Intermediate on this scale.  Harder games have more
+	monsters and traps per level, fewer objects and less 
+	money per level, and the stores pay you less for
+	stuff you sell them.  It also takes more experience
+	to go up in levels of experience at harder difficulty
+	settings.
+
+2.	Button Bar:
+	The most common commands appear on the button bar for
+	easy mouse access.  The spells you have on the
+	spell menu are present here as well, so you have easy
+	mouse access to them as well.  Right clicking on the
+	buttons will tell you what they do (and the mana required
+	for the spell if it's a spell button). Keyboard users 
+	can turn off the button bar in the new Options dialog 
+	accessable via File-Options.
+
+3.	There are various new text popups that appear during the
+	game.  If you are loading an existing game, it will mark
+	the ones you would have seen by now as seen, so you can
+	view them in the Review Story dialog.  The Review Story
+	dialog also now has a button that takes you to the Background
+	section of the help file, which many people were missing.
+
+4.	There is now a Character Attributes dialog accessable off
+	of the Character dialog.  This displays a simple listbox
+	that tells you if you are levitating, detecting monsters,
+	what you are currently resistant to (and how strongly), etc.
+
+5.	Added a Rest Until Mana Restored command.  Before, both 'r' 
+	and 'R' did Rest Until Healed.  Now 'r' is Rest Until Healed
+	and 'R' is Rest Until Mana Restored.  Both of these commands are
+	now interruptable via any keypress or mouse click.  Rest Until
+	Mana Restored actually restores mana at double normal rate,
+	(2 points per hour), although it only interrupts when you 
+	get attacked, not when you first see a monster. It's more 
+	like "sleep" than "rest".
+
+6.	Added Esc support to dialogs that only had an OK button.  Also
+	added Double Click support in Review Story, Select Object, and
+	the Spellbook dialogs.
+
+Feature Modifications:
+1.	Moved the options into a dialog (File-Options) rather than on the
+	menu.  Also made the Spell menu accessable in the inventory for
+	easy casting of identifies and remove curses.
+
+2.	Some of the special monsters, such as Hrungnir in game
+	one, and the giant kings in game two, are now immune to
+	sleep and polymorph.
+	
+3.	The parchment is now deleted after it's read.  Since the text
+	is available in Review Story anyway, there was no need to keep
+	it around.  If you load a 1.0 game and had the parchment it will
+	be deleted.
+
+4.	Gelatinous Globs now always have some treasure.
+
+5.	Levitation is no longer total trap immunity.  Only gravity
+	activated traps are effected (trapdoors, pits, etc).  Magic
+	traps, such as Glyphs, will still go off even if you are 
+	levitating!
+
+6.	Enchanted packs can no longer be nested.  You can still put
+	multiple enchanted packs in a normal container, you just cant
+	put them inside each other. 
+
+7.	Resist Fear and Resist Acid have been removed, as they aren't
+	useful in the current game (but someday ;) .
+
+8.	Selling wands/staves to the stores guarantees at least 2 charges
+	will be restored unless it shatters.
+
+9.	Clairvoyance now maps secret doors and traps.
+
+10.	The levitate spell lasts longer now (15 minutes instead of 10).
+
+11.	Saving now puts up a message in the description window, so
+	it's obvious after a click on the save button that it worked.
+
+Bug Fixes from 1.0:
+1.	Fixed the occassional level corruption bug with 
+	the Save Levels To Disk option.  If you had a spell
+	pending on a monster (Haste/Slow/Sleep) when you left
+	the level, the game would put up warning messages
+	and then GP when you returned to that level.  This worked
+	fine if the option was turned off.
+
+	Note that the SLTD option is only really needed on
+	low memory 286 boxes,  since even at the end of game two
+	the saved levels will only take about 350-400K of global 
+	memory. In 386 protect mode you might as well let 
+	virtual memory swap to disk as needed. 
+
+2.	Fixed adjacent fire/lightning/cold ball spells to
+	pay attention to resist/vulnerability (they weren't)
+	when calculating damage to the character.
+
+3.	Fixed elemental attacks to correctly use vulnerability
+	when calculating damage to the character (if you 
+	were vulnerable to fire, then fire elemental 
+	attacks did NO damage!).
+
+4.	Fixed Scroll Room Onto Screen to work when going 
+	up/down as well.
+

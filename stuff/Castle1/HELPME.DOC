@@ -1,0 +1,49 @@
+
+=============================================================================
+Castle of the Winds version 1.1 * Created by Rick Saada * From Epic MegaGames
+=============================================================================
+
+Castle of the Winds is a fantasy role playing game for Microsoft Windows
+
+Castle of the Winds uses CommDlg.DLL, the Windows Common Dialogs DLL.
+If you are running Win 3.1, you already have a copy and can delete
+the one that comes with Castle.  If you are running 3.0, you may
+already have a copy in your Windows System directory if you've
+installed another application that uses this DLL.  If you don't have
+the file, or if the version shipped with Castle is more recent, you
+should copy this file to your System directory.
+
+Once this is done you can then use the File-Run command in the
+Program Manager to launch Castle (if you placed it somewhere on 
+your path), or you can setup up an icon that points to where you 
+copied the program.
+
+
+CONTACTING EPIC'S TECH SUPPORT
+==============================
+
+If you need further assistance, please call our tech support department
+at 301-983-9771 between 9AM and 5PM Eastern Standard Time,  or fax us
+at 301-299-3841.  You can also contact us online:
+
+CompuServe:     GO EPIC
+Internet Mail:  help@epicgames.com
+Internet FTP:   ftp.uml.edu
+Internet News:  We answer questions in comp.sys.ibm.pc.games.action
+WorldWide Web:  http://www.epicgames.com/
+America Online: We answer questions posted in the "Games" area
+GEnie:          We answer questions in the Games Roundtable
+
+EXEC-PC BBS
+   Contact:     Epic MegaGames
+   2400 Baud:   414-789-4210
+   14.4K Baud:  414-789-4360
+   
+Epic's Email list:
+   
+   To subscribe to Epic's email list and receive late-breaking news 
+from Epic every month or so, just send an Internet message to
+list@epicgames.com with the subject: SUBSCRIBE EPIC.
+
+
+Have Fun!
