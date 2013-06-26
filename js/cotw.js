@@ -12,14 +12,50 @@ var world = {
     tileSize:TILE_SIZE
 }
 
+var hero = {
+    $el:undefined,
+    el:undefined,
+    w:32,
+    h:32,
+    x:0,
+    y:0
+};
+
+var $win;
+
+function Tile(col, row, target, css, model) {
+    this.model = model;
+    this.col = col;
+    this.row = row;
+    this.css = css;
+    this.$el = $("<div></div>", {class: "tile " + css});
+    this.el = this.$el.get(0);
+
+    $(target).append( this.$el );
+}
+
+Tile.prototype.updatePosition = function ( _x, _y ) {
+    this.el.style["-webkit-transform"]="translate3d("+ x +'px,'+ y +"px,0px)";
+}
+
 function generateWorld() {
     $win = $(window);
 
     world.$el.empty();
     world.tiles = [];
 
-    world.cols = Math.ceil($(window).width()/TILE_SIZE)+1;
-    world.rows = Math.ceil($(window).height()/TILE_SIZE)+1;
+    world.length = town_map[0].length; //Math.ceil($(window).width()/TILE_SIZE)+1;
+    world.rows = town_map.length; //Math.ceil($(window).height()/TILE_SIZE)+1;
+
+    for (var x=0; x<world.cols; x++) {
+
+        world.tiles[x] = [];
+
+        for (var y=0; y<world.rows; y++) {
+            world.tiles[x][y] = new Tile(x, y, "#background", town_map[x][y], world);
+        }
+
+    }
 
     console.log(world);
 }
@@ -129,7 +165,6 @@ function render(){
 }
 
 function init(event) {
-    alert('Welcome Developer! (Kaan)');
     world.$el = $("#background");
     world.el = world.$el.get(0);
 
