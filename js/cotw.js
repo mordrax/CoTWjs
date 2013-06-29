@@ -9,7 +9,9 @@ var world = {
     $el:undefined,
     el:undefined,
     tiles:[],
-    tileSize:TILE_SIZE
+    tileSize:TILE_SIZE,
+    cols:0,
+    rows:0
 }
 
 var hero = {
@@ -28,14 +30,14 @@ function Tile(col, row, target, css, model) {
     this.col = col;
     this.row = row;
     this.css = css;
-    this.$el = $("<div></div>", {class: "tile " + css});
+    this.$el = $("<div></div>", {class: "tile type_" + css});
     this.el = this.$el.get(0);
 
     $(target).append( this.$el );
 }
 
 Tile.prototype.updatePosition = function ( _x, _y ) {
-    this.el.style["-webkit-transform"]="translate3d("+ x +'px,'+ y +"px,0px)";
+    this.el.style["-webkit-transform"]="translate3d("+ _x * TILE_SIZE +'px,'+ _y * TILE_SIZE +"px,0px)";
 }
 
 function generateWorld() {
@@ -44,8 +46,8 @@ function generateWorld() {
     world.$el.empty();
     world.tiles = [];
 
-    world.length = town_map[0].length; //Math.ceil($(window).width()/TILE_SIZE)+1;
-    world.rows = town_map.length; //Math.ceil($(window).height()/TILE_SIZE)+1;
+    world.cols = town_map.length; //Math.ceil($(window).width()/TILE_SIZE)+1;
+    world.rows = town_map[0].length; //Math.ceil($(window).height()/TILE_SIZE)+1;
 
     for (var x=0; x<world.cols; x++) {
 
@@ -70,7 +72,7 @@ function render(){
     for (var x=0; x<world.tiles.length; x++) {
 
         for (var y=0; y<world.tiles[x].length; y++) {
-            world.tiles[x][y].updatePosition( translate.x, translate.y );
+            world.tiles[x][y].updatePosition( x, y );
         }
 
     }
@@ -177,10 +179,6 @@ function init(event) {
     render();
     $("body").css("display", "block");
 }
-
-window.addEventListener( "resize", function() {
-    generateWorld();
-});
 
 //detect if web or phonegap ( via http://stackoverflow.com/questions/8068052/phonegap-detect-if-running-on-desktop-browser)
 function isPhoneGap() {
