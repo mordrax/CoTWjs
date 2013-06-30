@@ -10,40 +10,40 @@
     position: absolute;
 }
 
-.type_1 { background: url('../resources/tiles.gif') 0 32px;}
-.type_2 { background: url('../resources/tiles.gif') 256px 0;}
-.type_3 { background: url('../resources/tiles.gif') 0 128px;}
+.type_1 { background: url('../resources/tiles.gif') 0 160px;}
+.type_2 { background: url('../resources/tiles.gif') 32px 0;}
+.type_3 { background: url('../resources/tiles.gif') 0 64px;}
 
 #hero {
     width:32px;
     height:32px;
-    background:url('../resources/cotwsprites01.gif') 320px 320px;
+    background:url('../resources/cotwsprites01.gif') 64px 128px;
 }
 
 #compass{
     background: url('../images/compass_rose.png');
-    background-position:0px 0px;
+    background-position:0 0;
     width: 100px;
     height: 100px;
     position: absolute;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
 }
 #touch{
     background: url('../images/touch.png');
-    background-position:0px 0px;
+    background-position:0 0;
     width: 100px;
     height: 100px;
     position: absolute;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
 }
 .touchSegment{
     background: url('../images/touch_segment.png');
-    background-position:0px 0px;
+    background-position:0 0;
     width: 100px;
     height: 100px;
     position: absolute;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
 }

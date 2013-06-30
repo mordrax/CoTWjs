@@ -12,7 +12,7 @@ var world = {
     tileSize:TILE_SIZE,
     cols:0,
     rows:0
-}
+};
 
 var hero = {
     $el:undefined,
@@ -46,14 +46,14 @@ function generateWorld() {
     world.$el.empty();
     world.tiles = [];
 
-    world.cols = town_map.length; //Math.ceil($(window).width()/TILE_SIZE)+1;
-    world.rows = town_map[0].length; //Math.ceil($(window).height()/TILE_SIZE)+1;
+    world.cols= town_map[0].length; //Math.ceil($(window).width()/TILE_SIZE)+1;
+    world.rows = town_map.length; //Math.ceil($(window).height()/TILE_SIZE)+1;
 
-    for (var x=0; x<world.cols; x++) {
+    for (var x=0; x<world.rows; x++) {
 
         world.tiles[x] = [];
 
-        for (var y=0; y<world.rows; y++) {
+        for (var y=0; y<world.cols; y++) {
             world.tiles[x][y] = new Tile(x, y, "#background", town_map[x][y], world);
         }
 
@@ -72,7 +72,7 @@ function render(){
     for (var x=0; x<world.tiles.length; x++) {
 
         for (var y=0; y<world.tiles[x].length; y++) {
-            world.tiles[x][y].updatePosition( x, y );
+            world.tiles[x][y].updatePosition( y, x );
         }
 
     }
