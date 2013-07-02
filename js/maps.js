@@ -5,16 +5,8 @@
  * Time: 9:06 PM
  * To change this template use File | Settings | File Templates.
  */
-{
-// tile_map
-var tile_map = {
-    1:[0,1], // plain background
-    2:[8,0], // farm
-    3:[0,4]  // road
-};
 
-    // array [x=rows,y=cols]
-var town_map =
+var village_map =
 [
     [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
     [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
@@ -36,4 +28,7 @@ var town_map =
     [1,3,1,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 
-}
+var town_map =
+    [
+
+    ]
