@@ -13,19 +13,10 @@ var world = {
     map:undefined
 }
 
-var hero = {
-    $el:undefined,
-    el:undefined,
-    x:10,
-    y:15
-};
-
 var $win;
 
 function Tile(col, row, target, css, model) {
     this.model = model;
-    this.col = col;
-    this.row = row;
     this.css = css;
     this.$el = $("<div></div>", {class: "tile type_" + css});
     this.el = this.$el.get(0);
@@ -46,7 +37,7 @@ function generateWorld(map) {
 
     for (var x=0; x<world.map.length; x++) {
         world.tiles[x] = [];
-        for (var y=0; y<world.map[0].length; y++) {
+        for (var y=0; y<world.map[x].length; y++) {
             world.tiles[x][y] = new Tile(x, y, "#background", world.map[x][y], world);
         }
     }
@@ -54,18 +45,21 @@ function generateWorld(map) {
     console.log(world);
 }
 
-function render(){
+function render(drawMap){
 //    translate.x += Math.sin( input.angle ) * Math.floor(input.distance);
 //    translate.y += Math.cos( input.angle ) * Math.floor(input.distance);
 //
 //    translate.x = Math.floor(translate.x);
 //    translate.y = Math.floor(translate.y);
 
-    for (var x=0; x<world.tiles.length; x++) {
-        for (var y=0; y<world.tiles[x].length; y++) {
-            world.tiles[x][y].updatePosition( x, y );
+    if (drawMap) {
+        for (var x=0; x<world.tiles.length; x++) {
+            for (var y=0; y<world.tiles[x].length; y++) {
+                world.tiles[x][y].updatePosition( x, y );
+            }
         }
     }
+    hero.update();
 
 //enemy background sprites
 
@@ -115,9 +109,7 @@ function render(){
 //        }
 //    }
 
-    hero.x = ($win.width() - hero.w)/2;
-    hero.y = ($win.height() - hero.h)/2;
-    hero.el.style["-webkit-transform"]="translate3d("+ hero.x +'px,'+ hero.y +"px,0px) ";// scale("+hero.scale+")";
+    hero.el.style["-webkit-transform"]="translate3d("+ hero.x*TILE_SIZE +'px,'+ hero.y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
     hero.$el.removeClass().addClass("hero_" + (7-hero.walk) +"_"+hero.direction);
 
     /* compass */
@@ -149,7 +141,7 @@ function render(){
     }*/
 
 
-    window.requestAnimationFrame(render);
+    window.requestAnimationFrame(function() {render(false)});
 }
 
 function init(event) {
@@ -158,11 +150,11 @@ function init(event) {
 
     generateWorld(village_map);
 
-    hero.scale = ($win.height() * hero.heightTarget)/hero.h;
+    hero = new Player();
     hero.$el = $("#hero");
     hero.el = hero.$el.get(0);
 
-    render();
+    render(true);
     $("body").css("display", "block");
 }
 

@@ -18,6 +18,7 @@
     width:32px;
     height:32px;
     background:url('../resources/cotwsprites01.gif') 64px 128px;
+    position: absolute;
 }
 
 #compass{
