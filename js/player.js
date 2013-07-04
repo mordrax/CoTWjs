@@ -33,9 +33,9 @@ Player.prototype.moveDown = function() {
     this.y += 1;
 };
 
-Player.prototype.update = function() {
-    if (Key.isDown(Key.UP)) this.moveUp();
-    if (Key.isDown(Key.LEFT)) this.moveLeft();
-    if (Key.isDown(Key.DOWN)) this.moveDown();
-    if (Key.isDown(Key.RIGHT)) this.moveRight();
+Player.prototype.update = function(keycode) {
+    if (keycode == Key.UP) this.moveUp();
+    if (keycode == Key.LEFT) this.moveLeft();
+    if (keycode == Key.DOWN) this.moveDown();
+    if (keycode == Key.RIGHT) this.moveRight();
 };

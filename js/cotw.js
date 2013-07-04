@@ -59,7 +59,6 @@ function render(drawMap){
             }
         }
     }
-    hero.update();
 
 //enemy background sprites
 
@@ -110,7 +109,6 @@ function render(drawMap){
 //    }
 
     hero.el.style["-webkit-transform"]="translate3d("+ hero.x*TILE_SIZE +'px,'+ hero.y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
-    hero.$el.removeClass().addClass("hero_" + (7-hero.walk) +"_"+hero.direction);
 
     /* compass */
     /*if ( compass.visible ){
@@ -156,6 +154,12 @@ function init(event) {
 
     render(true);
     $("body").css("display", "block");
+
+    window.addEventListener('keyup', function(event) { update(event); }, false);
+}
+
+function update(event) {
+    hero.update(event.keyCode);
 }
 
 //detect if web or phonegap ( via http://stackoverflow.com/questions/8068052/phonegap-detect-if-running-on-desktop-browser)
