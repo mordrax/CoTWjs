@@ -14,7 +14,7 @@
 .type_RockPath { background: url('../resources/tiles.png') 192px 0;}
 .type_Grass { background: url('../resources/tiles.png') 0 288px;}
 .type_GrassPath { background: url('../resources/tiles.png') 192px 288px;}
-.type_Farm { background: url('../resources/tiles.png') 160px 288px;}
+.type_Crop { background: url('../resources/tiles.png') 160px 288px;}
 .type_DarkDgn { background: url('../resources/tiles.png') 0 256px;}
 .type_DarkDgnWall { background: url('../resources/tiles.png') 192px 256px;}
 .type_Water { background: url('../resources/tiles.png') 0 224px;}
@@ -25,9 +25,10 @@
 .type_LitDgnWall { background: url('../resources/tiles.png') 192px 160px;}
 
 
-.rotate_90 {-webkit-transform:rotate(90deg);}
-.rotate_180 {-webkit-transform:rotate(180deg);}
-.rotate_270 {-webkit-transform:rotate(270deg);}
+.rotate_90 {-webkit-transform: rotate(90deg);
+    transform: rotate(90deg);}
+.rotate_180 {transform: rotate(180deg);}
+.rotate_270 {transform: rotate(270deg);}
 
 
 #hero {

@@ -18,7 +18,7 @@ var $win;
 function Tile(col, row, target, css, model) {
     this.model = model;
     this.css = css;
-    this.$el = $("<div></div>", {class: "tile type_" + css.name + " rotate_" + css.rotate});
+    this.$el = $("<div></div>", {class: "tile type_" + css.name + " rotate_" + css.turn});
     this.el = this.$el.get(0);
 
     $(target).append( this.$el );
