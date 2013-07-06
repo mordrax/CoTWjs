@@ -5,6 +5,17 @@
  * Time: 9:06 PM
  * To change this template use File | Settings | File Templates.
  */
+var tile_type = {
+    1: "ground",
+    2: "water",
+    3: "solid"
+}
+
+var tile_data = {
+    1:{"name":"Grass", "tile_type": 1, "class":""},
+    22:{"name":"sign", "message":6}
+}
+
 
 var village_map =
 [

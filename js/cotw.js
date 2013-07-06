@@ -41,8 +41,6 @@ function generateWorld(map) {
             world.tiles[x][y] = new Tile(x, y, "#background", world.map[x][y], world);
         }
     }
-
-    console.log(world);
 }
 
 function render(drawMap){

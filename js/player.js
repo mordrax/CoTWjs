@@ -34,8 +34,20 @@ Player.prototype.moveDown = function() {
 };
 
 Player.prototype.update = function(keycode) {
-    if (keycode == Key.UP) this.moveUp();
-    if (keycode == Key.LEFT) this.moveLeft();
-    if (keycode == Key.DOWN) this.moveDown();
-    if (keycode == Key.RIGHT) this.moveRight();
+    if (keycode == Key.UP) {
+        this.moveUp();
+        console.log('Move up.');
+    }
+    if (keycode == Key.LEFT) {
+        this.moveLeft();
+        console.log('Move left.');
+    }
+    if (keycode == Key.DOWN) {
+        this.moveDown();
+        console.log('Move down.');
+    }
+    if (keycode == Key.RIGHT) {
+        this.moveRight();
+        console.log('Move right.');
+    }
 };
