@@ -18,7 +18,7 @@ var $win;
 function Tile(col, row, target, css, model) {
     this.model = model;
     this.css = css;
-    this.$el = $("<div></div>", {class: "tile type_" + css});
+    this.$el = $("<div></div>", {class: "tile type_" + css.name + " rotate_" + css.rotate});
     this.el = this.$el.get(0);
 
     $(target).append( this.$el );
@@ -38,7 +38,7 @@ function generateWorld(map) {
     for (var x=0; x<world.map.length; x++) {
         world.tiles[x] = [];
         for (var y=0; y<world.map[x].length; y++) {
-            world.tiles[x][y] = new Tile(x, y, "#background", world.map[x][y], world);
+            world.tiles[x][y] = new Tile(x, y, "#background", tile_data[world.map[x][y]], world);
         }
     }
 }
@@ -144,7 +144,7 @@ function init(event) {
     world.$el = $("#background");
     world.el = world.$el.get(0);
 
-    generateWorld(village_map);
+    generateWorld(farm_map);
 
     hero = new Player();
     hero.$el = $("#hero");

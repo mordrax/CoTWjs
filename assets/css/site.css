@@ -10,9 +10,25 @@
     position: absolute;
 }
 
-.type_1 { background: url('../resources/tiles.gif') 0 160px;}
-.type_2 { background: url('../resources/tiles.gif') 32px 0;}
-.type_3 { background: url('../resources/tiles.gif') 0 64px;}
+.type_Rock { background: url('../resources/tiles.png') 0 0;}
+.type_RockPath { background: url('../resources/tiles.png') 192px 0;}
+.type_Grass { background: url('../resources/tiles.png') 0 288px;}
+.type_GrassPath { background: url('../resources/tiles.png') 192px 288px;}
+.type_Farm { background: url('../resources/tiles.png') 160px 288px;}
+.type_DarkDgn { background: url('../resources/tiles.png') 0 256px;}
+.type_DarkDgnWall { background: url('../resources/tiles.png') 192px 256px;}
+.type_Water { background: url('../resources/tiles.png') 0 224px;}
+.type_WaterGrass { background: url('../resources/tiles.png') 192px 224px;}
+.type_Path { background: url('../resources/tiles.png') 0 192px;}
+.type_WaterPath { background: url('../resources/tiles.png') 192px 192px;}
+.type_LitDgn { background: url('../resources/tiles.png') 0 160px;}
+.type_LitDgnWall { background: url('../resources/tiles.png') 192px 160px;}
+
+
+.rotate_90 {-webkit-transform:rotate(90deg);}
+.rotate_180 {-webkit-transform:rotate(180deg);}
+.rotate_270 {-webkit-transform:rotate(270deg);}
+
 
 #hero {
     width:32px;
