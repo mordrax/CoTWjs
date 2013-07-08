@@ -25,7 +25,7 @@ function Tile(col, row, target, css, model) {
 }
 
 Tile.prototype.updatePosition = function ( _x, _y ) {
-    this.el.style["-webkit-transform"]="translate3d("+ _x * TILE_SIZE +'px,'+ _y * TILE_SIZE +"px,0px) rotate(" + this.css.angle + "deg)";
+    this.el.style["-webkit-transform"]="translate3d("+ _x * TILE_SIZE +'px,'+ _y * TILE_SIZE +"px,0px) rotate(" + this.css.turn + "deg)";
 }
 
 function generateWorld(map) {
