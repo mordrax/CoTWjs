@@ -25,11 +25,6 @@
 .type_LitDgnWall { background: url('../resources/tiles.png') 192px 160px;}
 
 
-.rotate_90 {-webkit-transform: rotate(90deg);
-    transform: rotate(90deg);}
-.rotate_180 {transform: rotate(180deg);}
-.rotate_270 {transform: rotate(270deg);}
-
 
 #hero {
     width:32px;

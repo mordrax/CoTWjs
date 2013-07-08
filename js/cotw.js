@@ -18,14 +18,14 @@ var $win;
 function Tile(col, row, target, css, model) {
     this.model = model;
     this.css = css;
-    this.$el = $("<div></div>", {class: "tile type_" + css.name + " rotate_" + css.turn});
+    this.$el = $("<div></div>", {class: "tile type_" + css.name});
     this.el = this.$el.get(0);
 
     $(target).append( this.$el );
 }
 
 Tile.prototype.updatePosition = function ( _x, _y ) {
-    this.el.style["-webkit-transform"]="translate3d("+ _x * TILE_SIZE +'px,'+ _y * TILE_SIZE +"px,0px)";
+    this.el.style["-webkit-transform"]="translate3d("+ _x * TILE_SIZE +'px,'+ _y * TILE_SIZE +"px,0px) rotate(" + this.css.angle + "deg)";
 }
 
 function generateWorld(map) {
