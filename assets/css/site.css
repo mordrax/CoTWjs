@@ -23,7 +23,9 @@
 .type_WaterPath { background: url('../resources/tiles.png') 192px 192px;}
 .type_LitDgn { background: url('../resources/tiles.png') 0 160px;}
 .type_LitDgnWall { background: url('../resources/tiles.png') 192px 160px;}
-
+.type_Entry { background: url('../resources/tiles.png') 192px 160px;}
+.type_Building { background: url('../resources/tiles.png') 192px 160px;}
+.type_Sign { background: url('../resources/tiles.png') 192px 160px;}
 
 
 #hero {

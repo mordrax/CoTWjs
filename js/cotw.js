@@ -144,7 +144,7 @@ function init(event) {
     world.$el = $("#background");
     world.el = world.$el.get(0);
 
-    generateWorld(farm_map);
+    generateWorld(village_map);
 
     hero = new Player();
     hero.$el = $("#hero");
