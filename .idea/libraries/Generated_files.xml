@@ -7,6 +7,7 @@
         <item url="file://$PROJECT_DIR$/js/world.js" />
         <item url="file://$PROJECT_DIR$/js/cotw.js" />
         <item url="file://$PROJECT_DIR$/js/zepto.js" />
+        <item url="file://$PROJECT_DIR$/js/player.js" />
         <item url="file://$PROJECT_DIR$/js/globals.js" />
         <item url="file://$PROJECT_DIR$/js/maps.js" />
       </sourceFilesUrls>
@@ -17,6 +18,7 @@
       <root url="file://$PROJECT_DIR$/js/zepto.js" />
       <root url="file://$PROJECT_DIR$/js/cotw.js" />
       <root url="file://$PROJECT_DIR$/js/world.js" />
+      <root url="file://$PROJECT_DIR$/js/player.js" />
       <root url="file://$PROJECT_DIR$/js/globals.js" />
       <root url="file://$PROJECT_DIR$/js/maps.js" />
     </CLASSES>

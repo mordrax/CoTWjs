@@ -48,8 +48,6 @@ function isPhoneGap() {
 
 if ( isPhoneGap() ) {
     document.addEventListener( "deviceready", init );
-}
-else
-{
+} else {
     document.addEventListener("load", init );
 }

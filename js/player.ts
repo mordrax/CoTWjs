@@ -15,27 +15,27 @@ class Player {
     constructor() {
         this._x = 10;
         this._y = 15;
-    };
+    }
 
     draw() {
         alert('Player draw not implemented');
-    };
+    }
 
     moveLeft() {
         this._x -= 1;
-    };
+    }
 
     moveRight() {
         this._x += 1;
-    };
+    }
 
     moveUp() {
         this._y -= 1;
-    };
+    }
 
     moveDown() {
         this._y += 1;
-    };
+    }
 
     update(keycode) {
         if (keycode == Key.UP) {
@@ -54,6 +54,6 @@ class Player {
             this.moveRight();
             console.log('Move right.');
         }
-    };
+    }
 
 }
