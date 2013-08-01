@@ -4,7 +4,7 @@
 
 class World {
     _map : number[][] ;
-    _$el : ZeptoCollection;
+    //_$el : ZeptoCollection;
     _el : HTMLHtmlElement;
     _tiles: Tile[][];
 
