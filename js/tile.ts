@@ -1,51 +1,73 @@
 /**
  * Created by mordrax on 18/07/13.
  */
+
+/// <reference path="zepto.d.ts">
+
+enum TileType {
+    Ground,
+    Water,
+    Solid,
+    Entry
+};
+
+class TileData{
+    _name : string;
+    _type : TileType;
+    _turn : number;
+
+    constructor (name : string, type : TileType, turn : number) {
+        this._name = name;
+        this._type = type;
+        this._turn = turn;
+    }
+}
+
 var TILEDATA = {
-    1:{ name:"Rock",          type: TileType.Solid,     turn:0    },
-    2:{ name:"RockPath",      type: TileType.Solid,     turn:0    },
-    3:{ name:"RockPath",      type: TileType.Solid,     turn:90   },
-    4:{ name:"RockPath",      type: TileType.Solid,     turn:180  },
-    5:{ name:"RockPath",      type: TileType.Solid,     turn:270  },
-    6:{ name:"Grass",         type: TileType.Ground,    turn:0    },
-    7:{ name:"GrassPath",     type: TileType.Ground,    turn:0    },
-    8:{ name:"GrassPath",     type: TileType.Ground,    turn:90   },
-    9:{ name:"GrassPath",     type: TileType.Ground,    turn:180  },
-    10:{name:"GrassPath",     type: TileType.Ground,    turn:270  },
-    11:{name:"DarkDgn",       type: TileType.Ground,    turn:0    },
-    12:{name:"DarkDgnWall",   type: TileType.Solid,     turn:0    },
-    13:{name:"DarkDgnWall",   type: TileType.Solid,     turn:90   },
-    14:{name:"DarkDgnWall",   type: TileType.Solid,     turn:180  },
-    15:{name:"DarkDgnWall",   type: TileType.Solid,     turn:270  },
-    16:{name:"Water",         type: TileType.Water,     turn:0    },
-    17:{name:"WaterGrass",    type: TileType.Water,     turn:0    },
-    18:{name:"WaterGrass",    type: TileType.Water,     turn:90   },
-    19:{name:"WaterGrass",    type: TileType.Water,     turn:180  },
-    20:{name:"WaterGrass",    type: TileType.Water,     turn:270  },
-    21:{name:"Path",          type: TileType.Ground,    turn:0    },
-    22:{name:"WaterPath",     type: TileType.Water,     turn:0    },
-    23:{name:"WaterPath",     type: TileType.Water,     turn:90   },
-    24:{name:"WaterPath",     type: TileType.Water,     turn:180  },
-    25:{name:"WaterPath",     type: TileType.Water,     turn:270  },
-    26:{name:"LitDgn",        type: TileType.Ground,    turn:0    },
-    27:{name:"LitDgnWall",    type: TileType.Solid,     turn:0    },
-    28:{name:"LitDgnWall",    type: TileType.Solid,     turn:90   },
-    29:{name:"LitDgnWall",    type: TileType.Solid,     turn:180  },
-    30:{name:"LitDgnWall",    type: TileType.Solid,     turn:270  },
-    31:{name:"Crop",          type: TileType.Ground,    turn:0    },
-    32:{name:"Entry",         type: TileType.Entry,     turn:0    },
-    33:{name:"Building",      type: TileType.Solid,     turn:0    },
-    34:{name:"Sign",          type: TileType.Ground,    turn:0    }
+    1:  new TileData("Rock",          TileType.Solid,     0    ),
+    2:  new TileData("RockPath",      TileType.Solid,     0    ),
+    3:  new TileData("RockPath",      TileType.Solid,     90   ),
+    4:  new TileData("RockPath",      TileType.Solid,     180  ),
+    5:  new TileData("RockPath",      TileType.Solid,     270  ),
+    6:  new TileData("Grass",         TileType.Ground,    0    ),
+    7:  new TileData("GrassPath",     TileType.Ground,    0    ),
+    8:  new TileData("GrassPath",     TileType.Ground,    90   ),
+    9:  new TileData("GrassPath",     TileType.Ground,    180  ),
+    10: new TileData("GrassPath",     TileType.Ground,    270  ),
+    11: new TileData("DarkDgn",       TileType.Ground,    0    ),
+    12: new TileData("DarkDgnWall",   TileType.Solid,     0    ),
+    13: new TileData("DarkDgnWall",   TileType.Solid,     90   ),
+    14: new TileData("DarkDgnWall",   TileType.Solid,     180  ),
+    15: new TileData("DarkDgnWall",   TileType.Solid,     270  ),
+    16: new TileData("Water",         TileType.Water,     0    ),
+    17: new TileData("WaterGrass",    TileType.Water,     0    ),
+    18: new TileData("WaterGrass",    TileType.Water,     90   ),
+    19: new TileData("WaterGrass",    TileType.Water,     180  ),
+    20: new TileData("WaterGrass",    TileType.Water,     270  ),
+    21: new TileData("Path",          TileType.Ground,    0    ),
+    22: new TileData("WaterPath",     TileType.Water,     0    ),
+    23: new TileData("WaterPath",     TileType.Water,     90   ),
+    24: new TileData("WaterPath",     TileType.Water,     180  ),
+    25: new TileData("WaterPath",     TileType.Water,     270  ),
+    26: new TileData("LitDgn",        TileType.Ground,    0    ),
+    27: new TileData("LitDgnWall",    TileType.Solid,     0    ),
+    28: new TileData("LitDgnWall",    TileType.Solid,     90   ),
+    29: new TileData("LitDgnWall",    TileType.Solid,     180  ),
+    30: new TileData("LitDgnWall",    TileType.Solid,     270  ),
+    31: new TileData("Crop",          TileType.Ground,    0    ),
+    32: new TileData("Entry",         TileType.Entry,     0    ),
+    33: new TileData("Building",      TileType.Solid,     0    ),
+    34: new TileData("Sign",          TileType.Ground,    0    )
 };
 
 class Tile {
-    _$el: ZeptoCollection;
-    _el : HTMLElement;
+    _$el : ZeptoCollection;
+    _el  : HTMLElement;
     _tile;
 
-    constructor (target: string, tile, model) {
+    constructor (target: string, tile : TileData, model) {
         this._tile = tile;
-        this._$el = $("<div></div>", {class: "tile type_" + tile.name});
+        this._$el = $("<div></div>", {class: "tile type_" + tile._name});
         this._el = this._$el.get(0);
 
         $(target).append(this._$el.toString());
