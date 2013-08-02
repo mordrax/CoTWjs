@@ -1,5 +1,6 @@
-var WINDOW_WIDTH = Math.min($(window).width(), 640);
-var WINDOW_HEIGHT = Math.min($(window).height(), 640);
+
+var WINDOW_WIDTH = Math.min(document.width, 640);
+var WINDOW_HEIGHT = Math.min(document.height, 640);
 
 var TILE_SIZE = 32;
 

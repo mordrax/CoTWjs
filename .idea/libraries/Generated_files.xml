@@ -4,18 +4,19 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/js/tile.js" />
         <item url="file://$PROJECT_DIR$/js/input.js" />
+        <item url="file://$PROJECT_DIR$/js/zepto.d.js" />
         <item url="file://$PROJECT_DIR$/js/world.js" />
         <item url="file://$PROJECT_DIR$/js/cotw.js" />
-        <item url="file://$PROJECT_DIR$/js/zepto.js" />
         <item url="file://$PROJECT_DIR$/js/player.js" />
         <item url="file://$PROJECT_DIR$/js/globals.js" />
         <item url="file://$PROJECT_DIR$/js/maps.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/js/zepto.js" />
       <root url="file://$PROJECT_DIR$/js/tile.js" />
       <root url="file://$PROJECT_DIR$/js/input.js" />
-      <root url="file://$PROJECT_DIR$/js/zepto.js" />
+      <root url="file://$PROJECT_DIR$/js/zepto.d.js" />
       <root url="file://$PROJECT_DIR$/js/cotw.js" />
       <root url="file://$PROJECT_DIR$/js/world.js" />
       <root url="file://$PROJECT_DIR$/js/player.js" />

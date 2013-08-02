@@ -1,8 +1,4 @@
-/**
- * Created by mordrax on 18/07/13.
- */
-
-/*
+/* 
  zepto-1.0rc1.d.ts may be freely distributed under the MIT license.
 
  Copyright (c) 2013 Josh Baldwin https://github.com/jbaldwin/zepto.d.ts
