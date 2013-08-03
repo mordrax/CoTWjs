@@ -3,6 +3,7 @@
  */
 
 /// <reference path="zepto.d.ts"/>
+/// <reference path="globals.ts"/>
 
 enum TileType {
     Ground,

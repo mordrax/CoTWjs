@@ -1,3 +1,5 @@
+/// <reference path="zepto.d.ts"/>
+
 //var hasTouch = ('ontouchstart' in window);
 //var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
 //var TOUCH_MOVE = hasTouch ? "touchmove" : "mousemove";
