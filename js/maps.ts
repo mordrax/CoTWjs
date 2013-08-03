@@ -11,7 +11,7 @@ enum TileType {
     Water,
     Solid,
     Entry
-};
+}
 
 var MAPS = {
     farmMap : [

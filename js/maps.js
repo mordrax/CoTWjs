@@ -6,7 +6,6 @@ var TileType;
 
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
-;
 
 var MAPS = {
     farmMap: [

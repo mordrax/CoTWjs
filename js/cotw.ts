@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
+
+
 var world = new World(MAPS.villageMap);
 var hero = new Player();
 
