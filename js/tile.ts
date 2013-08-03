@@ -9,7 +9,7 @@ enum TileType {
     Water,
     Solid,
     Entry
-};
+}
 
 class TileData{
     _name : string;
