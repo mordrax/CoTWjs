@@ -16,7 +16,7 @@
 var world = new World(MAPS.villageMap);
 var hero = new Player();
 
-function render(drawMap){
+function render(drawMap) {
     if (drawMap) {
         for (var x=0; x<world._tiles.length; x++) {
             for (var y=0; y<world._tiles.length; y++) {
@@ -30,10 +30,10 @@ function render(drawMap){
 
 function init(event) {
     world._$el = $("#background");
-    world._el = world._$el.get(0);
+    world._el = world._$el.get[0];
 
     hero._$el = $("#hero");
-    hero._el = hero._$el.get(0);
+    hero._el = hero._$el.get[0];
 
     render(true);
     $("body").css("display", "block");

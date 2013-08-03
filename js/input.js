@@ -14,3 +14,4 @@ var Key = {
         this._pressed[event.keyCode] = false;
     }
 };
+//@ sourceMappingURL=input.js.map
