@@ -6,14 +6,15 @@
 /// <reference path="tile.ts"/>
 
 class World {
-    _map : number[][];
     _$el : ZeptoCollection;
     _el : HTMLHtmlElement;
     _tiles: Tile[][];
+    _map : number[][];
 
     constructor (map: number[][])
     {
         this._map = map;
+        this._tiles = new Array<Array<Tile>>();
 
         for (var x=0; x<this._map.length; x++) {
             this._tiles[x] = new Array<Tile>();
