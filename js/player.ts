@@ -6,6 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/// <reference path="input.ts"/>
+/// <reference path="zepto.d.ts"/>
+
 class Player {
     _x:number;
     _y:number;

@@ -33,14 +33,3 @@ function init(event) {
 function update(event, hero) {
     hero.update(event.keyCode);
 }
-
-function isPhoneGap() {
-    return ((cordova || PhoneGap || phonegap) && /^file:\/{3}[^\/]/i.test(document.location.href) && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent)) || window.tinyHippos;
-}
-
-if (isPhoneGap()) {
-    document.addEventListener("deviceready", init);
-} else {
-    document.addEventListener("load", init);
-}
-//@ sourceMappingURL=cotw.js.map
