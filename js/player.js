@@ -43,3 +43,4 @@ var Player = (function () {
     };
     return Player;
 })();
+//@ sourceMappingURL=player.js.map

@@ -6,7 +6,7 @@
 /// <reference path="tile.ts"/>
 
 class World {
-    _map : number[][] ;
+    _map : number[][];
     _$el : ZeptoCollection;
     _el : HTMLHtmlElement;
     _tiles: Tile[][];
@@ -16,7 +16,7 @@ class World {
         this._map = map;
 
         for (var x=0; x<this._map.length; x++) {
-            this._tiles[x] = [];
+            this._tiles[x] = new Array<Tile>();
             for (var y=0; y<this._map[x].length; y++) {
                 this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
             }
