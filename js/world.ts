@@ -2,9 +2,12 @@
  * Created by mordrax on 19/07/13.
  */
 
+/// <reference path="zepto.d.ts"/>
+/// <reference path="tile.ts"/>
+
 class World {
     _map : number[][] ;
-    //_$el : ZeptoCollection;
+    _$el : ZeptoCollection;
     _el : HTMLHtmlElement;
     _tiles: Tile[][];
 
@@ -15,7 +18,7 @@ class World {
         for (var x=0; x<this._map.length; x++) {
             this._tiles[x] = [];
             for (var y=0; y<this._map[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]], world);
+                this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
             }
         }
     }
