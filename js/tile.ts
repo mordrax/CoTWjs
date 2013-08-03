@@ -71,7 +71,7 @@ class Tile {
         this._$el = $("<div></div>", {class: "tile type_" + tile._name});
         this._el = this._$el.get(0);
 
-        $(target).append(this._$el.toString());
+        $(target).append(this._el);
     }
 
     updatePosition(_x : number, _y : number) {
