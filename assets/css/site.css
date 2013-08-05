@@ -1,8 +1,9 @@
-.welcome {
+/*.welcome {
     width:32px;
     height:32px;
     background:url('../resources/cotwsprites01.gif') 0 0;
 }
+*/
 
 .tile {
     width:32px;
@@ -31,7 +32,7 @@
 #hero {
     width:32px;
     height:32px;
-    background:url('../resources/Player.png') 0 0;
+    background:url('../resources/monsters.png') 0 0;
     position: absolute;
 }
 

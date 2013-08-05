@@ -2,14 +2,15 @@
  * Created by mordrax on 18/07/13.
  */
 
-/// <reference path="zepto.d.ts">
+/// <reference path="zepto.d.ts"/>
+/// <reference path="globals.ts"/>
 
 enum TileType {
     Ground,
     Water,
     Solid,
     Entry
-};
+}
 
 class TileData{
     _name : string;
@@ -65,12 +66,12 @@ class Tile {
     _el  : HTMLElement;
     _tile;
 
-    constructor (target: string, tile : TileData, model) {
+    constructor (target: string, tile : TileData) {
         this._tile = tile;
         this._$el = $("<div></div>", {class: "tile type_" + tile._name});
         this._el = this._$el.get(0);
 
-        $(target).append(this._$el.toString());
+        $(target).append(this._el);
     }
 
     updatePosition(_x : number, _y : number) {

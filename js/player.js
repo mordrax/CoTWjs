@@ -1,46 +1,29 @@
-/**
- * Created with JetBrains WebStorm.
- * User: mordrax
- * Date: 2/07/13
- * Time: 7:18 PM
- * To change this template use File | Settings | File Templates.
- */
-
-/// <reference path="input.ts"/>
-/// <reference path="zepto.d.ts"/>
-
-class Player {
-    _x:number;
-    _y:number;
-    _$el:ZeptoCollection;
-    _el:HTMLHtmlElement;
-
-    constructor() {
+var Player = (function () {
+    function Player() {
         this._x = 10;
         this._y = 15;
     }
-
-    draw() {
+    Player.prototype.draw = function () {
         alert('Player draw not implemented');
-    }
+    };
 
-    moveLeft() {
+    Player.prototype.moveLeft = function () {
         this._x -= 1;
-    }
+    };
 
-    moveRight() {
+    Player.prototype.moveRight = function () {
         this._x += 1;
-    }
+    };
 
-    moveUp() {
+    Player.prototype.moveUp = function () {
         this._y -= 1;
-    }
+    };
 
-    moveDown() {
+    Player.prototype.moveDown = function () {
         this._y += 1;
-    }
+    };
 
-    update(keycode) {
+    Player.prototype.update = function (keycode) {
         if (keycode == Key.UP) {
             this.moveUp();
             console.log('Move up.');
@@ -57,6 +40,7 @@ class Player {
             this.moveRight();
             console.log('Move right.');
         }
-    }
-
-}
+    };
+    return Player;
+})();
+//@ sourceMappingURL=player.js.map

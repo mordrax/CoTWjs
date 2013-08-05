@@ -1,4 +1,4 @@
-/* 
+/*
  zepto-1.0rc1.d.ts may be freely distributed under the MIT license.
 
  Copyright (c) 2013 Josh Baldwin https://github.com/jbaldwin/zepto.d.ts
@@ -66,7 +66,7 @@ interface ZeptoStatic {
      * @see ZeptoStatic();
      * @param object
      **/
-    (object: any): ZeptoCollection;		// window and document tests break without this
+    (object: any): ZeptoCollection; // window and document tests break without this
 
     /**
      * Turn a dasherized string into “camel case”. Doesn’t affect already camel-cased strings.
@@ -215,19 +215,19 @@ interface ZeptoStatic {
     /**
      * Perform an Ajax request. It can be to a local resource, or cross-domain via HTTP access control support in browsers or JSONP.
      * Options:
-     *	type (default: “GET”): HTTP request method (“GET”, “POST”, or other)
-     *	url (default: current URL): URL to which the request is made
-     *	data (default: none): data for the request; for GET requests it is appended to query string of the URL. Non-string objects will get serialized with $.param
-     *	processData (default: true): whether to automatically serialize data for non-GET requests to string
-     *	contentType (default: “application/x-www-form-urlencoded”): the Content-Type of the data being posted to the server (this can also be set via headers). Pass false to skip setting the default value.
-     *	dataType (default: none): response type to expect from the server (“json”, “jsonp”, “xml”, “html”, or “text”)
-     *	timeout (default: 0): request timeout in milliseconds, 0 for no timeout
-     *	headers: object of additional HTTP headers for the Ajax request
-     *	async (default: true): set to false to issue a synchronous (blocking) request
-     *	global (default: true): trigger global Ajax events on this request
-     *	context (default: window): context to execute callbacks in
-     *	traditional (default: false): activate traditional (shallow) serialization of data parameters with $.param
-     *  If the URL contains =? or dataType is “jsonp”, the request is performed by injecting a <script> tag instead of using XMLHttpRequest (see JSONP). This has the limitation of contentType, dataType, headers, and async not being supported.
+     * type (default: “GET”): HTTP request method (“GET”, “POST”, or other)
+     * url (default: current URL): URL to which the request is made
+     * data (default: none): data for the request; for GET requests it is appended to query string of the URL. Non-string objects will get serialized with $.param
+     * processData (default: true): whether to automatically serialize data for non-GET requests to string
+     * contentType (default: “application/x-www-form-urlencoded”): the Content-Type of the data being posted to the server (this can also be set via headers). Pass false to skip setting the default value.
+     * dataType (default: none): response type to expect from the server (“json”, “jsonp”, “xml”, “html”, or “text”)
+     * timeout (default: 0): request timeout in milliseconds, 0 for no timeout
+     * headers: object of additional HTTP headers for the Ajax request
+     * async (default: true): set to false to issue a synchronous (blocking) request
+     * global (default: true): trigger global Ajax events on this request
+     * context (default: window): context to execute callbacks in
+     * traditional (default: false): activate traditional (shallow) serialization of data parameters with $.param
+     * If the URL contains =? or dataType is “jsonp”, the request is performed by injecting a <script> tag instead of using XMLHttpRequest (see JSONP). This has the limitation of contentType, dataType, headers, and async not being supported.
      * @param options
      * @return
      **/
@@ -244,15 +244,15 @@ interface ZeptoStatic {
     /**
      * Object containing the default settings for Ajax requests. Most settings are described in $.ajax. The ones that are useful when set globally are:
      * @example
-     *	timeout (default: 0): set to a non-zero value to specify a default timeout for Ajax requests in milliseconds
-     *	global (default: true): set to false to prevent firing Ajax events
-     *	xhr (default: XMLHttpRequest factory): set to a function that returns instances of XMLHttpRequest (or a compatible object)
-     *	accepts: MIME types to request from the server for specific dataType values:
-     *		script: “text/javascript, application/javascript”
-     *		json: “application/json”
-     *		xml: “application/xml, text/xml”
-     *		html: “text/html”
-     *		text: “text/plain”
+     * timeout (default: 0): set to a non-zero value to specify a default timeout for Ajax requests in milliseconds
+     * global (default: true): set to false to prevent firing Ajax events
+     * xhr (default: XMLHttpRequest factory): set to a function that returns instances of XMLHttpRequest (or a compatible object)
+     * accepts: MIME types to request from the server for specific dataType values:
+     * script: “text/javascript, application/javascript”
+     * json: “application/json”
+     * xml: “application/xml, text/xml”
+     * html: “text/html”
+     * text: “text/plain”
      **/
         ajaxSettings: ZeptoAjaxSettings;
 
@@ -321,7 +321,7 @@ interface ZeptoStatic {
      **/
 
     /**
-     * The following boolean flags are set to true if they apply, if not they're either set to 'false' or 'undefined'.  We recommend accessing them with `!!` prefixed to coerce to a boolean.
+     * The following boolean flags are set to true if they apply, if not they're either set to 'false' or 'undefined'. We recommend accessing them with `!!` prefixed to coerce to a boolean.
      **/
         os: {
         /**
@@ -355,7 +355,7 @@ interface ZeptoStatic {
     };
 
     /**
-     * The following boolean flags are set to true if they apply, if not they're either set to 'false' or 'undefined'.  We recommend accessing them with `!!` prefixed to coerce to a boolean.
+     * The following boolean flags are set to true if they apply, if not they're either set to 'false' or 'undefined'. We recommend accessing them with `!!` prefixed to coerce to a boolean.
      **/
         browser: {
         /**
@@ -582,11 +582,11 @@ interface ZeptoCollection {
     /**
      * Read or write data-* DOM attributes. Behaves like attr, but prepends data- to the attribute name.
      * When reading attribute values, the following conversions apply:
-     *	“true”, “false”, and “null” are converted to corresponding types;
-     *	number values are converted to actual numeric types;
-     *	JSON values are parsed, if it’s valid JSON;
-     *	everything else is returned as string.
-     * (!)  Zepto's basic implementation of `data()` only stores strings. To store arbitrary objects, include the optional "data" module in your custom build of Zepto.
+     * “true”, “false”, and “null” are converted to corresponding types;
+     * number values are converted to actual numeric types;
+     * JSON values are parsed, if it’s valid JSON;
+     * everything else is returned as string.
+     * (!) Zepto's basic implementation of `data()` only stores strings. To store arbitrary objects, include the optional "data" module in your custom build of Zepto.
      * @param name
      * @return
      **/
@@ -1311,14 +1311,14 @@ interface ZeptoCollection {
      * @see ZeptoCollection.on
      **/
     on(type: string, fn: (e: Event) => bool): ZeptoCollection;
-    // todo: v0.9 will introduce string literals
-    //on(type: 'ajaxStart', fn: ZeptoAjaxStartEvent): ZeptoCollection;
-    //on(type: 'ajaxBeforeSend', fn: ZeptoAjaxBeforeSendEvent): ZeptoCollection;
-    //on(type: 'ajaxSend', fn: ZeptoAjaxSendEvent): ZeptoCollection;
-    //on(type: 'ajaxSuccess', fn: ZeptoAjaxSuccessEvent): ZeptoCollection;
-    //on(type: 'ajaxError', fn: ZeptoAjaxErrorEvent): ZeptoCollection;
-    //on(type: 'ajaxComplete', fn: ZeptoAjaxCompleteEvent): ZeptoCollection;
-    //on(type: 'ajaxStop', fn: ZeptoAjaxStopEvent): ZeptoCollection;
+// todo: v0.9 will introduce string literals
+//on(type: 'ajaxStart', fn: ZeptoAjaxStartEvent): ZeptoCollection;
+//on(type: 'ajaxBeforeSend', fn: ZeptoAjaxBeforeSendEvent): ZeptoCollection;
+//on(type: 'ajaxSend', fn: ZeptoAjaxSendEvent): ZeptoCollection;
+//on(type: 'ajaxSuccess', fn: ZeptoAjaxSuccessEvent): ZeptoCollection;
+//on(type: 'ajaxError', fn: ZeptoAjaxErrorEvent): ZeptoCollection;
+//on(type: 'ajaxComplete', fn: ZeptoAjaxCompleteEvent): ZeptoCollection;
+//on(type: 'ajaxStop', fn: ZeptoAjaxStopEvent): ZeptoCollection;
 
     /**
      * @see ZeptoCollection.on
@@ -1389,7 +1389,7 @@ interface ZeptoCollection {
      * @param fn Callback function when the HTTP GET request is completed.
      * @return Self object.
      * @example
-     *	$('#some_element').load('/foo.html #bar')
+     * $('#some_element').load('/foo.html #bar')
      **/
     load(url: string, fn?: (data: any, status?: string, xhr?: XMLHttpRequest) => void ): ZeptoCollection;
 
@@ -1430,28 +1430,28 @@ interface ZeptoCollection {
     /**
      * Smoothly transition CSS properties of elements in the current collection.
      * @param properties object that holds CSS values to animate to; or CSS keyframe animation name.
-     *	Zepto also supports the following CSS transform porperties:
-     *		translate(X|Y|Z|3d)
-     *		rotate(X|Y|Z|3d)
-     *		scale(X|Y|Z)
-     *		matrix(3d)
-     *		perspective
-     *		skew(X|Y)
+     * Zepto also supports the following CSS transform porperties:
+     * translate(X|Y|Z|3d)
+     * rotate(X|Y|Z|3d)
+     * scale(X|Y|Z)
+     * matrix(3d)
+     * perspective
+     * skew(X|Y)
      * @param duration (default 400): duration in milliseconds, or a string:
-     *		fast (200 ms)
-     *		slow (600 ms)
-     *		any custom property of $.fx.speeds
+     * fast (200 ms)
+     * slow (600 ms)
+     * any custom property of $.fx.speeds
      * @param easing (default linear): specifies the type of animation easing to use, one of:
-     *		ease
-     *		linear
-     *		ease-in
-     *		ease-out
-     *		ease-in-out
-     *		cubic-bezier(x1, y1, x2, y2)
+     * ease
+     * linear
+     * ease-in
+     * ease-out
+     * ease-in-out
+     * cubic-bezier(x1, y1, x2, y2)
      * @param complete Callback function when the animation has completed.
      * @return Self object.
      * @note If the duration is 0 or $.fx.off is true (default in a browser that doesn’t support CSS transitions), animations will not be executed; instead the target values will take effect instantly. Similarly, when the target CSS properties match the current state of the element, there will be no animation and the complete function won’t be called.
-     *	If the first argument is a string instead of object, it is taken as a CSS keyframe animation name.
+     * If the first argument is a string instead of object, it is taken as a CSS keyframe animation name.
      * @note Zepto exclusively uses CSS transitions for effects and animation. jQuery easings are not supported. jQuery's syntax for relative changes ("=+10px") is not supported. See the spec for a list of animatable properties (http://www.w3.org/TR/css3-transitions/#animatable-properties-). Browser support may vary, so be sure to test in all browsers you want to support.
      **/
     animate(properties: any, duration?: number, easing?: string, complete?: () => void ): ZeptoCollection;
@@ -1546,3 +1546,4 @@ interface ZeptoEventHandlers {
 
 declare var Zepto: (fn: ($: ZeptoStatic) => void) => void;
 declare var $: ZeptoStatic;
+
