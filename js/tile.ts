@@ -64,7 +64,7 @@ var TILEDATA = {
 class Tile {
     _$el : ZeptoCollection;
     _el  : HTMLElement;
-    _tile;
+    _tile: TileData;
 
     constructor (target: string, tile : TileData) {
         this._tile = tile;
