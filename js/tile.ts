@@ -75,7 +75,7 @@ class Tile {
     }
 
     updatePosition(_x : number, _y : number) {
-        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile.turn + "deg)";
+        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     }
 
 }

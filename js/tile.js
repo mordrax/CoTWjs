@@ -6,7 +6,6 @@ var TileType;
 
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
-;
 
 var TileData = (function () {
     function TileData(name, type, turn) {
@@ -55,15 +54,16 @@ var TILEDATA = {
 };
 
 var Tile = (function () {
-    function Tile(target, tile, model) {
+    function Tile(target, tile) {
         this._tile = tile;
         this._$el = $("<div></div>", { class: "tile type_" + tile._name });
         this._el = this._$el.get(0);
 
-        $(target).append(this._$el.toString());
+        $(target).append(this._el);
     }
     Tile.prototype.updatePosition = function (_x, _y) {
-        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile.turn + "deg)";
+        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     };
     return Tile;
 })();
+//@ sourceMappingURL=tile.js.map

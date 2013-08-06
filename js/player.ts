@@ -13,7 +13,7 @@ class Player {
     _x:number;
     _y:number;
     _$el:ZeptoCollection;
-    _el:HTMLHtmlElement;
+    _el:HTMLElement;
 
     constructor() {
         this._x = 10;

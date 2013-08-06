@@ -12,6 +12,7 @@
 /// <reference path="maps.ts"/>
 /// <reference path="world.ts"/>
 /// <reference path="player.ts"/>
+/// <reference path="cordova.js/>
 
 var world = new World(MAPS.villageMap);
 var hero = new Player();
@@ -30,10 +31,10 @@ function render(drawMap) {
 
 function init(event) {
     world._$el = $("#background");
-    world._el = world._$el.get[0];
+    world._el = world._$el.get(0);
 
     hero._$el = $("#hero");
-    hero._el = hero._$el.get[0];
+    hero._el = hero._$el.get(0);
 
     render(true);
     $("body").css("display", "block");
@@ -45,16 +46,18 @@ function update(event, hero) {
     hero.update(event.keyCode);
 }
 
-//detect if web or phonegap ( via http://stackoverflow.com/questions/8068052/phonegap-detect-if-running-on-desktop-browser)
-/*function isPhoneGap() {
-    return ((cordova || PhoneGap || phonegap)
-        && /^file:\/{3}[^\/]/i.test(document.location.href)
-        && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent)) ||
-        window.tinyHippos; //this is to cover phonegap emulator
-}
+addEventListener("load", init );
 
-if ( isPhoneGap() ) {
-    document.addEventListener( "deviceready", init );
-} else {
-    document.addEventListener("load", init );
-} */
+////detect if web or phonegap ( via http://stackoverflow.com/questions/8068052/phonegap-detect-if-running-on-desktop-browser)
+//function isPhoneGap() {
+//    return ((cordova || PhoneGap || phonegap)
+//        && /^file:\/{3}[^\/]/i.test(document.location.href)
+//        && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent)) ||
+//        window.tinyHippos; //this is to cover phonegap emulator
+//}
+//
+//if ( isPhoneGap() ) {
+//    document.addEventListener( "deviceready", init );
+//} else {
+//    document.addEventListener("load", init );
+//}

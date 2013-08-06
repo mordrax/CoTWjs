@@ -7,7 +7,7 @@
 
 class World {
     _$el : ZeptoCollection;
-    _el : HTMLHtmlElement;
+    _el : HTMLElement;
     _tiles: Tile[][];
     _map : number[][];
 

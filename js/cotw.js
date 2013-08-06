@@ -17,10 +17,10 @@ function render(drawMap) {
 
 function init(event) {
     world._$el = $("#background");
-    world._el = world._$el.get[0];
+    world._el = world._$el.get(0);
 
     hero._$el = $("#hero");
-    hero._el = hero._$el.get[0];
+    hero._el = hero._$el.get(0);
 
     render(true);
     $("body").css("display", "block");
@@ -33,4 +33,6 @@ function init(event) {
 function update(event, hero) {
     hero.update(event.keyCode);
 }
+
+addEventListener("load", init);
 //@ sourceMappingURL=cotw.js.map
