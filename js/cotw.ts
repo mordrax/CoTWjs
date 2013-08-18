@@ -14,7 +14,7 @@
 /// <reference path="player.ts"/>
 /// <reference path="cordova.js/>
 
-var world = new World(MAPS.villageMap);
+var world = new World(MAPS.tempMap);
 var hero = new Player();
 
 function render(drawMap) {

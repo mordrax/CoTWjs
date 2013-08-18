@@ -14,4 +14,4 @@ var TILE_SIZE = 32;
 var TILES_X = parseInt((WINDOW_WIDTH/TILE_SIZE).toString());
 var TILES_Y = parseInt((WINDOW_HEIGHT/TILE_SIZE).toString());
 
-var renders = 0;
+var renders = 0; 

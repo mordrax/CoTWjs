@@ -1,4 +1,4 @@
-var world = new World(MAPS.villageMap);
+var world = new World(MAPS.tempMap);
 var hero = new Player();
 
 function render(drawMap) {
@@ -35,4 +35,3 @@ function update(event, hero) {
 }
 
 addEventListener("load", init);
-//@ sourceMappingURL=cotw.js.map

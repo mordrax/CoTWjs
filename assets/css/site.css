@@ -12,21 +12,25 @@
 }
 
 .type_Rock { background: url('../resources/tiles.png') 0 0;}
-.type_RockPath { background: url('../resources/tiles.png') 192px 0;}
+.type_PathRock { background: url('../resources/tiles.png') 192px 0;}
 .type_Grass { background: url('../resources/tiles.png') 0 288px;}
-.type_GrassPath { background: url('../resources/tiles.png') 192px 288px;}
+.type_PathGrass { background: url('../resources/tiles.png') 192px 288px;}
 .type_Crop { background: url('../resources/tiles.png') 160px 288px;}
 .type_DarkDgn { background: url('../resources/tiles.png') 0 256px;}
-.type_DarkDgnWall { background: url('../resources/tiles.png') 192px 256px;}
+.type_WallDarkDgn { background: url('../resources/tiles.png') 192px 256px;}
 .type_Water { background: url('../resources/tiles.png') 0 224px;}
 .type_WaterGrass { background: url('../resources/tiles.png') 192px 224px;}
 .type_Path { background: url('../resources/tiles.png') 0 192px;}
 .type_WaterPath { background: url('../resources/tiles.png') 192px 192px;}
 .type_LitDgn { background: url('../resources/tiles.png') 0 160px;}
-.type_LitDgnWall { background: url('../resources/tiles.png') 192px 160px;}
+.type_WallLitDgn { background: url('../resources/tiles.png') 192px 160px;}
 .type_Entry { background: url('../resources/tiles.png') 192px 160px;}
 .type_Building { background: url('../resources/tiles.png') 192px 160px;}
 .type_Sign { background: url('../resources/tiles.png') 192px 160px;}
+.type_50Grass50Cave {background: url('../resources/tiles.png') 192px 160px;}
+.type_10Grass90Cave {background: url('../resources/tiles.png') 192px 160px;}
+.type_50White50Cave {background: url('../resources/tiles.png') 192px 160px;}
+.type_10White90Cave {background: url('../resources/tiles.png') 192px 160px;}
 
 
 #hero {
