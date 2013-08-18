@@ -14,13 +14,14 @@
 /// <reference path="player.ts"/>
 /// <reference path="cordova.js/>
 
-var world = new World(MAPS.tempMap);
+var world = new World(MAPS.villageMap);
 var hero = new Player();
 
 function render(drawMap) {
     if (drawMap) {
         for (var x=0; x<world._tiles.length; x++) {
             for (var y=0; y<world._tiles.length; y++) {
+                world._tiles[x][y]._tile._turn = world.determineRotation(x, y, world._map);
                 world._tiles[x][y].updatePosition( x, y );
             }
         }

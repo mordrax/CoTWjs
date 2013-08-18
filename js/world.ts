@@ -20,7 +20,6 @@ class World {
             this._tiles[x] = new Array <Tile>();
             for (var y=0; y<this._map[x].length; y++) {
                 this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
-                this._tiles[x][y]._tile._turn = this.determineRotation(x,y,this._map);
            }
         }
     }
@@ -30,16 +29,7 @@ class World {
         var degrees : number;
         var southWestTile, north, west : string;
 
-        if (y > 0) {
-            north = TILEDATA[map[x][y-1]]._name;
-        } // else south = undefined;
-
-        if (x > 0) {
-            west = TILEDATA[map[x-1][y]]._name;
-        } // else west = undefined;
-
-        console.log(TILEDATA[map[x][y]]._name);
-
+        // check if tile type requires possible rotation - exits with 0 if not one of the expected types
         switch (TILEDATA[map[x][y]]._name) {
             case "PathRock" : southWestTile = "Path" ; break;
             case "PathGrass" : southWestTile = "Path" ; break;
@@ -50,9 +40,17 @@ class World {
             default : return 0;
         }
 
+        if (y > 0) {
+            north = TILEDATA[map[x][y-1]]._name;
+        } // else south = undefined;
+
+        if (x > 0) {
+            west = TILEDATA[map[x-1][y]]._name;
+        } // else west = undefined;
+
         if (north == southWestTile){
             if (west == southWestTile) {    // north and west
-                degrees = 270;
+                degrees = 90;
             }
             else {                          // north and east
                 degrees = 180;
@@ -62,13 +60,8 @@ class World {
             degrees = 0;
         }
         else {                              // south and east
-            degrees = 90;
+            degrees = 270;
         }
-
-        console.log(southWestTile);
-        console.log (north);
-        console.log (west);
-        console.log(degrees);
 
         // return the number of degrees to rotate the tile
         return degrees;
