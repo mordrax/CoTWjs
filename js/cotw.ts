@@ -8,10 +8,10 @@
 
 /// <reference path="zepto.d.ts"/>
 /// <reference path="globals.ts"/>
-/// <reference path="tile.ts"/>
+/// <reference path="world/tile.ts"/>
 /// <reference path="maps.ts"/>
-/// <reference path="world.ts"/>
-/// <reference path="player.ts"/>
+/// <reference path="world/world.ts"/>
+/// <reference path="npcs/player.ts"/>
 /// <reference path="cordova.js/>
 
 var world = new World(MAPS.villageMap);

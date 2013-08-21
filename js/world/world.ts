@@ -1,9 +1,8 @@
-/**
- * Created by mordrax on 19/07/13.
- */
-
-/// <reference path="zepto.d.ts"/>
+/// <reference path="../zepto.d.ts"/>
 /// <reference path="tile.ts"/>
+/// <reference path="structure.ts"/>
+/// <reference path="../items/item.ts"/>
+/// <reference path="../NPCs/npc.ts"/>
 
 class World {
     _$el : ZeptoCollection;
@@ -20,7 +19,7 @@ class World {
             this._tiles[x] = new Array <Tile>();
             for (var y=0; y<this._map[x].length; y++) {
                 this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
-           }
+            }
         }
     }
 

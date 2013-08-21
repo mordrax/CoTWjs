@@ -1,9 +1,5 @@
-/**
- * Created by mordrax on 18/07/13.
- */
-
-/// <reference path="zepto.d.ts"/>
-/// <reference path="globals.ts"/>
+/// <reference path="../zepto.d.ts"/>
+/// <reference path="../globals.ts"/>
 
 enum TileType {
     Ground,

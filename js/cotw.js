@@ -36,3 +36,4 @@ function update(event, hero) {
 }
 
 addEventListener("load", init);
+//@ sourceMappingURL=cotw.js.map

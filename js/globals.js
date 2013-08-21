@@ -7,3 +7,4 @@ var TILES_X = parseInt((WINDOW_WIDTH / TILE_SIZE).toString());
 var TILES_Y = parseInt((WINDOW_HEIGHT / TILE_SIZE).toString());
 
 var renders = 0;
+//@ sourceMappingURL=globals.js.map
