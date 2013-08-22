@@ -1,0 +1,10 @@
+/// <reference path="interfaces/IDrawable.ts"/>
+/// <reference path="interfaces/IStructure.ts"/>
+/// <reference path="zepto.d.ts"/>
+/// <reference path="globals.ts"/>
+/// <reference path="world/tile.ts"/>
+/// <reference path="maps.ts"/>
+/// <reference path="world/world.ts"/>
+/// <reference path="NPCs/player.ts"/>
+/// <reference path="input.ts"/>
+/// <reference path="point.ts"/>

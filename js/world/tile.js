@@ -7,25 +7,6 @@ var TileType;
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
 
-var Coords;
-
-var Building = (function () {
-    function Building(map, name, size, entry_pos, start_pos, end_pos) {
-        this.map = map;
-        this.name = name;
-        this.size = size;
-        this.entry_pos = entry_pos;
-        this.start_pos = start_pos;
-        this.end_pos = end_pos;
-    }
-    return Building;
-})();
-
-var BUILDINGDATA = {
-    1: new Building("VillageMap", "Shop1", "3x3", (1, 2), (2, 3), (4, 5)),
-    2: new Building("VillageMap", "Shop2", "3x3", (1, 2), (2, 3), (4, 5))
-};
-
 var TileData = (function () {
     function TileData(name, type, turn) {
         this._name = name;
@@ -34,7 +15,7 @@ var TileData = (function () {
     }
     return TileData;
 })();
-var TILEDATA = {
+var TILE_DATA = {
     1: new TileData("Rock", TileType.Solid, 0),
     2: new TileData("Grass", TileType.Ground, 0),
     3: new TileData("DarkDgn", TileType.Ground, 0),
@@ -58,16 +39,16 @@ var TILEDATA = {
 };
 
 var Tile = (function () {
-    function Tile(target, tile) {
+    function Tile(target, tile, coords) {
         this._tile = tile;
-        this._$el = $("<div></div>", { class: "tile type_" + tile._name });
+        this._$el = $("<div></div>", { 'class': "tile type_" + tile._name });
         this._el = this._$el.get(0);
+        this._coords = coords;
 
         $(target).append(this._el);
     }
-    Tile.prototype.updatePosition = function (_x, _y) {
-        console.log(this._tile._turn);
-        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
+    Tile.prototype.Draw = function () {
+        this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     };
     return Tile;
 })();

@@ -1,4 +1,6 @@
 /// <reference path="zepto.d.ts"/>
+/// <reference path="point.ts"/>
+/// <reference path="interfaces/IDrawable.ts"/>
 
 //var hasTouch = ('ontouchstart' in window);
 //var TOUCH_START = hasTouch ? "touchstart" : "mousedown";

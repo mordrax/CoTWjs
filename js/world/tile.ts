@@ -1,4 +1,3 @@
-/// <reference path="../zepto.d.ts"/>
 /// <reference path="../globals.ts"/>
 
 enum TileType {
@@ -7,31 +6,6 @@ enum TileType {
     Solid,
     Entry
 }
-
-var Coords : {x : number; y: number;};
-
-class Building {
-    map : string;
-    name : string;
-    size : string;
-    entry_pos : Coords;
-    start_pos : Coords;
-    end_pos : Coords;
-
-    constructor (map : string, name : string, size : string, entry_pos : Coords, start_pos : Coords, end_pos : Coords) {
-        this.map = map;
-        this.name = name;
-        this.size = size;
-        this.entry_pos = entry_pos;
-        this.start_pos = start_pos;
-        this.end_pos = end_pos;
-    }
-}
-
-var BUILDINGDATA = {
-    1: new Building("VillageMap", "Shop1", "3x3", (1, 2), (2, 3), (4, 5)),
-    2: new Building("VillageMap", "Shop2", "3x3", (1, 2), (2, 3), (4, 5))
-};
 
 class TileData{
     _name : string;
@@ -44,7 +18,7 @@ class TileData{
         this._turn = turn;
     }
 }
-var TILEDATA = {
+var TILE_DATA = {
     1: new TileData("Rock",          TileType.Solid,    0),
     2: new TileData("Grass",         TileType.Ground,   0),
     3: new TileData("DarkDgn",       TileType.Ground,   0),
@@ -67,22 +41,23 @@ var TILEDATA = {
     34: new TileData("Sign",          TileType.Ground,  0)
 };
 
-class Tile {
+class Tile implements IDrawable {
     _$el : ZeptoCollection;
     _el  : HTMLElement;
     _tile: TileData;
+    _coords : Point;
 
-    constructor (target: string, tile : TileData) {
+    constructor (target: string, tile : TileData, coords: Point) {
         this._tile = tile;
-        this._$el = $("<div></div>", {class: "tile type_" + tile._name});
+        this._$el = $("<div></div>", {'class': "tile type_" + tile._name});
         this._el = this._$el.get(0);
+        this._coords = coords;
 
         $(target).append(this._el);
     }
 
-    updatePosition(_x : number, _y : number) {
-        console.log (this._tile._turn)
-        this._el.style["-webkit-transform"] = "translate3d(" + _x * TILE_SIZE + 'px,' + _y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
+    Draw() {
+        this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     }
 
 }

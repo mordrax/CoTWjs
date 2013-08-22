@@ -6,7 +6,7 @@ var World = (function () {
         for (var x = 0; x < this._map.length; x++) {
             this._tiles[x] = new Array();
             for (var y = 0; y < this._map[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
+                this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x, y));
             }
         }
     }
@@ -14,7 +14,7 @@ var World = (function () {
         var degrees;
         var southWestTile, north, west;
 
-        switch (TILEDATA[map[x][y]]._name) {
+        switch (TILE_DATA[map[x][y]]._name) {
             case "PathRock":
                 southWestTile = "Path";
                 break;
@@ -38,11 +38,11 @@ var World = (function () {
         }
 
         if (y > 0) {
-            north = TILEDATA[map[x][y - 1]]._name;
+            north = TILE_DATA[map[x][y - 1]]._name;
         }
 
         if (x > 0) {
-            west = TILEDATA[map[x - 1][y]]._name;
+            west = TILE_DATA[map[x - 1][y]]._name;
         }
 
         if (north == southWestTile) {

@@ -5,51 +5,61 @@
 /// <reference path="../NPCs/npc.ts"/>
 
 class World {
-    _$el : ZeptoCollection;
-    _el : HTMLElement;
-    _tiles: Tile[][];
-//    _buildings : Building;
-    _map : number[][];
+    _$el:ZeptoCollection;
+    _el:HTMLElement;
+    _tiles:Tile[][];
+    _map:number[][];
 
-    constructor (map: number[][])
-    {
+    constructor(map:number[][]) {
         this._map = map;
         this._tiles = new Array<Array<Tile>>();
-        //this._buildings = new Building;
 
-        for (var x=0; x<this._map.length; x++) {
+        for (var x = 0; x < this._map.length; x++) {
             this._tiles[x] = new Array <Tile>();
-            for (var y=0; y<this._map[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILEDATA[this._map[x][y]]);
+            for (var y = 0; y < this._map[x].length; y++) {
+                this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x,y));
             }
         }
     }
 
-    determineRotation(x : number, y : number, map: number[][])  {
+    determineRotation(x:number, y:number, map:number[][]) {
 
-        var degrees : number;
-        var southWestTile, north, west : string;
+        var degrees:number;
+        var southWestTile, north, west:string;
 
         // check if tile type requires possible rotation - exits with 0 if not one of the expected types
-        switch (TILEDATA[map[x][y]]._name) {
-            case "PathRock" : southWestTile = "Path" ; break;
-            case "PathGrass" : southWestTile = "Path" ; break;
-            case "WaterGrass" : southWestTile = "Water" ; break;
-            case "WaterPath" : southWestTile = "Water" ; break;
-            case "WallLitDgn" : southWestTile = "Wall" ; break;
-            case "WallDarkDgn": southWestTile = "Wall" ; break;
-            default : return 0;
+        switch (TILE_DATA[map[x][y]]._name) {
+            case "PathRock" :
+                southWestTile = "Path";
+                break;
+            case "PathGrass" :
+                southWestTile = "Path";
+                break;
+            case "WaterGrass" :
+                southWestTile = "Water";
+                break;
+            case "WaterPath" :
+                southWestTile = "Water";
+                break;
+            case "WallLitDgn" :
+                southWestTile = "Wall";
+                break;
+            case "WallDarkDgn":
+                southWestTile = "Wall";
+                break;
+            default :
+                return 0;
         }
 
         if (y > 0) {
-            north = TILEDATA[map[x][y-1]]._name;
+            north = TILE_DATA[map[x][y - 1]]._name;
         } // else south = undefined;
 
         if (x > 0) {
-            west = TILEDATA[map[x-1][y]]._name;
+            west = TILE_DATA[map[x - 1][y]]._name;
         } // else west = undefined;
 
-        if (north == southWestTile){
+        if (north == southWestTile) {
             if (west == southWestTile) {    // north and west
                 degrees = 90;
             }
@@ -57,7 +67,7 @@ class World {
                 degrees = 180;
             }
         }
-        else if (west == southWestTile){    // south and west
+        else if (west == southWestTile) {    // south and west
             degrees = 0;
         }
         else {                              // south and east

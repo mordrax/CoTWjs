@@ -206,7 +206,7 @@ function render(){
     for (var x=0; x<world.tiles.length; x++) {
 
         for (var y=0; y<world.tiles[x].length; y++) {
-            world.tiles[x][y].updatePosition( translate.x, translate.y );
+            world.tiles[x][y].Draw();
         }
 
     }
@@ -214,7 +214,7 @@ function render(){
 
 
     for (var x=0; x<backgroundSprites.sprites.length; x++) {
-        backgroundSprites.sprites[x].updatePosition( translate.x, translate.y );
+        backgroundSprites.sprites[x].Draw();
     }
 
     for (var x=0; x<enemySprites.sprites.length; x++) {
@@ -235,7 +235,7 @@ function render(){
 
         sprite.scale += sprite.scaleModifier;
 
-        sprite.updatePosition( translate.x, translate.y );
+        sprite.Draw();
     }
 
     if (input.distance > 0) {
@@ -313,7 +313,7 @@ function Tile(col, row, target, css, model) {
     $(target).append( this.$el );
 }
 
-Tile.prototype.updatePosition = function ( _x, _y ) {
+Tile.prototype.Draw = function ( _x, _y ) {
 
     var size = this.model.tileSize;
     var x = ((this.col) * size + _x);

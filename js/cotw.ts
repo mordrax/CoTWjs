@@ -6,13 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-/// <reference path="zepto.d.ts"/>
-/// <reference path="globals.ts"/>
-/// <reference path="world/tile.ts"/>
-/// <reference path="maps.ts"/>
-/// <reference path="world/world.ts"/>
-/// <reference path="npcs/player.ts"/>
-/// <reference path="cordova.js/>
+///<reference path="references.ts"/>
 
 var world = new World(MAPS.villageMap);
 var hero = new Player();
@@ -22,7 +16,7 @@ function render(drawMap) {
         for (var x=0; x<world._tiles.length; x++) {
             for (var y=0; y<world._tiles.length; y++) {
                 world._tiles[x][y]._tile._turn = world.determineRotation(x, y, world._map);
-                world._tiles[x][y].updatePosition( x, y );
+                world._tiles[x][y].Draw();
             }
         }
         // draw buildings

@@ -1,26 +1,18 @@
-/**
- * Created with JetBrains WebStorm.
- * User: mordrax
- * Date: 2/07/13
- * Time: 7:18 PM
- * To change this template use File | Settings | File Templates.
- */
+/// <reference path="../references.ts"/>
 
-/// <reference path="../input.ts"/>
-/// <reference path="../zepto.d.ts"/>
-
-class Player {
+class Player extends NPC implements IDrawable {
     _x:number;
     _y:number;
     _$el:ZeptoCollection;
     _el:HTMLElement;
 
     constructor() {
+        super();
         this._x = 10;
         this._y = 15;
     }
 
-    draw() {
+    Draw() {
         alert('Player draw not implemented');
     }
 
