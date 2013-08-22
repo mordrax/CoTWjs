@@ -3,4 +3,3 @@ var Structure = (function () {
     }
     return Structure;
 })();
-//@ sourceMappingURL=structure.js.map

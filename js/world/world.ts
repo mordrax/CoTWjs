@@ -8,12 +8,14 @@ class World {
     _$el : ZeptoCollection;
     _el : HTMLElement;
     _tiles: Tile[][];
+//    _buildings : Building;
     _map : number[][];
 
     constructor (map: number[][])
     {
         this._map = map;
         this._tiles = new Array<Array<Tile>>();
+        //this._buildings = new Building;
 
         for (var x=0; x<this._map.length; x++) {
             this._tiles[x] = new Array <Tile>();

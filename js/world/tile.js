@@ -7,6 +7,25 @@ var TileType;
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
 
+var Coords;
+
+var Building = (function () {
+    function Building(map, name, size, entry_pos, start_pos, end_pos) {
+        this.map = map;
+        this.name = name;
+        this.size = size;
+        this.entry_pos = entry_pos;
+        this.start_pos = start_pos;
+        this.end_pos = end_pos;
+    }
+    return Building;
+})();
+
+var BUILDINGDATA = {
+    1: new Building("VillageMap", "Shop1", "3x3", (1, 2), (2, 3), (4, 5)),
+    2: new Building("VillageMap", "Shop2", "3x3", (1, 2), (2, 3), (4, 5))
+};
+
 var TileData = (function () {
     function TileData(name, type, turn) {
         this._name = name;
@@ -52,4 +71,3 @@ var Tile = (function () {
     };
     return Tile;
 })();
-//@ sourceMappingURL=tile.js.map

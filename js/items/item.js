@@ -3,4 +3,3 @@ var Item = (function () {
     }
     return Item;
 })();
-//@ sourceMappingURL=item.js.map

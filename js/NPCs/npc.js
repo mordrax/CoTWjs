@@ -3,4 +3,3 @@ var NPC = (function () {
     }
     return NPC;
 })();
-//@ sourceMappingURL=npc.js.map

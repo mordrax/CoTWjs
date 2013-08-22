@@ -11,4 +11,3 @@ var Weapon = (function (_super) {
     }
     return Weapon;
 })(Item);
-//@ sourceMappingURL=weapon.js.map

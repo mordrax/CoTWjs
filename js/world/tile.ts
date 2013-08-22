@@ -8,6 +8,31 @@ enum TileType {
     Entry
 }
 
+var Coords : {x : number; y: number;};
+
+class Building {
+    map : string;
+    name : string;
+    size : string;
+    entry_pos : Coords;
+    start_pos : Coords;
+    end_pos : Coords;
+
+    constructor (map : string, name : string, size : string, entry_pos : Coords, start_pos : Coords, end_pos : Coords) {
+        this.map = map;
+        this.name = name;
+        this.size = size;
+        this.entry_pos = entry_pos;
+        this.start_pos = start_pos;
+        this.end_pos = end_pos;
+    }
+}
+
+var BUILDINGDATA = {
+    1: new Building("VillageMap", "Shop1", "3x3", (1, 2), (2, 3), (4, 5)),
+    2: new Building("VillageMap", "Shop2", "3x3", (1, 2), (2, 3), (4, 5))
+};
+
 class TileData{
     _name : string;
     _type : TileType;

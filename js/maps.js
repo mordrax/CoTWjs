@@ -54,4 +54,3 @@ var MAPS = {
         [2, 2, 2, 2, 2, 2]
     ]
 };
-//@ sourceMappingURL=maps.js.map

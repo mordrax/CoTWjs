@@ -25,6 +25,9 @@ function render(drawMap) {
                 world._tiles[x][y].updatePosition( x, y );
             }
         }
+        // draw buildings
+       // for (var i=0; i<)
+
     }
     hero._el.style["-webkit-transform"]="translate3d("+ hero._x*TILE_SIZE +'px,'+ hero._y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
     window.requestAnimationFrame(function() {render(false)});
