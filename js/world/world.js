@@ -1,3 +1,8 @@
+/// <reference path="../zepto.d.ts"/>
+/// <reference path="tile.ts"/>
+/// <reference path="structure.ts"/>
+/// <reference path="../items/item.ts"/>
+/// <reference path="../NPCs/npc.ts"/>
 var World = (function () {
     function World(map) {
         this._map = map;
@@ -57,7 +62,9 @@ var World = (function () {
             degrees = 270;
         }
 
+        // return the number of degrees to rotate the tile
         return degrees;
     };
     return World;
 })();
+//# sourceMappingURL=world.js.map

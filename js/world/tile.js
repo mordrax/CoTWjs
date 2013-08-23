@@ -1,9 +1,9 @@
+/// <reference path="../globals.ts"/>
 var TileType;
 (function (TileType) {
     TileType[TileType["Ground"] = 0] = "Ground";
     TileType[TileType["Water"] = 1] = "Water";
     TileType[TileType["Solid"] = 2] = "Solid";
-
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
 
@@ -52,3 +52,4 @@ var Tile = (function () {
     };
     return Tile;
 })();
+//# sourceMappingURL=tile.js.map

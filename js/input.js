@@ -1,3 +1,10 @@
+/**
+* Created with JetBrains WebStorm.
+* User: mordrax
+* Date: 2/07/13
+* Time: 7:16 PM
+* To change this template use File | Settings | File Templates.
+*/
 var Key = {
     _pressed: {},
     LEFT: 37,
@@ -14,3 +21,4 @@ var Key = {
         this._pressed[event.keyCode] = false;
     }
 };
+//# sourceMappingURL=input.js.map
