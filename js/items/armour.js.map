@@ -1,1 +1,1 @@
-{"version":3,"file":"armour.js","sources":["armour.ts"],"names":["Armour","Armour.constructor"],"mappings":";;;;;;AAGA;;IAAAA;;;AAECA,IAADA;AAACA,CAAAA,EAFoB,IAAI,EAExB"}
+{"version":3,"file":"armour.js","sourceRoot":"","sources":["armour.ts"],"names":["Armour","Armour.constructor"],"mappings":";;;;;;AAAA;;EAEG;AACH;;IAAAA;;;AAECA,IAADA;AAACA,CAAAA,EAFoB,IAAI,EAExB"}

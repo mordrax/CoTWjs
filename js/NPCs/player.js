@@ -31,25 +31,6 @@ var Player = (function (_super) {
     Player.prototype.moveDown = function () {
         this._y += 1;
     };
-
-    Player.prototype.update = function (keycode) {
-        if (keycode == Key.UP) {
-            this.moveUp();
-            console.log('Move up.');
-        }
-        if (keycode == Key.LEFT) {
-            this.moveLeft();
-            console.log('Move left.');
-        }
-        if (keycode == Key.DOWN) {
-            this.moveDown();
-            console.log('Move down.');
-        }
-        if (keycode == Key.RIGHT) {
-            this.moveRight();
-            console.log('Move right.');
-        }
-    };
     return Player;
 })(NPC);
 //# sourceMappingURL=player.js.map

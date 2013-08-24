@@ -10,6 +10,8 @@
 
 var world = new World(MAPS.villageMap);
 var hero = new Player();
+var physicsX = new PhysicsEngine(hero);
+var _currentGameState : IState;
 
 function render(drawMap) {
     if (drawMap) {
@@ -27,21 +29,19 @@ function render(drawMap) {
     window.requestAnimationFrame(function() {render(false)});
 }
 
-function init(event) {
+function init() {
     world._$el = $("#background");
     world._el = world._$el.get(0);
 
     hero._$el = $("#hero");
     hero._el = hero._$el.get(0);
 
+    _currentGameState = physicsX;
+
     render(true);
     $("body").css("display", "block");
 
-    document.addEventListener( "keyup", function(event) { update(event, hero); }, false);
-}
-
-function update(event, hero) {
-    hero.update(event.keyCode);
+    document.addEventListener( "keyup", function(event) { _currentGameState.SendEvent(event); }, false);
 }
 
 addEventListener("load", init );

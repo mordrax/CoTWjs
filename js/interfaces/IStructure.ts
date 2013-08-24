@@ -12,7 +12,7 @@ interface IStructure extends IDrawable {
     /**
      * Top left of building
      */
-    StartPosition() : Point;
+    Position() : Point;
 
     /**
      * Event handler to call when building activates

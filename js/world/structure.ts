@@ -30,11 +30,20 @@ class Structure implements IStructure {
         return p;
     }
 
+    Draw() {
+        this._el.style["-webkit-transform"] = "translate3d(" + this.start_pos.X * TILE_SIZE + 'px,' + this.start_pos.Y * TILE_SIZE + "px,0px)";
+    }
+
+    EntryPoint() {
+        return this.entry_pos;
+    }
+
     Enter() {
+        throw "Not implemented exception.";
         // code called when player enters building
     }
 
-    Draw() {
-        this._el.style["-webkit-transform"] = "translate3d(" + this.start_pos.X * TILE_SIZE + 'px,' + this.start_pos.Y * TILE_SIZE + "px,0px)";
+    Position() {
+        return this.start_pos;
     }
 }

@@ -20,12 +20,21 @@ var Structure = (function () {
         return p;
     };
 
+    Structure.prototype.Draw = function () {
+        this._el.style["-webkit-transform"] = "translate3d(" + this.start_pos.X * TILE_SIZE + 'px,' + this.start_pos.Y * TILE_SIZE + "px,0px)";
+    };
+
+    Structure.prototype.EntryPoint = function () {
+        return this.entry_pos;
+    };
+
     Structure.prototype.Enter = function () {
+        throw "Not implemented exception.";
         // code called when player enters building
     };
 
-    Structure.prototype.Draw = function () {
-        this._el.style["-webkit-transform"] = "translate3d(" + this.start_pos.X * TILE_SIZE + 'px,' + this.start_pos.Y * TILE_SIZE + "px,0px)";
+    Structure.prototype.Position = function () {
+        return this.start_pos;
     };
     return Structure;
 })();
