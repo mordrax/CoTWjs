@@ -4,9 +4,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-/**
-* Created by mordrax on 21/08/13.
-*/
 var Weapon = (function (_super) {
     __extends(Weapon, _super);
     function Weapon() {
@@ -14,4 +11,4 @@ var Weapon = (function (_super) {
     }
     return Weapon;
 })(Item);
-//# sourceMappingURL=weapon.js.map
+//@ sourceMappingURL=weapon.js.map

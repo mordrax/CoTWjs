@@ -1,1 +1,1 @@
-{"version":3,"file":"npc.js","sourceRoot":"","sources":["npc.ts"],"names":["NPC","NPC.constructor"],"mappings":"AAAA,wCAAwC;AAExC;;EAEG;AACH;IAAAA;;AAECA,IAADA;AAACA,CAAAA,IAAA"}
+{"version":3,"file":"npc.js","sources":["npc.ts"],"names":["NPC","NPC.constructor"],"mappings":"AAKA;IAAAA;;AAECA,IAADA;AAACA,CAAAA,IAAA"}
