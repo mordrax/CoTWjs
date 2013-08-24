@@ -1,11 +1,9 @@
-/// <reference path="../zepto.d.ts"/>
-/// <reference path="tile.ts"/>
-/// <reference path="structure.ts"/>
-/// <reference path="../items/item.ts"/>
-/// <reference path="../NPCs/npc.ts"/>
 var World = (function () {
-    function World(map) {
-        this._map = map;
+    function World($el) {
+        this._$el = $el;
+        this._el = $el.get(0);
+
+        this._map = MAPS.villageMap;
         this._tiles = new Array();
 
         for (var x = 0; x < this._map.length; x++) {
@@ -15,6 +13,15 @@ var World = (function () {
             }
         }
     }
+    World.prototype.Draw = function () {
+        for (var x = 0; x < this._tiles.length; x++) {
+            for (var y = 0; y < this._tiles.length; y++) {
+                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
+                this._tiles[x][y].Draw();
+            }
+        }
+    };
+
     World.prototype.determineRotation = function (x, y, map) {
         var degrees;
         var southWestTile, north, west;
@@ -62,9 +69,8 @@ var World = (function () {
             degrees = 270;
         }
 
-        // return the number of degrees to rotate the tile
         return degrees;
     };
     return World;
 })();
-//# sourceMappingURL=world.js.map
+//@ sourceMappingURL=world.js.map

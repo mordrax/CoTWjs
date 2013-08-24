@@ -6,14 +6,18 @@ class Player extends NPC implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
 
-    constructor() {
+    constructor($el) {
         super();
+
+        this._$el = $el;
+        this._el = $el.get(0);
+
         this._x = 10;
         this._y = 15;
     }
 
     Draw() {
-        alert('Player draw not implemented');
+        this._el.style["-webkit-transform"]="translate3d("+ this._x*TILE_SIZE +'px,'+ this._y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
     }
 
     moveLeft() {

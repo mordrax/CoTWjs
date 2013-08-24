@@ -1,4 +1,3 @@
-/// <reference path="../references.ts"/>
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,13 +6,17 @@ var __extends = this.__extends || function (d, b) {
 };
 var Player = (function (_super) {
     __extends(Player, _super);
-    function Player() {
+    function Player($el) {
         _super.call(this);
+
+        this._$el = $el;
+        this._el = $el.get(0);
+
         this._x = 10;
         this._y = 15;
     }
     Player.prototype.Draw = function () {
-        alert('Player draw not implemented');
+        this._el.style["-webkit-transform"] = "translate3d(" + this._x * TILE_SIZE + 'px,' + this._y * TILE_SIZE + "px,0px) ";
     };
 
     Player.prototype.moveLeft = function () {
@@ -33,4 +36,4 @@ var Player = (function (_super) {
     };
     return Player;
 })(NPC);
-//# sourceMappingURL=player.js.map
+//@ sourceMappingURL=player.js.map

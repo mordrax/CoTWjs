@@ -1,6 +1,7 @@
 var PhysicsEngine = (function () {
-    function PhysicsEngine(hero) {
+    function PhysicsEngine(hero, world) {
         this._hero = hero;
+        this._world = world;
     }
     PhysicsEngine.prototype.IsDown = function (keyCode) {
         return this._pressed[keyCode];

@@ -2,45 +2,46 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/js/cotw.js" />
-        <item url="file://$PROJECT_DIR$/js/references.js" />
+        <item url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/Game.js" />
+        <item url="file://$PROJECT_DIR$/js/items/item.js" />
         <item url="file://$PROJECT_DIR$/js/NPCs/player.js" />
         <item url="file://$PROJECT_DIR$/js/point.js" />
-        <item url="file://$PROJECT_DIR$/js/fps.js" />
-        <item url="file://$PROJECT_DIR$/js/world/structure.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/ShopEngine.js" />
-        <item url="file://$PROJECT_DIR$/js/NPCs/npc.js" />
-        <item url="file://$PROJECT_DIR$/js/items/weapon.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces/IState.js" />
-        <item url="file://$PROJECT_DIR$/js/items/armour.js" />
-        <item url="file://$PROJECT_DIR$/js/interfaces/IPhysical.d.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
+        <item url="file://$PROJECT_DIR$/js/NPCs/npc.js" />
+        <item url="file://$PROJECT_DIR$/js/references.js" />
+        <item url="file://$PROJECT_DIR$/js/cotw.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces/IDrawable.js" />
-        <item url="file://$PROJECT_DIR$/js/items/item.js" />
-        <item url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
-        <item url="file://$PROJECT_DIR$/js/Input.js" />
+        <item url="file://$PROJECT_DIR$/js/interfaces/IPhysical.d.js" />
+        <item url="file://$PROJECT_DIR$/js/items/armour.js" />
+        <item url="file://$PROJECT_DIR$/js/fps.js" />
+        <item url="file://$PROJECT_DIR$/js/items/weapon.js" />
+        <item url="file://$PROJECT_DIR$/js/collections.js" />
+        <item url="file://$PROJECT_DIR$/js/world/structure.js" />
+        <item url="file://$PROJECT_DIR$/js/world/world.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/js/cotw.js" />
-      <root url="file://$PROJECT_DIR$/js/references.js" />
+      <root url="file://$PROJECT_DIR$/js/Input.js" />
+      <root url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/Game.js" />
+      <root url="file://$PROJECT_DIR$/js/items/item.js" />
+      <root url="file://$PROJECT_DIR$/js/interfaces/IState.js" />
       <root url="file://$PROJECT_DIR$/js/point.js" />
       <root url="file://$PROJECT_DIR$/js/NPCs/player.js" />
-      <root url="file://$PROJECT_DIR$/js/fps.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/ShopEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/world/structure.js" />
       <root url="file://$PROJECT_DIR$/js/NPCs/npc.js" />
-      <root url="file://$PROJECT_DIR$/js/items/weapon.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/interfaces/IState.js" />
+      <root url="file://$PROJECT_DIR$/js/references.js" />
+      <root url="file://$PROJECT_DIR$/js/cotw.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.d.js" />
-      <root url="file://$PROJECT_DIR$/js/items/armour.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/items/item.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IDrawable.js" />
-      <root url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
-      <root url="file://$PROJECT_DIR$/js/Input.js" />
+      <root url="file://$PROJECT_DIR$/js/fps.js" />
+      <root url="file://$PROJECT_DIR$/js/items/armour.js" />
+      <root url="file://$PROJECT_DIR$/js/items/weapon.js" />
+      <root url="file://$PROJECT_DIR$/js/world/structure.js" />
+      <root url="file://$PROJECT_DIR$/js/collections.js" />
+      <root url="file://$PROJECT_DIR$/js/world/world.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
     </CLASSES>
     <SOURCES />
   </library>

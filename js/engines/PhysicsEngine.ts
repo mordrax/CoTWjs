@@ -3,13 +3,15 @@
 class PhysicsEngine implements IState {
     _pressed : {};
     _hero : Player;
+    _world : World;
     public static LEFT = 37;
     public static UP = 38;
     public static RIGHT = 39;
     public static DOWN = 40;
 
-    constructor (hero : Player) {
+    constructor (hero : Player, world : World) {
         this._hero = hero;
+        this._world = world;
     }
     IsDown (keyCode) {
         return this._pressed[keyCode];

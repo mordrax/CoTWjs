@@ -1,17 +1,17 @@
-/// <reference path="../zepto.d.ts"/>
-/// <reference path="tile.ts"/>
-/// <reference path="structure.ts"/>
-/// <reference path="../items/item.ts"/>
-/// <reference path="../NPCs/npc.ts"/>
+/// <reference path="../references.ts"/>
 
-class World {
+class World implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
     _tiles:Tile[][];
     _map:number[][];
 
-    constructor(map:number[][]) {
-        this._map = map;
+    constructor($el:ZeptoCollection) {
+
+        this._$el = $el;
+        this._el = $el.get(0);
+
+        this._map = MAPS.villageMap;
         this._tiles = new Array<Array<Tile>>();
 
         for (var x = 0; x < this._map.length; x++) {
@@ -22,7 +22,16 @@ class World {
         }
     }
 
-    determineRotation(x:number, y:number, map:number[][]) {
+    Draw() {
+        for (var x=0; x<this._tiles.length; x++) {
+            for (var y=0; y<this._tiles.length; y++) {
+                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
+                this._tiles[x][y].Draw();
+            }
+        }
+    }
+
+    private determineRotation(x:number, y:number, map:number[][]) {
 
         var degrees:number;
         var southWestTile, north, west:string;
