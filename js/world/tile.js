@@ -1,41 +1,41 @@
+/// <reference path="../globals.ts"/>
 var TileType;
 (function (TileType) {
     TileType[TileType["Ground"] = 0] = "Ground";
     TileType[TileType["Water"] = 1] = "Water";
     TileType[TileType["Solid"] = 2] = "Solid";
-
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
 
 var TileData = (function () {
-    function TileData(name, type, turn) {
+    function TileData(name, type) {
         this._name = name;
         this._type = type;
-        this._turn = turn;
+        this._turn = 0;
     }
     return TileData;
 })();
 var TILE_DATA = {
-    1: new TileData("Rock", TileType.Solid, 0),
-    2: new TileData("Grass", TileType.Ground, 0),
-    3: new TileData("DarkDgn", TileType.Ground, 0),
-    4: new TileData("Water", TileType.Water, 0),
-    5: new TileData("Path", TileType.Ground, 0),
-    6: new TileData("LitDgn", TileType.Ground, 0),
-    11: new TileData("PathRock", TileType.Solid, 0),
-    12: new TileData("PathGrass", TileType.Ground, 0),
-    13: new TileData("WaterGrass", TileType.Water, 0),
-    14: new TileData("WaterPath", TileType.Water, 0),
-    15: new TileData("WallLitDgn", TileType.Solid, 0),
-    16: new TileData("WallDarkDgn", TileType.Solid, 0),
-    17: new TileData("50Grass50Cave", TileType.Solid, 0),
-    18: new TileData("10Grass90Cave", TileType.Solid, 0),
-    19: new TileData("50White50Cave", TileType.Solid, 0),
-    20: new TileData("10White90Cave", TileType.Solid, 0),
-    31: new TileData("Crop", TileType.Ground, 0),
-    32: new TileData("Entry", TileType.Entry, 0),
-    33: new TileData("Building", TileType.Solid, 0),
-    34: new TileData("Sign", TileType.Ground, 0)
+    1: new TileData("Rock", TileType.Solid),
+    2: new TileData("Grass", TileType.Ground),
+    3: new TileData("DarkDgn", TileType.Ground),
+    4: new TileData("Water", TileType.Water),
+    5: new TileData("Path", TileType.Ground),
+    6: new TileData("LitDgn", TileType.Ground),
+    11: new TileData("PathRock", TileType.Solid),
+    12: new TileData("PathGrass", TileType.Ground),
+    13: new TileData("WaterGrass", TileType.Water),
+    14: new TileData("WaterPath", TileType.Water),
+    15: new TileData("WallLitDgn", TileType.Solid),
+    16: new TileData("WallDarkDgn", TileType.Solid),
+    17: new TileData("50Grass50Cave", TileType.Solid),
+    18: new TileData("10Grass90Cave", TileType.Solid),
+    19: new TileData("50White50Cave", TileType.Solid),
+    20: new TileData("10White90Cave", TileType.Solid),
+    31: new TileData("Crop", TileType.Ground),
+    32: new TileData("Entry", TileType.Entry),
+    33: new TileData("Building", TileType.Solid),
+    34: new TileData("Sign", TileType.Ground)
 };
 
 var Tile = (function () {
@@ -52,4 +52,4 @@ var Tile = (function () {
     };
     return Tile;
 })();
-//@ sourceMappingURL=tile.js.map
+//# sourceMappingURL=tile.js.map

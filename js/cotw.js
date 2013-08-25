@@ -4,5 +4,4 @@ function pageReady() {
     game.Start();
 }
 
-addEventListener("load", pageReady());
-//@ sourceMappingURL=cotw.js.map
+addEventListener("load", pageReady);

@@ -1,3 +1,4 @@
+/// <reference path="../references.ts"/>
 var World = (function () {
     function World($el) {
         this._$el = $el;
@@ -10,13 +11,13 @@ var World = (function () {
             this._tiles[x] = new Array();
             for (var y = 0; y < this._map[x].length; y++) {
                 this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x, y));
+                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
             }
         }
     }
     World.prototype.Draw = function () {
         for (var x = 0; x < this._tiles.length; x++) {
             for (var y = 0; y < this._tiles.length; y++) {
-                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
                 this._tiles[x][y].Draw();
             }
         }
@@ -69,8 +70,9 @@ var World = (function () {
             degrees = 270;
         }
 
+        // return the number of degrees to rotate the tile
         return degrees;
     };
     return World;
 })();
-//@ sourceMappingURL=world.js.map
+//# sourceMappingURL=world.js.map

@@ -18,6 +18,7 @@ class World implements IDrawable {
             this._tiles[x] = new Array <Tile>();
             for (var y = 0; y < this._map[x].length; y++) {
                 this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x,y));
+                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
             }
         }
     }
@@ -25,7 +26,6 @@ class World implements IDrawable {
     Draw() {
         for (var x=0; x<this._tiles.length; x++) {
             for (var y=0; y<this._tiles.length; y++) {
-                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
                 this._tiles[x][y].Draw();
             }
         }

@@ -23,14 +23,14 @@
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/js/Input.js" />
+      <root url="file://$PROJECT_DIR$/js/input.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
       <root url="file://$PROJECT_DIR$/js/engines/Game.js" />
       <root url="file://$PROJECT_DIR$/js/items/item.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IState.js" />
       <root url="file://$PROJECT_DIR$/js/point.js" />
       <root url="file://$PROJECT_DIR$/js/NPCs/player.js" />
-      <root url="file://$PROJECT_DIR$/js/NPCs/npc.js" />
+      <root url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
       <root url="file://$PROJECT_DIR$/js/references.js" />
       <root url="file://$PROJECT_DIR$/js/cotw.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.d.js" />

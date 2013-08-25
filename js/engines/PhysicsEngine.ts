@@ -4,25 +4,25 @@ class PhysicsEngine implements IState {
     _pressed : {};
     _hero : Player;
     _world : World;
-    public static LEFT = 37;
-    public static UP = 38;
-    public static RIGHT = 39;
-    public static DOWN = 40;
+
 
     constructor (hero : Player, world : World) {
         this._hero = hero;
         this._world = world;
     }
-    IsDown (keyCode) {
-        return this._pressed[keyCode];
-    }
 
-    OnKeydown (event : KeyboardEvent) {
-        this._pressed[event.keyCode] = true;
-    }
-
-    OnKeyup (event : KeyboardEvent) {
-        this._pressed[event.keyCode] = false;
+    Move(actor : Actor, keycode : number) {
+        var curPos = actor.GetPosition();
+        var newPos : Point;
+        if (keycode == KeyCodes.UP) {
+            newPos = new Point(curPos.X, curPos.Y-1)
+        } else if (keycode == KeyCodes.LEFT) {
+            newPos = new Point(curPos.X-1, curPos.Y)
+        } else if (keycode == KeyCodes.DOWN) {
+            newPos = new Point(curPos.X, curPos.Y+1)
+        } else if (keycode == KeyCodes.RIGHT) {
+            newPos = new Point(curPos.X+1, curPos.Y)
+        }        
     }
 
     SendEvent(event) {
@@ -32,23 +32,14 @@ class PhysicsEngine implements IState {
         // _hero.moveUp/Down/etc
 
 //        update(keycode : number) {
-//            if (keycode == PhysicsEngine.UP) {
-//                this.moveUp();
-//                console.log('Move up.');
-//            }
-//            if (keycode == PhysicsEngine.LEFT) {
-//                this.moveLeft();
-//                console.log('Move left.');
-//            }
-//            if (keycode == PhysicsEngine.DOWN) {
-//                this.moveDown();
-//                console.log('Move down.');
-//            }
-//            if (keycode == PhysicsEngine.RIGHT) {
-//                this.moveRight();
-//                console.log('Move right.');
-//            }
+//
 //        }
     }
 }
 
+class KeyCodes {
+    public static LEFT = 37;
+    public static UP = 38;
+    public static RIGHT = 39;
+    public static DOWN = 40;
+}

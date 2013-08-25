@@ -16,12 +16,8 @@ class Game implements IDrawable {
     _physicsEngine : PhysicsEngine;
     _world : World;
     _hero : Player;
-    _eventHandlers : collections.Dictionary<string, IState>;
 
     constructor() {
-
-        this._eventHandlers = new collections.Dictionary<string, IState>();
-
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
         // testing just create these objects
         this.init();
@@ -32,8 +28,9 @@ class Game implements IDrawable {
 //        UP: 38,
 //        RIGHT: 39,
 //        DOWN: 40,
-        if (ev.keyCode >= 37 && ev.keyCode <= 40)
-            this._physicsEngine.MoveHero(ev.keyCode);
+        if (ev.keyCode >= 37 && ev.keyCode <= 40) {
+            this._physicsEngine.Move(this._hero, ev.keyCode);
+        }
     }
 
     Start() {
