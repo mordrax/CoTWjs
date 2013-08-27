@@ -5,3 +5,4 @@ function pageReady() {
 }
 
 addEventListener("load", pageReady);
+//@ sourceMappingURL=cotw.js.map

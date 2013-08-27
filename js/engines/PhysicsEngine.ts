@@ -4,11 +4,12 @@ class PhysicsEngine implements IState {
     _pressed : {};
     _hero : Player;
     _world : World;
+    _redraw : () => void;
 
-
-    constructor (hero : Player, world : World) {
+    constructor (hero : Player, world : World, redraw : () => void) {
         this._hero = hero;
         this._world = world;
+        this._redraw = redraw;
     }
 
     Move(actor : Actor, keycode : number) {
@@ -22,7 +23,11 @@ class PhysicsEngine implements IState {
             newPos = new Point(curPos.X, curPos.Y+1)
         } else if (keycode == KeyCodes.RIGHT) {
             newPos = new Point(curPos.X+1, curPos.Y)
-        }        
+        }
+        //TODO: Check collision
+
+        actor.moveTo(newPos);
+        this._redraw();
     }
 
     SendEvent(event) {

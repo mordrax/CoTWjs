@@ -22,7 +22,6 @@ class Game implements IDrawable {
         // testing just create these objects
         this.init();
     }
-
     KeyEvent(ev : KeyboardEvent ) {
 //        LEFT: 37,
 //        UP: 38,
@@ -35,8 +34,7 @@ class Game implements IDrawable {
 
     Start() {
         this._world.Draw();
-
-        window.requestAnimationFrame(() => this.Draw());
+        this.Draw();
 
         document.addEventListener( "keyup", (evt : KeyboardEvent) => this.KeyEvent(evt), false);
     }
@@ -48,7 +46,7 @@ class Game implements IDrawable {
     private init() {
         this._world = new World($("#background"));
         this._hero = new Player($("#hero"));
-        this._physicsEngine = new PhysicsEngine(this._hero, this._world);
+        this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw);
     }
 
 }

@@ -1,8 +1,9 @@
 /// <reference path="../references.ts"/>
 var PhysicsEngine = (function () {
-    function PhysicsEngine(hero, world) {
+    function PhysicsEngine(hero, world, redraw) {
         this._hero = hero;
         this._world = world;
+        this._redraw = redraw;
     }
     PhysicsEngine.prototype.Move = function (actor, keycode) {
         var curPos = actor.GetPosition();
@@ -16,6 +17,10 @@ var PhysicsEngine = (function () {
         } else if (keycode == KeyCodes.RIGHT) {
             newPos = new Point(curPos.X + 1, curPos.Y);
         }
+
+        //TODO: Check collision
+        actor.moveTo(newPos);
+        this._redraw();
     };
 
     PhysicsEngine.prototype.SendEvent = function (event) {
