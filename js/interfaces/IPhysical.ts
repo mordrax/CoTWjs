@@ -1,7 +1,4 @@
-/**
- * Created by mordrax on 15/08/13.
- */
-///<reference path="../point.ts"/>
+///<reference path="../references.ts"/>
 
 /**
  * Represents a physical object that has a location, mass and id

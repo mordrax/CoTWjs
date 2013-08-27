@@ -33,7 +33,7 @@
       <root url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
       <root url="file://$PROJECT_DIR$/js/references.js" />
       <root url="file://$PROJECT_DIR$/js/cotw.js" />
-      <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.d.js" />
+      <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IDrawable.js" />
       <root url="file://$PROJECT_DIR$/js/fps.js" />
       <root url="file://$PROJECT_DIR$/js/items/armour.js" />

@@ -11,6 +11,7 @@
 /// <reference path="interfaces/IDrawable.ts"/>
 /// <reference path="interfaces/IStructure.ts"/>
 /// <reference path="interfaces/IState.ts"/>
+/// <reference path="interfaces/IPhysical.ts"/>
 
 /// <reference path="NPCs/player.ts"/>
 /// <reference path="NPCs/Actor.ts"/>
