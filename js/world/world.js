@@ -1,10 +1,15 @@
 /// <reference path="../references.ts"/>
 var World = (function () {
+    /**
+    * World creation defaults to village map
+    * @param $el - Container element <background> for all tiles
+    */
     function World($el) {
         this._$el = $el;
         this._el = $el.get(0);
 
-        this._map = MAPS.villageMap;
+        this._map = MAPS[MapType.VillageMap];
+
         this._tiles = new Array();
 
         for (var x = 0; x < this._map.length; x++) {

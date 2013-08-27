@@ -1,7 +1,8 @@
 /// <reference path="globals.ts"/>
-/// <reference path="maps.ts"/>
+/// <reference path="world/GameMap.ts"/>
 /// <reference path="point.ts"/>
 /// <reference path="zepto.d.ts"/>
+/// <reference path="collections.ts"/>
 
 /// <reference path="engines/PhysicsEngine.ts"/>
 /// <reference path="engines/Game.ts"/>
@@ -19,4 +20,4 @@
 /// <reference path="world/tile.ts"/>
 /// <reference path="world/world.ts"/>
 /// <reference path="world/structure.ts"/>
-
+/// <reference path="world/GameMap.ts"/>

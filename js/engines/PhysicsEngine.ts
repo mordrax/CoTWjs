@@ -24,6 +24,8 @@ class PhysicsEngine implements IState {
         } else if (keycode == KeyCodes.RIGHT) {
             newPos = new Point(curPos.X+1, curPos.Y)
         }
+
+        //this._world.GetTileInfo(newPos);
         //TODO: Check collision
 
         actor.moveTo(newPos);

@@ -4,28 +4,33 @@ class World implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
     _tiles:Tile[][];
-    _map:number[][];
+    _map : number[][];
 
-    constructor($el:ZeptoCollection) {
+    /**
+     * World creation defaults to village map
+     * @param $el - Container element <background> for all tiles
+     */
+        constructor($el:ZeptoCollection) {
 
         this._$el = $el;
         this._el = $el.get(0);
 
-        this._map = MAPS.villageMap;
+        this._map = MAPS[MapType.VillageMap];
+
         this._tiles = new Array<Array<Tile>>();
 
         for (var x = 0; x < this._map.length; x++) {
             this._tiles[x] = new Array <Tile>();
             for (var y = 0; y < this._map[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x,y));
+                this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x, y));
                 this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
             }
         }
     }
 
     Draw() {
-        for (var x=0; x<this._tiles.length; x++) {
-            for (var y=0; y<this._tiles.length; y++) {
+        for (var x = 0; x < this._tiles.length; x++) {
+            for (var y = 0; y < this._tiles.length; y++) {
                 this._tiles[x][y].Draw();
             }
         }

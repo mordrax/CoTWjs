@@ -18,6 +18,7 @@ var PhysicsEngine = (function () {
             newPos = new Point(curPos.X + 1, curPos.Y);
         }
 
+        //this._world.GetTileInfo(newPos);
         //TODO: Check collision
         actor.moveTo(newPos);
         this._redraw();
