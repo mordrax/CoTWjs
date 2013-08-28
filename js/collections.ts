@@ -763,7 +763,7 @@ module collections {
 
         /**
          * Creates an empty dictionary.
-         * @class <p>Dictionaries map keys to values; each key can map to at most one value.
+         * @class <p>Dictionaries _map keys to values; each key can _map to at most one value.
          * This implementation accepts any kind of objects as keys.</p>
          *
          * <p>If the keys are custom objects a function which converts keys to unique
@@ -791,7 +791,7 @@ module collections {
          * Returns undefined if this dictionary contains no mapping for this key.
          * @param {Object} key key whose associated value is to be returned.
          * @return {*} the value to which this dictionary maps the specified key or
-         * undefined if the map contains no mapping for this key.
+         * undefined if the _map contains no mapping for this key.
          */
             getValue(key: K): V {
             var pair: IDicitonaryPair<K, V> = this.table[this.toStr(key)];

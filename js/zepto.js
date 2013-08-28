@@ -135,7 +135,7 @@ var Zepto = (function() {
     function children(element) {
         return 'children' in element ?
             slice.call(element.children) :
-            $.map(element.childNodes, function(node){ if (node.nodeType == 1) return node })
+            $._map(element.childNodes, function(node){ if (node.nodeType == 1) return node })
     }
 
     // `$.zepto.fragment` takes a html string and an optional tag name
@@ -364,7 +364,7 @@ var Zepto = (function() {
 
     if (window.JSON) $.parseJSON = JSON.parse
 
-    // Populate the class2type map
+    // Populate the class2type _map
     $.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(i, name) {
         class2type[ "[object " + name + "]" ] = name.toLowerCase()
     })
@@ -381,7 +381,7 @@ var Zepto = (function() {
         indexOf: emptyArray.indexOf,
         concat: emptyArray.concat,
 
-        // `map` and `slice` in the jQuery API work differently
+        // `_map` and `slice` in the jQuery API work differently
         // from their array counterparts
         map: function(fn){
             return $($.map(this, function(el, i){ return fn.call(el, i, el) }))

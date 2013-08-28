@@ -8,4 +8,8 @@ class Point {
         this.X = x;
         this.Y = y;
     }
+
+    Equals(otherPoint : Point) : boolean {
+        return (this.X === otherPoint.X && this.Y === otherPoint.Y);
+    }
 }

@@ -762,7 +762,7 @@ module.exports = channel;
 define("cordova/commandProxy", function(require, exports, module) {
 
 
-// internal map of proxy function
+// internal _map of proxy function
 var CommandProxyMap = {};
 
 module.exports = {

@@ -7,14 +7,27 @@ var MapType = (function () {
     return MapType;
 })();
 
-var GameMap = (function () {
-    function GameMap() {
+/**
+* Links MapTypes via points
+*/
+var MapLink = (function () {
+    function MapLink(map, point) {
+        this.MapName = map;
+        this.Coord = point;
     }
-    return GameMap;
+    return MapLink;
 })();
-var MAPS;
 
-MAPS = {};
+/**
+* Dictionary of MapType to 2D array of tiles
+*/
+var MAPS;
+MAPS = new collections.Dictionary();
+
+var MAP_TO_MAP;
+MAP_TO_MAP = new collections.Dictionary();
+
+MAP_TO_MAP.setValue(new MapLink(MapType.VillageMap, new Point(9, 0)), new MapLink(MapType.FarmMap, new Point(5, 5)));
 
 MAPS[MapType.VillageMap] = [
     [31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31],
@@ -43,8 +56,6 @@ MAPS[MapType.VillageMap] = [
     [31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31]
 ];
 MAPS[MapType.FarmMap] = [
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 5, 22, 23, 24, 25, 3, 3],
-    [26, 27, 28, 29, 30, 31, 3, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
     [5, 5, 6, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [5, 5, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],

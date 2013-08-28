@@ -10,7 +10,7 @@
         <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/items/weapon.js" />
         <item url="file://$PROJECT_DIR$/js/items/armour.js" />
-        <item url="file://$PROJECT_DIR$/js/maps.js" />
+        <item url="file://$PROJECT_DIR$/js/world/GameMap.js" />
         <item url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces/IStructure.js" />
         <item url="file://$PROJECT_DIR$/js/cotw.js" />

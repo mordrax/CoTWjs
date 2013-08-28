@@ -4,9 +4,9 @@ class PhysicsEngine implements IState {
     _pressed : {};
     _hero : Player;
     _world : World;
-    _redraw : () => void;
+    _redraw : (boolean?) => void;
 
-    constructor (hero : Player, world : World, redraw : () => void) {
+    constructor (hero : Player, world : World, redraw : (boolean?) => void) {
         this._hero = hero;
         this._world = world;
         this._redraw = redraw;
@@ -25,8 +25,18 @@ class PhysicsEngine implements IState {
             newPos = new Point(curPos.X+1, curPos.Y)
         }
 
-        //this._world.GetTileInfo(newPos);
         //TODO: Check collision
+        // collision with monster
+        // collision with building door
+        // collision with map entry/exit
+        var link = this._world.MapLink(newPos);
+        if (link !== null) {
+            actor.moveTo(link.Coord);
+            this._redraw(true);
+            return;
+        }
+        // collision with non walkable tile (solids, water, end of map)
+        //this._world.GetTileInfo(newPos);
 
         actor.moveTo(newPos);
         this._redraw();

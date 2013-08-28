@@ -33,13 +33,15 @@ class Game implements IDrawable {
     }
 
     Start() {
-        this._world.Draw();
-        this.Draw();
+        this.Draw(true);
 
         document.addEventListener( "keyup", (evt : KeyboardEvent) => this.KeyEvent(evt), false);
     }
 
-    Draw() {
+    Draw(drawWorld?:boolean) {
+        if (drawWorld) {
+            this._world.Draw();
+        }
         this._hero.Draw();
     }
 

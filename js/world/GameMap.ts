@@ -5,13 +5,28 @@ class MapType {
     static FarmMap = 'Farm';
 }
 
-class GameMap {
-    map:number[][];
-    locations:collections.Dictionary<string, Point>;
+/**
+ * Links MapTypes via points
+ */
+class MapLink {
+    public MapName : string;
+    public Coord : Point;
+    constructor (map : string, point : Point) {
+        this.MapName = map;
+        this.Coord = point;
+    }
 }
-var MAPS:{ [name:string] : number[][] };
 
-MAPS = {};
+/**
+ * Dictionary of MapType to 2D array of tiles
+ */
+var MAPS:collections.Dictionary<string, Array<Array<number>>>;
+MAPS = new collections.Dictionary<string, Array<Array<number>>>();
+
+var MAP_TO_MAP : collections.Dictionary<MapLink,MapLink>;
+MAP_TO_MAP = new collections.Dictionary<MapLink, MapLink>();
+
+MAP_TO_MAP.setValue(new MapLink(MapType.VillageMap, new Point(9, 0)), new MapLink(MapType.FarmMap, new Point(5,5)));
 
 MAPS[MapType.VillageMap] = [
     [31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31],
@@ -40,8 +55,6 @@ MAPS[MapType.VillageMap] = [
     [31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31]
 ];
 MAPS[MapType.FarmMap] = [
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 5, 22, 23, 24, 25, 3, 3],
-    [26, 27, 28, 29, 30, 31, 3, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
     [5, 5, 6, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [5, 5, 6, 6, 3, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],

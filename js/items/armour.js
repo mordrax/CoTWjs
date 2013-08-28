@@ -14,4 +14,4 @@ var Armour = (function (_super) {
     }
     return Armour;
 })(Item);
-//# sourceMappingURL=armour.js.map
+//# sourceMappingURL=armour.js._map

@@ -4,10 +4,10 @@ class World implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
     _tiles:Tile[][];
-    _map : number[][];
+    _mapType : string;
 
     /**
-     * World creation defaults to village map
+     * World creation defaults to village _map
      * @param $el - Container element <background> for all tiles
      */
         constructor($el:ZeptoCollection) {
@@ -15,17 +15,26 @@ class World implements IDrawable {
         this._$el = $el;
         this._el = $el.get(0);
 
-        this._map = MAPS[MapType.VillageMap];
+        this._mapType = MapType.VillageMap;
 
         this._tiles = new Array<Array<Tile>>();
 
-        for (var x = 0; x < this._map.length; x++) {
+        this.LoadMap();
+    }
+
+    private LoadMap() {
+        this._$el.empty();
+        for (var x = 0; x < this.Map().length; x++) {
             this._tiles[x] = new Array <Tile>();
-            for (var y = 0; y < this._map[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILE_DATA[this._map[x][y]], new Point(x, y));
-                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this._map);
+            for (var y = 0; y < this.Map()[x].length; y++) {
+                this._tiles[x][y] = new Tile("#background", TILE_DATA[this.Map()[x][y]], new Point(x, y));
+                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this.Map());
             }
         }
+    }
+
+    private Map():number[][] {
+        return MAPS[this._mapType];
     }
 
     Draw() {
@@ -34,6 +43,31 @@ class World implements IDrawable {
                 this._tiles[x][y].Draw();
             }
         }
+    }
+
+    /**
+     * Called when a player moves to a point in the world, check if that location is a link
+     * If yes, then change the map and send the new location of the player (on the new map) back
+     */
+    MapLink(point : Point) : MapLink {
+        var link : MapLink = null;
+
+        MAP_TO_MAP.forEach((k:MapLink,v:MapLink) => {
+            if ((this._mapType === k.MapName) && point.Equals(k.Coord)) {
+                link = v;
+            }
+            if ((this._mapType === v.MapName) && point.Equals(v.Coord)) {
+                link = k;
+            }
+        });
+
+        // update the map
+        if (link !== null) {
+            this._mapType = link.MapName;
+            this.LoadMap();
+        }
+
+        return link;
     }
 
     private determineRotation(x:number, y:number, map:number[][]) {
