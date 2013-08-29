@@ -4,7 +4,8 @@ class World implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
     _tiles:Tile[][];
-    _mapType : string;
+    _currentMap : string;
+    _maps : collections.Dictionary<string, Tile[][]>;
 
     /**
      * World creation defaults to village _map
@@ -15,32 +16,39 @@ class World implements IDrawable {
         this._$el = $el;
         this._el = $el.get(0);
 
-        this._mapType = MapType.VillageMap;
+        this._currentMap = MapType.VillageMap;
+        this._maps = new collections.Dictionary<string, Tile[][]>();
 
-        this._tiles = new Array<Array<Tile>>();
-
-        this.LoadMap();
+        this.LoadMap(this._currentMap);
     }
 
-    private LoadMap() {
+    private LoadMap(mapType : string) : Tile[][] {
         this._$el.empty();
-        for (var x = 0; x < this.Map().length; x++) {
-            this._tiles[x] = new Array <Tile>();
-            for (var y = 0; y < this.Map()[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILE_DATA[this.Map()[x][y]], new Point(x, y));
-                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this.Map());
+        if (!this._maps.containsKey(mapType)) {
+            var tile = new Array<Array<Tile>>();
+            for (var y=0; y < MAPS[mapType].length; y++) {
+                for (var x=0; x < MAPS[mapType][y].length; x++) {
+                    if (y === 0) {
+                        tile[x] = new Array<Tile>();
+                    }
+                    tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
+                    //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
+                }
             }
+            this._maps.setValue(mapType, tile);
         }
+
+        return this._maps.getValue(mapType);
     }
 
-    private Map():number[][] {
-        return MAPS[this._mapType];
+    private CurrentTileSet():Array<Array<Tile>> {
+        return this._maps.getValue(this._currentMap);
     }
 
     Draw() {
-        for (var x = 0; x < this._tiles.length; x++) {
-            for (var y = 0; y < this._tiles.length; y++) {
-                this._tiles[x][y].Draw();
+        for (var x = 0; x < this.CurrentTileSet().length; x++) {
+            for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
+                this.CurrentTileSet()[x][y].Draw();
             }
         }
     }
@@ -53,18 +61,18 @@ class World implements IDrawable {
         var link : MapLink = null;
 
         MAP_TO_MAP.forEach((k:MapLink,v:MapLink) => {
-            if ((this._mapType === k.MapName) && point.Equals(k.Coord)) {
+            if ((this._currentMap === k.MapName) && point.Equals(k.Coord)) {
                 link = v;
             }
-            if ((this._mapType === v.MapName) && point.Equals(v.Coord)) {
+            if ((this._currentMap === v.MapName) && point.Equals(v.Coord)) {
                 link = k;
             }
         });
 
         // update the map
         if (link !== null) {
-            this._mapType = link.MapName;
-            this.LoadMap();
+            this._currentMap = link.MapName;
+            this.LoadMap(this._currentMap);
         }
 
         return link;

@@ -1,5 +1,4 @@
 /// <reference path="globals.ts"/>
-/// <reference path="world/GameMap.ts"/>
 /// <reference path="point.ts"/>
 /// <reference path="zepto.d.ts"/>
 /// <reference path="collections.ts"/>

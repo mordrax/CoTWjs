@@ -15,28 +15,30 @@ var TileData = (function () {
     }
     return TileData;
 })();
-var TILE_DATA = {
-    1: new TileData("Rock", TileType.Solid),
-    2: new TileData("Grass", TileType.Ground),
-    3: new TileData("DarkDgn", TileType.Ground),
-    4: new TileData("Water", TileType.Water),
-    5: new TileData("Path", TileType.Ground),
-    6: new TileData("LitDgn", TileType.Ground),
-    11: new TileData("PathRock", TileType.Solid),
-    12: new TileData("PathGrass", TileType.Ground),
-    13: new TileData("WaterGrass", TileType.Water),
-    14: new TileData("WaterPath", TileType.Water),
-    15: new TileData("WallLitDgn", TileType.Solid),
-    16: new TileData("WallDarkDgn", TileType.Solid),
-    17: new TileData("50Grass50Cave", TileType.Solid),
-    18: new TileData("10Grass90Cave", TileType.Solid),
-    19: new TileData("50White50Cave", TileType.Solid),
-    20: new TileData("10White90Cave", TileType.Solid),
-    31: new TileData("Crop", TileType.Ground),
-    32: new TileData("Entry", TileType.Entry),
-    33: new TileData("Building", TileType.Solid),
-    34: new TileData("Sign", TileType.Ground)
-};
+
+var TILE_DATA;
+TILE_DATA = new collections.Dictionary();
+
+TILE_DATA.setValue('^', new TileData("Rock", TileType.Solid));
+TILE_DATA.setValue(',', new TileData("Grass", TileType.Ground));
+TILE_DATA.setValue(' ', new TileData("DarkDgn", TileType.Ground));
+TILE_DATA.setValue(' ', new TileData("Water", TileType.Water));
+TILE_DATA.setValue('.', new TileData("Path", TileType.Ground));
+TILE_DATA.setValue(' ', new TileData("LitDgn", TileType.Ground));
+TILE_DATA.setValue('_', new TileData("PathRock", TileType.Solid));
+TILE_DATA.setValue(';', new TileData("PathGrass", TileType.Ground));
+TILE_DATA.setValue(' ', new TileData("WaterGrass", TileType.Water));
+TILE_DATA.setValue(' ', new TileData("WaterPath", TileType.Water));
+TILE_DATA.setValue(' ', new TileData("WallLitDgn", TileType.Solid));
+TILE_DATA.setValue(' ', new TileData("WallDarkDgn", TileType.Solid));
+TILE_DATA.setValue(' ', new TileData("50Grass50Cave", TileType.Solid));
+TILE_DATA.setValue(' ', new TileData("10Grass90Cave", TileType.Solid));
+TILE_DATA.setValue(' ', new TileData("50White50Cave", TileType.Solid));
+TILE_DATA.setValue(' ', new TileData("10White90Cave", TileType.Solid));
+TILE_DATA.setValue('=', new TileData("Crop", TileType.Ground));
+TILE_DATA.setValue('+', new TileData("Entry", TileType.Entry));
+TILE_DATA.setValue('#', new TileData("Building", TileType.Solid));
+TILE_DATA.setValue('!', new TileData("Sign", TileType.Ground));
 
 var Tile = (function () {
     function Tile(target, tile, coords) {

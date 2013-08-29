@@ -8,31 +8,38 @@ var World = (function () {
         this._$el = $el;
         this._el = $el.get(0);
 
-        this._mapType = MapType.VillageMap;
+        this._currentMap = MapType.VillageMap;
+        this._maps = new collections.Dictionary();
 
-        this._tiles = new Array();
-
-        this.LoadMap();
+        this.LoadMap(this._currentMap);
     }
-    World.prototype.LoadMap = function () {
+    World.prototype.LoadMap = function (mapType) {
         this._$el.empty();
-        for (var x = 0; x < this.Map().length; x++) {
-            this._tiles[x] = new Array();
-            for (var y = 0; y < this.Map()[x].length; y++) {
-                this._tiles[x][y] = new Tile("#background", TILE_DATA[this.Map()[x][y]], new Point(x, y));
-                this._tiles[x][y]._tile._turn = this.determineRotation(x, y, this.Map());
+        if (!this._maps.containsKey(mapType)) {
+            var tile = new Array();
+            for (var y = 0; y < MAPS[mapType].length; y++) {
+                for (var x = 0; x < MAPS[mapType][y].length; x++) {
+                    if (y === 0) {
+                        tile[x] = new Array();
+                    }
+                    tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
+                    //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
+                }
             }
+            this._maps.setValue(mapType, tile);
         }
+
+        return this._maps.getValue(mapType);
     };
 
-    World.prototype.Map = function () {
-        return MAPS[this._mapType];
+    World.prototype.CurrentTileSet = function () {
+        return this._maps.getValue(this._currentMap);
     };
 
     World.prototype.Draw = function () {
-        for (var x = 0; x < this._tiles.length; x++) {
-            for (var y = 0; y < this._tiles.length; y++) {
-                this._tiles[x][y].Draw();
+        for (var x = 0; x < this.CurrentTileSet().length; x++) {
+            for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
+                this.CurrentTileSet()[x][y].Draw();
             }
         }
     };
@@ -46,17 +53,17 @@ var World = (function () {
         var link = null;
 
         MAP_TO_MAP.forEach(function (k, v) {
-            if ((_this._mapType === k.MapName) && point.Equals(k.Coord)) {
+            if ((_this._currentMap === k.MapName) && point.Equals(k.Coord)) {
                 link = v;
             }
-            if ((_this._mapType === v.MapName) && point.Equals(v.Coord)) {
+            if ((_this._currentMap === v.MapName) && point.Equals(v.Coord)) {
                 link = k;
             }
         });
 
         if (link !== null) {
-            this._mapType = link.MapName;
-            this.LoadMap();
+            this._currentMap = link.MapName;
+            this.LoadMap(this._currentMap);
         }
 
         return link;

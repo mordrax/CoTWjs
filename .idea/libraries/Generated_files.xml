@@ -6,6 +6,7 @@
         <item url="file://$PROJECT_DIR$/js/world/structure.js" />
         <item url="file://$PROJECT_DIR$/js/fps.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces/IPhysical.js" />
+        <item url="file://$PROJECT_DIR$/js/world/tile.js" />
         <item url="file://$PROJECT_DIR$/js/world/world.js" />
         <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/items/weapon.js" />
@@ -28,6 +29,7 @@
       <root url="file://$PROJECT_DIR$/js/world/structure.js" />
       <root url="file://$PROJECT_DIR$/js/fps.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.js" />
+      <root url="file://$PROJECT_DIR$/js/world/tile.js" />
       <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
       <root url="file://$PROJECT_DIR$/js/world/world.js" />
       <root url="file://$PROJECT_DIR$/js/items/weapon.js" />
