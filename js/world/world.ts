@@ -24,7 +24,7 @@ class World implements IDrawable {
 
     private LoadMap(mapType : string) : Tile[][] {
         this._$el.empty();
-        if (!this._maps.containsKey(mapType)) {
+
             var tile = new Array<Array<Tile>>();
             for (var y=0; y < MAPS[mapType].length; y++) {
                 for (var x=0; x < MAPS[mapType][y].length; x++) {
@@ -36,7 +36,6 @@ class World implements IDrawable {
                 }
             }
             this._maps.setValue(mapType, tile);
-        }
 
         return this._maps.getValue(mapType);
     }

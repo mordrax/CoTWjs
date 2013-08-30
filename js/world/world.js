@@ -15,19 +15,18 @@ var World = (function () {
     }
     World.prototype.LoadMap = function (mapType) {
         this._$el.empty();
-        if (!this._maps.containsKey(mapType)) {
-            var tile = new Array();
-            for (var y = 0; y < MAPS[mapType].length; y++) {
-                for (var x = 0; x < MAPS[mapType][y].length; x++) {
-                    if (y === 0) {
-                        tile[x] = new Array();
-                    }
-                    tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
-                    //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
+
+        var tile = new Array();
+        for (var y = 0; y < MAPS[mapType].length; y++) {
+            for (var x = 0; x < MAPS[mapType][y].length; x++) {
+                if (y === 0) {
+                    tile[x] = new Array();
                 }
+                tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
+                //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
             }
-            this._maps.setValue(mapType, tile);
         }
+        this._maps.setValue(mapType, tile);
 
         return this._maps.getValue(mapType);
     };
