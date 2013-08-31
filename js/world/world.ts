@@ -48,6 +48,7 @@ class World implements IDrawable {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
                 if (x>0 && y>0){
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     this.CurrentTileSet()[x][y].DetermineRotation(this.CurrentTileSet()[x-1][y]._tile._name, this.CurrentTileSet()[x][y-1]._tile._name)
                 }
                 this.CurrentTileSet()[x][y].Draw();

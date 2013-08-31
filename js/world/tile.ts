@@ -64,7 +64,7 @@ class Tile implements IDrawable {
         this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     }
 
-    DetermineRotation(northTile:string, westTile:string) {
+    DetermineRotation(westTile:string, northTile:string) {
 
         var degrees:number;
         var southWestTile:string;
@@ -93,16 +93,16 @@ class Tile implements IDrawable {
                 this._tile._turn = 0;
         }
 
-        if (northTile == southWestTile) {
-            if (westTile == southWestTile) {    // north and west
+        if (westTile === southWestTile) {
+            if (northTile === southWestTile) {    // north and west
                 this._tile._turn = 90;
             }
             else {                          // north and east
-                this._tile._turn = 180;
+                this._tile._turn = 0;
             }
         }
-        else if (westTile == southWestTile) {    // south and west
-            this._tile._turn = 270;
+        else if (northTile === southWestTile) {    // south and west
+            this._tile._turn = 180;
         }
         else {                              // south and east
             this._tile._turn = 270;
