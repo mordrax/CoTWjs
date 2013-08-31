@@ -11,9 +11,9 @@ class MapType {
 class MapLink {
     public MapName : string;
     public Coord : Point;
-    constructor (map : string,point : Point) {
-   this.MapName = map;
-   this.Coord = point;
+    constructor (map : string, point : Point) {
+        this.MapName = map;
+        this.Coord = point;
     }
 }
 

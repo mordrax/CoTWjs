@@ -2,25 +2,32 @@
 
 
 
-
-class StructureData{
-    _name : string;
-    _entry_pos : Point;
-    _start_pos : Point;
-    _end_pos : Point;
-
-    constructor (name : string, entry_pos : Point, start_pos : Point, end_pos : Point) {
-        this._name = name;
-        this._entry_pos = entry_pos;
-        this._start_pos = entry_pos;
-        this._end_pos = entry_pos;
-    }
+// All structure types
+enum StructureType{
+    Sign,
+    VegePatch,
+    Cart,
+    Well,
+    NS_Gate,
+    EF_Hut,
+    EF_BurntHut,
+    NF_Building,
+    SF_BuildingYard,
+    SF_Building,
+    EF_StrawHouse,
+    EF_BurntStrawHouse,
+    WF_StrawHouse,
+    WF_BurntStrawHouse,
+    EF_Building,
+    EF_JunkYard,
+    WF_Bank,
+    NE_BigHouseGarden,
+    NE_BigHouse,
+    NF_HutTemple,
+    NF_BurntTemple,
+    EW_HouseGroup,
+    NF_BrickTemple,
 }
-
-var STRUCTURE_DATA : collections.Dictionary<string, StructureData>;
-STRUCTURE_DATA = new collections.Dictionary<string, StructureData>();
-
-STRUCTURE_DATA.setValue('B1', new StructureData("Building1", new Point(0,5), new Point(0,4), new Point(0,6)));
 
 
 /**
@@ -31,32 +38,40 @@ STRUCTURE_DATA.setValue('B1', new StructureData("Building1", new Point(0,5), new
  * - entry point (if there is one) and mapping to the handler when triggered
  */
 class Structure implements IStructure {
-    name : string;
-    entry_pos : Point;
-    start_pos : Point;
-    end_pos : Point;
+    _name : string;
+    _type : StructureType;
+    _entryPos : Point;
+    _startPos : Point;
+    _endPos : Point;
     _el : HTMLElement;
+    _$el : ZeptoCollection;
 
-    constructor (name : string, entry_pos : Point, start_pos : Point, end_pos : Point) {
-        this.name = name;
-        this.entry_pos = entry_pos;
-        this.start_pos = start_pos;
-        this.end_pos = end_pos;
+    constructor (target : string, name : string, type: StructureType, entryPos : Point, startPos : Point, endPos : Point) {
+        this._name = name;
+        this._type = type;
+        this._entryPos = entryPos;
+        this._startPos = startPos;
+        this._endPos = endPos;
+        this._$el = $("<div></div>", {'class': "structure type_" + this._type});
+
+        $(target).append(this._el);
     }
 
     Dimension(): Point {
         var p = new Point();
-        p.X = Math.abs(this.start_pos.X - this.end_pos.X);
-        p.Y = Math.abs(this.start_pos.Y - this.end_pos.Y);
+        p.X = Math.abs(this._startPos.X - this._endPos.X);
+        p.Y = Math.abs(this._startPos.Y - this._endPos.Y);
         return p;
     }
 
     Draw() {
-        this._el.style["-webkit-transform"] = "translate3d(" + this.start_pos.X * TILE_SIZE + 'px,' + this.start_pos.Y * TILE_SIZE + "px,0px)";
+        var Dim : Point;
+        Dim = this.Dimension();
+        this._el.style["-webkit-transform"] = "translate3d(" + Dim.X * TILE_SIZE + 'px,' + Dim.Y * TILE_SIZE + "px,0px)";
     }
 
     EntryPoint() {
-        return this.entry_pos;
+        return this._entryPos;
     }
 
     Enter() {
@@ -65,6 +80,6 @@ class Structure implements IStructure {
     }
 
     Position() {
-        return this.start_pos;
+        return this._startPos;
     }
 }
