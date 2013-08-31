@@ -3,7 +3,6 @@
 class World implements IDrawable {
     _$el:ZeptoCollection;
     _el:HTMLElement;
-    _tiles:Tile[][];
     _currentMap : string;
     _maps : collections.Dictionary<string, Tile[][]>;
 
@@ -43,6 +42,10 @@ class World implements IDrawable {
         return this._maps.getValue(this._currentMap);
     }
 
+    private CurrentStructureSet():Array<Structure>{
+        return STRUCTURES.getValue(this._currentMap);
+    }
+
     Draw() {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
@@ -53,6 +56,12 @@ class World implements IDrawable {
                 this.CurrentTileSet()[x][y].Draw();
             }
         }
+/*
+        for (var x = 0; x < this.CurrentStructureSet().length; x++) {
+            this.CurrentStructureSet()[x].Draw();
+        }
+*/
+
     }
 
     /**

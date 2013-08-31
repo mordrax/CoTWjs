@@ -2,31 +2,31 @@
 
 
 
-// All structure types
+// All structure types - changed to string to test something out, so not much point to this being enum now right?
 enum StructureType{
-    Sign,
-    VegePatch,
-    Cart,
-    Well,
-    NS_Gate,
-    EF_Hut,
-    EF_BurntHut,
-    NF_Building,
-    SF_BuildingYard,
-    SF_Building,
-    EF_StrawHouse,
-    EF_BurntStrawHouse,
-    WF_StrawHouse,
-    WF_BurntStrawHouse,
-    EF_Building,
-    EF_JunkYard,
-    WF_Bank,
-    NE_BigHouseGarden,
-    NE_BigHouse,
-    NF_HutTemple,
-    NF_BurntTemple,
-    EW_HouseGroup,
-    NF_BrickTemple,
+    "Sign",
+    "VegePatch",
+    "Cart",
+    "Well",
+    "NS_Gate",
+    "EF_Hut",
+    "EF_BurntHut",
+    "NF_Building",
+    "SF_BuildingYard",
+    "SF_Building",
+    "EF_StrawHouse",
+    "EF_BurntStrawHouse",
+    "WF_StrawHouse",
+    "WF_BurntStrawHouse",
+    "EF_Building",
+    "EF_JunkYard",
+    "WF_Bank",
+    "NE_BigHouseGarden",
+    "NE_BigHouse",
+    "NF_HutTemple",
+    "NF_BurntTemple",
+    "EW_HouseGroup",
+    "NF_BrickTemple"
 }
 
 
@@ -39,14 +39,14 @@ enum StructureType{
  */
 class Structure implements IStructure {
     _name : string;
-    _type : StructureType;
+    _type : string;
     _entryPos : Point;
     _startPos : Point;
     _endPos : Point;
     _el : HTMLElement;
     _$el : ZeptoCollection;
 
-    constructor (target : string, name : string, type: StructureType, entryPos : Point, startPos : Point, endPos : Point) {
+    constructor (target : string, name : string, type: string, entryPos : Point, startPos : Point, endPos : Point) {
         this._name = name;
         this._type = type;
         this._entryPos = entryPos;
