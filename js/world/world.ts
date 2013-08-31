@@ -32,7 +32,6 @@ class World implements IDrawable {
                         tile[x] = new Array<Tile>();
                     }
                     tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
-                    //tile[x][y]._tile._turn = this.determineRotation(x, y);
                 }
             }
             this._maps.setValue(mapType, tile);
@@ -80,61 +79,4 @@ class World implements IDrawable {
 
         return link;
     }
-
-    private determineRotation(x:number, y:number) {
-
-        var degrees:number;
-        var southWestTile, north, west:string;
-
-        // check if tile type requires possible rotation - exits with 0 if not one of the expected types
-        switch (this._tiles[x][y]._tile._name) {
-            case "PathRock" :
-                southWestTile = "Path";
-                break;
-            case "PathGrass" :
-                southWestTile = "Path";
-                break;
-            case "WaterGrass" :
-                southWestTile = "Water";
-                break;
-            case "WaterPath" :
-                southWestTile = "Water";
-                break;
-            case "WallLitDgn" :
-                southWestTile = "Wall";
-                break;
-            case "WallDarkDgn":
-                southWestTile = "Wall";
-                break;
-            default :
-                return 0;
-        }
-
-        if (y > 0) {
-            north = this._tiles[x][y]._tile._name;
-        } // else south = undefined;
-
-        if (x > 0) {
-            west = this._tiles[x][y]._tile._name;
-        } // else west = undefined;
-
-        if (north == southWestTile) {
-            if (west == southWestTile) {    // north and west
-                degrees = 90;
-            }
-            else {                          // north and east
-                degrees = 180;
-            }
-        }
-        else if (west == southWestTile) {    // south and west
-            degrees = 0;
-        }
-        else {                              // south and east
-            degrees = 270;
-        }
-
-        // return the number of degrees to rotate the tile
-        return degrees;
-    }
-
 }

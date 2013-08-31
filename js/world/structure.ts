@@ -1,5 +1,28 @@
 /// <reference path="../references.ts"/>
 
+
+
+
+class StructureData{
+    _name : string;
+    _entry_pos : Point;
+    _start_pos : Point;
+    _end_pos : Point;
+
+    constructor (name : string, entry_pos : Point, start_pos : Point, end_pos : Point) {
+        this._name = name;
+        this._entry_pos = entry_pos;
+        this._start_pos = entry_pos;
+        this._end_pos = entry_pos;
+    }
+}
+
+var STRUCTURE_DATA : collections.Dictionary<string, StructureData>;
+STRUCTURE_DATA = new collections.Dictionary<string, StructureData>();
+
+STRUCTURE_DATA.setValue('B1', new StructureData("Building1", new Point(0,5), new Point(0,4), new Point(0,6)));
+
+
 /**
  * Holds all the buildings in the world, each structure should have at least
  * - location for it's top right corner,
@@ -20,8 +43,6 @@ class Structure implements IStructure {
         this.start_pos = start_pos;
         this.end_pos = end_pos;
     }
-
-
 
     Dimension(): Point {
         var p = new Point();

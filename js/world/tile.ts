@@ -1,4 +1,4 @@
-/// <reference path="../globals.ts"/>
+/// <reference path="../references.ts"/>
 
 enum TileType {
     Ground,
@@ -19,17 +19,15 @@ class TileData{
     }
 }
 
-
-
 var TILE_DATA : collections.Dictionary<string, TileData>;
 TILE_DATA = new collections.Dictionary<string, TileData>();
 
 TILE_DATA.setValue('^', new TileData("Rock",            TileType.Solid  ));
 TILE_DATA.setValue(',', new TileData("Grass",           TileType.Ground ));
-TILE_DATA.setValue(' ', new TileData("DarkDgn",         TileType.Ground ));
-TILE_DATA.setValue(' ', new TileData("Water",           TileType.Water  ));
+TILE_DATA.setValue('o', new TileData("DarkDgn",         TileType.Ground ));
+TILE_DATA.setValue('~', new TileData("Water",           TileType.Water  ));
 TILE_DATA.setValue('.', new TileData("Path",            TileType.Ground ));
-TILE_DATA.setValue(' ', new TileData("LitDgn",          TileType.Ground ));
+TILE_DATA.setValue('O', new TileData("LitDgn",          TileType.Ground ));
 TILE_DATA.setValue('_', new TileData("PathRock",        TileType.Solid  ));
 TILE_DATA.setValue(';', new TileData("PathGrass",       TileType.Ground ));
 TILE_DATA.setValue(' ', new TileData("WaterGrass",      TileType.Water  ));
@@ -40,7 +38,7 @@ TILE_DATA.setValue(' ', new TileData("50Grass50Cave",   TileType.Solid  ));
 TILE_DATA.setValue(' ', new TileData("10Grass90Cave",   TileType.Solid  ));
 TILE_DATA.setValue(' ', new TileData("50White50Cave",   TileType.Solid  ));
 TILE_DATA.setValue(' ', new TileData("10White90Cave",   TileType.Solid  ));
-TILE_DATA.setValue('=', new TileData("Crop",            TileType.Ground ));
+TILE_DATA.setValue('=', new TileData("Crop",            TileType.Solid ));
 TILE_DATA.setValue('+', new TileData("Entry",           TileType.Entry  ));
 TILE_DATA.setValue('#', new TileData("Building",        TileType.Solid  ));
 TILE_DATA.setValue('!', new TileData("Sign",            TileType.Ground ));
@@ -66,10 +64,9 @@ class Tile implements IDrawable {
 
     DetermineRotation(westTile:string, northTile:string) {
 
-        var degrees:number;
-        var southWestTile:string;
+        var southWestTile:string;   // tile type which if is of a certain type, no rotation is required
 
-        // check if tile type requires possible rotation - exits with 0 if not one of the expected types
+        // check if tile type is one that requires rotation - exits with 0 if not one of the expected types
         switch (this._tile._name) {
             case "PathRock" :
                 southWestTile = "Path";
@@ -90,7 +87,7 @@ class Tile implements IDrawable {
                 southWestTile = "Wall";
                 break;
             default :
-                this._tile._turn = 0;
+                 return;
         }
 
         if (westTile === southWestTile) {
@@ -98,7 +95,7 @@ class Tile implements IDrawable {
                 this._tile._turn = 90;
             }
             else {                          // north and east
-                this._tile._turn = 0;
+                // do nothing - no rotation required
             }
         }
         else if (northTile === southWestTile) {    // south and west
