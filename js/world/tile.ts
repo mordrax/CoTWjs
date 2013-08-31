@@ -20,6 +20,7 @@ class TileData{
 }
 
 
+
 var TILE_DATA : collections.Dictionary<string, TileData>;
 TILE_DATA = new collections.Dictionary<string, TileData>();
 
@@ -61,6 +62,51 @@ class Tile implements IDrawable {
 
     Draw() {
         this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
+    }
+
+    DetermineRotation(northTile:string, westTile:string) {
+
+        var degrees:number;
+        var southWestTile:string;
+
+        // check if tile type requires possible rotation - exits with 0 if not one of the expected types
+        switch (this._tile._name) {
+            case "PathRock" :
+                southWestTile = "Path";
+                break;
+            case "PathGrass" :
+                southWestTile = "Path";
+                break;
+            case "WaterGrass" :
+                southWestTile = "Water";
+                break;
+            case "WaterPath" :
+                southWestTile = "Water";
+                break;
+            case "WallLitDgn" :
+                southWestTile = "Wall";
+                break;
+            case "WallDarkDgn":
+                southWestTile = "Wall";
+                break;
+            default :
+                this._tile._turn = 0;
+        }
+
+        if (northTile == southWestTile) {
+            if (westTile == southWestTile) {    // north and west
+                this._tile._turn = 90;
+            }
+            else {                          // north and east
+                this._tile._turn = 180;
+            }
+        }
+        else if (westTile == southWestTile) {    // south and west
+            this._tile._turn = 270;
+        }
+        else {                              // south and east
+            this._tile._turn = 270;
+        }
     }
 
 }

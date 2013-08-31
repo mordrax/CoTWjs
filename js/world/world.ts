@@ -32,7 +32,7 @@ class World implements IDrawable {
                         tile[x] = new Array<Tile>();
                     }
                     tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
-                    //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
+                    //tile[x][y]._tile._turn = this.determineRotation(x, y);
                 }
             }
             this._maps.setValue(mapType, tile);
@@ -47,6 +47,9 @@ class World implements IDrawable {
     Draw() {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
+                if (x>0 && y>0){
+                    this.CurrentTileSet()[x][y].DetermineRotation(this.CurrentTileSet()[x-1][y]._tile._name, this.CurrentTileSet()[x][y-1]._tile._name)
+                }
                 this.CurrentTileSet()[x][y].Draw();
             }
         }
@@ -77,13 +80,13 @@ class World implements IDrawable {
         return link;
     }
 
-    private determineRotation(x:number, y:number, map:number[][]) {
+    private determineRotation(x:number, y:number) {
 
         var degrees:number;
         var southWestTile, north, west:string;
 
         // check if tile type requires possible rotation - exits with 0 if not one of the expected types
-        switch (TILE_DATA[map[x][y]]._name) {
+        switch (this._tiles[x][y]._tile._name) {
             case "PathRock" :
                 southWestTile = "Path";
                 break;
@@ -107,11 +110,11 @@ class World implements IDrawable {
         }
 
         if (y > 0) {
-            north = TILE_DATA[map[x][y - 1]]._name;
+            north = this._tiles[x][y]._tile._name;
         } // else south = undefined;
 
         if (x > 0) {
-            west = TILE_DATA[map[x - 1][y]]._name;
+            west = this._tiles[x][y]._tile._name;
         } // else west = undefined;
 
         if (north == southWestTile) {
