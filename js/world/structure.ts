@@ -53,6 +53,7 @@ class Structure implements IStructure {
         this._startPos = startPos;
         this._endPos = endPos;
         this._$el = $("<div></div>", {'class': "structure type_" + this._type});
+        this._el = this._$el.get(0);
 
         $(target).append(this._el);
     }
