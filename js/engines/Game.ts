@@ -16,6 +16,7 @@ class Game implements IDrawable {
     _physicsEngine : PhysicsEngine;
     _world : World;
     _hero : Player;
+    _ctx : CanvasRenderingContext2D;
 
     constructor() {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
@@ -33,22 +34,23 @@ class Game implements IDrawable {
     }
 
     Start() {
-        this.Draw(true);
+        this.Draw(this._ctx, true);
 
-        document.addEventListener( "keyup", (evt : KeyboardEvent) => this.KeyEvent(evt), false);
+        document.addEventListener("keyup", (evt : KeyboardEvent) => this.KeyEvent(evt), false);
     }
 
-    Draw(drawWorld?:boolean) {
+    Draw(ctx : CanvasRenderingContext2D, drawWorld?:boolean) {
         if (drawWorld) {
-            this._world.Draw();
+            this._world.Draw(this._ctx);
         }
-        this._hero.Draw();
+        this._hero.Draw(this._ctx);
     }
 
     private init() {
         this._world = new World($("#background"));
         this._hero = new Player($("#hero"));
         this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw);
+        this._ctx = $('#world')[0].getContext("2d");
     }
 
 }

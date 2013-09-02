@@ -11,37 +11,44 @@ class TileData{
     _name : string;
     _type : TileType;
     _turn : number;
+    xOffset : number;
+    yOffset : number;
 
-    constructor (name : string, type : TileType) {
+    constructor (name : string, type : TileType, xOffset : number, yOffset : number) {
         this._name = name;
         this._type = type;
         this._turn = 0;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
     }
 }
 
 var TILE_DATA : collections.Dictionary<string, TileData>;
 TILE_DATA = new collections.Dictionary<string, TileData>();
 
-TILE_DATA.setValue('^', new TileData("Rock",            TileType.Solid  ));
-TILE_DATA.setValue(',', new TileData("Grass",           TileType.Ground ));
-TILE_DATA.setValue('o', new TileData("DarkDgn",         TileType.Ground ));
-TILE_DATA.setValue('~', new TileData("Water",           TileType.Water  ));
-TILE_DATA.setValue('.', new TileData("Path",            TileType.Ground ));
-TILE_DATA.setValue('O', new TileData("LitDgn",          TileType.Ground ));
-TILE_DATA.setValue('_', new TileData("PathRock",        TileType.Solid  ));
-TILE_DATA.setValue(';', new TileData("PathGrass",       TileType.Ground ));
-TILE_DATA.setValue(' ', new TileData("WaterGrass",      TileType.Water  ));
-TILE_DATA.setValue(' ', new TileData("WaterPath",       TileType.Water  ));
-TILE_DATA.setValue(' ', new TileData("WallLitDgn",      TileType.Solid  ));
-TILE_DATA.setValue(' ', new TileData("WallDarkDgn",     TileType.Solid  ));
-TILE_DATA.setValue(' ', new TileData("50Grass50Cave",   TileType.Solid  ));
-TILE_DATA.setValue(' ', new TileData("10Grass90Cave",   TileType.Solid  ));
-TILE_DATA.setValue(' ', new TileData("50White50Cave",   TileType.Solid  ));
-TILE_DATA.setValue(' ', new TileData("10White90Cave",   TileType.Solid  ));
-TILE_DATA.setValue('=', new TileData("Crop",            TileType.Solid ));
-TILE_DATA.setValue('+', new TileData("Entry",           TileType.Entry  ));
-TILE_DATA.setValue('#', new TileData("Building",        TileType.Solid  ));
-TILE_DATA.setValue('!', new TileData("Sign",            TileType.Ground ));
+TILE_DATA.setValue('^', new TileData("Rock",            TileType.Solid  ,   0,      0));
+TILE_DATA.setValue(',', new TileData("Grass",           TileType.Ground ,   0,     32));
+TILE_DATA.setValue('o', new TileData("DarkDgn",         TileType.Ground ,   0,     64));
+TILE_DATA.setValue('~', new TileData("Water",           TileType.Water  ,   0,     96));
+TILE_DATA.setValue('.', new TileData("Path",            TileType.Ground ,   0,    128));
+TILE_DATA.setValue('O', new TileData("LitDgn",          TileType.Ground ,   0,    160));
+TILE_DATA.setValue('_', new TileData("PathRock",        TileType.Solid  ,  32,      0));
+TILE_DATA.setValue(';', new TileData("PathGrass",       TileType.Ground ,  32,     32));
+TILE_DATA.setValue(' ', new TileData("WallDarkDgn",     TileType.Solid  ,  32,     64));
+TILE_DATA.setValue(' ', new TileData("WaterGrass",      TileType.Water  ,  32,     96));
+TILE_DATA.setValue(' ', new TileData("WaterPath",       TileType.Water  ,  32,    128));
+TILE_DATA.setValue(' ', new TileData("WallLitDgn",      TileType.Solid  ,  32,    160));
+TILE_DATA.setValue(' ', new TileData("50Grass50Cave",   TileType.Solid  ,   0,    192));
+TILE_DATA.setValue(' ', new TileData("10Grass90Cave",   TileType.Solid  ,  32,    192));
+TILE_DATA.setValue(' ', new TileData("50White50Cave",   TileType.Solid  ,   0,    224));
+TILE_DATA.setValue(' ', new TileData("90White10Cave",   TileType.Solid  ,  32,    224));
+TILE_DATA.setValue('=', new TileData("Crop",            TileType.Solid  ,  64,     32));
+TILE_DATA.setValue('+', new TileData("Entry",           TileType.Entry  , 192,    160));
+TILE_DATA.setValue('#', new TileData("Building",        TileType.Solid  , 192,    160));
+TILE_DATA.setValue('!', new TileData("Sign",            TileType.Ground , 160,      0));
+
+var TILE_IMG = new Image();
+TILE_IMG.src = "assets/resources/tiles.png";
 
 class Tile implements IDrawable {
     _$el : ZeptoCollection;
@@ -58,8 +65,9 @@ class Tile implements IDrawable {
         $(target).append(this._el);
     }
 
-    Draw() {
-        this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
+    Draw(ctx : CanvasRenderingContext2D) {
+        ctx.drawImage(TILE_IMG, this._tile.xOffset, this._tile.yOffset, TILE_SIZE, TILE_SIZE, this._coords.X*TILE_SIZE, this._coords.Y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        //this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     }
 
     DetermineRotation(westTile:string, northTile:string) {

@@ -1,5 +1,5 @@
 ///<reference path="../references.ts"/>
 
 interface IDrawable {
-    Draw();
+    Draw(ctx : CanvasRenderingContext2D);
 }

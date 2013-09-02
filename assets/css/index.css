@@ -66,14 +66,6 @@ body {
     background-clip:border-box;
 }
 
-
-.tile_0 {      background: url('../images/background_tiles.png');     background-position: 0px 0px;}
-.tile_1 {      background: url('../images/background_tiles.png');     background-position: 256px 0px;}
-.tile_2 {      background: url('../images/background_tiles.png');     background-position: 512px 0px;}
-.tile_3 {      background: url('../images/background_tiles.png');     background-position: 0px 256px;}
-.tile_4 {      background: url('../images/background_tiles.png');     background-position: 256px 256px;}
-
-
 #hero{
     width: 72px;
     height: 96px;
@@ -82,39 +74,6 @@ body {
     top:0px;
     left:0px;
 }
-.hero_0_0{ background: url('../images/rpg_sprite_walk.png'); background-position:0px 0px;}
-.hero_0_1{ background: url('../images/rpg_sprite_walk.png'); background-position:0px 96px;}
-.hero_0_2{ background: url('../images/rpg_sprite_walk.png'); background-position:0px 192px;}
-.hero_0_3{ background: url('../images/rpg_sprite_walk.png'); background-position:0px 288px;}
-.hero_1_0{ background: url('../images/rpg_sprite_walk.png'); background-position:72px 0px;}
-.hero_1_1{ background: url('../images/rpg_sprite_walk.png'); background-position:72px 96px;}
-.hero_1_2{ background: url('../images/rpg_sprite_walk.png'); background-position:72px 192px;}
-.hero_1_3{ background: url('../images/rpg_sprite_walk.png'); background-position:72px 288px;}
-.hero_2_0{ background: url('../images/rpg_sprite_walk.png'); background-position:144px 0px;}
-.hero_2_1{ background: url('../images/rpg_sprite_walk.png'); background-position:144px 96px;}
-.hero_2_2{ background: url('../images/rpg_sprite_walk.png'); background-position:144px 192px;}
-.hero_2_3{ background: url('../images/rpg_sprite_walk.png'); background-position:144px 288px;}
-.hero_3_0{ background: url('../images/rpg_sprite_walk.png'); background-position:216px 0px;}
-.hero_3_1{ background: url('../images/rpg_sprite_walk.png'); background-position:216px 96px;}
-.hero_3_2{ background: url('../images/rpg_sprite_walk.png'); background-position:216px 192px;}
-.hero_3_3{ background: url('../images/rpg_sprite_walk.png'); background-position:216px 288px;}
-.hero_4_0{ background: url('../images/rpg_sprite_walk.png'); background-position:288px 0px;}
-.hero_4_1{ background: url('../images/rpg_sprite_walk.png'); background-position:288px 96px;}
-.hero_4_2{ background: url('../images/rpg_sprite_walk.png'); background-position:288px 192px;}
-.hero_4_3{ background: url('../images/rpg_sprite_walk.png'); background-position:288px 288px;}
-.hero_5_0{ background: url('../images/rpg_sprite_walk.png'); background-position:360px 0px;}
-.hero_5_1{ background: url('../images/rpg_sprite_walk.png'); background-position:360px 96px;}
-.hero_5_2{ background: url('../images/rpg_sprite_walk.png'); background-position:360px 192px;}
-.hero_5_3{ background: url('../images/rpg_sprite_walk.png'); background-position:360px 288px;}
-.hero_6_0{ background: url('../images/rpg_sprite_walk.png'); background-position:432px 0px;}
-.hero_6_1{ background: url('../images/rpg_sprite_walk.png'); background-position:432px 96px;}
-.hero_6_2{ background: url('../images/rpg_sprite_walk.png'); background-position:432px 192px;}
-.hero_6_3{ background: url('../images/rpg_sprite_walk.png'); background-position:432px 288px;}
-.hero_7_0{ background: url('../images/rpg_sprite_walk.png'); background-position:504px 0px;}
-.hero_7_1{ background: url('../images/rpg_sprite_walk.png'); background-position:504px 96px;}
-.hero_7_2{ background: url('../images/rpg_sprite_walk.png'); background-position:504px 192px;}
-.hero_7_3{ background: url('../images/rpg_sprite_walk.png'); background-position:504px 288px;}
-
 
 .sprite{
     overflow: hidden;
@@ -122,19 +81,6 @@ body {
     top:0px;
     left:0px;
 }
-.tree { background: url('../images/trees_1.png'); background-position:0px 0px; width: 380px; height: 518px; }
-.bush1 { background: url('../images/trees_1.png'); background-position: 568px 500px; width: 312px; height: 330px; }
-.bush2 { background: url('../images/trees_1.png'); background-position:252px 500px; width: 252px; height: 304px; }
-.log { background: url('../images/trees_1.png'); background-position: 316px 184px; width: 200px; height: 76px; }
-.bush3 { background: url('../images/trees_1.png'); background-position:120px 180px; width: 118px; height: 64px; }
-
-.dragon1 { background: url('../images/DAGRONS5_0.png'); background-position:310px 87px; width: 180px; height: 85px; }
-.dragon2 { background: url('../images/DAGRONS5_0.png'); background-position:319px 268px; width: 174px; height: 108px; }
-.dragon3 { background: url('../images/DAGRONS5_0.png'); background-position:121px 220px; width: 92px; height: 85px; }
-.dragon4 { background: url('../images/DAGRONS5_0.png'); background-position:415px 334px; width: 72px; height: 88px; }
-
-
-
 
 
 

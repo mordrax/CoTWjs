@@ -13,7 +13,7 @@ class Player extends Actor implements IDrawable {
         this.Position = new Point(10, 15);
     }
 
-    Draw() {
+    Draw(ctx : CanvasRenderingContext2D) {
         this._el.style["-webkit-transform"]="translate3d("+ this.Position.X*TILE_SIZE +'px,'+ this.Position.Y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
     }
 }

@@ -23,7 +23,6 @@ var World = (function () {
                     tile[x] = new Array();
                 }
                 tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
-                //tile[x][y]._tile._turn = this.determineRotation(x,y, this.CurrentTileSet());
             }
         }
         this._maps.setValue(mapType, tile);
@@ -35,12 +34,25 @@ var World = (function () {
         return this._maps.getValue(this._currentMap);
     };
 
-    World.prototype.Draw = function () {
+    World.prototype.CurrentStructureSet = function () {
+        return STRUCTURES.getValue(this._currentMap);
+    };
+
+    World.prototype.Draw = function (ctx) {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
-                this.CurrentTileSet()[x][y].Draw();
+                if (x > 0 && y > 0) {
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    this.CurrentTileSet()[x][y].DetermineRotation(this.CurrentTileSet()[x - 1][y]._tile._name, this.CurrentTileSet()[x][y - 1]._tile._name);
+                }
+                this.CurrentTileSet()[x][y].Draw(ctx);
             }
         }
+        /*
+        for (var x = 0; x < this.CurrentStructureSet().length; x++) {
+        this.CurrentStructureSet()[x].Draw();
+        }
+        */
     };
 
     /**
@@ -66,57 +78,6 @@ var World = (function () {
         }
 
         return link;
-    };
-
-    World.prototype.determineRotation = function (x, y, map) {
-        var degrees;
-        var southWestTile, north, west;
-
-        switch (TILE_DATA[map[x][y]]._name) {
-            case "PathRock":
-                southWestTile = "Path";
-                break;
-            case "PathGrass":
-                southWestTile = "Path";
-                break;
-            case "WaterGrass":
-                southWestTile = "Water";
-                break;
-            case "WaterPath":
-                southWestTile = "Water";
-                break;
-            case "WallLitDgn":
-                southWestTile = "Wall";
-                break;
-            case "WallDarkDgn":
-                southWestTile = "Wall";
-                break;
-            default:
-                return 0;
-        }
-
-        if (y > 0) {
-            north = TILE_DATA[map[x][y - 1]]._name;
-        }
-
-        if (x > 0) {
-            west = TILE_DATA[map[x - 1][y]]._name;
-        }
-
-        if (north == southWestTile) {
-            if (west == southWestTile) {
-                degrees = 90;
-            } else {
-                degrees = 180;
-            }
-        } else if (west == southWestTile) {
-            degrees = 0;
-        } else {
-            degrees = 270;
-        }
-
-        // return the number of degrees to rotate the tile
-        return degrees;
     };
     return World;
 })();

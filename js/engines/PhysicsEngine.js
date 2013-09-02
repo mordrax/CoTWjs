@@ -32,7 +32,7 @@ var PhysicsEngine = (function () {
         // collision with non walkable tile (solids, water, end of map)
         //this._world.GetTileInfo(newPos);
         actor.moveTo(newPos);
-        this._redraw();
+        this._redraw;
     };
 
     PhysicsEngine.prototype.SendEvent = function (event) {

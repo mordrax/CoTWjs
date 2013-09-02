@@ -15,7 +15,7 @@ var Player = (function (_super) {
 
         this.Position = new Point(10, 15);
     }
-    Player.prototype.Draw = function () {
+    Player.prototype.Draw = function (ctx) {
         this._el.style["-webkit-transform"] = "translate3d(" + this.Position.X * TILE_SIZE + 'px,' + this.Position.Y * TILE_SIZE + "px,0px) ";
     };
     return Player;

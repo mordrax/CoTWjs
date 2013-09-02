@@ -25,24 +25,25 @@ var Game = (function () {
 
     Game.prototype.Start = function () {
         var _this = this;
-        this.Draw(true);
+        this.Draw(this._ctx, true);
 
         document.addEventListener("keyup", function (evt) {
             return _this.KeyEvent(evt);
         }, false);
     };
 
-    Game.prototype.Draw = function (drawWorld) {
+    Game.prototype.Draw = function (ctx, drawWorld) {
         if (drawWorld) {
-            this._world.Draw();
+            this._world.Draw(this._ctx);
         }
-        this._hero.Draw();
+        this._hero.Draw(this._ctx);
     };
 
     Game.prototype.init = function () {
         this._world = new World($("#background"));
         this._hero = new Player($("#hero"));
         this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw);
+        this._ctx = $('#world')[0].getContext("2d");
     };
     return Game;
 })();

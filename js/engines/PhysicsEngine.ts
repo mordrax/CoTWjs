@@ -4,9 +4,9 @@ class PhysicsEngine implements IState {
     _pressed : {};
     _hero : Player;
     _world : World;
-    _redraw : (boolean?) => void;
+    _redraw : (CanvasRenderingContext2D, boolean?) => void;
 
-    constructor (hero : Player, world : World, redraw : (boolean?) => void) {
+    constructor (hero : Player, world : World, redraw : (CanvasRenderingContext2D, boolean?) => void) {
         this._hero = hero;
         this._world = world;
         this._redraw = redraw;
@@ -39,7 +39,7 @@ class PhysicsEngine implements IState {
         //this._world.GetTileInfo(newPos);
 
         actor.moveTo(newPos);
-        this._redraw();
+        this._redraw;
     }
 
     SendEvent(event) {
