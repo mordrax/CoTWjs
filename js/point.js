@@ -1,4 +1,3 @@
-///<reference path="references.ts"/>
 var Point = (function () {
     function Point(x, y) {
         this.X = x;
@@ -9,4 +8,4 @@ var Point = (function () {
     };
     return Point;
 })();
-//# sourceMappingURL=point.js.map
+//@ sourceMappingURL=point.js.map

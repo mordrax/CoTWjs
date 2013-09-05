@@ -14,6 +14,7 @@
 /// <reference path="interfaces/IPhysical.ts"/>
 
 /// <reference path="NPCs/player.ts"/>
+/// <reference path="NPCs/monsters.ts"/>
 /// <reference path="NPCs/Actor.ts"/>
 
 /// <reference path="world/tile.ts"/>

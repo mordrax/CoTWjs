@@ -1,3 +1,4 @@
-/**
- * Created by mordrax on 21/08/13.
- */
+/// <reference path="../references.ts"/>
+
+var MONSTER_IMG = new Image();
+MONSTER_IMG.src = "assets/resources/monsters.png";

@@ -1,7 +1,3 @@
-/// <reference path="../references.ts"/>
-/**
-* Base class for all living things in the game, hero, monsters, friendly npcs etc
-*/
 var Actor = (function () {
     function Actor() {
     }
@@ -14,4 +10,4 @@ var Actor = (function () {
     };
     return Actor;
 })();
-//# sourceMappingURL=Actor.js.map
+//@ sourceMappingURL=Actor.js.map

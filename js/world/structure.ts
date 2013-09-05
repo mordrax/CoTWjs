@@ -29,7 +29,23 @@ enum StructureType{
     "NF_BrickTemple"
 }
 
+var s1 = new Image();
+s1.src = "assets/resources/1x_buildings.png";
+var s2 = new Image();
+s2.src = "assets/resources/2x_buildings.png";
+var s3 = new Image();
+s3.src = "assets/resources/3x_buildings.png";
+var s4 = new Image();
+s4.src = "assets/resources/4x_buildings.png";
+var s5 = new Image();
+s5.src = "assets/resources/5x_buildings.png";
 
+var STRUCTURE_DICT = new collections.Dictionary<number, Image >();
+STRUCTURE_DICT.setValue(1, s1);
+STRUCTURE_DICT.setValue(2, s2);
+STRUCTURE_DICT.setValue(3, s3);
+STRUCTURE_DICT.setValue(4, s4);
+STRUCTURE_DICT.setValue(5, s5);
 /**
  * Holds all the buildings in the world, each structure should have at least
  * - location for it's top right corner,
@@ -42,33 +58,25 @@ class Structure implements IStructure {
     _type : string;
     _entryPos : Point;
     _startPos : Point;
-    _endPos : Point;
-    _el : HTMLElement;
-    _$el : ZeptoCollection;
+    _size : Point;
+    _offset :Point;
 
-    constructor (target : string, name : string, type: string, entryPos : Point, startPos : Point, endPos : Point) {
+    constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
         this._name = name;
         this._type = type;
         this._entryPos = entryPos;
         this._startPos = startPos;
-        this._endPos = endPos;
-        this._$el = $("<div></div>", {'class': "structure type_" + this._type});
-        this._el = this._$el.get(0);
-
-        $(target).append(this._el);
+        this._size = size;
+        this._offset = offset;
     }
 
-    Dimension(): Point {
-        var p = new Point();
-        p.X = Math.abs(this._startPos.X - this._endPos.X);
-        p.Y = Math.abs(this._startPos.Y - this._endPos.Y);
-        return p;
-    }
-
-    Draw() {
-        var Dim : Point;
-        Dim = this.Dimension();
-        this._el.style["-webkit-transform"] = "translate3d(" + Dim.X * TILE_SIZE + 'px,' + Dim.Y * TILE_SIZE + "px,0px)";
+    Draw(ctx : CanvasRenderingContext2D) {
+        var pX = this._size.X*TILE_SIZE;
+        var pY = this._size.Y*TILE_SIZE;
+        ctx.drawImage(
+            STRUCTURE_DICT.getValue(this._size.Y),
+            this._offset.X*TILE_SIZE, this._offset.Y*TILE_SIZE, pX, pY,
+            this._startPos.X*TILE_SIZE, this._startPos.Y*TILE_SIZE, pX, pY);
     }
 
     EntryPoint() {

@@ -1,9 +1,4 @@
-/// <reference path="../references.ts"/>
 var World = (function () {
-    /**
-    * World creation defaults to village _map
-    * @param $el - Container element <background> for all tiles
-    */
     function World($el) {
         this._$el = $el;
         this._el = $el.get(0);
@@ -22,7 +17,7 @@ var World = (function () {
                 if (y === 0) {
                     tile[x] = new Array();
                 }
-                tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
+                tile[x][y] = new Tile(TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
             }
         }
         this._maps.setValue(mapType, tile);
@@ -35,30 +30,24 @@ var World = (function () {
     };
 
     World.prototype.CurrentStructureSet = function () {
-        return STRUCTURES.getValue(this._currentMap);
+        return STRUCTURES[this._currentMap];
     };
 
     World.prototype.Draw = function (ctx) {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
                 if (x > 0 && y > 0) {
-                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     this.CurrentTileSet()[x][y].DetermineRotation(this.CurrentTileSet()[x - 1][y]._tile._name, this.CurrentTileSet()[x][y - 1]._tile._name);
                 }
                 this.CurrentTileSet()[x][y].Draw(ctx);
             }
         }
-        /*
-        for (var x = 0; x < this.CurrentStructureSet().length; x++) {
-        this.CurrentStructureSet()[x].Draw();
-        }
-        */
+
+        this.CurrentStructureSet().forEach(function (x) {
+            x.Draw(ctx);
+        });
     };
 
-    /**
-    * Called when a player moves to a point in the world, check if that location is a link
-    * If yes, then change the map and send the new location of the player (on the new map) back
-    */
     World.prototype.MapLink = function (point) {
         var _this = this;
         var link = null;
@@ -81,4 +70,4 @@ var World = (function () {
     };
     return World;
 })();
-//# sourceMappingURL=world.js.map
+//@ sourceMappingURL=world.js.map

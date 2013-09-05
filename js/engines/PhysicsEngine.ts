@@ -5,11 +5,13 @@ class PhysicsEngine implements IState {
     _hero : Player;
     _world : World;
     _redraw : (CanvasRenderingContext2D, boolean?) => void;
+    _ctx : CanvasRenderingContext2D;
 
-    constructor (hero : Player, world : World, redraw : (CanvasRenderingContext2D, boolean?) => void) {
+    constructor (hero : Player, world : World, redraw : (CanvasRenderingContext2D, boolean?) => void, ctx : CanvasRenderingContext2D) {
         this._hero = hero;
         this._world = world;
         this._redraw = redraw;
+        this._ctx = ctx;
     }
 
     Move(actor : Actor, keycode : number) {
@@ -32,14 +34,14 @@ class PhysicsEngine implements IState {
         var link = this._world.MapLink(newPos);
         if (link !== null) {
             actor.moveTo(link.Coord);
-            this._redraw(true);
+            this._redraw(this._ctx, true);
             return;
         }
         // collision with non walkable tile (solids, water, end of map)
         //this._world.GetTileInfo(newPos);
 
         actor.moveTo(newPos);
-        this._redraw;
+        this._redraw(this._ctx);
     }
 
     SendEvent(event) {

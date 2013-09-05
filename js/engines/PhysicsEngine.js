@@ -1,9 +1,9 @@
-/// <reference path="../references.ts"/>
 var PhysicsEngine = (function () {
-    function PhysicsEngine(hero, world, redraw) {
+    function PhysicsEngine(hero, world, redraw, ctx) {
         this._hero = hero;
         this._world = world;
         this._redraw = redraw;
+        this._ctx = ctx;
     }
     PhysicsEngine.prototype.Move = function (actor, keycode) {
         var curPos = actor.GetPosition();
@@ -18,30 +18,18 @@ var PhysicsEngine = (function () {
             newPos = new Point(curPos.X + 1, curPos.Y);
         }
 
-        //TODO: Check collision
-        // collision with monster
-        // collision with building door
-        // collision with map entry/exit
         var link = this._world.MapLink(newPos);
         if (link !== null) {
             actor.moveTo(link.Coord);
-            this._redraw(true);
+            this._redraw(this._ctx, true);
             return;
         }
 
-        // collision with non walkable tile (solids, water, end of map)
-        //this._world.GetTileInfo(newPos);
         actor.moveTo(newPos);
-        this._redraw;
+        this._redraw(this._ctx);
     };
 
     PhysicsEngine.prototype.SendEvent = function (event) {
-        // check if hero can move
-        // move hero
-        // _hero.moveUp/Down/etc
-        //        update(keycode : number) {
-        //
-        //        }
     };
     return PhysicsEngine;
 })();
@@ -55,4 +43,4 @@ var KeyCodes = (function () {
     KeyCodes.DOWN = 40;
     return KeyCodes;
 })();
-//# sourceMappingURL=PhysicsEngine.js.map
+//@ sourceMappingURL=PhysicsEngine.js.map

@@ -51,18 +51,13 @@ var TILE_IMG = new Image();
 TILE_IMG.src = "assets/resources/tiles.png";
 
 class Tile implements IDrawable {
-    _$el : ZeptoCollection;
-    _el  : HTMLElement;
     _tile: TileData;
     _coords : Point;
 
-    constructor (target: string, tile : TileData, coords: Point) {
+    constructor (tile : TileData, coords: Point) {
         this._tile = tile;
-        this._$el = $("<div></div>", {'class': "tile type_" + tile._name});
-        this._el = this._$el.get(0);
         this._coords = coords;
 
-        $(target).append(this._el);
     }
 
     Draw(ctx : CanvasRenderingContext2D) {

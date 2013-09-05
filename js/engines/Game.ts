@@ -48,8 +48,8 @@ class Game implements IDrawable {
 
     private init() {
         this._world = new World($("#background"));
-        this._hero = new Player($("#hero"));
-        this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw);
+        this._hero = new Player();
+        this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw, this._ctx);
         this._ctx = $('#world')[0].getContext("2d");
     }
 

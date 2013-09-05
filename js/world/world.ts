@@ -30,7 +30,7 @@ class World implements IDrawable {
                     if (y === 0) {
                         tile[x] = new Array<Tile>();
                     }
-                    tile[x][y] = new Tile("#background", TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
+                    tile[x][y] = new Tile(TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
                 }
             }
             this._maps.setValue(mapType, tile);
@@ -43,7 +43,7 @@ class World implements IDrawable {
     }
 
     private CurrentStructureSet():Array<Structure>{
-        return STRUCTURES.getValue(this._currentMap);
+        return STRUCTURES[this._currentMap];
     }
 
     Draw(ctx : CanvasRenderingContext2D) {
@@ -56,11 +56,10 @@ class World implements IDrawable {
                 this.CurrentTileSet()[x][y].Draw(ctx);
             }
         }
-/*
-        for (var x = 0; x < this.CurrentStructureSet().length; x++) {
-            this.CurrentStructureSet()[x].Draw();
-        }
-*/
+
+        this.CurrentStructureSet().forEach((x:Structure)=>{
+            x.Draw(ctx);
+        });
 
     }
 

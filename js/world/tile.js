@@ -1,9 +1,9 @@
-/// <reference path="../references.ts"/>
 var TileType;
 (function (TileType) {
     TileType[TileType["Ground"] = 0] = "Ground";
     TileType[TileType["Water"] = 1] = "Water";
     TileType[TileType["Solid"] = 2] = "Solid";
+
     TileType[TileType["Entry"] = 3] = "Entry";
 })(TileType || (TileType = {}));
 
@@ -46,17 +46,12 @@ var TILE_IMG = new Image();
 TILE_IMG.src = "assets/resources/tiles.png";
 
 var Tile = (function () {
-    function Tile(target, tile, coords) {
+    function Tile(tile, coords) {
         this._tile = tile;
-        this._$el = $("<div></div>", { 'class': "tile type_" + tile._name });
-        this._el = this._$el.get(0);
         this._coords = coords;
-
-        $(target).append(this._el);
     }
     Tile.prototype.Draw = function (ctx) {
         ctx.drawImage(TILE_IMG, this._tile.xOffset, this._tile.yOffset, TILE_SIZE, TILE_SIZE, this._coords.X * TILE_SIZE, this._coords.Y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-        //this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
     };
 
     Tile.prototype.DetermineRotation = function (westTile, northTile) {
@@ -89,7 +84,6 @@ var Tile = (function () {
             if (northTile === southWestTile) {
                 this._tile._turn = 90;
             } else {
-                // do nothing - no rotation required
             }
         } else if (northTile === southWestTile) {
             this._tile._turn = 180;
@@ -99,4 +93,4 @@ var Tile = (function () {
     };
     return Tile;
 })();
-//# sourceMappingURL=tile.js.map
+//@ sourceMappingURL=tile.js.map
