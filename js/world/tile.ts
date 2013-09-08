@@ -57,13 +57,28 @@ class Tile implements IDrawable {
     constructor (tile : TileData, coords: Point) {
         this._tile = tile;
         this._coords = coords;
-
     }
 
     Draw(ctx : CanvasRenderingContext2D) {
+
         ctx.drawImage(TILE_IMG, this._tile.xOffset, this._tile.yOffset, TILE_SIZE, TILE_SIZE, this._coords.X*TILE_SIZE, this._coords.Y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
         //this._el.style["-webkit-transform"] = "translate3d(" + this._coords.X * TILE_SIZE + 'px,' + this._coords.Y * TILE_SIZE + "px,0px) rotate(" + this._tile._turn + "deg)";
-    }
+    };
+
+    RotateAndCache = function (image, angle) {
+        var offscreenCanvas = document.createElement('canvas');
+        var offscreenCtx = offscreenCanvas.getContext('2d');
+
+        var size = Math.max(image.width, image.height);
+        offscreenCanvas.width = size;
+        offscreenCanvas.height = size;
+
+        offscreenCtx.translate(size / 2, size / 2);
+        offscreenCtx.rotate(angle + Math.PI / 2);
+        offscreenCtx.drawImage(image, -(image.width / 2), -(image.height / 2));
+
+        return offscreenCanvas;
+    };
 
     DetermineRotation(westTile:string, northTile:string) {
 
