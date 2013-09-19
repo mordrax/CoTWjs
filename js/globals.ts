@@ -1,6 +1,4 @@
-/// <reference path="zepto.d.ts"/>
-/// <reference path="point.ts"/>
-/// <reference path="interfaces/IDrawable.ts"/>
+/// <reference path="references.ts"/>
 
 //var hasTouch = ('ontouchstart' in window);
 //var TOUCH_START = hasTouch ? "touchstart" : "mousedown";
@@ -16,4 +14,11 @@ var TILE_SIZE = 32;
 var TILES_X = parseInt((WINDOW_WIDTH/TILE_SIZE).toString());
 var TILES_Y = parseInt((WINDOW_HEIGHT/TILE_SIZE).toString());
 
-var renders = 0; 
+var renders = 0;
+
+
+var HERO_IMG = new Image();
+HERO_IMG.src = "assets/resources/monsters.png";
+
+var TILE_IMG = new Image();
+TILE_IMG.src = "assets/resources/tiles.png";

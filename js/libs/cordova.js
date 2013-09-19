@@ -20,7 +20,7 @@
 */
 ;(function() {
 var CORDOVA_JS_BUILD_LABEL = '2.8.0-0-g6208c95';
-// file: lib\scripts\require.js
+// file: libs\scripts\require.js
 
 var require,
     define;
@@ -90,12 +90,12 @@ var require,
 })();
 
 //Export for use in node
-if (typeof module === "object" && typeof require === "function") {
+if (typeof module === "COTWObject" && typeof require === "function") {
     module.exports.require = require;
     module.exports.define = define;
 }
 
-// file: lib/cordova.js
+// file: libs/cordova.js
 define("cordova", function(require, exports, module) {
 
 
@@ -329,7 +329,7 @@ module.exports = cordova;
 
 });
 
-// file: lib\common\argscheck.js
+// file: libs\common\argscheck.js
 define("cordova/argscheck", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -395,7 +395,7 @@ moduleExports.enableChecks = true;
 
 });
 
-// file: lib\common\builder.js
+// file: libs\common\builder.js
 define("cordova/builder", function(require, exports, module) {
 
 var utils = require('cordova/utils');
@@ -470,8 +470,8 @@ function include(parent, objects, clobber, merge) {
 }
 
 /**
- * Merge properties from one object onto another recursively.  Properties from
- * the src object will overwrite existing target property.
+ * Merge properties from one COTWObject onto another recursively.  Properties from
+ * the src COTWObject will overwrite existing target property.
  *
  * @param target Object to merge properties into.
  * @param src Object to merge properties from.
@@ -480,10 +480,10 @@ function recursiveMerge(target, src) {
     for (var prop in src) {
         if (src.hasOwnProperty(prop)) {
             if (target.prototype && target.prototype.constructor === target) {
-                // If the target object is a constructor override off prototype.
+                // If the target COTWObject is a constructor override off prototype.
                 clobber(target.prototype, prop, src[prop]);
             } else {
-                if (typeof src[prop] === 'object' && typeof target[prop] === 'object') {
+                if (typeof src[prop] === 'COTWObject' && typeof target[prop] === 'COTWObject') {
                     recursiveMerge(target[prop], src[prop]);
                 } else {
                     clobber(target, prop, src[prop]);
@@ -508,7 +508,7 @@ exports.replaceHookForTesting = function() {};
 
 });
 
-// file: lib\common\channel.js
+// file: libs\common\channel.js
 define("cordova/channel", function(require, exports, module) {
 
 var utils = require('cordova/utils'),
@@ -516,7 +516,7 @@ var utils = require('cordova/utils'),
 
 /**
  * Custom pub-sub "channel" that can have functions subscribed to it
- * This object is used to define and control firing of events for
+ * This COTWObject is used to define and control firing of events for
  * cordova initialization, as well as for custom events thereafter.
  *
  * The order of events during page load and Cordova startup is as follows:
@@ -650,7 +650,7 @@ Channel.prototype.subscribe = function(f, c) {
 
     var func = f,
         guid = f.observer_guid;
-    if (typeof c == "object") { func = utils.close(c, f); }
+    if (typeof c == "COTWObject") { func = utils.close(c, f); }
 
     if (!guid) {
         // first time any channel has seen this subscriber
@@ -758,7 +758,7 @@ module.exports = channel;
 
 });
 
-// file: lib\common\commandProxy.js
+// file: libs\common\commandProxy.js
 define("cordova/commandProxy", function(require, exports, module) {
 
 
@@ -788,7 +788,7 @@ module.exports = {
 };
 });
 
-// file: lib\windows8\exec.js
+// file: libs\windows8\exec.js
 define("cordova/exec", function(require, exports, module) {
 
 var cordova = require('cordova');
@@ -797,7 +797,7 @@ var commandProxy = require('cordova/commandProxy');
 /**
  * Execute a cordova command.  It is up to the native side whether this action
  * is synchronous or asynchronous.  The native side can return:
- *      Synchronous: PluginResult object as a JSON string
+ *      Synchronous: PluginResult COTWObject as a JSON string
  *      Asynchronous: Empty string ""
  * If async, the native side will cordova.callbackSuccess or cordova.callbackError,
  * depending upon the result of the action.
@@ -831,7 +831,7 @@ module.exports = function(success, fail, service, action, args) {
 
 });
 
-// file: lib\common\modulemapper.js
+// file: libs\common\modulemapper.js
 define("cordova/modulemapper", function(require, exports, module) {
 
 var builder = require('cordova/builder'),
@@ -932,7 +932,7 @@ exports.reset();
 
 });
 
-// file: lib\windows8\platform.js
+// file: libs\windows8\platform.js
 define("cordova/platform", function(require, exports, module) {
 
 var cordova = require('cordova'),
@@ -989,7 +989,7 @@ module.exports = {
 
 });
 
-// file: lib\common\plugin\Acceleration.js
+// file: libs\common\plugin\Acceleration.js
 define("cordova/plugin/Acceleration", function(require, exports, module) {
 
 var Acceleration = function(x, y, z, timestamp) {
@@ -1003,7 +1003,7 @@ module.exports = Acceleration;
 
 });
 
-// file: lib\common\plugin\Camera.js
+// file: libs\common\plugin\Camera.js
 define("cordova/plugin/Camera", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -1061,7 +1061,7 @@ module.exports = cameraExport;
 
 });
 
-// file: lib\common\plugin\CameraConstants.js
+// file: libs\common\plugin\CameraConstants.js
 define("cordova/plugin/CameraConstants", function(require, exports, module) {
 
 module.exports = {
@@ -1099,7 +1099,7 @@ module.exports = {
 
 });
 
-// file: lib\common\plugin\CameraPopoverHandle.js
+// file: libs\common\plugin\CameraPopoverHandle.js
 define("cordova/plugin/CameraPopoverHandle", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -1117,7 +1117,7 @@ module.exports = CameraPopoverHandle;
 
 });
 
-// file: lib\common\plugin\CameraPopoverOptions.js
+// file: libs\common\plugin\CameraPopoverOptions.js
 define("cordova/plugin/CameraPopoverOptions", function(require, exports, module) {
 
 var Camera = require('cordova/plugin/CameraConstants');
@@ -1139,7 +1139,7 @@ module.exports = CameraPopoverOptions;
 
 });
 
-// file: lib\common\plugin\CaptureAudioOptions.js
+// file: libs\common\plugin\CaptureAudioOptions.js
 define("cordova/plugin/CaptureAudioOptions", function(require, exports, module) {
 
 /**
@@ -1156,7 +1156,7 @@ module.exports = CaptureAudioOptions;
 
 });
 
-// file: lib\common\plugin\CaptureError.js
+// file: libs\common\plugin\CaptureError.js
 define("cordova/plugin/CaptureError", function(require, exports, module) {
 
 /**
@@ -1181,7 +1181,7 @@ module.exports = CaptureError;
 
 });
 
-// file: lib\common\plugin\CaptureImageOptions.js
+// file: libs\common\plugin\CaptureImageOptions.js
 define("cordova/plugin/CaptureImageOptions", function(require, exports, module) {
 
 /**
@@ -1196,7 +1196,7 @@ module.exports = CaptureImageOptions;
 
 });
 
-// file: lib\common\plugin\CaptureVideoOptions.js
+// file: libs\common\plugin\CaptureVideoOptions.js
 define("cordova/plugin/CaptureVideoOptions", function(require, exports, module) {
 
 /**
@@ -1213,7 +1213,7 @@ module.exports = CaptureVideoOptions;
 
 });
 
-// file: lib\common\plugin\CompassError.js
+// file: libs\common\plugin\CompassError.js
 define("cordova/plugin/CompassError", function(require, exports, module) {
 
 /**
@@ -1232,7 +1232,7 @@ module.exports = CompassError;
 
 });
 
-// file: lib\common\plugin\CompassHeading.js
+// file: libs\common\plugin\CompassHeading.js
 define("cordova/plugin/CompassHeading", function(require, exports, module) {
 
 var CompassHeading = function(magneticHeading, trueHeading, headingAccuracy, timestamp) {
@@ -1246,7 +1246,7 @@ module.exports = CompassHeading;
 
 });
 
-// file: lib\common\plugin\ConfigurationData.js
+// file: libs\common\plugin\ConfigurationData.js
 define("cordova/plugin/ConfigurationData", function(require, exports, module) {
 
 /**
@@ -1267,7 +1267,7 @@ module.exports = ConfigurationData;
 
 });
 
-// file: lib\common\plugin\Connection.js
+// file: libs\common\plugin\Connection.js
 define("cordova/plugin/Connection", function(require, exports, module) {
 
 /**
@@ -1286,7 +1286,7 @@ module.exports = {
 
 });
 
-// file: lib\common\plugin\Contact.js
+// file: libs\common\plugin\Contact.js
 define("cordova/plugin/Contact", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -1316,7 +1316,7 @@ function convertIn(contact) {
 function convertOut(contact) {
     var value = contact.birthday;
     if (value !== null) {
-        // try to make it a Date object if it is not already
+        // try to make it a Date COTWObject if it is not already
         if (!utils.isDate(value)){
             try {
                 value = new Date(value);
@@ -1435,7 +1435,7 @@ Contact.prototype.save = function(successCB, errorCB) {
             }
         }
         else {
-            // no Entry object returned
+            // no Entry COTWObject returned
             fail(ContactError.UNKNOWN_ERROR);
         }
     };
@@ -1448,7 +1448,7 @@ module.exports = Contact;
 
 });
 
-// file: lib\common\plugin\ContactAddress.js
+// file: libs\common\plugin\ContactAddress.js
 define("cordova/plugin/ContactAddress", function(require, exports, module) {
 
 /**
@@ -1479,7 +1479,7 @@ module.exports = ContactAddress;
 
 });
 
-// file: lib\common\plugin\ContactError.js
+// file: libs\common\plugin\ContactError.js
 define("cordova/plugin/ContactError", function(require, exports, module) {
 
 /**
@@ -1506,7 +1506,7 @@ module.exports = ContactError;
 
 });
 
-// file: lib\common\plugin\ContactField.js
+// file: libs\common\plugin\ContactField.js
 define("cordova/plugin/ContactField", function(require, exports, module) {
 
 /**
@@ -1528,7 +1528,7 @@ module.exports = ContactField;
 
 });
 
-// file: lib\common\plugin\ContactFindOptions.js
+// file: libs\common\plugin\ContactFindOptions.js
 define("cordova/plugin/ContactFindOptions", function(require, exports, module) {
 
 /**
@@ -1547,7 +1547,7 @@ module.exports = ContactFindOptions;
 
 });
 
-// file: lib\common\plugin\ContactName.js
+// file: libs\common\plugin\ContactName.js
 define("cordova/plugin/ContactName", function(require, exports, module) {
 
 /**
@@ -1573,7 +1573,7 @@ module.exports = ContactName;
 
 });
 
-// file: lib\common\plugin\ContactOrganization.js
+// file: libs\common\plugin\ContactOrganization.js
 define("cordova/plugin/ContactOrganization", function(require, exports, module) {
 
 /**
@@ -1602,7 +1602,7 @@ module.exports = ContactOrganization;
 
 });
 
-// file: lib\common\plugin\Coordinates.js
+// file: libs\common\plugin\Coordinates.js
 define("cordova/plugin/Coordinates", function(require, exports, module) {
 
 /**
@@ -1656,7 +1656,7 @@ module.exports = Coordinates;
 
 });
 
-// file: lib\common\plugin\DirectoryEntry.js
+// file: libs\common\plugin\DirectoryEntry.js
 define("cordova/plugin/DirectoryEntry", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -1747,7 +1747,7 @@ module.exports = DirectoryEntry;
 
 });
 
-// file: lib\common\plugin\DirectoryReader.js
+// file: libs\common\plugin\DirectoryReader.js
 define("cordova/plugin/DirectoryReader", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -1795,7 +1795,7 @@ module.exports = DirectoryReader;
 
 });
 
-// file: lib\common\plugin\Entry.js
+// file: libs\common\plugin\Entry.js
 define("cordova/plugin/Entry", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -1829,7 +1829,7 @@ function Entry(isFile, isDirectory, name, fullPath, fileSystem) {
  * Look up the metadata of the entry.
  *
  * @param successCallback
- *            {Function} is called with a Metadata object
+ *            {Function} is called with a Metadata COTWObject
  * @param errorCallback
  *            {Function} is called with a FileError
  */
@@ -1850,7 +1850,7 @@ Entry.prototype.getMetadata = function(successCallback, errorCallback) {
  * Set the metadata of the entry.
  *
  * @param successCallback
- *            {Function} is called with a Metadata object
+ *            {Function} is called with a Metadata COTWObject
  * @param errorCallback
  *            {Function} is called with a FileError
  * @param metadataObject
@@ -1869,7 +1869,7 @@ Entry.prototype.setMetadata = function(successCallback, errorCallback, metadataO
  * @param newName
  *            {DOMString} new name of the entry, defaults to the current name
  * @param successCallback
- *            {Function} called with the new DirectoryEntry object
+ *            {Function} called with the new DirectoryEntry COTWObject
  * @param errorCallback
  *            {Function} called with a FileError
  */
@@ -1885,13 +1885,13 @@ Entry.prototype.moveTo = function(parent, newName, successCallback, errorCallbac
         success = function(entry) {
             if (entry) {
                 if (successCallback) {
-                    // create appropriate Entry object
+                    // create appropriate Entry COTWObject
                     var result = (entry.isDirectory) ? new (require('cordova/plugin/DirectoryEntry'))(entry.name, entry.fullPath) : new (require('cordova/plugin/FileEntry'))(entry.name, entry.fullPath);
                     successCallback(result);
                 }
             }
             else {
-                // no Entry object returned
+                // no Entry COTWObject returned
                 fail && fail(FileError.NOT_FOUND_ERR);
             }
         };
@@ -1908,7 +1908,7 @@ Entry.prototype.moveTo = function(parent, newName, successCallback, errorCallbac
  * @param newName
  *            {DOMString} new name of the entry, defaults to the current name
  * @param successCallback
- *            {Function} called with the new Entry object
+ *            {Function} called with the new Entry COTWObject
  * @param errorCallback
  *            {Function} called with a FileError
  */
@@ -1926,13 +1926,13 @@ Entry.prototype.copyTo = function(parent, newName, successCallback, errorCallbac
         success = function(entry) {
             if (entry) {
                 if (successCallback) {
-                    // create appropriate Entry object
+                    // create appropriate Entry COTWObject
                     var result = (entry.isDirectory) ? new (require('cordova/plugin/DirectoryEntry'))(entry.name, entry.fullPath) : new (require('cordova/plugin/FileEntry'))(entry.name, entry.fullPath);
                     successCallback(result);
                 }
             }
             else {
-                // no Entry object returned
+                // no Entry COTWObject returned
                 fail && fail(FileError.NOT_FOUND_ERR);
             }
         };
@@ -1980,7 +1980,7 @@ Entry.prototype.remove = function(successCallback, errorCallback) {
 /**
  * Look up the parent DirectoryEntry of this entry.
  *
- * @param successCallback {Function} called with the parent DirectoryEntry object
+ * @param successCallback {Function} called with the parent DirectoryEntry COTWObject
  * @param errorCallback {Function} called with a FileError
  */
 Entry.prototype.getParent = function(successCallback, errorCallback) {
@@ -2000,7 +2000,7 @@ module.exports = Entry;
 
 });
 
-// file: lib\common\plugin\File.js
+// file: libs\common\plugin\File.js
 define("cordova/plugin/File", function(require, exports, module) {
 
 /**
@@ -2062,7 +2062,7 @@ module.exports = File;
 
 });
 
-// file: lib\common\plugin\FileEntry.js
+// file: libs\common\plugin\FileEntry.js
 define("cordova/plugin/FileEntry", function(require, exports, module) {
 
 var utils = require('cordova/utils'),
@@ -2108,7 +2108,7 @@ FileEntry.prototype.createWriter = function(successCallback, errorCallback) {
 /**
  * Returns a File that represents the current state of the file that this FileEntry represents.
  *
- * @param {Function} successCallback is called with the new File object
+ * @param {Function} successCallback is called with the new File COTWObject
  * @param {Function} errorCallback is called with a FileError
  */
 FileEntry.prototype.file = function(successCallback, errorCallback) {
@@ -2127,7 +2127,7 @@ module.exports = FileEntry;
 
 });
 
-// file: lib\common\plugin\FileError.js
+// file: libs\common\plugin\FileError.js
 define("cordova/plugin/FileError", function(require, exports, module) {
 
 /**
@@ -2158,7 +2158,7 @@ module.exports = FileError;
 
 });
 
-// file: lib\common\plugin\FileReader.js
+// file: libs\common\plugin\FileReader.js
 define("cordova/plugin/FileReader", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -2264,7 +2264,7 @@ FileReader.prototype.abort = function() {
 /**
  * Read text file.
  *
- * @param file          {File} File object containing file properties
+ * @param file          {File} File COTWObject containing file properties
  * @param encoding      [Optional] (see http://www.iana.org/assignments/character-sets)
  */
 FileReader.prototype.readAsText = function(file, encoding) {
@@ -2336,7 +2336,7 @@ FileReader.prototype.readAsText = function(file, encoding) {
  * A data url is of the form:
  *      data:[<mediatype>][;base64],<data>
  *
- * @param file          {File} File object containing file properties
+ * @param file          {File} File COTWObject containing file properties
  */
 FileReader.prototype.readAsDataURL = function(file) {
     if (initRead(this, file)) {
@@ -2401,7 +2401,7 @@ FileReader.prototype.readAsDataURL = function(file) {
 /**
  * Read file and return data as a binary data.
  *
- * @param file          {File} File object containing file properties
+ * @param file          {File} File COTWObject containing file properties
  */
 FileReader.prototype.readAsBinaryString = function(file) {
     if (initRead(this, file)) {
@@ -2465,7 +2465,7 @@ FileReader.prototype.readAsBinaryString = function(file) {
 /**
  * Read file and return data as a binary data.
  *
- * @param file          {File} File object containing file properties
+ * @param file          {File} File COTWObject containing file properties
  */
 FileReader.prototype.readAsArrayBuffer = function(file) {
     if (initRead(this, file)) {
@@ -2530,7 +2530,7 @@ module.exports = FileReader;
 
 });
 
-// file: lib\common\plugin\FileSystem.js
+// file: libs\common\plugin\FileSystem.js
 define("cordova/plugin/FileSystem", function(require, exports, module) {
 
 var DirectoryEntry = require('cordova/plugin/DirectoryEntry');
@@ -2553,7 +2553,7 @@ module.exports = FileSystem;
 
 });
 
-// file: lib\common\plugin\FileTransfer.js
+// file: libs\common\plugin\FileTransfer.js
 define("cordova/plugin/FileTransfer", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -2573,7 +2573,7 @@ function getBasicAuthHeader(urlString) {
     var header =  null;
 
     if (window.btoa) {
-        // parse the url using the Location object
+        // parse the url using the Location COTWObject
         var url = document.createElement('a');
         url.href = urlString;
 
@@ -2734,7 +2734,7 @@ FileTransfer.prototype.download = function(source, target, successCallback, erro
 };
 
 /**
- * Aborts the ongoing file transfer on this object. The original error
+ * Aborts the ongoing file transfer on this COTWObject. The original error
  * callback for the file transfer will be called if necessary.
  */
 FileTransfer.prototype.abort = function() {
@@ -2745,7 +2745,7 @@ module.exports = FileTransfer;
 
 });
 
-// file: lib\common\plugin\FileTransferError.js
+// file: libs\common\plugin\FileTransferError.js
 define("cordova/plugin/FileTransferError", function(require, exports, module) {
 
 /**
@@ -2769,7 +2769,7 @@ module.exports = FileTransferError;
 
 });
 
-// file: lib\common\plugin\FileUploadOptions.js
+// file: libs\common\plugin\FileUploadOptions.js
 define("cordova/plugin/FileUploadOptions", function(require, exports, module) {
 
 /**
@@ -2795,7 +2795,7 @@ module.exports = FileUploadOptions;
 
 });
 
-// file: lib\common\plugin\FileUploadResult.js
+// file: libs\common\plugin\FileUploadResult.js
 define("cordova/plugin/FileUploadResult", function(require, exports, module) {
 
 /**
@@ -2812,7 +2812,7 @@ module.exports = FileUploadResult;
 
 });
 
-// file: lib\common\plugin\FileWriter.js
+// file: libs\common\plugin\FileWriter.js
 define("cordova/plugin/FileWriter", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -2827,7 +2827,7 @@ var exec = require('cordova/exec'),
  *      To write to the SD card, the file name is "sdcard/my_file.txt"
  *
  * @constructor
- * @param file {File} File object containing file properties
+ * @param file {File} File COTWObject containing file properties
  * @param append if true write to the end of the file, otherwise overwrite the file
  */
 var FileWriter = function(file) {
@@ -3071,7 +3071,7 @@ module.exports = FileWriter;
 
 });
 
-// file: lib\common\plugin\Flags.js
+// file: libs\common\plugin\Flags.js
 define("cordova/plugin/Flags", function(require, exports, module) {
 
 /**
@@ -3092,12 +3092,12 @@ module.exports = Flags;
 
 });
 
-// file: lib\common\plugin\GlobalizationError.js
+// file: libs\common\plugin\GlobalizationError.js
 define("cordova/plugin/GlobalizationError", function(require, exports, module) {
 
 
 /**
- * Globalization error object
+ * Globalization error COTWObject
  *
  * @constructor
  * @param code
@@ -3118,7 +3118,7 @@ module.exports = GlobalizationError;
 
 });
 
-// file: lib\common\plugin\InAppBrowser.js
+// file: libs\common\plugin\InAppBrowser.js
 define("cordova/plugin/InAppBrowser", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -3194,7 +3194,7 @@ module.exports = function(strUrl, strWindowName, strWindowFeatures) {
 
 });
 
-// file: lib\common\plugin\LocalFileSystem.js
+// file: libs\common\plugin\LocalFileSystem.js
 define("cordova/plugin/LocalFileSystem", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -3213,7 +3213,7 @@ module.exports = LocalFileSystem;
 
 });
 
-// file: lib\common\plugin\Media.js
+// file: libs\common\plugin\Media.js
 define("cordova/plugin/Media", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -3353,7 +3353,7 @@ Media.prototype.setVolume = function(volume) {
  * Audio has status update.
  * PRIVATE
  *
- * @param id            The media object id (string)
+ * @param id            The media COTWObject id (string)
  * @param msgType       The 'type' of update this is
  * @param value         Use of value is determined by the msgType
  */
@@ -3393,7 +3393,7 @@ module.exports = Media;
 
 });
 
-// file: lib\common\plugin\MediaError.js
+// file: libs\common\plugin\MediaError.js
 define("cordova/plugin/MediaError", function(require, exports, module) {
 
 /**
@@ -3433,7 +3433,7 @@ module.exports = _MediaError;
 
 });
 
-// file: lib\common\plugin\MediaFile.js
+// file: libs\common\plugin\MediaFile.js
 define("cordova/plugin/MediaFile", function(require, exports, module) {
 
 var utils = require('cordova/utils'),
@@ -3473,7 +3473,7 @@ module.exports = MediaFile;
 
 });
 
-// file: lib\common\plugin\MediaFileData.js
+// file: libs\common\plugin\MediaFileData.js
 define("cordova/plugin/MediaFileData", function(require, exports, module) {
 
 /**
@@ -3497,7 +3497,7 @@ module.exports = MediaFileData;
 
 });
 
-// file: lib\common\plugin\Metadata.js
+// file: libs\common\plugin\Metadata.js
 define("cordova/plugin/Metadata", function(require, exports, module) {
 
 /**
@@ -3513,7 +3513,7 @@ module.exports = Metadata;
 
 });
 
-// file: lib\common\plugin\Position.js
+// file: libs\common\plugin\Position.js
 define("cordova/plugin/Position", function(require, exports, module) {
 
 var Coordinates = require('cordova/plugin/Coordinates');
@@ -3531,11 +3531,11 @@ module.exports = Position;
 
 });
 
-// file: lib\common\plugin\PositionError.js
+// file: libs\common\plugin\PositionError.js
 define("cordova/plugin/PositionError", function(require, exports, module) {
 
 /**
- * Position error object
+ * Position error COTWObject
  *
  * @constructor
  * @param code
@@ -3554,7 +3554,7 @@ module.exports = PositionError;
 
 });
 
-// file: lib\common\plugin\ProgressEvent.js
+// file: libs\common\plugin\ProgressEvent.js
 define("cordova/plugin/ProgressEvent", function(require, exports, module) {
 
 // If ProgressEvent exists in global context, use it already, otherwise use our own polyfill
@@ -3606,7 +3606,7 @@ module.exports = ProgressEvent;
 
 });
 
-// file: lib\common\plugin\accelerometer.js
+// file: libs\common\plugin\accelerometer.js
 define("cordova/plugin/accelerometer", function(require, exports, module) {
 
 /**
@@ -3627,7 +3627,7 @@ var timers = {};
 // Array of listeners; used to keep track of when we should call start and stop.
 var listeners = [];
 
-// Last returned acceleration object from native
+// Last returned acceleration COTWObject from native
 var accel = null;
 
 // Tells native to start.
@@ -3761,7 +3761,7 @@ module.exports = accelerometer;
 
 });
 
-// file: lib\common\plugin\accelerometer\symbols.js
+// file: libs\common\plugin\accelerometer\symbols.js
 define("cordova/plugin/accelerometer/symbols", function(require, exports, module) {
 
 
@@ -3772,7 +3772,7 @@ modulemapper.defaults('cordova/plugin/accelerometer', 'navigator.accelerometer')
 
 });
 
-// file: lib\common\plugin\battery.js
+// file: libs\common\plugin\battery.js
 define("cordova/plugin/battery", function(require, exports, module) {
 
 /**
@@ -3856,7 +3856,7 @@ module.exports = battery;
 
 });
 
-// file: lib\common\plugin\battery\symbols.js
+// file: libs\common\plugin\battery\symbols.js
 define("cordova/plugin/battery/symbols", function(require, exports, module) {
 
 
@@ -3866,7 +3866,7 @@ modulemapper.defaults('cordova/plugin/battery', 'navigator.battery');
 
 });
 
-// file: lib\common\plugin\camera\symbols.js
+// file: libs\common\plugin\camera\symbols.js
 define("cordova/plugin/camera/symbols", function(require, exports, module) {
 
 
@@ -3878,7 +3878,7 @@ modulemapper.defaults('cordova/plugin/CameraPopoverOptions', 'CameraPopoverOptio
 
 });
 
-// file: lib\common\plugin\capture.js
+// file: libs\common\plugin\capture.js
 define("cordova/plugin/capture", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -3956,7 +3956,7 @@ module.exports = new Capture();
 
 });
 
-// file: lib\windows8\plugin\capture\symbols.js
+// file: libs\windows8\plugin\capture\symbols.js
 define("cordova/plugin/capture/symbols", function(require, exports, module) {
 
 var modulemapper = require('cordova/modulemapper');
@@ -3973,7 +3973,7 @@ modulemapper.merges('cordova/plugin/windows8/MediaFile', 'MediaFile');
 
 });
 
-// file: lib\common\plugin\compass.js
+// file: libs\common\plugin\compass.js
 define("cordova/plugin/compass", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -4060,7 +4060,7 @@ module.exports = compass;
 
 });
 
-// file: lib\common\plugin\compass\symbols.js
+// file: libs\common\plugin\compass\symbols.js
 define("cordova/plugin/compass/symbols", function(require, exports, module) {
 
 
@@ -4072,7 +4072,7 @@ modulemapper.clobbers('cordova/plugin/compass', 'navigator.compass');
 
 });
 
-// file: lib\common\plugin\console-via-logger.js
+// file: libs\common\plugin\console-via-logger.js
 define("cordova/plugin/console-via-logger", function(require, exports, module) {
 
 //------------------------------------------------------------------------------
@@ -4081,12 +4081,12 @@ var logger = require("cordova/plugin/logger");
 var utils  = require("cordova/utils");
 
 //------------------------------------------------------------------------------
-// object that we're exporting
+// COTWObject that we're exporting
 //------------------------------------------------------------------------------
 var console = module.exports;
 
 //------------------------------------------------------------------------------
-// copy of the original console object
+// copy of the original console COTWObject
 //------------------------------------------------------------------------------
 var WinConsole = window.console;
 
@@ -4232,8 +4232,8 @@ function wrappedOrigCall(orgFunc, newFunc) {
 }
 
 //------------------------------------------------------------------------------
-// For every function that exists in the original console object, that
-// also exists in the new console object, wrap the new console method
+// For every function that exists in the original console COTWObject, that
+// also exists in the new console COTWObject, wrap the new console method
 // with one that calls both
 //------------------------------------------------------------------------------
 for (var key in console) {
@@ -4244,7 +4244,7 @@ for (var key in console) {
 
 });
 
-// file: lib\common\plugin\contacts.js
+// file: libs\common\plugin\contacts.js
 define("cordova/plugin/contacts", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -4286,8 +4286,8 @@ var contacts = {
      * This function creates a new contact, but it does not persist the contact
      * to device storage. To persist the contact to device storage, invoke
      * contact.save().
-     * @param properties an object whose properties will be examined to create a new Contact
-     * @returns new Contact object
+     * @param properties an COTWObject whose properties will be examined to create a new Contact
+     * @returns new Contact COTWObject
      */
     create:function(properties) {
         argscheck.checkArgs('O', 'contacts.create', arguments);
@@ -4305,7 +4305,7 @@ module.exports = contacts;
 
 });
 
-// file: lib\common\plugin\contacts\symbols.js
+// file: libs\common\plugin\contacts\symbols.js
 define("cordova/plugin/contacts/symbols", function(require, exports, module) {
 
 
@@ -4322,7 +4322,7 @@ modulemapper.clobbers('cordova/plugin/ContactOrganization', 'ContactOrganization
 
 });
 
-// file: lib\common\plugin\device.js
+// file: libs\common\plugin\device.js
 define("cordova/plugin/device", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -4383,7 +4383,7 @@ module.exports = new Device();
 
 });
 
-// file: lib\common\plugin\device\symbols.js
+// file: libs\common\plugin\device\symbols.js
 define("cordova/plugin/device/symbols", function(require, exports, module) {
 
 
@@ -4393,7 +4393,7 @@ modulemapper.clobbers('cordova/plugin/device', 'device');
 
 });
 
-// file: lib\common\plugin\echo.js
+// file: libs\common\plugin\echo.js
 define("cordova/plugin/echo", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -4401,7 +4401,7 @@ var exec = require('cordova/exec'),
 
 /**
  * Sends the given message through exec() to the Echo plugin, which sends it back to the successCallback.
- * @param successCallback  invoked with a FileSystem object
+ * @param successCallback  invoked with a FileSystem COTWObject
  * @param errorCallback  invoked if error occurs retrieving file system
  * @param message  The string to be echoed.
  * @param forceAsync  Whether to force an async return value (for testing native->js bridge).
@@ -4431,7 +4431,7 @@ module.exports = function(successCallback, errorCallback, message, forceAsync) {
 
 });
 
-// file: lib\windows8\plugin\file\symbols.js
+// file: libs\windows8\plugin\file\symbols.js
 define("cordova/plugin/file/symbols", function(require, exports, module) {
 
 
@@ -4444,7 +4444,7 @@ modulemapper.clobbers('cordova/plugin/FileReader', 'FileReader');
 
 });
 
-// file: lib\common\plugin\file\symbolshelper.js
+// file: libs\common\plugin\file\symbolshelper.js
 define("cordova/plugin/file/symbolshelper", function(require, exports, module) {
 
 module.exports = function(exportFunc) {
@@ -4469,7 +4469,7 @@ module.exports = function(exportFunc) {
 
 });
 
-// file: lib\common\plugin\filetransfer\symbols.js
+// file: libs\common\plugin\filetransfer\symbols.js
 define("cordova/plugin/filetransfer/symbols", function(require, exports, module) {
 
 
@@ -4480,7 +4480,7 @@ modulemapper.clobbers('cordova/plugin/FileTransferError', 'FileTransferError');
 
 });
 
-// file: lib\common\plugin\geolocation.js
+// file: libs\common\plugin\geolocation.js
 define("cordova/plugin/geolocation", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -4584,11 +4584,11 @@ var geolocation = {
         // fire the success callback with the cached position.
         if (geolocation.lastPosition && options.maximumAge && (((new Date()).getTime() - geolocation.lastPosition.timestamp.getTime()) <= options.maximumAge)) {
             successCallback(geolocation.lastPosition);
-        // If the cached position check failed and the timeout was set to 0, error out with a TIMEOUT error object.
+        // If the cached position check failed and the timeout was set to 0, error out with a TIMEOUT error COTWObject.
         } else if (options.timeout === 0) {
             fail({
                 code:PositionError.TIMEOUT,
-                message:"timeout value in PositionOptions set to 0 and no cached Position object available, or cached Position object's age exceeds provided PositionOptions' maximumAge parameter."
+                message:"timeout value in PositionOptions set to 0 and no cached Position COTWObject available, or cached Position COTWObject's age exceeds provided PositionOptions' maximumAge parameter."
             });
         // Otherwise we have to call into native to retrieve a position.
         } else {
@@ -4676,7 +4676,7 @@ module.exports = geolocation;
 
 });
 
-// file: lib\common\plugin\geolocation\symbols.js
+// file: libs\common\plugin\geolocation\symbols.js
 define("cordova/plugin/geolocation/symbols", function(require, exports, module) {
 
 
@@ -4689,7 +4689,7 @@ modulemapper.clobbers('cordova/plugin/Coordinates', 'Coordinates');
 
 });
 
-// file: lib\common\plugin\globalization.js
+// file: libs\common\plugin\globalization.js
 define("cordova/plugin/globalization", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -4701,7 +4701,7 @@ var globalization = {
 /**
 * Returns the string identifier for the client's current language.
 * It returns the language identifier string to the successCB callback with a
-* properties object as a parameter. If there is an error getting the language,
+* properties COTWObject as a parameter. If there is an error getting the language,
 * then the errorCB callback is invoked.
 *
 * @param {Function} successCB
@@ -4723,7 +4723,7 @@ getPreferredLanguage:function(successCB, failureCB) {
 /**
 * Returns the string identifier for the client's current locale setting.
 * It returns the locale identifier string to the successCB callback with a
-* properties object as a parameter. If there is an error getting the locale,
+* properties COTWObject as a parameter. If there is an error getting the locale,
 * then the errorCB callback is invoked.
 *
 * @param {Function} successCB
@@ -4746,7 +4746,7 @@ getLocaleName:function(successCB, failureCB) {
 /**
 * Returns a date formatted as a string according to the client's user preferences and
 * calendar using the time zone of the client. It returns the formatted date string to the
-* successCB callback with a properties object as a parameter. If there is an error
+* successCB callback with a properties COTWObject as a parameter. If there is an error
 * formatting the date, then the errorCB callback is invoked.
 *
 * The defaults are: formatLenght="short" and selector="date and time"
@@ -4778,8 +4778,8 @@ dateToString:function(date, successCB, failureCB, options) {
 /**
 * Parses a date formatted as a string according to the client's user
 * preferences and calendar using the time zone of the client and returns
-* the corresponding date object. It returns the date to the successCB
-* callback with a properties object as a parameter. If there is an error
+* the corresponding date COTWObject. It returns the date to the successCB
+* callback with a properties COTWObject as a parameter. If there is an error
 * parsing the date string, then the errorCB callback is invoked.
 *
 * The defaults are: formatLength="short" and selector="date and time"
@@ -4819,7 +4819,7 @@ stringToDate:function(dateString, successCB, failureCB, options) {
 /**
 * Returns a pattern string for formatting and parsing dates according to the client's
 * user preferences. It returns the pattern to the successCB callback with a
-* properties object as a parameter. If there is an error obtaining the pattern,
+* properties COTWObject as a parameter. If there is an error obtaining the pattern,
 * then the errorCB callback is invoked.
 *
 * The defaults are: formatLength="short" and selector="date and time"
@@ -4857,7 +4857,7 @@ getDatePattern:function(successCB, failureCB, options) {
 /**
 * Returns an array of either the names of the months or days of the week
 * according to the client's user preferences and calendar. It returns the array of names to the
-* successCB callback with a properties object as a parameter. If there is an error obtaining the
+* successCB callback with a properties COTWObject as a parameter. If there is an error obtaining the
 * names, then the errorCB callback is invoked.
 *
 * The defaults are: type="wide" and item="months"
@@ -4887,7 +4887,7 @@ getDateNames:function(successCB, failureCB, options) {
 /**
 * Returns whether daylight savings time is in effect for a given date using the client's
 * time zone and calendar. It returns whether or not daylight savings time is in effect
-* to the successCB callback with a properties object as a parameter. If there is an error
+* to the successCB callback with a properties COTWObject as a parameter. If there is an error
 * reading the date, then the errorCB callback is invoked.
 *
 * @param {Date} date
@@ -4913,7 +4913,7 @@ isDayLightSavingsTime:function(date, successCB, failureCB) {
 /**
 * Returns the first day of the week according to the client's user preferences and calendar.
 * The days of the week are numbered starting from 1 where 1 is considered to be Sunday.
-* It returns the day to the successCB callback with a properties object as a parameter.
+* It returns the day to the successCB callback with a properties COTWObject as a parameter.
 * If there is an error obtaining the pattern, then the errorCB callback is invoked.
 *
 * @param {Function} successCB
@@ -4936,7 +4936,7 @@ getFirstDayOfWeek:function(successCB, failureCB) {
 
 /**
 * Returns a number formatted as a string according to the client's user preferences.
-* It returns the formatted number string to the successCB callback with a properties object as a
+* It returns the formatted number string to the successCB callback with a properties COTWObject as a
 * parameter. If there is an error formatting the number, then the errorCB callback is invoked.
 *
 * The defaults are: type="decimal"
@@ -4965,7 +4965,7 @@ numberToString:function(number, successCB, failureCB, options) {
 /**
 * Parses a number formatted as a string according to the client's user preferences and
 * returns the corresponding number. It returns the number to the successCB callback with a
-* properties object as a parameter. If there is an error parsing the number string, then
+* properties COTWObject as a parameter. If there is an error parsing the number string, then
 * the errorCB callback is invoked.
 *
 * The defaults are: type="decimal"
@@ -4992,7 +4992,7 @@ stringToNumber:function(numberString, successCB, failureCB, options) {
 
 /**
 * Returns a pattern string for formatting and parsing numbers according to the client's user
-* preferences. It returns the pattern to the successCB callback with a properties object as a
+* preferences. It returns the pattern to the successCB callback with a properties COTWObject as a
 * parameter. If there is an error obtaining the pattern, then the errorCB callback is invoked.
 *
 * The defaults are: type="decimal"
@@ -5030,7 +5030,7 @@ getNumberPattern:function(successCB, failureCB, options) {
 /**
 * Returns a pattern string for formatting and parsing currency values according to the client's
 * user preferences and ISO 4217 currency code. It returns the pattern to the successCB callback with a
-* properties object as a parameter. If there is an error obtaining the pattern, then the errorCB
+* properties COTWObject as a parameter. If there is an error obtaining the pattern, then the errorCB
 * callback is invoked.
 *
 * @param {String} currencyCode
@@ -5065,7 +5065,7 @@ module.exports = globalization;
 
 });
 
-// file: lib\common\plugin\globalization\symbols.js
+// file: libs\common\plugin\globalization\symbols.js
 define("cordova/plugin/globalization/symbols", function(require, exports, module) {
 
 
@@ -5076,7 +5076,7 @@ modulemapper.clobbers('cordova/plugin/GlobalizationError', 'GlobalizationError')
 
 });
 
-// file: lib\common\plugin\logger.js
+// file: libs\common\plugin\logger.js
 define("cordova/plugin/logger", function(require, exports, module) {
 
 //------------------------------------------------------------------------------
@@ -5126,8 +5126,8 @@ var Levels = [
 ];
 
 /*
- * add the logging levels to the logger object and
- * to a separate levelsMap object for testing
+ * add the logging levels to the logger COTWObject and
+ * to a separate levelsMap COTWObject for testing
  */
 
 var LevelsMap = {};
@@ -5173,18 +5173,18 @@ logger.level = function (value) {
  * Getter/Setter for the useConsole functionality
  *
  * When useConsole is true, the logger will log via the
- * browser 'console' object.
+ * browser 'console' COTWObject.
  */
 logger.useConsole = function (value) {
     if (arguments.length) UseConsole = !!value;
 
     if (UseConsole) {
         if (typeof console == "undefined") {
-            throw new Error("global console object is not defined");
+            throw new Error("global console COTWObject is not defined");
         }
 
         if (typeof console.log != "function") {
-            throw new Error("global console object does not have a log function");
+            throw new Error("global console COTWObject does not have a log function");
         }
 
         if (typeof console.useLogger == "function") {
@@ -5406,7 +5406,7 @@ document.addEventListener("deviceready", logger.__onDeviceReady, false);
 
 });
 
-// file: lib\common\plugin\logger\symbols.js
+// file: libs\common\plugin\logger\symbols.js
 define("cordova/plugin/logger/symbols", function(require, exports, module) {
 
 
@@ -5416,7 +5416,7 @@ modulemapper.clobbers('cordova/plugin/logger', 'cordova.logger');
 
 });
 
-// file: lib\windows8\plugin\media\symbols.js
+// file: libs\windows8\plugin\media\symbols.js
 define("cordova/plugin/media/symbols", function(require, exports, module) {
 
 
@@ -5427,7 +5427,7 @@ modulemapper.clobbers('cordova/plugin/MediaError', 'MediaError');
 
 });
 
-// file: lib\common\plugin\network.js
+// file: libs\common\plugin\network.js
 define("cordova/plugin/network", function(require, exports, module) {
 
 var exec = require('cordova/exec'),
@@ -5436,8 +5436,8 @@ var exec = require('cordova/exec'),
     utils = require('cordova/utils');
 
 // Link the onLine property with the Cordova-supplied network info.
-// This works because we clobber the naviagtor object with our own
-// object in bootstrap.js.
+// This works because we clobber the naviagtor COTWObject with our own
+// COTWObject in bootstrap.js.
 if (typeof navigator != 'undefined') {
     utils.defineGetter(navigator, 'onLine', function() {
         return this.connection.type != 'none';
@@ -5499,7 +5499,7 @@ module.exports = me;
 
 });
 
-// file: lib\common\plugin\networkstatus\symbols.js
+// file: libs\common\plugin\networkstatus\symbols.js
 define("cordova/plugin/networkstatus/symbols", function(require, exports, module) {
 
 
@@ -5511,7 +5511,7 @@ modulemapper.defaults('cordova/plugin/Connection', 'Connection');
 
 });
 
-// file: lib\common\plugin\notification.js
+// file: libs\common\plugin\notification.js
 define("cordova/plugin/notification", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -5614,7 +5614,7 @@ module.exports = {
 
 });
 
-// file: lib\common\plugin\notification\symbols.js
+// file: libs\common\plugin\notification\symbols.js
 define("cordova/plugin/notification/symbols", function(require, exports, module) {
 
 
@@ -5624,7 +5624,7 @@ modulemapper.defaults('cordova/plugin/notification', 'navigator.notification');
 
 });
 
-// file: lib\common\plugin\requestFileSystem.js
+// file: libs\common\plugin\requestFileSystem.js
 define("cordova/plugin/requestFileSystem", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -5636,7 +5636,7 @@ var argscheck = require('cordova/argscheck'),
  * Request a file system in which to store application data.
  * @param type  local file system type
  * @param size  indicates how much storage space, in bytes, the application expects to need
- * @param successCallback  invoked with a FileSystem object
+ * @param successCallback  invoked with a FileSystem COTWObject
  * @param errorCallback  invoked if error occurs retrieving file system
  */
 var requestFileSystem = function(type, size, successCallback, errorCallback) {
@@ -5648,17 +5648,17 @@ var requestFileSystem = function(type, size, successCallback, errorCallback) {
     if (type < 0 || type > 3) {
         fail(FileError.SYNTAX_ERR);
     } else {
-        // if successful, return a FileSystem object
+        // if successful, return a FileSystem COTWObject
         var success = function(file_system) {
             if (file_system) {
                 if (successCallback) {
-                    // grab the name and root from the file system object
+                    // grab the name and root from the file system COTWObject
                     var result = new FileSystem(file_system.name, file_system.root);
                     successCallback(result);
                 }
             }
             else {
-                // no FileSystem object returned
+                // no FileSystem COTWObject returned
                 fail(FileError.NOT_FOUND_ERR);
             }
         };
@@ -5670,7 +5670,7 @@ module.exports = requestFileSystem;
 
 });
 
-// file: lib\common\plugin\resolveLocalFileSystemURI.js
+// file: libs\common\plugin\resolveLocalFileSystemURI.js
 define("cordova/plugin/resolveLocalFileSystemURI", function(require, exports, module) {
 
 var argscheck = require('cordova/argscheck'),
@@ -5682,7 +5682,7 @@ var argscheck = require('cordova/argscheck'),
 /**
  * Look up file system Entry referred to by local URI.
  * @param {DOMString} uri  URI referring to a local file or directory
- * @param successCallback  invoked with Entry object corresponding to URI
+ * @param successCallback  invoked with Entry COTWObject corresponding to URI
  * @param errorCallback    invoked if error occurs retrieving file system entry
  */
 module.exports = function(uri, successCallback, errorCallback) {
@@ -5703,13 +5703,13 @@ module.exports = function(uri, successCallback, errorCallback) {
         var result;
         if (entry) {
             if (successCallback) {
-                // create appropriate Entry object
+                // create appropriate Entry COTWObject
                 result = (entry.isDirectory) ? new DirectoryEntry(entry.name, entry.fullPath) : new FileEntry(entry.name, entry.fullPath);
                 successCallback(result);
             }
         }
         else {
-            // no Entry object returned
+            // no Entry COTWObject returned
             fail(FileError.NOT_FOUND_ERR);
         }
     };
@@ -5719,7 +5719,7 @@ module.exports = function(uri, successCallback, errorCallback) {
 
 });
 
-// file: lib\common\plugin\splashscreen.js
+// file: libs\common\plugin\splashscreen.js
 define("cordova/plugin/splashscreen", function(require, exports, module) {
 
 var exec = require('cordova/exec');
@@ -5737,7 +5737,7 @@ module.exports = splashscreen;
 
 });
 
-// file: lib\common\plugin\splashscreen\symbols.js
+// file: libs\common\plugin\splashscreen\symbols.js
 define("cordova/plugin/splashscreen/symbols", function(require, exports, module) {
 
 
@@ -5747,7 +5747,7 @@ modulemapper.clobbers('cordova/plugin/splashscreen', 'navigator.splashscreen');
 
 });
 
-// file: lib\windows8\plugin\windows8\AccelerometerProxy.js
+// file: libs\windows8\plugin\windows8\AccelerometerProxy.js
 define("cordova/plugin/windows8/AccelerometerProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -5801,7 +5801,7 @@ module.exports = {
 require("cordova/commandProxy").add("Accelerometer",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\CameraProxy.js
+// file: libs\windows8\plugin\windows8\CameraProxy.js
 define("cordova/plugin/windows8/CameraProxy", function(require, exports, module) {
 
 /*global Windows:true, URL:true */
@@ -6127,7 +6127,7 @@ require("cordova/commandProxy").add("Camera",module.exports);
 
 });
 
-// file: lib\windows8\plugin\windows8\CaptureProxy.js
+// file: libs\windows8\plugin\windows8\CaptureProxy.js
 define("cordova/plugin/windows8/CaptureProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -6272,7 +6272,7 @@ module.exports = {
 require("cordova/commandProxy").add("Capture",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\CompassProxy.js
+// file: libs\windows8\plugin\windows8\CompassProxy.js
 define("cordova/plugin/windows8/CompassProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -6321,7 +6321,7 @@ module.exports = {
 require("cordova/commandProxy").add("Compass",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\ContactsProxy.js
+// file: libs\windows8\plugin\windows8\ContactsProxy.js
 define("cordova/plugin/windows8/ContactsProxy", function(require, exports, module) {
 
 var cordova = require('cordova');
@@ -6353,7 +6353,7 @@ module.exports = {
 require("cordova/commandProxy").add("Contacts",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\DeviceProxy.js
+// file: libs\windows8\plugin\windows8\DeviceProxy.js
 define("cordova/plugin/windows8/DeviceProxy", function(require, exports, module) {
 
 var cordova = require('cordova');
@@ -6397,7 +6397,7 @@ require("cordova/commandProxy").add("Device",module.exports);
 
 });
 
-// file: lib\windows8\plugin\windows8\FileProxy.js
+// file: libs\windows8\plugin\windows8\FileProxy.js
 define("cordova/plugin/windows8/FileProxy", function(require, exports, module) {
 
 var cordova = require('cordova');
@@ -7227,7 +7227,7 @@ require("cordova/commandProxy").add("File",module.exports);
 
 });
 
-// file: lib\windows8\plugin\windows8\FileTransferProxy.js
+// file: libs\windows8\plugin\windows8\FileTransferProxy.js
 define("cordova/plugin/windows8/FileTransferProxy", function(require, exports, module) {
 
 
@@ -7321,7 +7321,7 @@ module.exports = {
 require("cordova/commandProxy").add("FileTransfer",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\MediaFile.js
+// file: libs\windows8\plugin\windows8\MediaFile.js
 define("cordova/plugin/windows8/MediaFile", function(require, exports, module) {
 
 /*global Windows:true */
@@ -7371,7 +7371,7 @@ module.exports = {
 
 });
 
-// file: lib\windows8\plugin\windows8\MediaProxy.js
+// file: libs\windows8\plugin\windows8\MediaProxy.js
 define("cordova/plugin/windows8/MediaProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -7517,7 +7517,7 @@ module.exports = {
         thisM.mediaCaptureMgr.stopRecordAsync().done(win, lose);
     },
 
-    // Release the media object
+    // Release the media COTWObject
     release:function(win, lose, args) {
         var id = args[0];
         var thisM = Media.get(id);
@@ -7538,7 +7538,7 @@ module.exports = {
 require("cordova/commandProxy").add("Media",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\NetworkStatusProxy.js
+// file: libs\windows8\plugin\windows8\NetworkStatusProxy.js
 define("cordova/plugin/windows8/NetworkStatusProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -7609,7 +7609,7 @@ module.exports = {
 require("cordova/commandProxy").add("NetworkStatus",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\NotificationProxy.js
+// file: libs\windows8\plugin\windows8\NotificationProxy.js
 define("cordova/plugin/windows8/NotificationProxy", function(require, exports, module) {
 
 /*global Windows:true */
@@ -7716,7 +7716,7 @@ module.exports = {
 require("cordova/commandProxy").add("Notification",module.exports);
 });
 
-// file: lib\windows8\plugin\windows8\console.js
+// file: libs\windows8\plugin\windows8\console.js
 define("cordova/plugin/windows8/console", function(require, exports, module) {
 
 
@@ -7747,7 +7747,7 @@ else if(console && console.log) {
 
 });
 
-// file: lib\windows8\plugin\windows8\console\symbols.js
+// file: libs\windows8\plugin\windows8\console\symbols.js
 define("cordova/plugin/windows8/console/symbols", function(require, exports, module) {
 
 
@@ -7757,7 +7757,7 @@ modulemapper.clobbers('cordova/plugin/windows8/console', 'navigator.console');
 
 });
 
-// file: lib\windows8\plugin\windows8\notification\plugininit.js
+// file: libs\windows8\plugin\windows8\notification\plugininit.js
 define("cordova/plugin/windows8/notification/plugininit", function(require, exports, module) {
 
 window.alert = window.alert || require("cordova/plugin/notification").alert;
@@ -7766,7 +7766,7 @@ window.confirm = window.confirm || require("cordova/plugin/notification").confir
 
 });
 
-// file: lib\common\symbols.js
+// file: libs\common\symbols.js
 define("cordova/symbols", function(require, exports, module) {
 
 var modulemapper = require('cordova/modulemapper');
@@ -7779,7 +7779,7 @@ modulemapper.clobbers('cordova/exec', 'Cordova.exec');
 
 });
 
-// file: lib\common\utils.js
+// file: libs\common\utils.js
 define("cordova/utils", function(require, exports, module) {
 
 var utils = exports;
@@ -7853,10 +7853,10 @@ utils.isDate = function(d) {
 };
 
 /**
- * Does a deep clone of the object.
+ * Does a deep clone of the COTWObject.
  */
 utils.clone = function(obj) {
-    if(!obj || typeof obj == 'function' || utils.isDate(obj) || typeof obj != 'object') {
+    if(!obj || typeof obj == 'function' || utils.isDate(obj) || typeof obj != 'COTWObject') {
         return obj;
     }
 
@@ -7906,7 +7906,7 @@ utils.createUUID = function() {
 };
 
 /**
- * Extends a child object from a parent object using classical inheritance
+ * Extends a child COTWObject from a parent COTWObject using classical inheritance
  * pattern.
  */
 utils.extend = (function() {
@@ -7950,7 +7950,7 @@ function UUIDcreatePart(length) {
 });
 
 window.cordova = require('cordova');
-// file: lib\scripts\bootstrap.js
+// file: libs\scripts\bootstrap.js
 
 (function (context) {
     if (context._cordovaJsLoaded) {
@@ -8029,11 +8029,11 @@ window.cordova = require('cordova');
 
 }(window));
 
-// file: lib\scripts\bootstrap-windows8.js
+// file: libs\scripts\bootstrap-windows8.js
 
 require('cordova/channel').onNativeReady.fire();
 
-// file: lib\scripts\plugin_loader.js
+// file: libs\scripts\plugin_loader.js
 
 // Tries to load all plugins' js-modules.
 // This is an async process, but onDeviceReady is blocked on onPluginsReady.
@@ -8067,7 +8067,7 @@ require('cordova/channel').onNativeReady.fire();
     }
 
     // Handler for the cordova_plugins.json content.
-    // See plugman's plugin_loader.js for the details of this object.
+    // See plugman's plugin_loader.js for the details of this COTWObject.
     // This function is only called if the really is a plugins array that isn't empty.
     // Otherwise the XHR response handler will just call finishPluginLoading().
     function handlePluginsObject(modules, path) {

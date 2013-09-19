@@ -1,1 +1,2 @@
-//@ sourceMappingURL=IPhysical.js.map
+///<reference path="../references.ts"/>
+//# sourceMappingURL=IPhysical.js.map

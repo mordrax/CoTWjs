@@ -1,10 +1,14 @@
 /// <reference path="../references.ts"/>
 
 /**
- * Represents an instance of a game
- * Responsible for receiving keyboard input, handing mouse input on elements and delegating everything related to
- * the game world.
- * Basic game algorithm
+ * Represents an instance of a game.
+ * A game is a MVC pattern finite state machine that is event driven.
+ * World - Model that contains everything
+ * Canvas - View that uses the current hero location in the world to update the screen
+ * Engines - Controllers that changes the state of the world, talking to either each other via the world or manipulating entities in the world
+ * Events - Input and world based events that transistions the world from one state to another
+ *
+ *
  * 1. Create character
  * 2. Initialise game objects
  * 3. while events,
@@ -12,45 +16,27 @@
  *  3b. track quest progression
  * 4. Last quest, end game
  */
-class Game implements IDrawable {
-    _physicsEngine : PhysicsEngine;
-    _world : World;
+class Game {
+    public static World : World;
+    public static Input : InputEngine;
+    public static Graphics : GraphicsEngine;
     _hero : Player;
-    _ctx : CanvasRenderingContext2D;
 
     constructor() {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
         // testing just create these objects
-        this.init();
-    }
-    KeyEvent(ev : KeyboardEvent ) {
-//        LEFT: 37,
-//        UP: 38,
-//        RIGHT: 39,
-//        DOWN: 40,
-        if (ev.keyCode >= 37 && ev.keyCode <= 40) {
-            this._physicsEngine.Move(this._hero, ev.keyCode);
-        }
+        Game.World = new World();
+
+        Game.Input = new InputEngine();
+        Game.Graphics = new GraphicsEngine();
+
+        this._hero = new Player('hero', new WorldCoordinates(<MapType>MapType.VillageMap, new Point(10,15)));
+        Game.World.AddEntity(this._hero);
+
+        Game.World.Initialise();
     }
 
     Start() {
-        this.Draw(this._ctx, true);
-
-        document.addEventListener("keyup", (evt : KeyboardEvent) => this.KeyEvent(evt), false);
     }
-
-    Draw(ctx : CanvasRenderingContext2D, drawWorld?:boolean) {
-        if (drawWorld) {
-            this._world.Draw(this._ctx);
-        }
-        this._hero.Draw(this._ctx);
-    }
-
-    private init() {
-        this._world = new World($("#background"));
-        this._hero = new Player();
-        this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw, this._ctx);
-        this._ctx = $('#world')[0].getContext("2d");
-    }
-
 }
+

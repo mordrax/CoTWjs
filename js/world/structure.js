@@ -1,3 +1,11 @@
+/// <reference path="../references.ts"/>
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+// All structure types - changed to string to test something out, so not much point to this being enum now right?
 var StructureType;
 (function (StructureType) {
     StructureType[StructureType["Sign"] = 0] = "Sign";
@@ -22,37 +30,50 @@ var StructureType;
     StructureType[StructureType["NF_HutTemple"] = 19] = "NF_HutTemple";
     StructureType[StructureType["NF_BurntTemple"] = 20] = "NF_BurntTemple";
     StructureType[StructureType["EW_HouseGroup"] = 21] = "EW_HouseGroup";
-
     StructureType[StructureType["NF_BrickTemple"] = 22] = "NF_BrickTemple";
 })(StructureType || (StructureType = {}));
 
-var s1 = new Image();
-s1.src = "assets/resources/1x_buildings.png";
-var s2 = new Image();
-s2.src = "assets/resources/2x_buildings.png";
-var s3 = new Image();
-s3.src = "assets/resources/3x_buildings.png";
-var s4 = new Image();
-s4.src = "assets/resources/4x_buildings.png";
-var s5 = new Image();
-s5.src = "assets/resources/5x_buildings.png";
-
+//TODO: fix static structure images
+//var s1 = new HTMLImageElement();
+//s1.src = "assets/resources/1x_buildings.png";
+//var s2 = new HTMLImageElement();
+//s2.src = "assets/resources/2x_buildings.png";
+//var s3 = new HTMLImageElement();
+//s3.src = "assets/resources/3x_buildings.png";
+//var s4 = new HTMLImageElement();
+//s4.src = "assets/resources/4x_buildings.png";
+//var s5 = new HTMLImageElement();
+//s5.src = "assets/resources/5x_buildings.png";
 var STRUCTURE_DICT = new collections.Dictionary();
-STRUCTURE_DICT.setValue(1, s1);
-STRUCTURE_DICT.setValue(2, s2);
-STRUCTURE_DICT.setValue(3, s3);
-STRUCTURE_DICT.setValue(4, s4);
-STRUCTURE_DICT.setValue(5, s5);
 
-var Structure = (function () {
-    function Structure(name, type, entryPos, startPos, size, offset) {
-        this._name = name;
-        this._type = type;
-        this._entryPos = entryPos;
-        this._startPos = startPos;
-        this._size = size;
-        this._offset = offset;
+//STRUCTURE_DICT.setValue(1, s1);
+//STRUCTURE_DICT.setValue(2, s2);
+//STRUCTURE_DICT.setValue(3, s3);
+//STRUCTURE_DICT.setValue(4, s4);
+//STRUCTURE_DICT.setValue(5, s5);
+/**
+* Holds all the buildings in the world, each structure should have at least
+* - location for it's top right corner,
+* - dimension of building
+* - way to draw itself
+* - entry point (if there is one) and mapping to the handler when triggered
+*/
+var Structure = (function (_super) {
+    __extends(Structure, _super);
+    function Structure() {
+        _super.apply(this, arguments);
     }
+    /*                               TODO: fix structures
+    
+    constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
+    this._name = name;
+    this._type = type;
+    this._entryPos = entryPos;
+    this._startPos = startPos;
+    this._size = size;
+    this._offset = offset;
+    }
+    */
     Structure.prototype.Draw = function (ctx) {
         var pX = this._size.X * TILE_SIZE;
         var pY = this._size.Y * TILE_SIZE;
@@ -65,11 +86,12 @@ var Structure = (function () {
 
     Structure.prototype.Enter = function () {
         throw "Not implemented exception.";
+        // code called when player enters building
     };
 
     Structure.prototype.Position = function () {
         return this._startPos;
     };
     return Structure;
-})();
-//@ sourceMappingURL=structure.js.map
+})(Entity);
+//# sourceMappingURL=structure.js.map

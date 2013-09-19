@@ -1,3 +1,4 @@
+/// <reference path="../references.ts"/>
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -6,14 +7,18 @@ var __extends = this.__extends || function (d, b) {
 };
 var Player = (function (_super) {
     __extends(Player, _super);
-    function Player() {
-        _super.call(this);
+    function Player(id, coord) {
+        var _this = this;
+        _super.call(this, id, new Sprite(Sprites.Player, new Point(0, 0)), coord);
 
-        this.Position = new Point(10, 15);
+        Game.Input.keyboardEvent.add(function (ev) {
+            //        LEFT: 37,
+            //        UP: 38,
+            //        RIGHT: 39,
+            //        DOWN: 40,
+            Game.World.Move(_this.id, ev.keyCode);
+        });
     }
-    Player.prototype.Draw = function (ctx) {
-        ctx.drawImage(MONSTER_IMG, 0, 0, TILE_SIZE, TILE_SIZE, this.Position.X * TILE_SIZE, this.Position.Y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-    };
     return Player;
 })(Actor);
-//@ sourceMappingURL=player.js.map
+//# sourceMappingURL=player.js.map

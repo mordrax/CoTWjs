@@ -85,13 +85,13 @@ var Zepto = (function() {
 
     function type(obj) {
         return obj == null ? String(obj) :
-            class2type[toString.call(obj)] || "object"
+            class2type[toString.call(obj)] || "COTWObject"
     }
 
     function isFunction(value) { return type(value) == "function" }
     function isWindow(obj)     { return obj != null && obj == obj.window }
     function isDocument(obj)   { return obj != null && obj.nodeType == obj.DOCUMENT_NODE }
-    function isObject(obj)     { return type(obj) == "object" }
+    function isObject(obj)     { return type(obj) == "COTWObject" }
     function isPlainObject(obj) {
         return isObject(obj) && !isWindow(obj) && obj.__proto__ == Object.prototype
     }
@@ -174,7 +174,7 @@ var Zepto = (function() {
         return dom
     }
 
-    // `$.zepto.isZ` should return `true` if the given object is a Zepto
+    // `$.zepto.isZ` should return `true` if the given COTWObject is a Zepto
     // collection. This method can be overriden in plugins.
     zepto.isZ = function(object) {
         return object instanceof zepto.Z
@@ -195,7 +195,7 @@ var Zepto = (function() {
             var dom
             // normalize array if an array of nodes is given
             if (isArray(selector)) dom = compact(selector)
-            // Wrap DOM nodes. If a plain object is given, duplicate it.
+            // Wrap DOM nodes. If a plain COTWObject is given, duplicate it.
             else if (isObject(selector))
                 dom = [isPlainObject(selector) ? $.extend({}, selector) : selector], selector = null
             // If it's a html fragment, create nodes from it
@@ -211,7 +211,7 @@ var Zepto = (function() {
         }
     }
 
-    // `$` will be the base `Zepto` object. When calling this
+    // `$` will be the base `Zepto` COTWObject. When calling this
     // function just call `$.zepto.init, which makes the implementation
     // details of selecting nodes and creating Zepto collections
     // patchable in plugins.
@@ -232,7 +232,7 @@ var Zepto = (function() {
     }
 
     // Copy all but undefined properties from one or more
-    // objects to the `target` object.
+    // objects to the `target` COTWObject.
     $.extend = function(target){
         var deep, args = slice.call(arguments, 1)
         if (typeof target == 'boolean') {
@@ -366,7 +366,7 @@ var Zepto = (function() {
 
     // Populate the class2type _map
     $.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(i, name) {
-        class2type[ "[object " + name + "]" ] = name.toLowerCase()
+        class2type[ "[COTWObject " + name + "]" ] = name.toLowerCase()
     })
 
     // Define methods that will be available on all
@@ -461,7 +461,7 @@ var Zepto = (function() {
         },
         find: function(selector){
             var result, $this = this
-            if (typeof selector == 'object')
+            if (typeof selector == 'COTWObject')
                 result = $(selector).filter(function(){
                     var node = this
                     return emptyArray.some.call($this, function(parent){
@@ -474,7 +474,7 @@ var Zepto = (function() {
         },
         closest: function(selector, context){
             var node = this[0], collection = false
-            if (typeof selector == 'object') collection = $(selector)
+            if (typeof selector == 'COTWObject') collection = $(selector)
             while (node && !(collection ? collection.indexOf(node) >= 0 : zepto.matches(node, selector)))
                 node = node !== context && !isDocument(node) && node.parentNode
             return $(node)
@@ -773,7 +773,7 @@ var Zepto = (function() {
             // arguments can be nodes, arrays of nodes, Zepto objects and HTML strings
             var argType, nodes = $.map(arguments, function(arg) {
                     argType = type(arg)
-                    return argType == "object" || argType == "array" || arg == null ?
+                    return argType == "COTWObject" || argType == "array" || arg == null ?
                         arg : zepto.fragment(arg)
                 }),
                 parent, copyByClone = this.length > 1
@@ -1418,7 +1418,7 @@ window.Zepto = Zepto
             // handle data in serializeArray() format
             if (!scope && array) params.add(value.name, value.value)
             // recurse into nested objects
-            else if (type == "array" || (!traditional && type == "object"))
+            else if (type == "array" || (!traditional && type == "COTWObject"))
                 serialize(params, value, traditional, key)
             else params.add(key, value)
         })
@@ -1536,7 +1536,7 @@ window.Zepto = Zepto
                 else cssValues[key] = properties[key], cssProperties.push(dasherize(key))
 
             if (transforms) cssValues[transform] = transforms, cssProperties.push(transform)
-            if (duration > 0 && typeof properties === 'object') {
+            if (duration > 0 && typeof properties === 'COTWObject') {
                 cssValues[transitionProperty] = cssProperties.join(', ')
                 cssValues[transitionDuration] = duration + 's'
                 cssValues[transitionTiming] = (ease || 'linear')

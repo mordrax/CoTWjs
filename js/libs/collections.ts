@@ -56,7 +56,7 @@ module collections {
     }
 
     /**
-     * Default function to convert an object to a string.
+     * Default function to convert an COTWObject to a string.
      * @function
      */
     export function defaultToString(item): string {
@@ -72,7 +72,7 @@ module collections {
     }
 
     /**
-     * Joins all the properies of the object using the provided join string
+     * Joins all the properies of the COTWObject using the provided join string
      */
     export function toString<T>(item: T, join: string = ","): string {
         if (item === null) {
@@ -118,7 +118,7 @@ module collections {
      * @function
      */
     export function isString(obj): boolean {
-        return Object.prototype.toString.call(obj) === '[object String]';
+        return Object.prototype.toString.call(obj) === '[COTWObject String]';
     }
 
     /**
@@ -232,13 +232,13 @@ module collections {
 
         /**
          * Returns the number of elements in the specified array equal
-         * to the specified object.
+         * to the specified COTWObject.
          * @param {Array} array the array in which to determine the frequency of the element.
          * @param {Object} item the element whose frequency is to be determined.
          * @param {function(Object,Object):boolean=} equalsFunction optional function used to
          * check equality between 2 elements.
          * @return {number} the number of elements in the specified array
-         * equal to the specified object.
+         * equal to the specified COTWObject.
          */
         export function frequency<T>(array: T[], item: T, equalsFunction?: collections.IEqualsFunction<T>): number {
             var equals = equalsFunction || collections.defaultEquals;
@@ -1417,17 +1417,17 @@ module collections {
             return this.list.add(elem, 0);
         }
         /**
-         * Removes the object at the top of this stack and returns that object.
-         * @return {*} the object at the top of this stack or undefined if the
+         * Removes the COTWObject at the top of this stack and returns that COTWObject.
+         * @return {*} the COTWObject at the top of this stack or undefined if the
          * stack is empty.
          */
             pop(): T {
             return this.list.removeElementAtIndex(0);
         }
         /**
-         * Looks at the object at the top of this stack without removing it from the
+         * Looks at the COTWObject at the top of this stack without removing it from the
          * stack.
-         * @return {*} the object at the top of this stack or undefined if the
+         * @return {*} the COTWObject at the top of this stack or undefined if the
          * stack is empty.
          */
             peek(): T {
@@ -1621,7 +1621,7 @@ module collections {
          * elements are dequeued in highest-priority-first order (the elements with the
          * highest priority are dequeued first). Priority Queues are implemented as heaps.
          * If the inserted elements are custom objects a compare function must be provided,
-         * otherwise the <=, === and >= operators are used to compare object priority.</p>
+         * otherwise the <=, === and >= operators are used to compare COTWObject priority.</p>
          * <pre>
          * function compare(a, b) {
          * if (a is less than b by some ordering criterion) {
@@ -1933,7 +1933,7 @@ module collections {
          * @constructor
          * @param {function(Object):string=} toStrFunction optional function used
          * to convert elements to strings. If the elements aren't strings or if toString()
-         * is not appropriate, a custom function which receives an object and returns a
+         * is not appropriate, a custom function which receives an COTWObject and returns a
          * unique string must be provided.
          */
             constructor(toStrFunction?: (item: T) => string) {
@@ -1944,7 +1944,7 @@ module collections {
 
 
         /**
-         * Adds nCopies of the specified object to this bag.
+         * Adds nCopies of the specified COTWObject to this bag.
          * @param {Object} element element to add.
          * @param {number=} nCopies the number of copies to add, if this argument is
          * undefined 1 copy is added.
@@ -1970,9 +1970,9 @@ module collections {
         }
 
         /**
-         * Counts the number of copies of the specified object in this bag.
-         * @param {Object} element the object to search for..
-         * @return {number} the number of copies of the object, 0 if not found
+         * Counts the number of copies of the specified COTWObject in this bag.
+         * @param {Object} element the COTWObject to search for..
+         * @return {number} the number of copies of the COTWObject, 0 if not found
          */
             count(element: T): number {
 
@@ -1994,7 +1994,7 @@ module collections {
         }
 
         /**
-         * Removes nCopies of the specified object to this bag.
+         * Removes nCopies of the specified COTWObject to this bag.
          * If the number of copies to remove is greater than the actual number
          * of copies in the Bag, all copies are removed.
          * @param {Object} element element to remove.

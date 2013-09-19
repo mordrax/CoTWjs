@@ -1,17 +1,16 @@
 /// <reference path="../references.ts"/>
 
-class Player extends Actor implements IDrawable {
+class Player extends Actor {
 
-    constructor() {
-        super();
+    constructor(id:string, coord?:WorldCoordinates) {
+        super(id, new Sprite(Sprites.Player, new Point(0,0)), coord);
 
-        this.Position = new Point(10, 15);
-    }
-
-    Draw(ctx : CanvasRenderingContext2D) {
-        ctx.drawImage(MONSTER_IMG,
-            0, 0,TILE_SIZE, TILE_SIZE,
-            this.Position.X*TILE_SIZE, this.Position.Y*TILE_SIZE, TILE_SIZE, TILE_SIZE);
-        //this._el.style["-webkit-transform"]="translate3d("+ this.Position.X*TILE_SIZE +'px,'+ this.Position.Y*TILE_SIZE +"px,0px) ";// scale("+hero.scale+")";
+        Game.Input.keyboardEvent.add((ev) => {
+            //        LEFT: 37,
+            //        UP: 38,
+            //        RIGHT: 39,
+            //        DOWN: 40,
+            Game.World.Move(this.id, ev.keyCode);
+        });
     }
 }

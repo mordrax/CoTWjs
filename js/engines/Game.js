@@ -1,35 +1,36 @@
+/// <reference path="../references.ts"/>
+/**
+* Represents an instance of a game.
+* A game is a MVC pattern finite state machine that is event driven.
+* World - Model that contains everything
+* Canvas - View that uses the current hero location in the world to update the screen
+* Engines - Controllers that changes the state of the world, talking to either each other via the world or manipulating entities in the world
+* Events - Input and world based events that transistions the world from one state to another
+*
+*
+* 1. Create character
+* 2. Initialise game objects
+* 3. while events,
+*  3a. delegate to specific engines
+*  3b. track quest progression
+* 4. Last quest, end game
+*/
 var Game = (function () {
     function Game() {
-        this.init();
+        // TODO: these should really be done after character creation, while char creation isn't implemented, or for
+        // testing just create these objects
+        Game.World = new World();
+
+        Game.Input = new InputEngine();
+        Game.Graphics = new GraphicsEngine();
+
+        this._hero = new Player('hero', new WorldCoordinates(MapType.VillageMap, new Point(10, 15)));
+        Game.World.AddEntity(this._hero);
+
+        Game.World.Initialise();
     }
-    Game.prototype.KeyEvent = function (ev) {
-        if (ev.keyCode >= 37 && ev.keyCode <= 40) {
-            this._physicsEngine.Move(this._hero, ev.keyCode);
-        }
-    };
-
     Game.prototype.Start = function () {
-        var _this = this;
-        this.Draw(this._ctx, true);
-
-        document.addEventListener("keyup", function (evt) {
-            return _this.KeyEvent(evt);
-        }, false);
-    };
-
-    Game.prototype.Draw = function (ctx, drawWorld) {
-        if (drawWorld) {
-            this._world.Draw(this._ctx);
-        }
-        this._hero.Draw(this._ctx);
-    };
-
-    Game.prototype.init = function () {
-        this._world = new World($("#background"));
-        this._hero = new Player();
-        this._physicsEngine = new PhysicsEngine(this._hero, this._world, this.Draw, this._ctx);
-        this._ctx = $('#world')[0].getContext("2d");
     };
     return Game;
 })();
-//@ sourceMappingURL=Game.js.map
+//# sourceMappingURL=Game.js.map

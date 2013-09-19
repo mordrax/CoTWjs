@@ -1,89 +1,157 @@
 /// <reference path="../references.ts"/>
+/**
+ * Represents the Model of the game. All game content will be part of the world and the View will draw the area of the
+ * world that the player is in when something has changed in the world.
+ */
+class World {
+    private _currentArea:MapType;
+    private _areas:collections.Dictionary<MapType, Tile[][]>;
+    private _entities:collections.Dictionary<string, Entity>;
+    private _tileFactory:TileFactory;
 
-class World implements IDrawable {
-    _$el:ZeptoCollection;
-    _el:HTMLElement;
-    _currentMap : string;
-    _maps : collections.Dictionary<string, Tile[][]>;
+    public updatedEvent:Signal;
 
     /**
      * World creation defaults to village _map
      * @param $el - Container element <background> for all tiles
      */
-    constructor($el:ZeptoCollection) {
+     constructor() {
+        this.updatedEvent = new Signal();
 
-        this._$el = $el;
-        this._el = $el.get(0);
+        this._tileFactory = new TileFactory();
 
-        this._currentMap = MapType.VillageMap;
-        this._maps = new collections.Dictionary<string, Tile[][]>();
+        this._currentArea = <MapType>MapType.VillageMap;
+        // maps a MapType to a 2D array of tiles which represents the area
+        this._areas = new collections.Dictionary<MapType, Tile[][]>();
 
-        this.LoadMap(this._currentMap);
+        this._entities = new collections.Dictionary<string, Entity>();
+
+        this.InitialiseArea(this._currentArea);
     }
 
-    private LoadMap(mapType : string) : Tile[][] {
-        this._$el.empty();
+    AddEntity(entity:Entity) {
+        this._entities.setValue(entity.id, entity);
+    }
 
-            var tile = new Array<Array<Tile>>();
-            for (var y=0; y < MAPS[mapType].length; y++) {
-                for (var x=0; x < MAPS[mapType][y].length; x++) {
-                    if (y === 0) {
-                        tile[x] = new Array<Tile>();
-                    }
-                    tile[x][y] = new Tile(TILE_DATA.getValue(MAPS[mapType][y][x]), new Point(x, y));
-                    if (x>0 && y>0){
-                        // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
-                        tile[x][y].DetermineRotation(tile[x-1][y]._tile._name, tile[x][y-1]._tile._name)
-                    }
+    Initialise() {
+        this._entities.forEach((k,v) => this.updatedEvent.dispatch(v));
+        this._areas.getValue(this._currentArea).forEach(x => {
+            (<Array>x).forEach(y=>{
+                this.updatedEvent.dispatch(y);
+            })
+        });
+    }
+
+    Move(id:string, keycode:number) {
+        var entity = this._entities.getValue(id);
+        var loc = entity.location;
+        var dir = new Point(0, 0);
+        switch (keycode) {
+            case 37: //LEFT
+                dir.X = -1;
+                break;
+            case 38: //UP
+                dir.Y = -1;
+                break;
+            case 39: // RIGHT
+                dir.X = 1;
+                break;
+            case 40: // DOWN
+                dir.Y = 1;
+                break;
+            default:
+                break;
+        }
+/*TODO: fix up move code
+        var newLoc = new Point(loc.X + dir.X, loc.Y + dir.Y);
+        if (!this.CurrentTileSet()[newLoc.X][newLoc.Y].solid) {
+            entity.location = newLoc;
+            this._entities.setValue(id, entity);
+        }*/
+
+        /* TODO: Fix up map link
+         var link = this._world.MapLink(newPos);
+         if (link !== null) {
+         actor.moveTo(link.Coord);
+         return;
+         }
+         */
+
+        //TODO: Check collision
+        // collision with monster
+        // collision with building door
+        // collision with map entry/exit
+
+    }
+
+    /**
+     * Populates each area with tiles, done once on construction
+     */
+    private InitialiseArea(mapType:MapType) {
+        var tiles = new Array<Array<Tile>>();
+
+
+        for (var y = 0; y < ASCII_MAPS[<string>mapType].length; y++) {
+            for (var x = 0; x < ASCII_MAPS[<string>mapType][y].length; x++) {
+                if (y === 0) {
+                    tiles[x] = new Array<Tile>();
                 }
+                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[<string>mapType][y][x]);
+                tiles[x][y].location = new WorldCoordinates(mapType, new Point(x, y));
+//                *//* TODO: Fix tile rotation
+//                 if (x>0 && y>0) {
+//                 // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+//                 tile[x][y].DetermineRotation(tile[x-1][y]._tile.name, tile[x][y-1]._tile.name)
+//                 }*//*
             }
-            this._maps.setValue(mapType, tile);
-
-        return this._maps.getValue(mapType);
+        }
+        this._areas.setValue(mapType, tiles);
     }
 
     private CurrentTileSet():Array<Array<Tile>> {
-        return this._maps.getValue(this._currentMap);
+        return this._areas.getValue(this._currentArea);
     }
 
-    private CurrentStructureSet():Array<Structure>{
-        return STRUCTURES[this._currentMap];
+    private CurrentStructureSet():Array<Structure> {
+        return STRUCTURES[<string>this._currentArea];
     }
-
-    Draw(ctx : CanvasRenderingContext2D) {
+/* TODO: move to graphics engine
+    Draw(ctx:CanvasRenderingContext2D) {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {
             for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
-                 this.CurrentTileSet()[x][y].Draw(ctx);
+                this.CurrentTileSet()[x][y].Draw(ctx);
             }
         }
 
-        this.CurrentStructureSet().forEach((x:Structure)=>{
+        this.CurrentStructureSet().forEach((x:Structure)=> {
             x.Draw(ctx);
         });
 
-    }
+    }*/
 
     /**
      * Called when a player moves to a point in the world, check if that location is a link
      * If yes, then change the map and send the new location of the player (on the new map) back
      */
-    MapLink(point : Point) : MapLink {
-        var link : MapLink = null;
+    MapLink(point:Point):MapLink {
+        var link:MapLink = null;
+/*       TODO: fix map link
 
-        MAP_TO_MAP.forEach((k:MapLink,v:MapLink) => {
-            if ((this._currentMap === k.MapName) && point.Equals(k.Coord)) {
+        MAP_TO_MAP.forEach((k:MapLink, v:MapLink) => {
+            if ((this._currentArea === k.MapName) && point.Equals(k.Coord)) {
                 link = v;
             }
-            if ((this._currentMap === v.MapName) && point.Equals(v.Coord)) {
+            if ((this._currentArea === v.MapName) && point.Equals(v.Coord)) {
                 link = k;
             }
         });
 
         // update the map
         if (link !== null) {
-            this._currentMap = link.MapName;
-            this.LoadMap(this._currentMap);
+            this._currentArea = link.MapName;
+            this.LoadMap(this._currentArea);
         }
+*/
 
         return link;
     }
