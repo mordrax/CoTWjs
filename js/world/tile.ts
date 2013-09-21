@@ -4,7 +4,7 @@ class Tile extends Entity {
     solid:boolean;
     turn:number;
 
-    constructor(id: string, sprite:Sprite) {
+    constructor(id: string, sprite:IResource) {
         super(id, EntityType.Tile, sprite);
         this.turn = 0;
     }

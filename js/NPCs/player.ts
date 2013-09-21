@@ -3,7 +3,7 @@
 class Player extends Actor {
 
     constructor(id:string, coord?:WorldCoordinates) {
-        super(id, new Sprite(Sprites.Player, new Point(0,0)), coord);
+        super(id, Sprites.Actors.Player, coord);
 
         Game.Input.keyboardEvent.add((ev) => {
             //        LEFT: 37,

@@ -9,7 +9,7 @@ var Player = (function (_super) {
     __extends(Player, _super);
     function Player(id, coord) {
         var _this = this;
-        _super.call(this, id, new Sprite(Sprites.Player, new Point(0, 0)), coord);
+        _super.call(this, id, Sprites.Actors.Player, coord);
 
         Game.Input.keyboardEvent.add(function (ev) {
             //        LEFT: 37,
