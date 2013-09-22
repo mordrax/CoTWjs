@@ -1,5 +1,7 @@
 /// <reference path="globals.ts"/>
 /// <reference path="COTWClasses.ts"/>
+/// <reference path="interfaces.ts"/>
+/// <reference path="enums.ts"/>
 
 /// <reference path="libs/jquery.d.ts"/>
 /// <reference path="libs/collections.ts"/>
@@ -12,11 +14,6 @@
 /// <reference path="engines/Game.ts"/>
 /// <reference path="engines/ShopEngine.ts"/>
 /// <reference path="engines/InventoryEngine.ts"/>
-
-/// <reference path="interfaces/IDrawable.ts"/>
-/// <reference path="interfaces/IStructure.ts"/>
-/// <reference path="interfaces/IState.ts"/>
-/// <reference path="interfaces/IPhysical.ts"/>
 
 /// <reference path="NPCs/player.ts"/>
 /// <reference path="NPCs/monsters.ts"/>

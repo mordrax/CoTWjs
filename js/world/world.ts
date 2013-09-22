@@ -8,6 +8,7 @@ class World {
     private _areas:collections.Dictionary<MapType, Tile[][]>;
     private _entities:collections.Dictionary<string, Entity>;
     private _tileFactory:TileFactory;
+    private _buildingFactory:BuildingFactory;
 
     public updatedEvent:Signal;
 
@@ -19,6 +20,7 @@ class World {
         this.updatedEvent = new Signal();
 
         this._tileFactory = new TileFactory();
+        this._buildingFactory = new BuildingFactory();
 
         this._currentArea = <MapType>MapType.VillageMap;
         // maps a MapType to a 2D array of tiles which represents the area
@@ -40,6 +42,7 @@ class World {
                 this.updatedEvent.dispatch(y);
             })
         });
+
     }
 
     Move(id:string, keycode:number) {
@@ -90,13 +93,13 @@ class World {
     private InitialiseArea(mapType:MapType) {
         var tiles = new Array<Array<Tile>>();
 
-
-        for (var y = 0; y < ASCII_MAPS[<string>mapType].length; y++) {
-            for (var x = 0; x < ASCII_MAPS[<string>mapType][y].length; x++) {
+        // Initialise tiles for area
+        for (var y = 0; y < ASCII_MAPS[mapType].length; y++) {
+            for (var x = 0; x < ASCII_MAPS[mapType][y].length; x++) {
                 if (y === 0) {
                     tiles[x] = new Array<Tile>();
                 }
-                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[<string>mapType][y][x]);
+                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x]);
                 tiles[x][y].location = new WorldCoordinates(mapType, new Point(x, y));
 //                *//* TODO: Fix tile rotation
 //                 if (x>0 && y>0) {
@@ -106,15 +109,13 @@ class World {
             }
         }
         this._areas.setValue(mapType, tiles);
+
+        //Initialise buildings for area
+        AREA_STRUCTURES[mapType].forEach(
+            (x:IStructure) => this._entities.setValue(x.id, this._buildingFactory.Create(x.type, x.id, x.location))
+        )
     }
 
-    private CurrentTileSet():Array<Array<Tile>> {
-        return this._areas.getValue(this._currentArea);
-    }
-
-    private CurrentStructureSet():Array<Structure> {
-        return STRUCTURES[<string>this._currentArea];
-    }
 /* TODO: move to graphics engine
     Draw(ctx:CanvasRenderingContext2D) {
         for (var x = 0; x < this.CurrentTileSet().length; x++) {

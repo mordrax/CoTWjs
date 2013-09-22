@@ -12,6 +12,7 @@ var World = (function () {
         this.updatedEvent = new Signal();
 
         this._tileFactory = new TileFactory();
+        this._buildingFactory = new BuildingFactory();
 
         this._currentArea = MapType.VillageMap;
 
@@ -81,6 +82,7 @@ var World = (function () {
     * Populates each area with tiles, done once on construction
     */
     World.prototype.InitialiseArea = function (mapType) {
+        var _this = this;
         var tiles = new Array();
 
         for (var y = 0; y < ASCII_MAPS[mapType].length; y++) {
@@ -98,14 +100,11 @@ var World = (function () {
             }
         }
         this._areas.setValue(mapType, tiles);
-    };
 
-    World.prototype.CurrentTileSet = function () {
-        return this._areas.getValue(this._currentArea);
-    };
-
-    World.prototype.CurrentStructureSet = function () {
-        return STRUCTURES[this._currentArea];
+        //Initialise buildings for area
+        AREA_STRUCTURES[mapType].forEach(function (x) {
+            return _this._entities.setValue(x.id, _this._buildingFactory.Create(x.type, x.id, x.location));
+        });
     };
 
     /* TODO: move to graphics engine

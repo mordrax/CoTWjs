@@ -5,11 +5,7 @@
  * Until there is an easier way to create and reference all typescript files, this file is a dumping ground for all
  * classes that should be separate from the main controllers but is too small to put into it's own individual class.
  */
-enum EntityType {
-    Actor,
-    Building,
-    Tile
-}
+
 /**
  * Represents an entity in the world. Basically a wrapper for an COTWObject with various components that specify a property
  * or behaviour of the COTWObject.
@@ -81,5 +77,23 @@ class TileFactory {
     public Create(asciiTile:string):Tile {
         var tile = this._tileCollection.getValue(asciiTile);
         return new Tile(tile.name, tile.sprite);
+    }
+}
+
+class BuildingFactory {
+    private _buildingcollection : collections.Dictionary<StructureType, {entryPoint:Point; sprite:IResource}>;
+    constructor() {
+        this._buildingcollection = new collections.Dictionary<StructureType, {entryPoint:Point; sprite:IResource}>();
+
+        this._buildingcollection.setValue(StructureType.Gate_NS       , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Gate_NS      });
+        this._buildingcollection.setValue(StructureType.StrawHouse_EF , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.StrawHouse_EF});
+        this._buildingcollection.setValue(StructureType.StrawHouse_WF , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.StrawHouse_WF});
+        this._buildingcollection.setValue(StructureType.Hut_EF        , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Hut_EF       });
+        this._buildingcollection.setValue(StructureType.HutTemple_NF  , {entryPoint:new Point(2,0), sprite: Sprites.Buildings.HutTemple_NF });
+    }
+
+    public Create(type:StructureType, id:string, location:WorldCoordinates) : Structure {
+        var struc = this._buildingcollection.getValue(type);
+        return new Structure(id, type, struc.entryPoint, struc.sprite, location);
     }
 }
