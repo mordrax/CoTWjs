@@ -100,12 +100,11 @@ class World {
                     tiles[x] = new Array<Tile>();
                 }
                 tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x]);
+                if (x>0 && y>0) {
+                 // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    tiles[x][y].DetermineRotation(tiles[x-1][y].id, tiles[x][y-1].id);
+                }
                 tiles[x][y].location = new WorldCoordinates(mapType, new Point(x, y));
-//                *//* TODO: Fix tile rotation
-//                 if (x>0 && y>0) {
-//                 // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
-//                 tile[x][y].DetermineRotation(tile[x-1][y]._tile.name, tile[x][y-1]._tile.name)
-//                 }*//*
             }
         }
         this._areas.setValue(mapType, tiles);
