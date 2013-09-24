@@ -83,7 +83,7 @@ var Sprites:ISprite = {
     Buildings: {
         Gate_NS      : {type:ResourceType.buildings_1x, offset: {x:0,y:0}, size:{w:96,h:32}},
         StrawHouse_EF: {type:ResourceType.buildings_3x, offset: {x:0,y:0}, size:{w:96,h:96}},
-        StrawHouse_WF: {type:ResourceType.buildings_3x, offset: {x:6,y:0}, size:{w:96,h:96}},
+        StrawHouse_WF: {type:ResourceType.buildings_3x, offset: {x:192,y:0}, size:{w:96,h:96}},
         Hut_EF       : {type:ResourceType.buildings_2x, offset: {x:0,y:0}, size:{w:64,h:64}},
         HutTemple_NF : {type:ResourceType.buildings_5x, offset: {x:0,y:0}, size:{w:160,h:160}}
     }

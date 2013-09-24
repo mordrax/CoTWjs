@@ -44,7 +44,6 @@ var World = (function () {
     };
 
     World.prototype.Move = function (id, keycode) {
-        this.DispatchUpdatedEvent();
         var entity = this._entities.getValue(id);
         var loc = entity.location;
         var dir = new Point(0, 0);
@@ -64,12 +63,31 @@ var World = (function () {
             default:
                 break;
         }
-        /*TODO: fix up move code
-        var newLoc = new Point(loc.X + dir.X, loc.Y + dir.Y);
-        if (!this.CurrentTileSet()[newLoc.X][newLoc.Y].solid) {
-        entity.location = newLoc;
-        this._entities.setValue(id, entity);
-        }*/
+
+        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+        var collision = false;
+        this._entities.forEach(function (id, entity) {
+            if (entity.type === EntityType.Actor) {
+                if (entity.location.position.Equals(newLoc)) {
+                    collision = true;
+                    console.log('hit another actor: ' + id);
+                }
+            } else if (entity.type === EntityType.Building) {
+                var structurePart = (entity).PointInStructure(newLoc);
+                if (structurePart === StructurePart.Wall) {
+                    collision = true;
+                    console.log('hit building: ' + id);
+                } else if (structurePart === StructurePart.Entry) {
+                    console.log('hit entry of building: ' + id);
+                }
+            }
+        });
+
+        if (collision === false) {
+            entity.location.position = newLoc;
+        }
+
+        this.DispatchUpdatedEvent();
         /* TODO: Fix up map link
         var link = this._world.MapLink(newPos);
         if (link !== null) {

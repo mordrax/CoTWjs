@@ -24,6 +24,28 @@ var Structure = (function (_super) {
         throw "Not implemented exception.";
         // code called when player enters building
     };
+
+    /**
+    * Returns which part of the structure the given point has hit, if any
+    */
+    Structure.prototype.PointInStructure = function (point) {
+        return StructurePart.None;
+
+        if (point.Equals(this._entry.Add(this.location.position))) {
+            return StructurePart.Entry;
+        } else if (point.X >= this.location.position.X && point.X <= this.location.position.X + this._type) {
+            return StructurePart.Wall;
+        } else {
+            return StructurePart.None;
+        }
+    };
     return Structure;
 })(Entity);
+
+var StructurePart;
+(function (StructurePart) {
+    StructurePart[StructurePart["Wall"] = 0] = "Wall";
+    StructurePart[StructurePart["Entry"] = 1] = "Entry";
+    StructurePart[StructurePart["None"] = 2] = "None";
+})(StructurePart || (StructurePart = {}));
 //# sourceMappingURL=structure.js.map

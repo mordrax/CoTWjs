@@ -22,4 +22,25 @@ class Structure extends Entity {
         throw "Not implemented exception.";
         // code called when player enters building
     }
+
+    /**
+     * Returns which part of the structure the given point has hit, if any
+     */
+    public PointInStructure(point: Point): StructurePart {
+        return StructurePart.None;
+
+        if (point.Equals(this._entry.Add(this.location.position))) {
+            return StructurePart.Entry;
+        } else if (point.X >= this.location.position.X && point.X <= this.location.position.X + this._type) {
+            return StructurePart.Wall;
+        } else {
+            return StructurePart.None;
+        }
+    }
+}
+
+enum StructurePart {
+    Wall,
+    Entry,
+    None
 }

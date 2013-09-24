@@ -45,6 +45,10 @@ class Point {
     Equals(otherPoint:Point):boolean {
         return (this.X === otherPoint.X && this.Y === otherPoint.Y);
     }
+
+    Add(otherPoint: Point):Point{
+        return new Point(this.X + otherPoint.X, this.Y + otherPoint.Y);
+    }
 }
 
 class TileFactory {
