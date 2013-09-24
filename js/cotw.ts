@@ -24,7 +24,9 @@ function pageReady() {
     game.Start();
 }
 
-addEventListener("load", pageReady );
+$(document).ready(function() {
+    pageReady();
+});
 
 ////detect if web or phonegap ( via http://stackoverflow.com/questions/8068052/phonegap-detect-if-running-on-desktop-browser)
 //function isPhoneGap() {

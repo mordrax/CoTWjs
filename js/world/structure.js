@@ -29,11 +29,9 @@ var Structure = (function (_super) {
     * Returns which part of the structure the given point has hit, if any
     */
     Structure.prototype.PointInStructure = function (point) {
-        return StructurePart.None;
-
         if (point.Equals(this._entry.Add(this.location.position))) {
             return StructurePart.Entry;
-        } else if (point.X >= this.location.position.X && point.X <= this.location.position.X + this._type) {
+        } else if ((point.X >= this.location.position.X && point.X < this.location.position.X + this.sprite.size.w / TILE_SIZE) && (point.Y >= this.location.position.Y && point.Y < this.location.position.Y + this.sprite.size.h / TILE_SIZE)) {
             return StructurePart.Wall;
         } else {
             return StructurePart.None;

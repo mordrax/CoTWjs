@@ -17,5 +17,7 @@ function pageReady() {
     game.Start();
 }
 
-addEventListener("load", pageReady);
+$(document).ready(function () {
+    pageReady();
+});
 //# sourceMappingURL=cotw.js.map

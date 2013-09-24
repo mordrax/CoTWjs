@@ -66,6 +66,7 @@ var World = (function () {
 
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
         var collision = false;
+
         this._entities.forEach(function (id, entity) {
             if (entity.type === EntityType.Actor) {
                 if (entity.location.position.Equals(newLoc)) {
@@ -85,8 +86,10 @@ var World = (function () {
 
         if (collision === false) {
             entity.location.position = newLoc;
+            Game.Graphics.UpdateCenter(newLoc);
         }
 
+        Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
         /* TODO: Fix up map link
         var link = this._world.MapLink(newPos);
