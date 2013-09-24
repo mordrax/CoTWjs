@@ -28,18 +28,23 @@ var World = (function () {
     };
 
     World.prototype.Initialise = function () {
+        this.DispatchUpdatedEvent();
+    };
+
+    World.prototype.DispatchUpdatedEvent = function () {
         var _this = this;
-        this._entities.forEach(function (k, v) {
-            return _this.updatedEvent.dispatch(v);
-        });
         this._areas.getValue(this._currentArea).forEach(function (x) {
             (x).forEach(function (y) {
                 _this.updatedEvent.dispatch(y);
             });
         });
+        this._entities.forEach(function (k, v) {
+            return _this.updatedEvent.dispatch(v);
+        });
     };
 
     World.prototype.Move = function (id, keycode) {
+        this.DispatchUpdatedEvent();
         var entity = this._entities.getValue(id);
         var loc = entity.location;
         var dir = new Point(0, 0);
@@ -91,12 +96,11 @@ var World = (function () {
                     tiles[x] = new Array();
                 }
                 tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x]);
+                if (x > 0 && y > 0) {
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
+                }
                 tiles[x][y].location = new WorldCoordinates(mapType, new Point(x, y));
-                //                *//* TODO: Fix tile rotation
-                //                 if (x>0 && y>0) {
-                //                 // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
-                //                 tile[x][y].DetermineRotation(tile[x-1][y]._tile.name, tile[x][y-1]._tile.name)
-                //                 }*//*
             }
         }
         this._areas.setValue(mapType, tiles);

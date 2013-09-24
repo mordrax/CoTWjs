@@ -36,16 +36,20 @@ class World {
     }
 
     Initialise() {
-        this._entities.forEach((k,v) => this.updatedEvent.dispatch(v));
+        this.DispatchUpdatedEvent();
+    }
+
+    DispatchUpdatedEvent() {
         this._areas.getValue(this._currentArea).forEach(x => {
             (<Array>x).forEach(y=>{
                 this.updatedEvent.dispatch(y);
             })
         });
-
+        this._entities.forEach((k,v) => this.updatedEvent.dispatch(v));
     }
 
     Move(id:string, keycode:number) {
+        this.DispatchUpdatedEvent();
         var entity = this._entities.getValue(id);
         var loc = entity.location;
         var dir = new Point(0, 0);

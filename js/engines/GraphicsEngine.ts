@@ -15,23 +15,24 @@ class Sprite {
 class GraphicsEngine {
     _ctx : CanvasRenderingContext2D;
     _resources : {};
+    _loading : number;
 
     constructor() {
         this._ctx = (<HTMLCanvasElement>$('#world')[0]).getContext('2d');
         this._resources = {};
+        this._loading = 0;
         this.LoadResources();
 
         Game.World.updatedEvent.add((e:Entity) => {
             var s = e.sprite;
             var l = e.location;
-            this._ctx.drawImage(this._resources[s.type], s.offset.x, s.offset.y, s.size.w, s.size.h, l.position.X* s.size.w, l.position.Y* s.size.h, s.size.w, s.size.h);
+            this._ctx.drawImage(this._resources[s.type], s.offset.x, s.offset.y, s.size.w, s.size.h, l.position.X*TILE_SIZE, l.position.Y*TILE_SIZE, s.size.w, s.size.h);
         });
     }
 
     private createImgElement(src : string) : HTMLImageElement {
         var elm = document.createElement('img');
         elm.src = src;
-        document.getElementById('world').appendChild(elm);
         return elm;
     }
 
