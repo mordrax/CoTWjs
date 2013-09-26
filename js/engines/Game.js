@@ -27,10 +27,31 @@ var Game = (function () {
         this._hero = new Player('hero', new WorldCoordinates(MapType.VillageMap, new Point(10, 15)));
         Game.World.AddEntity(this._hero);
 
+        this._monsters = [];
+        for (var i = 0; i < 10; i++) {
+            var location = new WorldCoordinates(MapType.VillageMap, new Point(D(20), D(20)));
+            var sak = {
+                type: Sprites.Actors.Kobold.type,
+                offset: Sprites.Actors.Kobold.offset,
+                size: Sprites.Actors.Kobold.size,
+                turn: Sprites.Actors.Kobold.turn
+            };
+            this._monsters.push(new Monster('monster' + i, sak, location));
+        }
+
+        this._monsters.forEach(function (x) {
+            return Game.World.AddEntity(x);
+        });
+
         Game.World.Initialise();
     }
     Game.prototype.Start = function () {
     };
     return Game;
 })();
+
+function D(high, low) {
+    if (typeof low === "undefined") { low = 1; }
+    return Math.floor(Math.random() * high) + low;
+}
 //# sourceMappingURL=Game.js.map

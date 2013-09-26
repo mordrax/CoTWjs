@@ -1,28 +1,12 @@
 /// <reference path="../references.ts"/>
-
-class Sprite {
-    img:HTMLImageElement;
-    imgOffset:Point;
-    imgSize:Point;
-
-    constructor(img:HTMLImageElement, offset:Point, size:Point=new Point(TILE_SIZE, TILE_SIZE)) {
-        this.img = img;
-        this.imgOffset = offset;
-        this.imgSize = size;
-    }
-}
-
 class GraphicsEngine {
     _canvas : HTMLCanvasElement;
     _ctx : CanvasRenderingContext2D;
     _resources : {};
     _loading : number;
 
-    _screenSize : Point;
     _centerPoint : Point;
-    _areaSize : Point;
-    _positionOffset : Point;
-
+    _canvasTileSize:Point;
 
     constructor() {
         this._canvas = (<HTMLCanvasElement>$('#world')[0]);
@@ -33,10 +17,32 @@ class GraphicsEngine {
         this.LoadResources();
         this.InitialiseScreen();
 
-        Game.World.updatedEvent.add((e:Entity) => {
-            var s = e.sprite;
-            var l = e.location;
-            this._ctx.drawImage(this._resources[s.type], s.offset.x, s.offset.y, s.size.w, s.size.h, (-this._centerPoint.X + l.position.X)*TILE_SIZE+this._screenSize.X/2, (-this._centerPoint.Y + l.position.Y)*TILE_SIZE+this._screenSize.Y/2, s.size.w, s.size.h);
+        Game.World.updatedEvent.add((entity:Entity) => {
+            var sprite = entity.sprite;
+            var location = entity.location;
+
+            var canvasPos = new Point(
+                (location.position.X-this._centerPoint.X+this._canvasTileSize.X/2)*TILE_SIZE,
+                (location.position.Y-this._centerPoint.Y+this._canvasTileSize.Y/2)*TILE_SIZE
+            );
+            if (entity.sprite.turn != 0) {
+                this._ctx.save();
+                this._ctx.translate(canvasPos.X + TILE_SIZE/2, canvasPos.Y + TILE_SIZE/2);
+                this._ctx.rotate(entity.sprite.turn);
+                this._ctx.translate(-canvasPos.X - TILE_SIZE/2, -canvasPos.Y - TILE_SIZE/2);
+            }
+
+            this._ctx.drawImage(
+                this._resources[sprite.type], // src image
+                sprite.offset.x, sprite.offset.y,  // start pixel in src
+                sprite.size.w, sprite.size.h,      // pixel size of src
+                canvasPos.X, canvasPos.Y, // pixel location on canvas
+                sprite.size.w, sprite.size.h       // pixel size on canvas
+            );
+
+            if (entity.sprite.turn != 0) {
+                this._ctx.restore();
+            }
         });
 
         $(window).on('resize', () => this.InitialiseScreen());
@@ -53,9 +59,14 @@ class GraphicsEngine {
     }
 
     private InitialiseScreen() {
-        this._screenSize = new Point($(window).width(), $(window).height());
-        this._canvas.width = this._screenSize.X-64;
-        this._canvas.height = this._screenSize.Y-64;
+        var screenSize = new Point($(window).width(), $(window).height());
+        this._canvas.width = screenSize.X-128;
+        this._canvas.height = screenSize.Y-256;
+
+        this._canvasTileSize = new Point(
+            Math.floor(this._canvas.width/TILE_SIZE),
+            Math.floor(this._canvas.height/TILE_SIZE)
+        )
 
         console.log('initialising screen');
     }
@@ -63,12 +74,6 @@ class GraphicsEngine {
     public Clear() {
         this._ctx.clearRect(0,0,this._canvas.width, this._canvas.height);
     }
-
-//    private UpdatePositionOffset() {
-//        if (this._centerPoint === undefined || this._centerPoint === null) return;
-//        if (this._screenSize === undefined || this._screenSize === null) return;
-//
-//    }
 
     private LoadResources() {
         this._resources[ResourceType.buildings_2x     ] = this.createImgElement('assets/resources/2x_buildings.png');

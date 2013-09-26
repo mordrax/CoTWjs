@@ -12,6 +12,10 @@ var Actor = (function (_super) {
     __extends(Actor, _super);
     function Actor(id, sprite, coord) {
         _super.call(this, id, EntityType.Actor, sprite, coord);
+
+        this._hp = 50;
+        this._att = 2;
+        this._def = 1;
     }
     return Actor;
 })(Entity);

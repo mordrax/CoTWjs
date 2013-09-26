@@ -11,12 +11,12 @@
  * or behaviour of the COTWObject.
  */
 class Entity {
-    sprite:IResource;
+    sprite:Resource;
     location:WorldCoordinates;
     type:EntityType;
     id:string;
 
-    constructor(id: string, type:EntityType, sprite:IResource, location?:WorldCoordinates) {
+    constructor(id: string, type:EntityType, sprite:Resource, location?:WorldCoordinates) {
         this.id = id;
         this.location = location;
         this.sprite = sprite;
@@ -52,9 +52,9 @@ class Point {
 }
 
 class TileFactory {
-    private _tileCollection:collections.Dictionary<string, {name:string; sprite:IResource}>;
+    private _tileCollection:collections.Dictionary<string, {name:string; sprite:Resource}>;
     constructor() {
-        this._tileCollection = new collections.Dictionary<string, {name:string; sprite:IResource}>();
+        this._tileCollection = new collections.Dictionary<string, {name:string; sprite:Resource}>();
 
         this._tileCollection.setValue('^', {name:'Rock',         sprite: Sprites.Tiles.Rock});
         this._tileCollection.setValue(',', {name:'Grass',        sprite: Sprites.Tiles.Grass});
@@ -80,20 +80,26 @@ class TileFactory {
 
     public Create(asciiTile:string):Tile {
         var tile = this._tileCollection.getValue(asciiTile);
-        return new Tile(tile.name, tile.sprite);
+        var sprite : Resource = {
+            type : tile.sprite.type,
+            offset : tile.sprite.offset,
+            size : tile.sprite.size,
+            turn : tile.sprite.turn
+        };
+        return new Tile(tile.name, sprite);
     }
 }
 
 class BuildingFactory {
-    private _buildingcollection : collections.Dictionary<StructureType, {entryPoint:Point; sprite:IResource}>;
+    private _buildingcollection : collections.Dictionary<StructureType, {entryPoint:Point; sprite:Resource}>;
     constructor() {
-        this._buildingcollection = new collections.Dictionary<StructureType, {entryPoint:Point; sprite:IResource}>();
+        this._buildingcollection = new collections.Dictionary<StructureType, {entryPoint:Point; sprite:Resource}>();
 
         this._buildingcollection.setValue(StructureType.Gate_NS       , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Gate_NS      });
         this._buildingcollection.setValue(StructureType.StrawHouse_EF , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.StrawHouse_EF});
         this._buildingcollection.setValue(StructureType.StrawHouse_WF , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.StrawHouse_WF});
         this._buildingcollection.setValue(StructureType.Hut_EF        , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Hut_EF       });
-        this._buildingcollection.setValue(StructureType.HutTemple_NF  , {entryPoint:new Point(2,0), sprite: Sprites.Buildings.HutTemple_NF });
+        this._buildingcollection.setValue(StructureType.HutTemple_NF  , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.HutTemple_NF });
     }
 
     public Create(type:StructureType, id:string, location:WorldCoordinates) : Structure {

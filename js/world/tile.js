@@ -9,21 +9,6 @@ var Tile = (function (_super) {
     __extends(Tile, _super);
     function Tile(id, sprite) {
         _super.call(this, id, EntityType.Tile, sprite);
-        this.RotateAndCache = function (image, angle) {
-            var offscreenCanvas = document.createElement('canvas');
-            var offscreenCtx = offscreenCanvas.getContext('2d');
-
-            var size = Math.max(image.width, image.height);
-            offscreenCanvas.width = size;
-            offscreenCanvas.height = size;
-
-            offscreenCtx.translate(size / 2, size / 2);
-            offscreenCtx.rotate(angle + Math.PI / 2);
-            offscreenCtx.drawImage(image, -(image.width / 2), -(image.height / 2));
-
-            return offscreenCanvas;
-        };
-        this.turn = 0;
     }
     Tile.prototype.DetermineRotation = function (westTile, northTile) {
         var southWestTile;
@@ -53,14 +38,14 @@ var Tile = (function (_super) {
 
         if (westTile === southWestTile) {
             if (northTile === southWestTile) {
-                this.turn = 90;
+                this.sprite.turn = Math.PI / 2;
             } else {
                 // do nothing - no rotation required
             }
         } else if (northTile === southWestTile) {
-            this.turn = 180;
+            this.sprite.turn = Math.PI;
         } else {
-            this.turn = 270;
+            this.sprite.turn = Math.PI * 3 / 2;
         }
     };
     return Tile;

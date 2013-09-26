@@ -2,27 +2,10 @@
 
 class Tile extends Entity {
     solid:boolean;
-    turn:number;
 
-    constructor(id: string, sprite:IResource) {
+    constructor(id: string, sprite:Resource) {
         super(id, EntityType.Tile, sprite);
-        this.turn = 0;
     }
-
-    RotateAndCache = function (image, angle) {
-        var offscreenCanvas = document.createElement('canvas');
-        var offscreenCtx = offscreenCanvas.getContext('2d');
-
-        var size = Math.max(image.width, image.height);
-        offscreenCanvas.width = size;
-        offscreenCanvas.height = size;
-
-        offscreenCtx.translate(size / 2, size / 2);
-        offscreenCtx.rotate(angle + Math.PI / 2);
-        offscreenCtx.drawImage(image, -(image.width / 2), -(image.height / 2));
-
-        return offscreenCanvas;
-    };
 
     DetermineRotation(westTile:string, northTile:string) {
 
@@ -54,17 +37,17 @@ class Tile extends Entity {
 
         if (westTile === southWestTile) {
             if (northTile === southWestTile) {    // north and west
-                this.turn = 90;
+                this.sprite.turn = Math.PI/2;
             }
             else {                          // north and east
                 // do nothing - no rotation required
             }
         }
         else if (northTile === southWestTile) {    // south and west
-            this.turn = 180;
+            this.sprite.turn = Math.PI;
         }
         else {                              // south and east
-            this.turn = 270;
+            this.sprite.turn = Math.PI*3/2;
         }
     }
 }

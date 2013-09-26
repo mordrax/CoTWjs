@@ -74,12 +74,13 @@ var World = (function () {
                     console.log('hit another actor: ' + id);
                 }
             } else if (entity.type === EntityType.Building) {
-                var structurePart = (entity).PointInStructure(newLoc);
+                var building = (entity);
+                var structurePart = building.PointInStructure(newLoc);
                 if (structurePart === StructurePart.Wall) {
                     collision = true;
                     console.log('hit building: ' + id);
                 } else if (structurePart === StructurePart.Entry) {
-                    console.log('hit entry of building: ' + id);
+                    console.log("You have entered: " + id);
                 }
             }
         });
@@ -91,10 +92,10 @@ var World = (function () {
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
-        /* TODO: Fix up map link
+        /*
         var link = this._world.MapLink(newPos);
         if (link !== null) {
-        actor.moveTo(link.Coord);
+        entity.location = new WorldCoordinates()
         return;
         }
         */

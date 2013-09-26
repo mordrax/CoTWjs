@@ -11,6 +11,9 @@ var Player = (function (_super) {
         var _this = this;
         _super.call(this, id, Sprites.Actors.Player, coord);
 
+        this._hp = 100;
+        this._att = 4;
+
         Game.Input.keyboardEvent.add(function (ev) {
             //        LEFT: 37,
             //        UP: 38,

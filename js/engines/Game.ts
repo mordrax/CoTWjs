@@ -21,6 +21,7 @@ class Game {
     public static Input : InputEngine;
     public static Graphics : GraphicsEngine;
     _hero : Player;
+    _monsters : Entity[];
 
     constructor() {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
@@ -33,6 +34,21 @@ class Game {
         this._hero = new Player('hero', new WorldCoordinates(<MapType>MapType.VillageMap, new Point(10,15)));
         Game.World.AddEntity(this._hero);
 
+        this._monsters = [];
+        for (var i=0; i < 10; i++) {
+            var location = new WorldCoordinates(MapType.VillageMap,
+                new Point(D(20), D(20)));
+            var sak : Resource = {
+                type : Sprites.Actors.Kobold.type,
+                offset :Sprites.Actors.Kobold.offset,
+                size:Sprites.Actors.Kobold.size,
+                turn:Sprites.Actors.Kobold.turn
+            }
+            this._monsters.push(new Monster('monster'+i, sak,location))
+        }
+
+        this._monsters.forEach(x => Game.World.AddEntity(x));
+
         Game.World.Initialise();
     }
 
@@ -41,3 +57,6 @@ class Game {
     }
 }
 
+function D(high:number, low:number=1) : number {
+    return Math.floor(Math.random() * high) + low;
+}

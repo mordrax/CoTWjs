@@ -12,7 +12,7 @@ class Structure extends Entity {
     _entry : Point;
 
     //constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
-    constructor (id:string, type:StructureType, entry:Point, sprite:IResource, location:WorldCoordinates) {
+    constructor (id:string, type:StructureType, entry:Point, sprite:Resource, location:WorldCoordinates) {
         super(id, EntityType.Building, sprite, location)
         this._type = type;
         this._entry = entry;
