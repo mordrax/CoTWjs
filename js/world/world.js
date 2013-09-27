@@ -133,19 +133,6 @@ var World = (function () {
         });
     };
 
-    /* TODO: move to graphics engine
-    Draw(ctx:CanvasRenderingContext2D) {
-    for (var x = 0; x < this.CurrentTileSet().length; x++) {
-    for (var y = 0; y < this.CurrentTileSet()[0].length; y++) {
-    this.CurrentTileSet()[x][y].Draw(ctx);
-    }
-    }
-    
-    this.CurrentStructureSet().forEach((x:Structure)=> {
-    x.Draw(ctx);
-    });
-    
-    }*/
     /**
     * Called when a player moves to a point in the world, check if that location is a link
     * If yes, then change the map and send the new location of the player (on the new map) back
