@@ -6,17 +6,6 @@ var MapType;
 })(MapType || (MapType = {}));
 
 /**
-* Links MapTypes via points
-*/
-var MapLink = (function () {
-    function MapLink(map, point) {
-        this.MapName = map;
-        this.Coord = point;
-    }
-    return MapLink;
-})();
-
-/**
 * Dictionary of MapType to ,D array of tiles
 */
 var ASCII_MAPS;
@@ -28,7 +17,7 @@ AREA_STRUCTURES = {};
 var MAP_TO_MAP;
 MAP_TO_MAP = new collections.Dictionary();
 
-MAP_TO_MAP.setValue(new MapLink(MapType.VillageMap, new Point(11, 0)), new MapLink(MapType.FarmMap, new Point(11, 32)));
+MAP_TO_MAP.setValue(new WorldCoordinates(MapType.VillageMap, new Point(11, 0)), new WorldCoordinates(MapType.FarmMap, new Point(11, 32)));
 
 ASCII_MAPS[MapType.VillageMap] = [
     '========,,#+#,,,========',
@@ -96,9 +85,9 @@ ASCII_MAPS[MapType.FarmMap] = [
     ',,,,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,=',
-    ',,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,####,=',
-    ',,,,,,,,,,,,,,,,;..........................+###,=',
-    ',,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,####,=',
+    ',,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,###,,=',
+    ',,,,,,,,,,,,,,,,;..........................+##,,=',
+    ',,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,###,,=',
     ',,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,=======',
     ',,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,=======',
@@ -108,5 +97,8 @@ ASCII_MAPS[MapType.FarmMap] = [
     '========,,#+#,,,,=======,,,,,,,,,,,,,,,,,,,,,,,,,'
 ];
 
-AREA_STRUCTURES[MapType.FarmMap] = [];
+AREA_STRUCTURES[MapType.FarmMap] = [
+    { id: "Village_Gate", type: StructureType.Gate_NS, location: new WorldCoordinates(MapType.FarmMap, new Point(10, 32)) },
+    { id: "HeroBurntFarm", type: StructureType.BurntStrawHouse_WF, location: new WorldCoordinates(MapType.FarmMap, new Point(43, 23)) }
+];
 //# sourceMappingURL=GameMap.js.map

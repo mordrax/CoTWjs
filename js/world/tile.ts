@@ -3,8 +3,8 @@
 class Tile extends Entity {
     solid:boolean;
 
-    constructor(id: string, sprite:Resource) {
-        super(id, EntityType.Tile, sprite);
+    constructor(id: string, sprite:Resource, location:WorldCoordinates) {
+        super(id, EntityType.Tile, sprite, location);
     }
 
     DetermineRotation(westTile:string, northTile:string) {

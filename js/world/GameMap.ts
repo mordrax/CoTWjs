@@ -6,18 +6,6 @@ enum MapType {
 }
 
 /**
- * Links MapTypes via points
- */
-class MapLink {
-    public MapName : MapType;
-    public Coord : Point;
-    constructor (map : MapType, point : Point) {
-        this.MapName = map;
-        this.Coord = point;
-    }
-}
-
-/**
  * Dictionary of MapType to ,D array of tiles
  */
 var ASCII_MAPS:collections.Dictionary<MapType,Array<string>>;
@@ -26,10 +14,10 @@ ASCII_MAPS = new collections.Dictionary<MapType,Array<string>>();
 var AREA_STRUCTURES: {[area:string]:IStructure[]};
 AREA_STRUCTURES = {};
 
-var MAP_TO_MAP : collections.Dictionary<MapLink,MapLink>;
-MAP_TO_MAP = new collections.Dictionary<MapLink,MapLink>();
+var MAP_TO_MAP : collections.Dictionary<WorldCoordinates,WorldCoordinates>;
+MAP_TO_MAP = new collections.Dictionary<WorldCoordinates,WorldCoordinates>();
 
-MAP_TO_MAP.setValue(new MapLink(MapType.VillageMap,new Point(11,0)),new MapLink(MapType.FarmMap,new Point(11,32)));
+MAP_TO_MAP.setValue(new WorldCoordinates(MapType.VillageMap,new Point(11,0)),new WorldCoordinates(MapType.FarmMap,new Point(11,32)));
 
 ASCII_MAPS[MapType.VillageMap] = [
 '========,,#+#,,,========',
@@ -98,9 +86,9 @@ ASCII_MAPS[MapType.FarmMap] = [
     ',,,,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,=',
-    ',,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,####,=',
-    ',,,,,,,,,,,,,,,,;..........................+###,=',
-    ',,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,####,=',
+    ',,,,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,###,,=',
+    ',,,,,,,,,,,,,,,,;..........................+##,,=',
+    ',,,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,###,,=',
     ',,,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,=',
     ',,,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,=======',
     ',,,,,,,,,,,,;.;,,,,,,,,,,,,,,,,,,,,,,,,,,,=======',
@@ -111,6 +99,6 @@ ASCII_MAPS[MapType.FarmMap] = [
 ];
 
 AREA_STRUCTURES[MapType.FarmMap] = [
-    //TODO: fix structures
-    //new Structure ("HeroBurntFarm","WF_BurntStrawHouse",new Point(0,2), new Point(43,22), new Point(3,3), new Point(3,0))
+    {id:"Village_Gate",  type:StructureType.Gate_NS,            location:new WorldCoordinates(MapType.FarmMap, new Point(10,32))},
+    {id:"HeroBurntFarm", type:StructureType.BurntStrawHouse_WF, location:new WorldCoordinates(MapType.FarmMap, new Point(43,23))}
 ];

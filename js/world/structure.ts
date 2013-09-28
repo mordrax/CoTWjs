@@ -18,6 +18,10 @@ class Structure extends Entity {
         this._entry = entry;
     }
 
+    StructureType() : StructureType {
+        return this._type;
+    }
+
     Enter() {
         throw "Not implemented exception.";
         // code called when player enters building

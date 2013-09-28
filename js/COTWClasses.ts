@@ -16,7 +16,7 @@ class Entity {
     type:EntityType;
     id:string;
 
-    constructor(id: string, type:EntityType, sprite:Resource, location?:WorldCoordinates) {
+    constructor(id: string, type:EntityType, sprite:Resource, location:WorldCoordinates) {
         this.id = id;
         this.location = location;
         this.sprite = sprite;
@@ -30,6 +30,9 @@ class WorldCoordinates {
     constructor(area:MapType, position:Point) {
         this.position=position;
         this.area=area;
+    }
+    Equals(otherWC:WorldCoordinates): boolean {
+        return this.area == otherWC.area && this.position.Equals(otherWC.position);
     }
 }
 
@@ -78,7 +81,7 @@ class TileFactory {
         this._tileCollection.setValue('!', {name:'Sign',         sprite: Sprites.Tiles.Sign});
     }
 
-    public Create(asciiTile:string):Tile {
+    public Create(asciiTile:string, location:WorldCoordinates):Tile {
         var tile = this._tileCollection.getValue(asciiTile);
         var sprite : Resource = {
             type : tile.sprite.type,
@@ -86,7 +89,7 @@ class TileFactory {
             size : tile.sprite.size,
             turn : tile.sprite.turn
         };
-        return new Tile(tile.name, sprite);
+        return new Tile(tile.name, sprite, location);
     }
 }
 
@@ -100,6 +103,7 @@ class BuildingFactory {
         this._buildingcollection.setValue(StructureType.StrawHouse_WF , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.StrawHouse_WF});
         this._buildingcollection.setValue(StructureType.Hut_EF        , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Hut_EF       });
         this._buildingcollection.setValue(StructureType.HutTemple_NF  , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.HutTemple_NF });
+        this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF  , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.BurntStrawHouse_WF });
     }
 
     public Create(type:StructureType, id:string, location:WorldCoordinates) : Structure {

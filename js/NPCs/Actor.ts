@@ -8,7 +8,7 @@ class Actor extends Entity {
     _att : number;
     _def : number;
 
-    constructor(id: string, sprite:Resource, coord?:WorldCoordinates) {
+    constructor(id: string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
 
         this._hp = 50;

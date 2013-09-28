@@ -20,6 +20,10 @@ var Structure = (function (_super) {
         this._type = type;
         this._entry = entry;
     }
+    Structure.prototype.StructureType = function () {
+        return this._type;
+    };
+
     Structure.prototype.Enter = function () {
         throw "Not implemented exception.";
         // code called when player enters building
