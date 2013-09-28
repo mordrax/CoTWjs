@@ -66,7 +66,7 @@ class GraphicsEngine {
         this._canvasTileSize = new Point(
             Math.floor(this._canvas.width/TILE_SIZE),
             Math.floor(this._canvas.height/TILE_SIZE)
-        )
+        );
 
         console.log('initialising screen');
     }

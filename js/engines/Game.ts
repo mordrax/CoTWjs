@@ -43,7 +43,7 @@ class Game {
                 offset :Sprites.Actors.Kobold.offset,
                 size:Sprites.Actors.Kobold.size,
                 turn:Sprites.Actors.Kobold.turn
-            }
+            };
             this._monsters.push(new Monster('monster'+i, sak,location))
         }
 
