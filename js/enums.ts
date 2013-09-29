@@ -8,7 +8,7 @@ enum ResourceType {
     SpellEffects    ,
     DifficultyLevel ,
     Monsters        ,
-    Objects         ,
+    Items           ,
     Spells          ,
     Tiles,
     buildings_1x

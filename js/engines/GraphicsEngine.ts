@@ -83,7 +83,7 @@ class GraphicsEngine {
         this._resources[ResourceType.SpellEffects     ] = this.createImgElement('assets/resources/spell_effects.png');
         this._resources[ResourceType.DifficultyLevel  ] = this.createImgElement('assets/resources/difficulty_level.png');
         this._resources[ResourceType.Monsters         ] = this.createImgElement('assets/resources/monsters.png');
-        this._resources[ResourceType.Objects          ] = this.createImgElement('assets/resources/objects.png');
+        this._resources[ResourceType.Items            ] = this.createImgElement('assets/resources/items.png');
         this._resources[ResourceType.Spells           ] = this.createImgElement('assets/resources/spells.png');
         this._resources[ResourceType.Tiles            ] = this.createImgElement('assets/resources/tiles.png');
         this._resources[ResourceType.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
