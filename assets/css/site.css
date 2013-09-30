@@ -1,98 +1,25 @@
-/*.welcome {
-    width:32px;
-    height:32px;
-    background:url('../resources/cotwsprites01.gif') 0 0;
-}
-*/
-
-.tile {
-    width:32px;
-    height:32px;
-    position: absolute;
+#main-game-window .title {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-weight: bold;
 }
 
-.type_Rock { background: url('../resources/tiles.png') 0 0;}
-.type_PathRock { background: url('../resources/tiles.png') 192px 0;}
-.type_Grass { background: url('../resources/tiles.png') 0 288px;}
-.type_PathGrass { background: url('../resources/tiles.png') 192px 288px;}
-.type_Crop { background: url('../resources/tiles.png') 160px 288px;}
-.type_DarkDgn { background: url('../resources/tiles.png') 0 256px;}
-.type_WallDarkDgn { background: url('../resources/tiles.png') 192px 256px;}
-.type_Water { background: url('../resources/tiles.png') 0 224px;}
-.type_WaterGrass { background: url('../resources/tiles.png') 192px 224px;}
-.type_Path { background: url('../resources/tiles.png') 0 192px;}
-.type_WaterPath { background: url('../resources/tiles.png') 192px 192px;}
-.type_LitDgn { background: url('../resources/tiles.png') 0 160px;}
-.type_WallLitDgn { background: url('../resources/tiles.png') 192px 160px;}
-.type_50Grass50Cave {background: url('../resources/tiles.png') 192px 160px;}
-.type_10Grass90Cave {background: url('../resources/tiles.png') 192px 160px;}
-.type_50White50Cave {background: url('../resources/tiles.png') 192px 160px;}
-.type_10White90Cave {background: url('../resources/tiles.png') 192px 160px;}
-
-.type_Entry { background: url('../resources/tiles.png') 192px 160px;}
-.type_Building { background: url('../resources/tiles.png') 192px 160px;}
-.type_Sign { background: url('../resources/tiles.png') 192px 160px;}
-.type_VegePatch { background: url('../resources/tiles.png') 192px 160px;}
-.type_Cart { background: url('../resources/tiles.png') 192px 160px;}
-.type_Well { background: url('../resources/tiles.png') 192px 160px;}
-
-.structure {
-    position: absolute;
-}
-.type_NS_Gate { width:96px; height:32px; background: url('../resources/1x_buildings.png') 0 0;}
-.type_EF_Hut { width:64px; height:64px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_EF_BurntHut { width:64px; height:64px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_NF_Building { width:64px; height:96px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_SF_Building_Yard { width:64px; height:96px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_SF_Building { width:64px; height:96px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_EF_RoundTent { width:64px; height:64px; background: url('../resources/2x_buildings.png') 0 0;}
-.type_EF_StrawHouse { width:96px; height:96px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_EF_BurntStrawHouse { width:96px; height:96px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_WF_StrawHouse { width:96px; height:96px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_WF_BurntStrawHouse { width:96px; height:96px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_EF_Building { width:96px; height:64px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_EF_JunkYard { width:96px; height:96px; background: url('../resources/3x_buildings.png') 0 0;}
-.type_WF_Bank { width:128px; height:96px; background: url('../resources/4x_buildings.png') 0 0;}
-.type_NE_BigHouseGarden { width:128px; height:96px; background: url('../resources/4x_buildings.png') 0 0;}
-.type_NE_BigHouse { width:128px; height:96px; background: url('../resources/4x_buildings.png') 0 0;}
-.type_NS_NF_HutTemple { width:160px; height:160px; background: url('../resources/5x_buildings.png') 0 0;}
-.type_EF_NF_BurntTemple { width:160px; height:160px; background: url('../resources/5x_buildings.png') 0 0;}
-.type_EF_EW_HouseGroup { width:160px; height:256px; background: url('../resources/5x_buildings.png') 0 0;}
-.type_NF_NF_BrickTemple { width:160px; height:160px; background: url('../resources/5x_buildings.png') 0 0;}
-
-
-
-#hero {
-    width:32px;
-    height:32px;
-    background:url('../resources/monsters.png') 0 0;
-    position: absolute;
+#world {
 }
 
-#compass{
-    background: url('../images/compass_rose.png');
-    background-position:0 0;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top:0;
-    left:0;
+#canvas {
+    width:800px;
+    height:800px;
 }
-#touch{
-    background: url('../images/touch.png');
-    background-position:0 0;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top:0;
-    left:0;
+
+#file-menu {
+    background-color: lightgray;
 }
-.touchSegment{
-    background: url('../images/touch_segment.png');
-    background-position:0 0;
-    width: 100px;
-    height: 100px;
+
+#menu-file {
+    width:150px;
+    border: 1px solid Black;
     position: absolute;
-    top:0;
-    left:0;
+    z-index:10;
 }

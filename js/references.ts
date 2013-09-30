@@ -3,7 +3,8 @@
 /// <reference path="interfaces.ts"/>
 /// <reference path="enums.ts"/>
 
-/// <reference path="libs/jquery.d.ts"/>
+/// <reference path="libs/jquery/jquery.d.ts"/>
+/// <reference path="libs/jqueryui/jqueryui.d.ts"/>
 /// <reference path="libs/collections.ts"/>
 /// <reference path="libs/signals/Signal.ts"/>
 /// <reference path="libs/signals/SignalBinding.ts"/>
