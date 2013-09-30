@@ -70,7 +70,7 @@ var World = (function () {
             if (entity.type === EntityType.Actor) {
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    console.log('hit another actor: ' + id);
+                    console.log('You hit the ' + id);
                 }
             } else if (entity.type === EntityType.Building) {
                 var building = (entity);
