@@ -5,8 +5,8 @@ class Player extends Actor {
     constructor(id:string, coord?:WorldCoordinates) {
         super(id, Sprites.Actors.Player, coord);
 
-        this._hp = 100;
-        this._att = 4;
+        // this._hp = 100;
+        // this._att = 10;
 
         Game.Input.keyboardEvent.add((ev) => {
             //        LEFT: 37,

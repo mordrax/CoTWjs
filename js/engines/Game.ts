@@ -39,10 +39,10 @@ class Game {
             var location = new WorldCoordinates(MapType.VillageMap,
                 new Point(D(20), D(20)));
             var sak : Resource = {
-                type : Sprites.Actors.Kobold.type,
-                offset :Sprites.Actors.Kobold.offset,
-                size:Sprites.Actors.Kobold.size,
-                turn:Sprites.Actors.Kobold.turn
+                type:   Sprites.Actors.Kobold.type,
+                offset: Sprites.Actors.Kobold.offset,
+                size:   Sprites.Actors.Kobold.size,
+                turn:   Sprites.Actors.Kobold.turn
             };
             this._monsters.push(new Monster('monster'+i, sak, location));
         }
@@ -55,8 +55,10 @@ class Game {
     Start() {
 
     }
+
 }
 
+// returns a random number from low (i.e. 1) to the high number that is passed in.
 function D(high:number, low:number=1) : number {
     return Math.floor(Math.random() * high) + low;
 }

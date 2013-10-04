@@ -35,6 +35,10 @@ class World {
         this._entities[entity.location.area][entity.id] = entity;
     }
 
+    RemoveEntity(entity:Entity){
+       // this._entities[entity.location.area][entity.id] = ;
+    }
+
     Initialise() {
         this.DispatchUpdatedEvent();
     }
@@ -49,8 +53,8 @@ class World {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     }
 
-    Move(id:string, keycode:number) {
-        var hero_entity = this._entities[this._currentArea][id];
+    Move(heroId:string, keycode:number) {
+        var hero_entity = this._entities[this._currentArea][heroId];
         var loc = hero_entity.location;
         var dir = new Point(0, 0);
         switch (keycode) {
@@ -75,18 +79,21 @@ class World {
 
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
-            var id = entity.id;
+            var entityId = entity.id;
             if (entity.type === EntityType.Actor) {
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    console.log('You hit the ' + id);
+                    (<Player>hero_entity).Attack(<Actor>entity);
+                    if ((<Actor>entity).isDead()){
+                        this.RemoveEntity(entity);
+                    }
                 }
             } else if (entity.type === EntityType.Building) {
                 var building = (<Structure>entity);
                 var structurePart = building.PointInStructure(newLoc);
                 if (structurePart === StructurePart.Wall) {
                     collision = true;
-                    console.log('hit building: ' + id);
+                    console.log('hit building: ' + entityId);
                 } else if (structurePart === StructurePart.Entry) {
                     if (building.StructureType() == StructureType.Gate_NS) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
@@ -94,7 +101,7 @@ class World {
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
                     }
-                    console.log("You have entered: " + id);
+                    console.log("You have entered: " + entityId);
                 }
             }
         }

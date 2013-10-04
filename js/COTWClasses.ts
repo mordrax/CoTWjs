@@ -98,12 +98,12 @@ class BuildingFactory {
     constructor() {
         this._buildingcollection = new collections.Dictionary<StructureType, {entryPoint:Point; sprite:Resource}>();
 
-        this._buildingcollection.setValue(StructureType.Gate_NS       , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Gate_NS      });
-        this._buildingcollection.setValue(StructureType.StrawHouse_EF , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.StrawHouse_EF});
-        this._buildingcollection.setValue(StructureType.StrawHouse_WF , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.StrawHouse_WF});
-        this._buildingcollection.setValue(StructureType.Hut_EF        , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Hut_EF       });
-        this._buildingcollection.setValue(StructureType.HutTemple_NF  , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.HutTemple_NF });
-        this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF  , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.BurntStrawHouse_WF });
+        this._buildingcollection.setValue(StructureType.Gate_NS            , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Gate_NS      });
+        this._buildingcollection.setValue(StructureType.StrawHouse_EF      , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.StrawHouse_EF});
+        this._buildingcollection.setValue(StructureType.StrawHouse_WF      , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.StrawHouse_WF});
+        this._buildingcollection.setValue(StructureType.Hut_EF             , {entryPoint:new Point(1,0), sprite: Sprites.Buildings.Hut_EF       });
+        this._buildingcollection.setValue(StructureType.HutTemple_NF       , {entryPoint:new Point(2,1), sprite: Sprites.Buildings.HutTemple_NF });
+        this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF , {entryPoint:new Point(0,1), sprite: Sprites.Buildings.BurntStrawHouse_WF });
     }
 
     public Create(type:StructureType, id:string, location:WorldCoordinates) : Structure {

@@ -1,6 +1,7 @@
 /// <reference path="references.ts"/>
 
 enum ResourceType {
+    buildings_1x    ,
     buildings_2x    ,
     buildings_3x    ,
     buildings_4x    ,
@@ -10,8 +11,7 @@ enum ResourceType {
     Monsters        ,
     Items           ,
     Spells          ,
-    Tiles,
-    buildings_1x
+    Tiles
 }
 
 enum EntityType {
