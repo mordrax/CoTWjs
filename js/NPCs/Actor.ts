@@ -8,6 +8,7 @@ class Actor extends Entity {
     private _hp : number;               // current health points
     private _att : number;              // attack
     private _def : number;              // defence
+    private _toHit : number;            // % chance to hit
 
     constructor(id: string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
@@ -16,6 +17,7 @@ class Actor extends Entity {
         this._hp = this._hpMax;
         this._att = 2;
         this._def = 1;
+        this._toHit = 50;
     }
 
     // pass in the target that is being attacked

@@ -36,7 +36,8 @@ class World {
     }
 
     RemoveEntity(entity:Entity){
-       // this._entities[entity.location.area][entity.id] = ;
+        console.log(entity.id + ' is slain!');
+        delete this._entities[entity.location.area][entity.id];
     }
 
     Initialise() {
