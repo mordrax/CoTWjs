@@ -22,11 +22,26 @@ class Actor extends Entity {
 
     // pass in the target that is being attacked
     Attack(target: Actor ){
-        var targetStats = target.getStats();
-        var damage = (this._att - targetStats._def) * D(10);
-        target.TakeDamage(damage);
-        console.log(this.id + ' hit the ' + target.id + ' for ' + damage + ' damage... Ouch!!!');
-        console.log(target.id + ' only has ' + targetStats._hp + ' hit points left!');
+        var consoleMsg;
+        var swing = D(100) + this._toHit;
+        if (swing > 99){ //hit and deal damage
+            var targetStats = target.getStats();
+            var damage = (this._att - targetStats._def) * D(10);
+            target.TakeDamage(damage);
+            if (target.isDead()){
+                consoleMsg = (<Player>this).msgKill(damage, target.id);
+            }
+            else {
+                consoleMsg = (<Player>this).msgHit(damage, target.id);
+            }
+        }
+        else {   //miss
+            swing = swing - 50;
+            consoleMsg = (<Player>this).msgMiss(swing, target.id);
+        }
+        console.log(consoleMsg);
+        //console.log(this.id + ' hit the ' + target.id + ' for ' + damage + ' damage... Ouch!!!');
+        //console.log(target.id + ' only has ' + targetStats._hp + ' hit points left!');
     }
 
     // deducts health based on the value passed in
@@ -42,5 +57,7 @@ class Actor extends Entity {
     isDead(): boolean {
         return (this._hp <= 0);
     }
+
+
 
 }
