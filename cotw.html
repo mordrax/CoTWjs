@@ -11,20 +11,18 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.ui.menu.min.css" />
 </head>
 <body style="display:block">
-    <h1 class='welcome'>Welcome to castle of the winds!</h1>
-
     <div id="main-game-window">
         <div class="title">Castle of the Winds</div>
-        <div id="file-menu">            
-            <button id="file-menu-file" class="menu">File</button>
-            <button id="file-menu-character" class="menu">Character</button>            
-            <button id="file-menu-inventory" class="menu">Inventory</button>
-            <button id="file-menu-map" class="menu">Map</button>
-            <button id="file-menu-spell" class="menu">Spell</button>
-            <button id="file-menu-activate" class="menu">Activate</button>
-            <button id="file-menu-verbs" class="menu">Verbs</button>
-            <button id="file-menu-window" class="menu">Window</button>
-        </div>
+        <ul id="file-menu">
+            <li id="file-menu-file" class="menu">File</li>
+            <li id="file-menu-character" class="menu">Character</li>
+            <li id="file-menu-inventory" class="menu">Inventory</li>
+            <li id="file-menu-map" class="menu">Map</li>
+            <li id="file-menu-spell" class="menu">Spell</li>
+            <li id="file-menu-activate" class="menu">Activate</li>
+            <li id="file-menu-verbs" class="menu">Verbs</li>
+            <li id="file-menu-window" class="menu">Window</li>
+        </ul>
         <ul id="menu-file">
             <li><a href="#">New Game</a></li>
             <li><a href="#">Load Game</a></li>
@@ -48,14 +46,14 @@
             <button class="quick-menu"></button>
             <button class="quick-menu"></button>
             <button class="quick-menu"></button>
-            <button class="quick-menu"></button>            
+            <button class="quick-menu"></button>
         </div>
         <canvas id="world"></canvas>
+        <textarea id="messages" readonly>Game Initialised! Use the arrow keys to move about.</textarea>
     </div>
 
     <div id="background" class="layer"></div>
     <div id="hero"></div>
-
 
     <div id="controls" class="layer">
         <div id="touchSegment0" class="touchSegment"></div>

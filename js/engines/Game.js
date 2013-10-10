@@ -36,7 +36,7 @@ var Game = (function () {
                 size: Sprites.Actors.Kobold.size,
                 turn: Sprites.Actors.Kobold.turn
             };
-            this._monsters.push(new Monster('monster' + i, sak, location));
+            this._monsters.push(new Monster('Kobold' + i, sak, location));
         }
 
         this._monsters.forEach(function (x) {
@@ -50,8 +50,13 @@ var Game = (function () {
     return Game;
 })();
 
+// returns a random number from low (i.e. 1) to the high number that is passed in.
 function D(high, low) {
     if (typeof low === "undefined") { low = 1; }
     return Math.floor(Math.random() * high) + low;
+}
+
+function Log(msg) {
+    $('#messages').val(msg + '\n' + $('#messages').val());
 }
 //# sourceMappingURL=Game.js.map

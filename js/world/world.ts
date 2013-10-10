@@ -36,7 +36,7 @@ class World {
     }
 
     RemoveEntity(entity:Entity){
-        console.log(entity.id + ' is slain!');
+        Log(entity.id + ' is slain!');
         delete this._entities[entity.location.area][entity.id];
     }
 
@@ -44,6 +44,10 @@ class World {
         this.DispatchUpdatedEvent();
     }
 
+    /**
+     * Send out update events for all entities and tiles of the current area of the world
+     * @constructor
+     */
     DispatchUpdatedEvent() {
         this._areas.getValue(this._currentArea).forEach(x => {
             (<Array>x).forEach(y=>{
@@ -80,12 +84,12 @@ class World {
 
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
-            var entityId = entity.id;
             if (entity.type === EntityType.Actor) {
+                var target = (<Actor>entity);
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    (<Player>hero_entity).Attack(<Actor>entity);
-                    if ((<Actor>entity).isDead()){
+                    (<Player>hero_entity).Attack(target);
+                    if (target.isDead()){
                         this.RemoveEntity(entity);
                     }
                 }
@@ -94,7 +98,7 @@ class World {
                 var structurePart = building.PointInStructure(newLoc);
                 if (structurePart === StructurePart.Wall) {
                     collision = true;
-                    console.log('hit building: ' + entityId);
+                    Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
                     if (building.StructureType() == StructureType.Gate_NS) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
@@ -102,7 +106,7 @@ class World {
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
                     }
-                    console.log("You have entered: " + entityId);
+                    Log("You have entered: " + entity.id);
                 }
             }
         }
@@ -160,6 +164,17 @@ class World {
         );
     }
 
+    private PrettyPrint (type : MapType) {
+        switch(type) {
+            case MapType.FarmMap:
+                return "Farm";
+            case MapType.VillageMap:
+                return "Village";
+            default:
+                return "An unknown spooky area unintended by the developer!";
+        }
+    }
+
     /**
      * Called when a player moves to a point in the world, check if that location is a link
      * If yes, then change the map and send the new location of the player (on the new map) back
@@ -180,6 +195,7 @@ class World {
         if (link !== null) {
             this._currentArea = link.area;
             this.InitialiseArea(this._currentArea);
+            Log('You have arrived at ' + this.PrettyPrint(this._currentArea));
         }
 
         return link;

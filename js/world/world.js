@@ -25,10 +25,19 @@ var World = (function () {
         this._entities[entity.location.area][entity.id] = entity;
     };
 
+    World.prototype.RemoveEntity = function (entity) {
+        Log(entity.id + ' is slain!');
+        delete this._entities[entity.location.area][entity.id];
+    };
+
     World.prototype.Initialise = function () {
         this.DispatchUpdatedEvent();
     };
 
+    /**
+    * Send out update events for all entities and tiles of the current area of the world
+    * @constructor
+    */
     World.prototype.DispatchUpdatedEvent = function () {
         var _this = this;
         this._areas.getValue(this._currentArea).forEach(function (x) {
@@ -40,8 +49,8 @@ var World = (function () {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     };
 
-    World.prototype.Move = function (id, keycode) {
-        var hero_entity = this._entities[this._currentArea][id];
+    World.prototype.Move = function (heroId, keycode) {
+        var hero_entity = this._entities[this._currentArea][heroId];
         var loc = hero_entity.location;
         var dir = new Point(0, 0);
         switch (keycode) {
@@ -66,18 +75,21 @@ var World = (function () {
 
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
-            var id = entity.id;
             if (entity.type === EntityType.Actor) {
+                var target = (entity);
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    console.log('You hit the ' + id);
+                    (hero_entity).Attack(target);
+                    if (target.isDead()) {
+                        this.RemoveEntity(entity);
+                    }
                 }
             } else if (entity.type === EntityType.Building) {
                 var building = (entity);
                 var structurePart = building.PointInStructure(newLoc);
                 if (structurePart === StructurePart.Wall) {
                     collision = true;
-                    console.log('hit building: ' + id);
+                    Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
                     if (building.StructureType() == StructureType.Gate_NS) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
@@ -85,7 +97,7 @@ var World = (function () {
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
                     }
-                    console.log("You have entered: " + id);
+                    Log("You have entered: " + entity.id);
                 }
             }
         }
@@ -141,6 +153,17 @@ var World = (function () {
         });
     };
 
+    World.prototype.PrettyPrint = function (type) {
+        switch (type) {
+            case MapType.FarmMap:
+                return "Farm";
+            case MapType.VillageMap:
+                return "Village";
+            default:
+                return "An unknown spooky area unintended by the developer!";
+        }
+    };
+
     /**
     * Called when a player moves to a point in the world, check if that location is a link
     * If yes, then change the map and send the new location of the player (on the new map) back
@@ -160,6 +183,7 @@ var World = (function () {
         if (link !== null) {
             this._currentArea = link.area;
             this.InitialiseArea(this._currentArea);
+            Log('You have arrived at ' + this.PrettyPrint(this._currentArea));
         }
 
         return link;

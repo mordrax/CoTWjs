@@ -46,7 +46,7 @@ var GraphicsEngine = (function () {
     GraphicsEngine.prototype.InitialiseScreen = function () {
         var screenSize = new Point($(window).width(), $(window).height());
         this._canvas.width = screenSize.X - 128;
-        this._canvas.height = screenSize.Y - 256;
+        this._canvas.height = screenSize.Y - $('#file-menu').height() - $('#button-menu').height() - $('#messages').height() - $('.title').height() - 100;
 
         this._canvasTileSize = new Point(Math.floor(this._canvas.width / TILE_SIZE), Math.floor(this._canvas.height / TILE_SIZE));
 

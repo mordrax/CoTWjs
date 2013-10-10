@@ -10,6 +10,7 @@ var game = new Game();
 
 var InitialiseUI = function () {
     $('button.menu').button();
+
     $('button.quick-menu').button();
 
     // create file menu, set to not visible

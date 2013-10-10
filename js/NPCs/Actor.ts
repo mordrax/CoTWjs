@@ -39,7 +39,7 @@ class Actor extends Entity {
             swing = swing - 50;
             consoleMsg = (<Player>this).msgMiss(swing, target.id);
         }
-        console.log(consoleMsg);
+        Log(consoleMsg);
         //console.log(this.id + ' hit the ' + target.id + ' for ' + damage + ' damage... Ouch!!!');
         //console.log(target.id + ' only has ' + targetStats._hp + ' hit points left!');
     }

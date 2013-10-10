@@ -62,3 +62,7 @@ class Game {
 function D(high:number, low:number=1) : number {
     return Math.floor(Math.random() * high) + low;
 }
+
+function Log(msg:string) {
+    $('#messages').val(msg + '\n' + $('#messages').val());
+}
