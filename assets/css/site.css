@@ -1,3 +1,9 @@
+#messages {
+    width:100%;
+    height: 100px;
+    border: 1px solid Green;
+}
+
 #main-game-window .title {
     background-color: blue;
     color: white;
@@ -5,58 +11,117 @@
     font-weight: bold;
 }
 
-#world {
-}
-
 #canvas {
     width:800px;
     height:800px;
 }
 
-#file-menu {
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    overflow:hidden;
-    display: inline-block;
+/*.menu {*/
+    /*list-style-type: none;*/
+    /*background-color: lightgray;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+/*.menu li a*/
+/*{*/
+    /*color:#000000;*/
+    /*display:block;*/
+    /*margin:0 0 0 1px;*/
+    /*padding:3px 10px;*/
+    /*background:#ddd;*/
+    /*color:#000;*/
+    /*text-decoration:none;*/
+    /*line-height:1.3em;*/
+/*}*/
+
+/*.menu li.main a {*/
+    /*border: 1px solid #000000;*/
+    /*border-left: 0px;*/
+    /*float:left;*/
+/*}*/
+
+/*.menu li.sub a {*/
+    /*border-top: 0px;*/
+/*}*/
+
+/*.menu li.main:first-of-type a {*/
+    /*border: 1px solid black;*/
+/*}*/
+
+.clear:before, .clear:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
 }
 
-#menu-file {
-    width:150px;
-    border: 1px solid Black;
-    position: absolute;
-    z-index:10;
+.clear:after {
+    clear: both;
 }
 
-#messages {
-    width:100%;
-    height: 100px;
-    border: 1px solid Green;
+
+/* START NAV MENU */
+nav {
+    background-color:aliceblue;
 }
 
-.menu
-{
-    float:left;
-    display: inline-block;
-    padding: 5px;
-    border: 1px solid black;
-    background-color: lightgray;
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-a:link,a:visited
-{
-    display:block;
-    width:120px;
-    font-weight:bold;
-    color:#FFFFFF;
-    background-color:#98bf21;
+nav ul li {
+    display: block;
+    position: relative;
+    float: left;
+
+}
+
+nav li ul {
+    display: none;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 3px 10px;
+    background: #d3d3d3;
+    color: #000000;
+    margin-left: 1px;
+    white-space: nowrap;
     text-align:center;
-    padding:4px;
-    text-decoration:none;
-    text-transform:uppercase;
+    border-right: 1px solid #000000;
 }
 
-a:hover,a:active
-{
-    background-color:#7A991A;
+nav ul li:first-of-type a {
+    border-left: 1px solid #000000;
 }
+
+nav ul li a:hover {
+    background: aliceblue;
+}
+
+nav li:hover ul {
+    display: block;
+    position: absolute;
+}
+
+nav li:hover li {
+    float: none;
+}
+
+nav li:hover a {
+    background: darkgrey;
+}
+
+nav li:hover li a:hover {
+    background: ghostwhite;
+}
+
+nav ul li ul li a {
+    text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+}
+
+/* END NAV MENU */

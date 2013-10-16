@@ -7,28 +7,39 @@
 
     <title>Castle of the Winds - Act One</title>
     <link rel="stylesheet" type="text/css" href="assets/css/site.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.ui.menu.min.css" />
 </head>
-<body style="display:block">
+<body>
     <div id="main-game-window">
         <div class="title">Castle of the Winds</div>
-        <ul id="file-menu">
-            <li id="file-menu-file" class="menu">File</li>
-            <li id="file-menu-character" class="menu">Character</li>
-            <li id="file-menu-inventory" class="menu">Inventory</li>
-            <li id="file-menu-map" class="menu">Map</li>
-            <li id="file-menu-spell" class="menu">Spell</li>
-            <li id="file-menu-activate" class="menu">Activate</li>
-            <li id="file-menu-verbs" class="menu">Verbs</li>
-            <li id="file-menu-window" class="menu">Window</li>
+        <nav>
+        <ul id="mainmenu" class="clear">
+            <li id="menu-file"><a href="#">File</a>
+                <ul id="file-menu" class="clear">
+                    <li><a href="#">New Game</a></li>
+                    <li><a href="#">Load Game</a></li>
+                    <li><a href="#">Save Game</a></li>
+                    <li><a href="#">Quit</a></li>
+                </ul>
+            </li>
+            <li id="menu-character"><a href="#">Character</a></li>
+            <li id="menu-inventory"><a href="#">Inventory</a></li>
+            <li id="menu-map"><a href="#">Map</a></li>
+            <li id="menu-spell"><a href="#">Spell</a></li>
+            <li id="menu-activate"><a href="#">Activate</a></li>
+            <li id="menu-verbs"><a href="#">Verbs</a>
+                <ul>
+                    <li><a href="#">Sleep</a></li>
+                    <li><a href="#">Cast Spell</a></li>
+                    <li><a href="#">Rest</a></li>
+                    <li><a href="#">Blah</a></li>
+                    <li><a href="#">Blah</a></li>
+                    <li><a href="#">Blah</a></li>
+                </ul>
+            </li>
+            <li id="menu-window" class="main"><a href="#">Window</a></li>
         </ul>
-        <ul id="menu-file">
-            <li><a href="#">New Game</a></li>
-            <li><a href="#">Load Game</a></li>
-            <li><a href="#">Save Game</a></li>
-            <li><a href="#">Quit</a></li>
-        </ul>
+
+        </nav>
         <div id="button-menu">
             <button class="menu">Get</button>
             <button class="menu">Free Hand</button>

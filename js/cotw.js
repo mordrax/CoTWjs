@@ -17,8 +17,6 @@ var InitialiseUI = function () {
     $('#file-menu-file').click(function () {
         $('#menu-file').toggle();
     });
-    $('#menu-file').menu();
-    $('#menu-file').toggle(false);
 
     $('#file-menu-character').click(function () {
         console.log('Please implement the character menu!!!');
