@@ -99,3 +99,4 @@ var Sprites:Sprite = {
         BurntStrawHouse_WF  : {type:ResourceType.buildings_3x, offset: {x:288,y:0}, size:{w:96, h:96},  turn:0}
     }
 };
+

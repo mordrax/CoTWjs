@@ -59,7 +59,7 @@ class World {
     }
 
     Move(heroId:string, keycode:number) {
-        var hero_entity = this._entities[this._currentArea][heroId];
+        var hero_entity = <Player>this._entities[this._currentArea][heroId];
         var loc = hero_entity.location;
         var dir = new Point(0, 0);
         switch (keycode) {
@@ -75,8 +75,8 @@ class World {
             case 40: // DOWN
                 dir.Y = 1;
                 break;
-            default:
-                break;
+            default:    // do nothing
+                return;
         }
 
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
@@ -88,9 +88,12 @@ class World {
                 var target = (<Actor>entity);
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    (<Player>hero_entity).Attack(target);
+                    hero_entity.Attack(target);
                     if (target.isDead()){
                         this.RemoveEntity(entity);
+                    }
+                    else{ //monster retaliate
+                        target.Attack(hero_entity);
                     }
                 }
             } else if (entity.type === EntityType.Building) {
