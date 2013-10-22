@@ -9,6 +9,8 @@ var Monster = (function (_super) {
     __extends(Monster, _super);
     function Monster(id, sprite, coord) {
         _super.call(this, id, sprite, coord);
+
+        this._loot = "copper coins";
     }
     return Monster;
 })(Actor);

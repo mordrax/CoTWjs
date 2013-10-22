@@ -20,6 +20,10 @@ var Structure = (function (_super) {
         this._type = type;
         this._entry = entry;
     }
+    Structure.prototype.IsShop = function () {
+        return (this.id.indexOf('Sage') !== -1) || (this.id.indexOf('Store') !== -1) || (this.id.indexOf('Blacksmith') !== -1);
+    };
+
     Structure.prototype.StructureType = function () {
         return this._type;
     };

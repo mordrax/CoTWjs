@@ -18,6 +18,12 @@ class Structure extends Entity {
         this._entry = entry;
     }
 
+    IsShop() : boolean {
+        return (this.id.indexOf('Sage') !== -1) ||
+            (this.id.indexOf('Store') !== -1) ||
+            (this.id.indexOf('Blacksmith') !== -1);
+    }
+
     StructureType() : StructureType {
         return this._type;
     }

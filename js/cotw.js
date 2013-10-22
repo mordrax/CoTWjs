@@ -39,6 +39,38 @@ var InitialiseUI = function () {
     $('#file-menu-window').click(function () {
         console.log('Please implement the window menu!!!');
     });
+    $('#menu-window-main').click(function () {
+        gotoScreen(ScreenType.Main);
+    });
+    $('#menu-window-shop').click(function () {
+        gotoScreen(ScreenType.Shop);
+    });
+    $('#menu-exit').click(function () {
+        gotoScreen(ScreenType.Main);
+    });
+    $('#menu-sortpack').click(function () {
+        $('#top-window').append('<div class="equipment"></div>');
+    });
+    $('#menu-nameobject').click(function () {
+        $('#bottom-window').append('<div class="equipment"></div>');
+    });
+};
+
+var gotoScreen = function (screen) {
+    switch (screen) {
+        case ScreenType.Shop:
+            $('#main-game-window').hide();
+            $('#shop-window').show();
+            $('[data-visible-menu="main"]').hide();
+            $('[data-visible-menu="shop"]').show();
+            break;
+        case ScreenType.Main:
+        default:
+            $('#main-game-window').show();
+            $('#shop-window').hide();
+            $('[data-visible-menu="main"]').show();
+            $('[data-visible-menu="shop"]').hide();
+    }
 };
 
 function pageReady() {

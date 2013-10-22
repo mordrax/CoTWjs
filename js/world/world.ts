@@ -108,6 +108,8 @@ class World {
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
+                    } else if (building.IsShop()) {
+                        gotoScreen(ScreenType.Shop);
                     }
                     Log("You have entered: " + entity.id);
                 }

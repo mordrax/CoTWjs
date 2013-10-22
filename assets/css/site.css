@@ -1,10 +1,21 @@
 #messages {
-    width:100%;
+    display: inline-block;
+    float: left;
+    width:75%;
     height: 100px;
     border: 1px solid Green;
+    overflow: auto;
 }
 
-#main-game-window .title {
+#hero-status {
+    display: inline-block;
+    float: left;
+    width:20%;
+    height: 100px;
+    border: 1px solid green;
+}
+
+.title {
     background-color: blue;
     color: white;
     text-align: center;
@@ -15,38 +26,6 @@
     width:800px;
     height:800px;
 }
-
-/*.menu {*/
-    /*list-style-type: none;*/
-    /*background-color: lightgray;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
-/*.menu li a*/
-/*{*/
-    /*color:#000000;*/
-    /*display:block;*/
-    /*margin:0 0 0 1px;*/
-    /*padding:3px 10px;*/
-    /*background:#ddd;*/
-    /*color:#000;*/
-    /*text-decoration:none;*/
-    /*line-height:1.3em;*/
-/*}*/
-
-/*.menu li.main a {*/
-    /*border: 1px solid #000000;*/
-    /*border-left: 0px;*/
-    /*float:left;*/
-/*}*/
-
-/*.menu li.sub a {*/
-    /*border-top: 0px;*/
-/*}*/
-
-/*.menu li.main:first-of-type a {*/
-    /*border: 1px solid black;*/
-/*}*/
 
 .clear:before, .clear:after {
     content: "\0020";
@@ -59,12 +38,15 @@
     clear: both;
 }
 
-
 /* START NAV MENU */
 nav {
     background-color:aliceblue;
 }
 
+nav button {
+    margin: 0;
+    padding: 3px 10px;
+}
 
 nav ul {
     margin: 0;
@@ -92,11 +74,11 @@ nav ul li a {
     margin-left: 1px;
     white-space: nowrap;
     text-align:center;
-    border-right: 1px solid #000000;
+    border-right: 1px solid #d3d3d3;
 }
 
 nav ul li:first-of-type a {
-    border-left: 1px solid #000000;
+    border-left: 1px solid #d3d3d3;
 }
 
 nav ul li a:hover {
@@ -125,3 +107,52 @@ nav ul li ul li a {
 }
 
 /* END NAV MENU */
+
+
+/* START SHOP WINDOW */
+#equipment-main {
+    float: left;
+    border: 1px solid red;
+    width:40%;
+    height:600px;
+}
+#equipment-side {
+    float: right;
+    border: 1px solid brown;
+    width:55%;
+    height:600px;
+}
+
+#top-window {
+    height: 50%;
+}
+
+.middle-bar,
+.middle-right-bar {
+    float:left;
+}
+
+.bottom-bar {
+    position: absolute;
+}
+
+.top-bar .equipment-slot {
+    float:left;
+}
+
+.equipment,
+.equipment-slot {
+    height: 100px;
+    width: 70px;
+    border: 1px dashed black;
+}
+
+.equipment {
+    float:left;
+}
+
+#slot-dude {
+    float: left;
+    width: 216px;
+}
+/* END SHOP WINDOW */

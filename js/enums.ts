@@ -1,5 +1,23 @@
 /// <reference path="references.ts"/>
 
+enum MessageType {
+    Normal,
+
+    /* Attack messages: Perspective of the hero */
+    Hit,
+    Miss,
+    Kill,
+    Dodged,
+    GotHit,
+    Killed
+
+}
+
+enum ScreenType {
+    Main,
+    Shop
+}
+
 enum ResourceType {
     buildings_1x    ,
     buildings_2x    ,

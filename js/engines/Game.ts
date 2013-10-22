@@ -63,6 +63,18 @@ function D(high:number, low:number=1) : number {
     return Math.floor(Math.random() * high) + low;
 }
 
-function Log(msg:string) {
-    $('#messages').val(msg + '\n' + $('#messages').val());
+function Log(msg:string, msgtype:MessageType=MessageType.Normal) {
+    $('#messages').prepend('<div class="{0}">{1}</div>'.format(msgtype, msg));
+}
+
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
 }

@@ -9,37 +9,59 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site.css" />
 </head>
 <body>
-    <div id="main-game-window">
-        <div class="title">Castle of the Winds</div>
-        <nav>
-        <ul id="mainmenu" class="clear">
-            <li id="menu-file"><a href="#">File</a>
-                <ul id="file-menu" class="clear">
-                    <li><a href="#">New Game</a></li>
-                    <li><a href="#">Load Game</a></li>
-                    <li><a href="#">Save Game</a></li>
-                    <li><a href="#">Quit</a></li>
-                </ul>
-            </li>
-            <li id="menu-character"><a href="#">Character</a></li>
-            <li id="menu-inventory"><a href="#">Inventory</a></li>
-            <li id="menu-map"><a href="#">Map</a></li>
-            <li id="menu-spell"><a href="#">Spell</a></li>
-            <li id="menu-activate"><a href="#">Activate</a></li>
-            <li id="menu-verbs"><a href="#">Verbs</a>
-                <ul>
-                    <li><a href="#">Sleep</a></li>
-                    <li><a href="#">Cast Spell</a></li>
-                    <li><a href="#">Rest</a></li>
-                    <li><a href="#">Blah</a></li>
-                    <li><a href="#">Blah</a></li>
-                    <li><a href="#">Blah</a></li>
-                </ul>
-            </li>
-            <li id="menu-window" class="main"><a href="#">Window</a></li>
-        </ul>
-
-        </nav>
+<div class="title">Castle of the Winds</div>
+<nav>
+    <ul id="mainmenu" class="clear">
+        <li id="menu-exit" data-visible-menu="shop">
+            <a href="#">E<u>x</u>it</a></li>
+        <li id="menu-file" data-visible-menu="main">
+            <a href="#"><u>F</u>ile</a>
+            <ul id="file-menu" class="clear">
+                <li><a href="#">New Game</a></li>
+                <li><a href="#">Load Game</a></li>
+                <li><a href="#">Save Game</a></li>
+                <li><a href="#">Quit</a></li>
+            </ul>
+        </li>
+        <li id="menu-character" data-visible-menu="both">
+            <a href="#"><u>C</u>haracter</a></li>
+        <li id="menu-sortpack" data-visible-menu="shop">
+            <a href="#">Sort <u>P</u>ack</a></li>
+        <li id="menu-nameobject" data-visible-menu="shop">
+            <a href="#"><u>N</u>ame Object</a></li>
+        <li id="menu-inventory" data-visible-menu="main">
+            <a href="#"><u>I</u>nventory</a></li>
+        <li id="menu-map" data-visible-menu="main">
+            <a href="#"><u>M</u>ap</a></li>
+        <li id="menu-spell" data-visible-menu="both">
+            <a href="#"><u>S</u>pell</a></li>
+        <li id="menu-activate" data-visible-menu="both">
+            <a href="#"><u>A</u>ctivate</a></li>
+        <li id="menu-verbs" data-visible-menu="main">
+            <a href="#"><u>V</u>erbs</a>
+            <ul>
+                <li><a href="#"><u>G</u>et</a></li>
+                <li><a href="#">E<u>x</u>amine</a></li>
+                <li><a href="#"><u>F</u>ree Hand</a></li>
+                <li><a href="#"><u>S</u>earch</a></li>
+                <li><a href="#"><u>D</u>isarm Trap</a></li>
+                <li><a href="#"><u>R</u>est Until Healed</a></li>
+                <li><a href="#"><u>O</u>pen</a></li>
+                <li><a href="#"><u>C</u>lose</a></li>
+                <li><a href="#"><u>&lt;</u> Climb Up Stairs</a></li>
+                <li><a href="#"><u>&gt;</u> Climb Up Stairs</a></li>
+            </ul>
+        </li>
+        <li id="menu-window" data-visible-menu="both" class="main">
+            <a href="#"><u>W</u>indow</a>
+            <ul>
+                <li id="menu-window-main"><a href="#">Main</a></li>
+                <li id="menu-window-shop"><a href="#">Shop</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+    <div style="display: none" id="main-game-window">
         <div id="button-menu">
             <button class="menu">Get</button>
             <button class="menu">Free Hand</button>
@@ -60,7 +82,80 @@
             <button class="quick-menu"></button>
         </div>
         <canvas id="world"></canvas>
-        <textarea id="messages" readonly>Game Initialised! Use the arrow keys to move about.</textarea>
+        <div id="messages">
+            <div>Game Initialised! Use the arrow keys to move about.</div>
+        </div>
+        <textarea id="hero-status" readonly>
+Hero status:
+Still alive!
+        </textarea>
+    </div>
+
+    <div id="shop-window">
+        <div id="equipment-main">
+            <div class="top-bar clear">
+                <div id="slot-armor" class="equipment-slot">
+                    <img src="default-armor.png">
+                </div>
+                <div id="slot-pendant" class="equipment-slot">
+                    <img src="default-pendant.png">
+                </div>
+                <div id="slot-cloak" class="equipment-slot">
+                    <img src="default-cloak.png">
+                </div>
+                <div id="slot-helmet" class="equipment-slot">
+                    <img src="default-helmet.png">
+                </div>
+                <div id="slot-shield" class="equipment-slot">
+                    <img src="default-shield.png">
+                </div>
+            </div>
+            <div class="bottom-bar clear">
+            <div class="middle-bar">
+                <div id="slot-bracer" class="equipment-slot">
+                    <img src="default-bracer.png">
+                </div>
+                <div id="slot-left-hand" class="equipment-slot">
+                    <img src="default-left-hand.png">
+                </div>
+                <div id="slot-left-ring" class="equipment-slot">
+                    <img src="default-left-ring.png">
+                </div>
+                <div id="slot-belt" class="equipment-slot">
+                    <img src="default-belt.png">
+                </div>
+                <div id="slot-pack" class="equipment-slot">
+                    <img src="default-pack.png">
+                </div>
+            </div>
+            <img id="slot-dude" src="assets\resources\equipment-dude.jpg">
+            <div class="middle-right-bar">
+                <div id="slot-gauntlet" class="equipment-slot">
+                    <img src="default-gauntlet.png">
+                </div>
+                <div id="slot-right-hand" class="equipment-slot">
+                    <img src="default-right-hand.png">
+                </div>
+                <div id="slot-right-ring" class="equipment-slot">
+                    <img src="default-right-ring.png">
+                </div>
+                <div id="slot-boot" class="equipment-slot">
+                    <img src="default-boot.png">
+                </div>
+                <div id="slot-purse" class="equipment-slot">
+                    <img src="default-purse.png">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="equipment-side">
+            <div id="top-window">
+                <div class="title">Shop</div>
+            </div>
+            <div id="bottom-window">
+                <div class="title">Inventory</div>
+            </div>
+        </div>
     </div>
 
     <div id="background" class="layer"></div>

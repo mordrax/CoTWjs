@@ -67,7 +67,7 @@ var World = (function () {
                 dir.Y = 1;
                 break;
             default:
-                break;
+                return;
         }
 
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
@@ -79,9 +79,11 @@ var World = (function () {
                 var target = (entity);
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    (hero_entity).Attack(target);
+                    hero_entity.Attack(target);
                     if (target.isDead()) {
                         this.RemoveEntity(entity);
+                    } else {
+                        target.Attack(hero_entity);
                     }
                 }
             } else if (entity.type === EntityType.Building) {
@@ -96,6 +98,8 @@ var World = (function () {
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
+                    } else if (building.IsShop()) {
+                        gotoScreen(ScreenType.Shop);
                     }
                     Log("You have entered: " + entity.id);
                 }
