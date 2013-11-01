@@ -4,13 +4,13 @@
  * Base class for all living things in the game, hero, monsters, friendly npcs etc
  */
 class Actor extends Entity {
-    private _hpMax : number;            // maximum health points
-    public  hp : number;               // current health points
-    public  att : number;              // attack
-    private _def : number;              // defence
-    private _toHit : number;            // % chance to hit
+    private _hpMax:number;            // maximum health points
+    public  hp:number;               // current health points
+    public  att:number;              // attack
+    private _def:number;              // defence
+    private _toHit:number;            // % chance to hit
 
-    constructor(id: string, sprite:Resource, coord:WorldCoordinates) {
+    constructor(id:string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
 
         this._hpMax = 50;
@@ -21,14 +21,14 @@ class Actor extends Entity {
     }
 
     // pass in the target that is being attacked
-    Attack(target: Actor ){
+    Attack(target:Actor) {
         var consoleMsg;
         var swing = D(100) + this._toHit;
-        if (swing > 99){ //hit and deal damage
+        if (swing > 99) { //hit and deal damage
             var targetStats = target.getStats();
             var damage = (this.att - targetStats._def) * D(10);
             target.TakeDamage(damage);
-            if (target.isDead()){
+            if (target.isDead()) {
                 consoleMsg = this.msgKill(damage, target.id);
             }
             else {
@@ -45,23 +45,23 @@ class Actor extends Entity {
     }
 
     // deducts health based on the value passed in
-    TakeDamage(damage: number){
+    TakeDamage(damage:number) {
         this.hp = this.hp - damage;
     }
 
-    getStats(){
+    getStats() {
         return this;
     }
 
     // returns true if hit points are less than or equal to 0
-    isDead(): boolean {
+    isDead():boolean {
         return (this.hp <= 0);
     }
 
 
-    msgHit(damage: number, targetName: string){
+    msgHit(damage:number, targetName:string) {
         var consoleMsg;
-        if (targetName === "hero"){
+        if (targetName === "hero") {
             consoleMsg = this.id + ' slashes you for ' + damage + " damage... Ouch!";
             return consoleMsg;
         }
@@ -98,9 +98,9 @@ class Actor extends Entity {
         return consoleMsg;
     }
 
-    msgKill(damage: number, targetName: string){
+    msgKill(damage:number, targetName:string) {
         var consoleMsg;
-        if (targetName === "hero"){
+        if (targetName === "hero") {
             consoleMsg = this.id + ' slashes you for ' + damage + " damage... and you're dead! GAME OVER!!!";
             return consoleMsg;
         }
@@ -128,9 +128,9 @@ class Actor extends Entity {
         return consoleMsg;
     }
 
-    msgMiss(chanceToHit: number, targetName: string){
+    msgMiss(chanceToHit:number, targetName:string) {
         var consoleMsg;
-        if (targetName === "hero"){
+        if (targetName === "hero") {
             consoleMsg = this.id + ' swings widely as you sidestep the blow.';
             return consoleMsg;
         }

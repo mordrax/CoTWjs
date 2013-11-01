@@ -9,7 +9,7 @@ var Player = (function (_super) {
     __extends(Player, _super);
     function Player(id, coord) {
         var _this = this;
-        _super.call(this, id, Sprites.Actors.Player, coord);
+        _super.call(this, id, CoTWSprites.Actors.Player, coord);
 
         this.hp = 1000;
         this.att = 10;
