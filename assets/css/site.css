@@ -142,7 +142,8 @@ nav ul li ul li a {
 
 .equipment,
 .equipment-slot {
-    height: 100px;
+    height: 90px;
+    padding-top: 10px;
     width: 70px;
     border: 1px dashed black;
 }

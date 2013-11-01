@@ -186,7 +186,7 @@ class GraphicsEngine {
     }
 
     private AddToMainInventory(id:number, sprite:Resource, label:string) {
-        $('#top-window').append('<div id=item-{0} class="equipment"><img style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -{1}px -{2}px;display:block;margin:0 auto;"></img>{3}</div>'.format(id, sprite.offset.x, sprite.offset.y, label));
+        $('#top-window').append('<div id=item-{0} class="equipment"><div style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -{1}px -{2}px;display:block;margin:0 auto;"></div>{3}</div>'.format(id, sprite.offset.x, sprite.offset.y, label));
         console.log("trying to show shop inventory" + id + " " + sprite);
     }
 
