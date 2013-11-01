@@ -147,6 +147,11 @@ nav ul li ul li a {
     border: 1px dashed black;
 }
 
+.placeholder-slot {
+    text-align: center;
+    margin-top: 10px;
+}
+
 .equipment {
     float:left;
 }

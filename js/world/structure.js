@@ -54,6 +54,9 @@ var Shop = (function (_super) {
         _super.call(this, id, type, entry, sprite, location);
         this._inventory = inventory;
     }
+    Shop.prototype.GetInventory = function () {
+        return this._inventory;
+    };
     return Shop;
 })(Structure);
 

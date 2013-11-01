@@ -55,7 +55,13 @@ class Shop extends Structure {
         super(id, type, entry, sprite, location);
         this._inventory = inventory;
     }
+
+    GetInventory() {
+        return this._inventory;
+    }
 }
+
+
 
 enum StructurePart {
     Wall,

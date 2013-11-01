@@ -13,10 +13,10 @@ var __extends = this.__extends || function (d, b) {
 * - Ground
 * - Other containers (nested containers like packs/purse)
 */
-var InventoryEngine = (function () {
-    function InventoryEngine() {
+var Inventory = (function () {
+    function Inventory() {
     }
-    return InventoryEngine;
+    return Inventory;
 })();
 
 var ActorInventory = (function (_super) {
@@ -25,7 +25,7 @@ var ActorInventory = (function (_super) {
         _super.apply(this, arguments);
     }
     return ActorInventory;
-})(InventoryEngine);
+})(Inventory);
 
 var ShopInventory = (function (_super) {
     __extends(ShopInventory, _super);
@@ -36,11 +36,14 @@ var ShopInventory = (function (_super) {
         this._items = [];
 
         goodsType.forEach(function (x) {
+            // all items of type
+            var items = Items[ItemType[x]];
+            var keys = Object.keys(items);
             for (var i = 0; i < 5; i++) {
-                _this._items.push(Items[ItemType[x]]);
+                _this._items.push(items[keys[D(0, keys.length - 1)]]);
             }
         });
     }
     return ShopInventory;
-})(InventoryEngine);
+})(Inventory);
 //# sourceMappingURL=InventoryEngine.js.map

@@ -141,6 +141,9 @@ var GraphicsEngine = (function () {
                 $('[data-visible-menu="shop"]').hide();
         }
     };
+
+    GraphicsEngine.prototype.UpdateInventory = function (playerInventory, mainInventory, otherInventory) {
+    };
     return GraphicsEngine;
 })();
 //# sourceMappingURL=GraphicsEngine.js.map
