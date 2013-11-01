@@ -147,7 +147,7 @@ var GraphicsEngine = (function () {
         //show contents of main inventory
         var main_items = mainInventory.GetItems();
         main_items.forEach(function (x) {
-            _this.AddToMainInventory(x.ID, x.item.sprite);
+            _this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
         });
 
         for (var slot in equipment) {
@@ -165,8 +165,8 @@ var GraphicsEngine = (function () {
         }
     };
 
-    GraphicsEngine.prototype.AddToMainInventory = function (id, sprite) {
-        $('#top-window').append('<div id=item-' + id + ' class="equipment" style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px"></div>');
+    GraphicsEngine.prototype.AddToMainInventory = function (id, sprite, label) {
+        $('#top-window').append('<div id=item-{0} class="equipment"><img style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -{1}px -{2}px;display:block;margin:0 auto;"></img>{3}</div>'.format(id, sprite.offset.x, sprite.offset.y, label));
         console.log("trying to show shop inventory" + id + " " + sprite);
     };
 
