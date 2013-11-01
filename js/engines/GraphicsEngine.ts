@@ -167,6 +167,8 @@ class GraphicsEngine {
     public UpdateInventory(equipment:IEquipment, mainInventory:Inventory) {
         //show contents of main inventory
         var main_items = mainInventory.GetItems();
+
+        $('#top-window').empty();
         main_items.forEach(x => {
             this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
         });

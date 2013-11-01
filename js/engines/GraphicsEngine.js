@@ -146,6 +146,8 @@ var GraphicsEngine = (function () {
         var _this = this;
         //show contents of main inventory
         var main_items = mainInventory.GetItems();
+
+        $('#top-window').empty();
         main_items.forEach(function (x) {
             _this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
         });

@@ -125,6 +125,7 @@ nav ul li ul li a {
 
 #top-window {
     height: 50%;
+    overflow-y: scroll;
 }
 
 .middle-bar,
@@ -156,6 +157,7 @@ nav ul li ul li a {
 .equipment {
     float:left;
     text-align: center;
+    border: none;
 }
 
 #slot-dude {
