@@ -55,7 +55,6 @@ class Game {
     Start() {
 
     }
-
 }
 
 // returns a random number from low (i.e. 1) to the high number that is passed in.

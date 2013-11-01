@@ -9,6 +9,7 @@ class Actor extends Entity {
     public  att:number;              // attack
     private _def:number;              // defence
     private _toHit:number;            // % chance to hit
+    private _inventory:ActorInventory;
 
     constructor(id:string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
@@ -18,6 +19,12 @@ class Actor extends Entity {
         this.att = 2;
         this._def = 1;
         this._toHit = 50;
+
+        this._inventory = new ActorInventory();
+    }
+
+    GetInventory(): ActorInventory {
+        return this._inventory;
     }
 
     // pass in the target that is being attacked

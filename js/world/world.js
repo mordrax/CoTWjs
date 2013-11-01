@@ -98,8 +98,9 @@ var World = (function () {
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
-                    } else if (building.IsShop()) {
+                    } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
+                        Game.Graphics.UpdateInventory(hero_entity.GetInventory(), (building).GetInventory());
                     }
                     Log("You have entered: " + entity.id);
                 }

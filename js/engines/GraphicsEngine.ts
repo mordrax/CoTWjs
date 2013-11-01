@@ -163,4 +163,8 @@ class GraphicsEngine {
                     $('[data-visible-menu="shop"]').hide();
             }
     }
+
+    public UpdateInventory(playerInventory:ActorInventory, mainInventory:Inventory, otherInventory?:Inventory[] ) {
+
+    }
 }
