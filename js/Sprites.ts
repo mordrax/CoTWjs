@@ -96,5 +96,7 @@ var CoTWSprites = {
         Pack                          : {type:ResourceType.Items, offset:{x:96, y:608}},
         Chest                         : {type:ResourceType.Items, offset:{x:64, y:608}},
         EnchantedPack                 : {type:ResourceType.Items, offset:{x:128, y:608}},
+        EnchantedHelmofStorms         : {type:ResourceType.Items, offset:{x:32, y:704}}
+
     }
 };
