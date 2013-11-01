@@ -35,9 +35,9 @@ enum WeaponType {
 }
 
 enum ArmourType {
-    Rustyarmour,
-    Leatherarmour,
-    StuddedLeatherarmour,
+    BrokenArmour,
+    LeatherArmour,
+    StuddedLeatherArmour,
     RingMail,
     ScaleMail,
     ChainMail,
