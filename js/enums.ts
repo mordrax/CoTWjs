@@ -35,15 +35,15 @@ enum WeaponType {
 }
 
 enum ArmourType {
-    RustyArmor,
-    LeatherArmor,
-    StuddedLeatherArmor,
+    Rustyarmour,
+    Leatherarmour,
+    StuddedLeatherarmour,
     RingMail,
     ScaleMail,
     ChainMail,
     SplintMail,
     PlateMail,
-    PlateArmor,
+    Platearmour,
     MeteoricSteelPlate,
     ElvenChainMail
 }

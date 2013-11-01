@@ -45,15 +45,15 @@ var Items = {
         TwoHandedSword:               {type: ItemType.Weapon,        name:'Two Handed Sword',                 weight:5000,  bulk:12000,  buy:6360,         sell:3600,   sprite:CoTWSprites.Items.TwoHandedSword,               weaponClass:12 }
     },
     Armour: {
-        RustyArmor:                   {type: ItemType.Armour,        name:'Rusty Armor',                      weight:10000, bulk:30000,  buy:NaN,          sell:25,     sprite:CoTWSprites.Items.BrokenArmour,                   ac:0     },
-        LeatherArmor:                 {type: ItemType.Armour,        name:'Leather Armor',                    weight:5000,  bulk:2400,   buy:1080,         sell:600,    sprite:CoTWSprites.Items.LeatherArmour,                 ac:6     },
-        StuddedLeatherArmor:          {type: ItemType.Armour,        name:'Studded Leather Armor',            weight:7000,  bulk:25000,  buy:3150,         sell:1800,   sprite:CoTWSprites.Items.LeatherArmour,          ac:12    },
+        Rustyarmour:                   {type: ItemType.Armour,        name:'Rusty armour',                      weight:10000, bulk:30000,  buy:NaN,          sell:25,     sprite:CoTWSprites.Items.BrokenArmour,                   ac:0     },
+        Leatherarmour:                 {type: ItemType.Armour,        name:'Leather armour',                    weight:5000,  bulk:2400,   buy:1080,         sell:600,    sprite:CoTWSprites.Items.LeatherArmour,                 ac:6     },
+        StuddedLeatherarmour:          {type: ItemType.Armour,        name:'Studded Leather armour',            weight:7000,  bulk:25000,  buy:3150,         sell:1800,   sprite:CoTWSprites.Items.LeatherArmour,          ac:12    },
         RingMail:                     {type: ItemType.Armour,        name:'Ring Mail',                        weight:8000,  bulk:30000,  buy:6300,         sell:3600,   sprite:CoTWSprites.Items.SteelArmour,                     ac:18    },
         ScaleMail:                    {type: ItemType.Armour,        name:'Scale Mail',                       weight:9000,  bulk:30000,  buy:10800,        sell:6000,   sprite:CoTWSprites.Items.ScaleMail,                    ac:24    },
         ChainMail:                    {type: ItemType.Armour,        name:'Chain Mail',                       weight:10000, bulk:30000,  buy:16200,        sell:9000,   sprite:CoTWSprites.Items.ChainMail,                    ac:30    },
         SplintMail:                   {type: ItemType.Armour,        name:'Splint Mail',                      weight:12000, bulk:40000,  buy:27000,        sell:15000,  sprite:CoTWSprites.Items.SplintMail,                   ac:36    },
         PlateMail:                    {type: ItemType.Armour,        name:'Plate Mail',                       weight:15000, bulk:40000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.PlateMail,                    ac:42    },
-        PlateArmor:                   {type: ItemType.Armour,        name:'Plate Armor',                      weight:15000, bulk:60000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.PlateArmor,                   ac:48    },
+        Platearmour:                   {type: ItemType.Armour,        name:'Plate armour',                      weight:15000, bulk:60000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.Platearmour,                   ac:48    },
         MeteoricSteelPlate:           {type: ItemType.Armour,        name:'Meteoric Steel Plate',             weight:5000,  bulk:30000,  buy:105000,       sell:60000,  sprite:CoTWSprites.Items.MeteoricSteelPlate,           ac:54    },
         ElvenChainMail:               {type: ItemType.Armour,        name:'Elven Chain Mail',                 weight:50000, bulk:24000,  buy:162000,       sell:90000,  sprite:CoTWSprites.Items.ElvenChainMail,               ac:52    }
     },

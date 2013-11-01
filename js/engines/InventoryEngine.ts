@@ -13,7 +13,7 @@ class Inventory {
 }
 
 class ActorInventory extends Inventory {
-    armor    : Item;
+    armour    : Item;
     pendant  : Item;
     cloak    : Item;
     helmet   : Item;
