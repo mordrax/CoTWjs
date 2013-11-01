@@ -52,11 +52,8 @@ var Shop = (function (_super) {
     __extends(Shop, _super);
     function Shop(id, type, entry, sprite, location, inventory) {
         _super.call(this, id, type, entry, sprite, location);
-        this._inventory = inventory;
+        this.inventory = inventory;
     }
-    Shop.prototype.GetInventory = function () {
-        return this._inventory;
-    };
     return Shop;
 })(Structure);
 

@@ -12,24 +12,6 @@ class Inventory {
     _items:Item[];
 }
 
-class ActorInventory extends Inventory {
-    armor    : Item;
-    pendant  : Item;
-    cloak    : Item;
-    helmet   : Item;
-    shield   : Item;
-    bracer   : Item;
-    weapon : Item;
-    leftRing : Item;
-    belt     : Item;
-    pack     : Item;
-    gauntlet : Item;
-    freeHand: Item;
-    rightRing: Item;
-    boot     : Item;
-    purse    : Item;
-}
-
 class ShopInventory extends Inventory {
     constructor(goodsType: ItemType[], goodsQuality: number) {
         super();
@@ -41,7 +23,7 @@ class ShopInventory extends Inventory {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i=0; i<5; i++) {
-                this._items.push(items[keys[D(0, keys.length-1)]]);
+                this._items.push(new Item(items[keys[D(0, keys.length-1)]]));
             }
         });
 

@@ -1,6 +1,24 @@
 /// <reference path="references.ts"/>
 
-interface Item {
+interface IEquipment {
+    armor?    : Item;
+    pendant?  : Item;
+    cloak?    : Item;
+    helmet?   : Item;
+    shield?   : Item;
+    bracer?   : Item;
+    weapon?   : Item;
+    leftRing? : Item;
+    belt?     : Item;
+    pack?     : Item;
+    gauntlet? : Item;
+    freeHand? : Item;
+    rightRing?: Item;
+    boot?     : Item;
+    purse?    : Item;
+}
+
+interface IItem {
     type: ItemType;
     name: string;
     weight: number;
@@ -13,22 +31,22 @@ interface Item {
     sprite:Resource
 }
 
-interface Armour extends Item {
+interface IArmour extends IItem {
     armourType: ArmourType;
     ac: number;
 }
 
-interface Weapon extends Item {
+interface IWeapon extends IItem {
     weaponType: WeaponType;
     weaponClass: number;
 }
 
-interface Container {
+interface IContainer {
     weightCap : number;
     bulkCap : number;
 }
 
-interface Belt extends Container {
+interface IBelt extends IContainer {
     slot : number;
     potionSlot? : number;
     scrollSlot? : number;

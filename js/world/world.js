@@ -100,7 +100,7 @@ var World = (function () {
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(hero_entity.GetInventory(), (building).GetInventory());
+                        Game.Graphics.UpdateInventory(hero_entity.inventory, (building).inventory);
                     }
                     Log("You have entered: " + entity.id);
                 }

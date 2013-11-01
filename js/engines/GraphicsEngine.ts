@@ -164,7 +164,9 @@ class GraphicsEngine {
             }
     }
 
-    public UpdateInventory(playerInventory:ActorInventory, mainInventory:Inventory, otherInventory?:Inventory[] ) {
-
+    public UpdateInventory(equipment:IEquipment, mainInventory:Inventory) {
+        for (var slot in equipment) {
+            console.log(slot);
+        }
     }
 }

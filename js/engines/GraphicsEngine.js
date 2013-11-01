@@ -142,7 +142,10 @@ var GraphicsEngine = (function () {
         }
     };
 
-    GraphicsEngine.prototype.UpdateInventory = function (playerInventory, mainInventory, otherInventory) {
+    GraphicsEngine.prototype.UpdateInventory = function (equipment, mainInventory) {
+        for (var slot in equipment) {
+            console.log(slot);
+        }
     };
     return GraphicsEngine;
 })();
