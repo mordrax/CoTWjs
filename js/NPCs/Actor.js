@@ -19,12 +19,8 @@ var Actor = (function (_super) {
         this._def = 1;
         this._toHit = 50;
 
-        this._inventory = new ActorInventory();
+        this.inventory = {};
     }
-    Actor.prototype.GetInventory = function () {
-        return this._inventory;
-    };
-
     // pass in the target that is being attacked
     Actor.prototype.Attack = function (target) {
         var consoleMsg;

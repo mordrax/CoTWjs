@@ -110,3 +110,27 @@ class BuildingFactory {
         }
     }
 }
+
+class Item {
+    static IDCount:number;
+    ID: number;
+    _obj: IItem;
+
+    constructor(obj:IItem) {
+        this.ID = Item.GenerateID();
+        this._obj = obj;
+    }
+
+    static GenerateID():number {
+        Item.IDCount++;
+        return Item.IDCount;
+    }
+}
+
+class Container extends Item {
+    opened: boolean;
+    constructor(obj:IItem) {
+        super(obj);
+        this.opened = false;
+    }
+}

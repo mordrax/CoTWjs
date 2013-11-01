@@ -19,14 +19,6 @@ var Inventory = (function () {
     return Inventory;
 })();
 
-var ActorInventory = (function (_super) {
-    __extends(ActorInventory, _super);
-    function ActorInventory() {
-        _super.apply(this, arguments);
-    }
-    return ActorInventory;
-})(Inventory);
-
 var ShopInventory = (function (_super) {
     __extends(ShopInventory, _super);
     function ShopInventory(goodsType, goodsQuality) {
@@ -40,7 +32,7 @@ var ShopInventory = (function (_super) {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i = 0; i < 5; i++) {
-                _this._items.push(items[keys[D(0, keys.length - 1)]]);
+                _this._items.push(new Item(items[keys[D(0, keys.length - 1)]]));
             }
         });
     }

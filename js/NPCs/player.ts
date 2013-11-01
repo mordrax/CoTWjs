@@ -1,7 +1,6 @@
 /// <reference path="../references.ts"/>
 
 class Player extends Actor {
-
     constructor(id:string, coord?:WorldCoordinates) {
         super(id, CoTWSprites.Actors.Player, coord);
 
