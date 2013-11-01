@@ -99,7 +99,7 @@ var World = (function () {
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
                     } else if (building.IsShop()) {
-                        gotoScreen(ScreenType.Shop);
+                        Game.Graphics.Screen(ScreenType.Shop);
                     }
                     Log("You have entered: " + entity.id);
                 }
@@ -113,13 +113,6 @@ var World = (function () {
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
-        /*
-        var link = this._world.MapLink(newPos);
-        if (link !== null) {
-        entity.location = new WorldCoordinates()
-        return;
-        }
-        */
         //TODO: Check collision
         // collision with monster
         // collision with building door

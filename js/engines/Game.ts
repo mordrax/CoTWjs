@@ -39,10 +39,10 @@ class Game {
             var location = new WorldCoordinates(MapType.VillageMap,
                 new Point(D(20), D(20)));
             var sak : Resource = {
-                type:   Sprites.Actors.Kobold.type,
-                offset: Sprites.Actors.Kobold.offset,
-                size:   Sprites.Actors.Kobold.size,
-                turn:   Sprites.Actors.Kobold.turn
+                type:   CoTWSprites.Actors.Kobold.type,
+                offset: CoTWSprites.Actors.Kobold.offset,
+                size:   CoTWSprites.Actors.Kobold.size,
+                turn:   CoTWSprites.Actors.Kobold.turn
             };
             this._monsters.push(new Monster('Kobold'+i, sak, location));
         }

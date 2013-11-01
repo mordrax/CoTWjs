@@ -16,36 +16,41 @@ class GraphicsEngine {
         this._centerPoint = new Point(0,0);
         this.LoadResources();
         this.InitialiseScreen();
+        this.InitialiseUI();
 
         Game.World.updatedEvent.add((entity:Entity) => {
-            var sprite = entity.sprite;
-            var location = entity.location;
-
-            var canvasPos = new Point(
-                (location.position.X-this._centerPoint.X+this._canvasTileSize.X/2)*TILE_SIZE,
-                (location.position.Y-this._centerPoint.Y+this._canvasTileSize.Y/2)*TILE_SIZE
-            );
-            if (entity.sprite.turn != 0) {
-                this._ctx.save();
-                this._ctx.translate(canvasPos.X + TILE_SIZE/2, canvasPos.Y + TILE_SIZE/2);
-                this._ctx.rotate(entity.sprite.turn);
-                this._ctx.translate(-canvasPos.X - TILE_SIZE/2, -canvasPos.Y - TILE_SIZE/2);
-            }
-
-            this._ctx.drawImage(
-                this._resources[sprite.type], // src image
-                sprite.offset.x, sprite.offset.y,  // start pixel in src
-                sprite.size.w, sprite.size.h,      // pixel size of src
-                canvasPos.X, canvasPos.Y, // pixel location on canvas
-                sprite.size.w, sprite.size.h       // pixel size on canvas
-            );
-
-            if (entity.sprite.turn != 0) {
-                this._ctx.restore();
-            }
+            this.Draw(entity);
         });
 
         $(window).on('resize', () => this.InitialiseScreen());
+    }
+
+    private Draw(entity:Entity) {
+        var sprite = entity.sprite;
+        var location = entity.location;
+
+        var canvasPos = new Point(
+            (location.position.X-this._centerPoint.X+this._canvasTileSize.X/2)*TILE_SIZE,
+            (location.position.Y-this._centerPoint.Y+this._canvasTileSize.Y/2)*TILE_SIZE
+        );
+        if (entity.sprite.turn != 0) {
+            this._ctx.save();
+            this._ctx.translate(canvasPos.X + TILE_SIZE/2, canvasPos.Y + TILE_SIZE/2);
+            this._ctx.rotate(entity.sprite.turn);
+            this._ctx.translate(-canvasPos.X - TILE_SIZE/2, -canvasPos.Y - TILE_SIZE/2);
+        }
+
+        this._ctx.drawImage(
+            this._resources[sprite.type], // src image
+            sprite.offset.x, sprite.offset.y,  // start pixel in src
+            sprite.size.w, sprite.size.h,      // pixel size of src
+            canvasPos.X, canvasPos.Y, // pixel location on canvas
+            sprite.size.w, sprite.size.h       // pixel size on canvas
+        );
+
+        if (entity.sprite.turn != 0) {
+            this._ctx.restore();
+        }
     }
 
     public UpdateCenter(point:Point) {
@@ -67,7 +72,6 @@ class GraphicsEngine {
             - $('#messages').height()
             - $('.title').height()
             - 100;
-            
 
         this._canvasTileSize = new Point(
             Math.floor(this._canvas.width/TILE_SIZE),
@@ -93,5 +97,70 @@ class GraphicsEngine {
         this._resources[ResourceType.Spells           ] = this.createImgElement('assets/resources/spells.png');
         this._resources[ResourceType.Tiles            ] = this.createImgElement('assets/resources/tiles.png');
         this._resources[ResourceType.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
+    }
+
+    private InitialiseUI() {
+        $('button.menu').button();
+
+        $('button.quick-menu').button();
+
+        // create file menu, set to not visible
+        $('#file-menu-file').click(function() {
+            $('#menu-file').toggle();
+        })
+
+        $('#file-menu-character').click(function() {
+            console.log('Please implement the character menu!!!');
+        })
+        $('#file-menu-inventory').click(function() {
+            console.log('Please implement the inventory menu!!!');
+        })
+        $('#file-menu-map').click(function() {
+            console.log('Please implement the map menu!!!');
+        })
+        $('#file-menu-spell').click(function() {
+            console.log('Please implement the spell menu!!!');
+        })
+        $('#file-menu-activate').click(function() {
+            console.log('Please implement the activate menu!!!');
+        })
+        $('#file-menu-verbs').click(function() {
+            console.log('Please implement the verbs menu!!!');
+        })
+        $('#file-menu-window').click(function() {
+            console.log('Please implement the window menu!!!');
+        })
+        $('#menu-window-main').click(() => {
+            this.Screen(ScreenType.Main);
+        })
+        $('#menu-window-shop').click(() => {
+            this.Screen(ScreenType.Shop);
+        })
+        $('#menu-exit').click(() => {
+            this.Screen(ScreenType.Main);
+        });
+        $('#menu-sortpack').click(function() {
+            $('#top-window').append('<div class="equipment"></div>');
+        })
+        $('#menu-nameobject').click(function() {
+            $('#bottom-window').append('<div class="equipment"></div>');
+        })
+    }
+
+    public Screen(screen:ScreenType) {
+            switch(screen) {
+                case ScreenType.Shop:
+                    $('#main-game-window').hide();
+                    $('#shop-window').show();
+                    $('[data-visible-menu="main"]').hide();
+                    $('[data-visible-menu="shop"]').show();
+                    break;
+                case ScreenType.Main:
+                default:
+                    $('#main-game-window').show();
+                    $('#shop-window').hide();
+                    $('[data-visible-menu="main"]').show();
+                    $('[data-visible-menu="shop"]').hide();
+            }
     }
 }

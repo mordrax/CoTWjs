@@ -2,6 +2,8 @@
 /// <reference path="COTWClasses.ts"/>
 /// <reference path="interfaces.ts"/>
 /// <reference path="enums.ts"/>
+/// <reference path="items.ts"/>
+/// <reference path="sprites.ts"/>
 
 /// <reference path="libs/jquery/jquery.d.ts"/>
 /// <reference path="libs/jqueryui/jqueryui.d.ts"/>

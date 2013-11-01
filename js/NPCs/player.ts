@@ -3,7 +3,7 @@
 class Player extends Actor {
 
     constructor(id:string, coord?:WorldCoordinates) {
-        super(id, Sprites.Actors.Player, coord);
+        super(id, CoTWSprites.Actors.Player, coord);
 
          this.hp = 1000;
          this.att = 10;

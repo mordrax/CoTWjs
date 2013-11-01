@@ -6,7 +6,7 @@
         <item url="file://$PROJECT_DIR$/js/world/world.js" />
         <item url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
         <item url="file://$PROJECT_DIR$/js/world/tile.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
+        <item url="file://$PROJECT_DIR$/js/items.js" />
         <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
         <item url="file://$PROJECT_DIR$/js/references.js" />
@@ -19,10 +19,11 @@
         <item url="file://$PROJECT_DIR$/js/world/GameMap.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces.js" />
         <item url="file://$PROJECT_DIR$/js/NPCs/player.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
         <item url="file://$PROJECT_DIR$/js/world/structure.js" />
         <item url="file://$PROJECT_DIR$/js/cotw.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/enums.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -47,7 +48,7 @@
       <root url="file://$PROJECT_DIR$/js/world/world.js" />
       <root url="file://$PROJECT_DIR$/js/world/tile.js" />
       <root url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
+      <root url="file://$PROJECT_DIR$/js/items.js" />
       <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
       <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
       <root url="file://$PROJECT_DIR$/js/references.js" />
@@ -61,6 +62,7 @@
       <root url="file://$PROJECT_DIR$/js/NPCs/player.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces.js" />
       <root url="file://$PROJECT_DIR$/js/enums.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
       <root url="file://$PROJECT_DIR$/js/cotw.js" />
       <root url="file://$PROJECT_DIR$/js/world/structure.js" />
       <root url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
