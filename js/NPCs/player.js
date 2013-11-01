@@ -21,6 +21,8 @@ var Player = (function (_super) {
             //        DOWN: 40,
             Game.World.Move(_this.id, ev.keyCode);
         });
+
+        this.inventory.pack = new Item(Items.Container.MediumChest);
     }
     return Player;
 })(Actor);

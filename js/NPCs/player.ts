@@ -14,6 +14,8 @@ class Player extends Actor {
             //        DOWN: 40,
             Game.World.Move(this.id, ev.keyCode);
         });
+
+        this.inventory.pack = new Item(Items.Container.MediumChest);
     }
 
 

@@ -10,6 +10,10 @@
  */
 class Inventory {
     _items:Item[];
+
+    GetItems():Item[] {
+        return this._items;
+    }
 }
 
 class ShopInventory extends Inventory {
@@ -23,7 +27,7 @@ class ShopInventory extends Inventory {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i=0; i<5; i++) {
-                this._items.push(new Item(items[keys[D(0, keys.length-1)]]));
+                this._items.push(new Item(items[keys[D(keys.length-1)]]));
             }
         });
 

@@ -143,9 +143,36 @@ var GraphicsEngine = (function () {
     };
 
     GraphicsEngine.prototype.UpdateInventory = function (equipment, mainInventory) {
+        var _this = this;
+        //show contents of main inventory
+        var main_items = mainInventory.GetItems();
+        main_items.forEach(function (x) {
+            _this.AddToMainInventory(x.ID, x.item.sprite);
+        });
+
         for (var slot in equipment) {
-            console.log(slot);
+            var item = equipment[slot];
+            if (!item)
+                continue;
+
+            this.AddToSlot(slot, item);
+            if (item instanceof Container) {
+                var container = item;
+                if (container.opened) {
+                    // show contents of container
+                }
+            }
         }
+    };
+
+    GraphicsEngine.prototype.AddToMainInventory = function (id, sprite) {
+        $('#top-window').append('<div id=item-' + id + ' class="equipment" style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px"></div>');
+        console.log("trying to show shop inventory" + id + " " + sprite);
+    };
+
+    GraphicsEngine.prototype.AddToSlot = function (slot, sprite) {
+        var $slot = $('#slot-' + slot);
+        $slot.attr('style', '"width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px"');
     };
     return GraphicsEngine;
 })();

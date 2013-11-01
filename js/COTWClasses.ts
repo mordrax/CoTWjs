@@ -112,13 +112,13 @@ class BuildingFactory {
 }
 
 class Item {
-    static IDCount:number;
-    ID: number;
-    _obj: IItem;
+    static IDCount:number = 0;
+    public ID: number;
+    public item: IItem;
 
-    constructor(obj:IItem) {
+    constructor(item:IItem) {
         this.ID = Item.GenerateID();
-        this._obj = obj;
+        this.item = item;
     }
 
     static GenerateID():number {
