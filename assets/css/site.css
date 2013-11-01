@@ -153,8 +153,8 @@ nav ul li ul li a {
 }
 
 .equipment {
-    margin: 15px;
     float:left;
+    text-align: center;
 }
 
 #slot-dude {

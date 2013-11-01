@@ -23,6 +23,7 @@ var Player = (function (_super) {
         });
 
         this.inventory.pack = new Item(Items.Container.MediumChest);
+        this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
     return Player;
 })(Actor);
