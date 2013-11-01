@@ -72,7 +72,7 @@ var CoTWSprites = {
         LeatherArmour                 : {type:ResourceType.Items, offset:{x:0, y:256}},
         LeatherArmourCursed           : {type:ResourceType.Items, offset:{x:32, y:256}},
         LeatherArmourEnchanted        : {type:ResourceType.Items, offset:{x:64, y:256}},
-        MetalArmour                   : {type:ResourceType.Items, offset:{x:0, y:256}},
+        MetalArmour                   : {type:ResourceType.Items, offset:{x:0, y:288}},
         MetalArmourCursed             : {type:ResourceType.Items, offset:{x:32, y:288}},
         MetalArmourEnchanted          : {type:ResourceType.Items, offset:{x:64, y:288}},
         WoodShield                    : {type:ResourceType.Items, offset:{x:0, y:352}},
