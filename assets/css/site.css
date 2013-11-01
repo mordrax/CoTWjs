@@ -146,9 +146,11 @@ nav ul li ul li a {
     height: 90px;
     padding-top: 10px;
     width: 70px;
-    border: 1px dashed black;
 }
 
+.equipment-slot {
+    border: 1px dashed black;
+}
 .placeholder-slot {
     text-align: center;
     margin-top: 10px;
