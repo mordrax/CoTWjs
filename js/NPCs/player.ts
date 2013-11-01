@@ -16,6 +16,7 @@ class Player extends Actor {
         });
 
         this.inventory.pack = new Item(Items.Container.MediumChest);
+        this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
 
 

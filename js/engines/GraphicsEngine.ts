@@ -172,10 +172,10 @@ class GraphicsEngine {
         });
 
         for (var slot in equipment) {
-            var item = equipment[slot];
+            var item:Item = equipment[slot];
             if (!item) continue;
 
-            this.AddToSlot(slot, item);
+            this.AddToSlot(slot, item.item.sprite);
             if (item instanceof Container) {
                 var container = <Container>item;
                 if (container.opened) {
@@ -192,6 +192,6 @@ class GraphicsEngine {
 
     private AddToSlot(slot:string, sprite:Resource) {
         var $slot = $('#slot-'+slot);
-        $slot.attr('style', '"width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px"');
+        $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px');
     }
 }

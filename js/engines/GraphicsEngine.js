@@ -155,7 +155,7 @@ var GraphicsEngine = (function () {
             if (!item)
                 continue;
 
-            this.AddToSlot(slot, item);
+            this.AddToSlot(slot, item.item.sprite);
             if (item instanceof Container) {
                 var container = item;
                 if (container.opened) {
@@ -172,7 +172,7 @@ var GraphicsEngine = (function () {
 
     GraphicsEngine.prototype.AddToSlot = function (slot, sprite) {
         var $slot = $('#slot-' + slot);
-        $slot.attr('style', '"width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px"');
+        $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px');
     };
     return GraphicsEngine;
 })();
