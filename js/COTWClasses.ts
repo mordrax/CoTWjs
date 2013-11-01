@@ -100,8 +100,13 @@ class BuildingFactory {
         this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF , {entryPoint:new Point(0,1), sprite: CoTWSprites.Buildings.BurntStrawHouse_WF });
     }
 
-    public Create(type:StructureType, id:string, location:WorldCoordinates) : Structure {
+    public Create(type:StructureType, id:string, location:WorldCoordinates, goodsType:ItemType[], goodsQuality:number) : Structure {
         var struc = this._buildingcollection.getValue(type);
-        return new Structure(id, type, struc.entryPoint, struc.sprite, location);
+        if (!!goodsType) {
+            var inventory = new ShopInventory(goodsType, goodsQuality);
+            return new Shop(id, type, struc.entryPoint, struc.sprite, location, inventory);
+        } else {
+            return new Structure(id, type, struc.entryPoint, struc.sprite, location);
+        }
     }
 }

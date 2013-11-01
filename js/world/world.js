@@ -146,7 +146,7 @@ var World = (function () {
 
         //Initialise buildings for area
         AREA_STRUCTURES[mapType].forEach(function (x) {
-            return _this._entities[_this._currentArea][x.id] = _this._buildingFactory.Create(x.type, x.id, x.location);
+            return _this._entities[_this._currentArea][x.id] = _this._buildingFactory.Create(x.type, x.id, x.location, x.goodsType, x.goodsQuality);
         });
     };
 

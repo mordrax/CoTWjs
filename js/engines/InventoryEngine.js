@@ -29,8 +29,17 @@ var ActorInventory = (function (_super) {
 
 var ShopInventory = (function (_super) {
     __extends(ShopInventory, _super);
-    function ShopInventory() {
-        _super.apply(this, arguments);
+    function ShopInventory(goodsType, goodsQuality) {
+        var _this = this;
+        _super.call(this);
+
+        this._items = [];
+
+        goodsType.forEach(function (x) {
+            for (var i = 0; i < 5; i++) {
+                _this._items.push(Items[ItemType[x]]);
+            }
+        });
     }
     return ShopInventory;
 })(InventoryEngine);

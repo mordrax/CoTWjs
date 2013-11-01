@@ -20,7 +20,7 @@ interface Armour extends Item {
 
 interface Weapon extends Item {
     weaponType: WeaponType;
-    class: number;
+    weaponClass: number;
 }
 
 interface Container {
@@ -51,6 +51,10 @@ interface IStructure {
     id : string;
     type : StructureType;
     location : WorldCoordinates;
+
+    //shop
+    goodsType?: ItemType[];
+    goodsQuality?: number;
 }
 
 interface AreaToEntity {

@@ -48,6 +48,15 @@ class Structure extends Entity {
     }
 }
 
+class Shop extends Structure {
+    _inventory: ShopInventory;
+
+    constructor(id:string, type:StructureType, entry:Point, sprite:Resource, location:WorldCoordinates, inventory:ShopInventory) {
+        super(id, type, entry, sprite, location);
+        this._inventory = inventory;
+    }
+}
+
 enum StructurePart {
     Wall,
     Entry,

@@ -157,7 +157,7 @@ class World {
         this._entities[this._currentArea] = this._entities[this._currentArea] || {};
         //Initialise buildings for area
         AREA_STRUCTURES[mapType].forEach(
-            (x:IStructure) => this._entities[this._currentArea][x.id] = this._buildingFactory.Create(x.type, x.id, x.location)
+            (x:IStructure) => this._entities[this._currentArea][x.id] = this._buildingFactory.Create(x.type, x.id, x.location, x.goodsType, x.goodsQuality)
         );
     }
 
