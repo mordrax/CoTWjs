@@ -27,33 +27,33 @@ var Items = {
     Weapon: {
         BrokenSword:                  {type: ItemType.Weapon,        name:'Broken Sword',                     weight:1000,  bulk:5000,   buy:NaN,          sell:25,     sprite:CoTWSprites.Items.BrokenSword,                  weaponClass:0  },
         Club:                         {type: ItemType.Weapon,        name:'Club',                             weight:1500,  bulk:3000,   buy:105,          sell:60,     sprite:CoTWSprites.Items.Club,                         weaponClass:1  },
-        Dagger:                       {type: ItemType.Weapon,        name:'Dagger',                           weight:500,   bulk:500,    buy:420,          sell:240,    sprite:CoTWSprites.Items.Dagger,                       weaponClass:2  },
+        Dagger:                       {type: ItemType.Weapon,        name:'Dagger',                           weight:500,   bulk:500,    buy:420,          sell:240,    sprite:CoTWSprites.Items.Sword,                       weaponClass:2  },
         Hammer:                       {type: ItemType.Weapon,        name:'Hammer',                           weight:2000,  bulk:3000,   buy:420,          sell:240,    sprite:CoTWSprites.Items.Hammer,                       weaponClass:2  },
-        HandAxe:                      {type: ItemType.Weapon,        name:'Hand Axe',                         weight:1000,  bulk:3000,   buy:472,          sell:270,    sprite:CoTWSprites.Items.HandAxe,                      weaponClass:3  },
-        Quarterstaff:                 {type: ItemType.Weapon,        name:'Quarterstaff',                     weight:750,   bulk:5000,   buy:648,          sell:360,    sprite:CoTWSprites.Items.Quarterstaff,                 weaponClass:3  },
+        HandAxe:                      {type: ItemType.Weapon,        name:'Hand Axe',                         weight:1000,  bulk:3000,   buy:472,          sell:270,    sprite:CoTWSprites.Items.Axe,                      weaponClass:3  },
+        Quarterstaff:                 {type: ItemType.Weapon,        name:'Quarterstaff',                     weight:750,   bulk:5000,   buy:648,          sell:360,    sprite:CoTWSprites.Items.Spear,                 weaponClass:3  },
         Spear:                        {type: ItemType.Weapon,        name:'Spear',                            weight:1500,  bulk:5000,   buy:840,          sell:480,    sprite:CoTWSprites.Items.Spear,                        weaponClass:4  },
-        ShortSword:                   {type: ItemType.Weapon,        name:'Short Sword',                      weight:1000,  bulk:5000,   buy:1470,         sell:840,    sprite:CoTWSprites.Items.ShortSword,                   weaponClass:5  },
+        ShortSword:                   {type: ItemType.Weapon,        name:'Short Sword',                      weight:1000,  bulk:5000,   buy:1470,         sell:840,    sprite:CoTWSprites.Items.Sword,                   weaponClass:5  },
         Mace:                         {type: ItemType.Weapon,        name:'Mace',                             weight:2500,  bulk:4375,   buy:1728,         sell:960,    sprite:CoTWSprites.Items.Mace,                         weaponClass:5  },
         Flail:                        {type: ItemType.Weapon,        name:'Flail',                            weight:2000,  bulk:3250,   buy:1512,         sell:840,    sprite:CoTWSprites.Items.Flail,                        weaponClass:6  },
         Axe:                          {type: ItemType.Weapon,        name:'Axe',                              weight:2000,  bulk:5000,   buy:1944,         sell:1080,   sprite:CoTWSprites.Items.Axe,                          weaponClass:6  },
-        WarHammer:                    {type: ItemType.Weapon,        name:'War Hammer',                       weight:1400,  bulk:7500,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.WarHammer,                    weaponClass:7  },
-        LongSword:                    {type: ItemType.Weapon,        name:'Long Sword',                       weight:1500,  bulk:8000,   buy:3240,         sell:1800,   sprite:CoTWSprites.Items.LongSword,                    weaponClass:8  },
-        BattleAxe:                    {type: ItemType.Weapon,        name:'Battle Axe',                       weight:3000,  bulk:6000,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.BattleAxe,                    weaponClass:8  },
-        BroadSword:                   {type: ItemType.Weapon,        name:'Broad Sword',                      weight:1600,  bulk:9000,   buy:3240,         sell:1800,   sprite:CoTWSprites.Items.BroadSword,                   weaponClass:9  },
-        Morningstar:                  {type: ItemType.Weapon,        name:'Morningstar',                      weight:3000,  bulk:9000,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.Morningstar,                  weaponClass:10 },
-        BastardSword:                 {type: ItemType.Weapon,        name:'Bastard Sword',                    weight:3000,  bulk:10000,  buy:4320,         sell:2400,   sprite:CoTWSprites.Items.BastardSword,                 weaponClass:11 },
-        TwoHandedSword:               {type: ItemType.Weapon,        name:'Two Handed Sword',                 weight:5000,  bulk:12000,  buy:6360,         sell:3600,   sprite:CoTWSprites.Items.TwoHandedSword,               weaponClass:12 }
+        WarHammer:                    {type: ItemType.Weapon,        name:'War Hammer',                       weight:1400,  bulk:7500,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.Hammer,                    weaponClass:7  },
+        LongSword:                    {type: ItemType.Weapon,        name:'Long Sword',                       weight:1500,  bulk:8000,   buy:3240,         sell:1800,   sprite:CoTWSprites.Items.Sword,                    weaponClass:8  },
+        BattleAxe:                    {type: ItemType.Weapon,        name:'Battle Axe',                       weight:3000,  bulk:6000,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.Axe,                    weaponClass:8  },
+        BroadSword:                   {type: ItemType.Weapon,        name:'Broad Sword',                      weight:1600,  bulk:9000,   buy:3240,         sell:1800,   sprite:CoTWSprites.Items.Sword,                   weaponClass:9  },
+        MorningStar:                  {type: ItemType.Weapon,        name:'Morning Star',                      weight:3000,  bulk:9000,   buy:2160,         sell:1200,   sprite:CoTWSprites.Items.MorningStar,                  weaponClass:10 },
+        BastardSword:                 {type: ItemType.Weapon,        name:'Bastard Sword',                    weight:3000,  bulk:10000,  buy:4320,         sell:2400,   sprite:CoTWSprites.Items.Sword,                 weaponClass:11 },
+        TwoHandedSword:               {type: ItemType.Weapon,        name:'Two Handed Sword',                 weight:5000,  bulk:12000,  buy:6360,         sell:3600,   sprite:CoTWSprites.Items.Sword,               weaponClass:12 }
     },
     Armour: {
-        Rustyarmour:                   {type: ItemType.Armour,        name:'Rusty armour',                      weight:10000, bulk:30000,  buy:NaN,          sell:25,     sprite:CoTWSprites.Items.BrokenArmour,                   ac:0     },
-        Leatherarmour:                 {type: ItemType.Armour,        name:'Leather armour',                    weight:5000,  bulk:2400,   buy:1080,         sell:600,    sprite:CoTWSprites.Items.LeatherArmour,                 ac:6     },
-        StuddedLeatherarmour:          {type: ItemType.Armour,        name:'Studded Leather armour',            weight:7000,  bulk:25000,  buy:3150,         sell:1800,   sprite:CoTWSprites.Items.LeatherArmour,          ac:12    },
+        RustyArmour:                  {type: ItemType.Armour,        name:'Rusty Armour',                      weight:10000, bulk:30000,  buy:NaN,          sell:25,     sprite:CoTWSprites.Items.BrokenArmour,                   ac:0     },
+        LeatherArmour:                {type: ItemType.Armour,        name:'Leather Armour',                    weight:5000,  bulk:2400,   buy:1080,         sell:600,    sprite:CoTWSprites.Items.LeatherArmour,                 ac:6     },
+        StuddedLeatherArmour:         {type: ItemType.Armour,        name:'Studded Leather Armour',            weight:7000,  bulk:25000,  buy:3150,         sell:1800,   sprite:CoTWSprites.Items.LeatherArmour,          ac:12    },
         RingMail:                     {type: ItemType.Armour,        name:'Ring Mail',                        weight:8000,  bulk:30000,  buy:6300,         sell:3600,   sprite:CoTWSprites.Items.MetalArmour,                     ac:18    },
         ScaleMail:                    {type: ItemType.Armour,        name:'Scale Mail',                       weight:9000,  bulk:30000,  buy:10800,        sell:6000,   sprite:CoTWSprites.Items.MetalArmour,                    ac:24    },
         ChainMail:                    {type: ItemType.Armour,        name:'Chain Mail',                       weight:10000, bulk:30000,  buy:16200,        sell:9000,   sprite:CoTWSprites.Items.MetalArmour,                    ac:30    },
         SplintMail:                   {type: ItemType.Armour,        name:'Splint Mail',                      weight:12000, bulk:40000,  buy:27000,        sell:15000,  sprite:CoTWSprites.Items.MetalArmour,                   ac:36    },
         PlateMail:                    {type: ItemType.Armour,        name:'Plate Mail',                       weight:15000, bulk:40000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.MetalArmour,                    ac:42    },
-        Platearmour:                   {type: ItemType.Armour,        name:'Plate armour',                      weight:15000, bulk:60000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.MetalArmour,                   ac:48    },
+        PlateArmour:                  {type: ItemType.Armour,        name:'Plate Armour',                      weight:15000, bulk:60000,  buy:42000,        sell:24000,  sprite:CoTWSprites.Items.MetalArmour,                   ac:48    },
         MeteoricSteelPlate:           {type: ItemType.Armour,        name:'Meteoric Steel Plate',             weight:5000,  bulk:30000,  buy:105000,       sell:60000,  sprite:CoTWSprites.Items.MetalArmour,           ac:54    },
         ElvenChainMail:               {type: ItemType.Armour,        name:'Elven Chain Mail',                 weight:50000, bulk:24000,  buy:162000,       sell:90000,  sprite:CoTWSprites.Items.MetalArmour,               ac:52    }
     },
@@ -78,8 +78,8 @@ var Items = {
         IronHelmet:                   {type: ItemType.Helmet,        name:'Iron Helmet',                      weight:2000,  bulk:2000,   buy:1050,         sell:600,    sprite:CoTWSprites.Items.MetalHelmet,                   ac:6     },
         SteelHelmet:                  {type: ItemType.Helmet,        name:'Steel Helmet',                     weight:2500,  bulk:2000,   buy:3150,         sell:1800,   sprite:CoTWSprites.Items.MetalHelmet,                  ac:9     },
         MeteoricSteelHelmet:          {type: ItemType.Helmet,        name:'Meteoric Steel Helmet',            weight:1000,  bulk:2000,   buy:10500,        sell:6000,   sprite:CoTWSprites.Items.MetalHelmet,          ac:15    },
-        HelmetofDetectMonsters:       {type: ItemType.Helmet,        name:'Helmet of Detect Monsters',        weight:2500,  bulk:2000,   buy:42000,        sell:24000,  sprite:CoTWSprites.Items.HelmetofDetectMonsters,       ac:9     },
-        EnchantedHelmofStorms:        {type: ItemType.Helmet,        name:'Enchanted Helm of Storms',         weight:1000,  bulk:2000,   buy:1050000,      sell:600000, sprite:CoTWSprites.Items.EnchantedHelmofStorms,        ac:25    }
+        HelmetOfDetectMonsters:       {type: ItemType.Helmet,        name:'Helmet of Detect Monsters',        weight:2500,  bulk:2000,   buy:42000,        sell:24000,  sprite:CoTWSprites.Items.HelmetOfDetectMonsters,       ac:9     },
+        EnchantedHelmOfStorms:        {type: ItemType.Helmet,        name:'Enchanted Helm of Storms',         weight:1000,  bulk:2000,   buy:1050000,      sell:600000, sprite:CoTWSprites.Items.EnchantedHelmOfStorms,        ac:25    }
     },
     Bracer: {
         Bracers:                      {type: ItemType.Bracer,        name:'Bracers',                          weight:500,   bulk:2000,   buy:108,          sell:60,     sprite:CoTWSprites.Items.Bracers,                      ac:3     },
@@ -103,9 +103,9 @@ var Items = {
         GauntletOfStrengthVS:         {type: ItemType.Gauntlet,      name:'Gauntlets Of Strength',            weight:500,   bulk:2000,   buy:12960,        sell:7200,   sprite:CoTWSprites.Items.GauntletEnchanted,         ac:5     }
     },
     Belt:  {
-        TwoSlotbelt:                  {type: ItemType.Belt,          name:'Two slot belt',                    weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                  level:NaN, weightCap:2100,   bulkCap:3100, slot:2},
-        ThreeSlotbelt:                {type: ItemType.Belt,          name:'Three slot belt',                  weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                level:NaN, weightCap:2600,   bulkCap:3600, slot:3},
-        FourSlotbelt:                 {type: ItemType.Belt,          name:'Four slot belt',                   weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                 level:NaN, weightCap:3100,   bulkCap:4100, slot:4},
+        TwoSlotBelt:                  {type: ItemType.Belt,          name:'2 Slot Belt',                    weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                  level:NaN, weightCap:2100,   bulkCap:3100, slot:2},
+        ThreeSlotBelt:                {type: ItemType.Belt,          name:'3 Slot Belt',                  weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                level:NaN, weightCap:2600,   bulkCap:3600, slot:3},
+        FourSlotBelt:                 {type: ItemType.Belt,          name:'4 Slot Belt',                   weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.SlotBelt,                 level:NaN, weightCap:3100,   bulkCap:4100, slot:4},
         UtilityBelt:                  {type: ItemType.Belt,          name:'Utility Belt',                     weight:1350,  bulk:1800,   buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.UtilityBelt,                  level:NaN, weightCap:3100,   bulkCap:4100, slot:2, slotScroll:4, slotPotion:4},
         WandQuiverBelt:               {type: ItemType.Belt,          name:'Wand Quiver Belt',                 weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.WandQuiverBelt,               level:NaN, weightCap:3100,   bulkCap:4100, slot:2, slotWand:4}
     },
@@ -120,15 +120,15 @@ var Items = {
         SmallChest:                   {type: ItemType.Chest,         name:'Small Chest',                      weight:5000,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                   level:NaN, weightCap:100000, bulkCap:50000},
         MediumChest:                  {type: ItemType.Chest,         name:'Medium Chest',                     weight:15000, bulk:150000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                  level:NaN, weightCap:100000, bulkCap:150000},
         LargeChest:                   {type: ItemType.Chest,         name:'Large Chest',                      weight:25000, bulk:250000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                   level:NaN, weightCap:100000, bulkCap:250000},
-        EnchantedSmallPackofHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Small Pack of Holding',  weight:5000,  bulk:75000,  buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:50000,  bulkCap:150000},
-        EnchantedMediumPackofHolding: {type: ItemType.PackOfHolding, name:'Enchanted Medium Pack of Holding', weight:7500,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack, level:NaN, weightCap:75000,  bulkCap:200000},
-        EnchantedLargePackofHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Large Pack of Holding',  weight:10000, bulk:125000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:100000, bulkCap:250000}
+        EnchantedSmallPackOfHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Small Pack of Holding',  weight:5000,  bulk:75000,  buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:50000,  bulkCap:150000},
+        EnchantedMediumPackOfHolding: {type: ItemType.PackOfHolding, name:'Enchanted Medium Pack of Holding', weight:7500,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack, level:NaN, weightCap:75000,  bulkCap:200000},
+        EnchantedLargePackOfHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Large Pack of Holding',  weight:10000, bulk:125000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:100000, bulkCap:250000}
     }
 };
- 
+
 // chests have fixed bulk
 // pack of holdings have fixed bulk and weight
-//Trinklets
+//Trinkets
 
 //{type:Potion, weight:200,   bulk:200}
 //{type:Scroll,  weight:150,   bulk:200}
