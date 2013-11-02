@@ -103,14 +103,14 @@ class World {
                     collision = true;
                     Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
-                    if (building.StructureType() == StructureType.Gate_NS) {
+                    if (building.structureType == StructureType.Gate_NS) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][hero_entity.id] = hero_entity;
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(hero_entity.inventory, (<Shop>building).inventory);
+                        Game.Graphics.UpdateInventory(hero_entity.inventory, (<Shop>building).inventory, building.id);
                     }
                     Log("You have entered: " + entity.id);
                 }

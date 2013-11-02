@@ -164,11 +164,13 @@ class GraphicsEngine {
             }
     }
 
-    public UpdateInventory(equipment:IEquipment, mainInventory:Inventory) {
+    public UpdateInventory(equipment:IEquipment, mainInventory:Inventory, mainInventoryTitle:string) {
         //show contents of main inventory
         var main_items = mainInventory.GetItems();
 
         $('#top-window').empty();
+        $('#top-window').append("<div class='title'>{0}</div>".format(mainInventoryTitle));
+
         main_items.forEach(x => {
             this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
         });
@@ -181,6 +183,7 @@ class GraphicsEngine {
             if (item instanceof Container) {
                 var container = <Container>item;
                 if (container.opened) {
+                    this.AddContainerToBottomWindow(container);
                     // show contents of container
                 }
             }
@@ -195,5 +198,9 @@ class GraphicsEngine {
     private AddToSlot(slot:string, sprite:Resource) {
         var $slot = $('#slot-'+slot);
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px');
+    }
+
+    private AddContainerToBottomWindow(container:Container) {
+        $('#equipment-side').append("<div id='container-{0}' connectable></div>")
     }
 }

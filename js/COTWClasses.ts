@@ -131,6 +131,6 @@ class Container extends Item {
     opened: boolean;
     constructor(obj:IItem) {
         super(obj);
-        this.opened = false;
+        this.opened = true;
     }
 }

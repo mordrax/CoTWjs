@@ -8,13 +8,13 @@
  * - entry point (if there is one) and mapping to the handler when triggered
  */
 class Structure extends Entity {
-    _type : StructureType;
+    structureType : StructureType;
     _entry : Point;
 
     //constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
     constructor (id:string, type:StructureType, entry:Point, sprite:Resource, location:WorldCoordinates) {
         super(id, EntityType.Building, sprite, location);
-        this._type = type;
+        this.structureType = type;
         this._entry = entry;
     }
 
@@ -22,10 +22,6 @@ class Structure extends Entity {
         return (this.id.indexOf('Sage') !== -1) ||
             (this.id.indexOf('Store') !== -1) ||
             (this.id.indexOf('Blacksmith') !== -1);
-    }
-
-    StructureType() : StructureType {
-        return this._type;
     }
 
     Enter() {

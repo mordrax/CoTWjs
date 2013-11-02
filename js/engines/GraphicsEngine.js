@@ -142,12 +142,14 @@ var GraphicsEngine = (function () {
         }
     };
 
-    GraphicsEngine.prototype.UpdateInventory = function (equipment, mainInventory) {
+    GraphicsEngine.prototype.UpdateInventory = function (equipment, mainInventory, mainInventoryTitle) {
         var _this = this;
         //show contents of main inventory
         var main_items = mainInventory.GetItems();
 
         $('#top-window').empty();
+        $('#top-window').append("<div class='title'>{0}</div>".format(mainInventoryTitle));
+
         main_items.forEach(function (x) {
             _this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
         });
@@ -161,6 +163,7 @@ var GraphicsEngine = (function () {
             if (item instanceof Container) {
                 var container = item;
                 if (container.opened) {
+                    this.AddContainerToBottomWindow(container);
                     // show contents of container
                 }
             }
@@ -175,6 +178,10 @@ var GraphicsEngine = (function () {
     GraphicsEngine.prototype.AddToSlot = function (slot, sprite) {
         var $slot = $('#slot-' + slot);
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px');
+    };
+
+    GraphicsEngine.prototype.AddContainerToBottomWindow = function (container) {
+        $('#equipment-side').append("<div id='container-{0}' connectable></div>");
     };
     return GraphicsEngine;
 })();
