@@ -54,7 +54,7 @@
       <root url="file://$PROJECT_DIR$/js/world/structure.js" />
       <root url="file://$PROJECT_DIR$/js/enums.js" />
       <root url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
-      <root url="file://$PROJECT_DIR$/js/sprites.js" />
+      <root url="file://$PROJECT_DIR$/js/Sprites.js" />
       <root url="file://$PROJECT_DIR$/js/items.js" />
       <root url="file://$PROJECT_DIR$/js/input.js" />
       <root url="file://$PROJECT_DIR$/js/libs/signals/Signal.js" />
