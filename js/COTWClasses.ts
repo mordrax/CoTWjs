@@ -115,10 +115,16 @@ class Item {
     static IDCount:number = 0;
     public ID: number;
     public base: IItem;
+    public container: Container;
 
-    constructor(base:IItem) {
+    constructor(base:IItem, isContainer:boolean=false) {
         this.ID = Item.GenerateID();
         this.base = base;
+        if (isContainer) {
+            this.container = new Container();
+        } else {
+            this.container = null;
+        }
     }
 
     static GenerateID():number {
@@ -127,12 +133,11 @@ class Item {
     }
 }
 
-class Container extends Item {
+class Container {
     opened: boolean;
     items:{[id:string]:Item};
 
-    constructor(obj:IItem) {
-        super(obj);
+    constructor() {
         this.opened = true;
         this.items = {};
     }

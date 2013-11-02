@@ -15,7 +15,7 @@ var __extends = this.__extends || function (d, b) {
 */
 var Inventory = (function () {
     function Inventory() {
-        this.wares = {};
+        this.wares = new Container();
     }
     return Inventory;
 })();
@@ -31,8 +31,7 @@ var ShopInventory = (function (_super) {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i = 0; i < 5; i++) {
-                var item = new Item(items[keys[D(keys.length - 1)]]);
-                _this.wares[item.ID] = item;
+                _this.wares.Add(new Item(items[keys[D(keys.length - 1)]]));
             }
         });
     }

@@ -162,6 +162,9 @@ var GraphicsEngine = (function () {
         $('#equipment-side').empty();
         this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
+        // clear equipment slots
+        $('.equipment-slot-inner').empty();
+        $('.equipment-slot label').show();
         for (var slot in equipment) {
             var item = equipment[slot];
             if (!item)
@@ -172,10 +175,9 @@ var GraphicsEngine = (function () {
             this.AddToInventory($slot, item);
             $slot.siblings().hide();
 
-            if (item instanceof Container) {
-                var container = item;
-                if (container.opened) {
-                    this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
+            if (!!item.container) {
+                if (item.container.opened) {
+                    this.CreateInventoryView(item.ID.toString(), item.base.name, item.container);
                     // show contents of container
                 }
             }
@@ -203,7 +205,7 @@ var GraphicsEngine = (function () {
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px');
     };
 
-    GraphicsEngine.prototype.CreateInventoryView = function (id, name, items) {
+    GraphicsEngine.prototype.CreateInventoryView = function (id, name, container) {
         var $container = $(Format("<div id='container-{0}'>" + "<div class='title'>{1}</div>" + "</div>", id, name));
         var $containerInner = $(Format("<div id='container-{0}-inner' class='container connectable'></div>", id));
 
@@ -211,8 +213,8 @@ var GraphicsEngine = (function () {
 
         $('#equipment-side').append($container);
 
-        for (var itemID in items) {
-            this.AddToInventory($containerInner, items[itemID]);
+        for (var itemID in container.items) {
+            this.AddToInventory($containerInner, container.items[itemID]);
         }
     };
     return GraphicsEngine;
