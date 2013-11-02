@@ -14,8 +14,8 @@ class Player extends Actor {
             }
         });
 
-        this.inventory.pack = new Container(Items.Container.MediumChest);
-        this.inventory.freeHand = new Container(Items.Container.LargeBag);
+        this.inventory.pack = new Item(Items.Container.MediumChest, true);
+        this.inventory.freeHand = new Item(Items.Container.LargeBag, true);
         this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
 

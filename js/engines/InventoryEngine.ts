@@ -9,9 +9,9 @@
  * - Other containers (nested containers like packs/purse)
  */
 class Inventory {
-    wares: {[id:string]:Item};
+    wares: Container;
     constructor() {
-        this.wares = {};
+        this.wares = new Container();
     }
 }
 
@@ -24,8 +24,7 @@ class ShopInventory extends Inventory {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i=0; i<5; i++) {
-                var item = new Item(items[keys[D(keys.length-1)]]);
-                this.wares[item.ID]= item;
+                this.wares.Add(new Item(items[keys[D(keys.length-1)]]));
             }
         });
 
