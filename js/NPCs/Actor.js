@@ -31,6 +31,7 @@ var Actor = (function (_super) {
             target.TakeDamage(damage);
             if (target.isDead()) {
                 consoleMsg = this.msgKill(damage, target.id);
+                Game.World.RemoveEntity(target);
             } else {
                 consoleMsg = this.msgHit(damage, target.id);
             }

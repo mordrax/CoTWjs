@@ -49,43 +49,46 @@ var World = (function () {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     };
 
-    World.prototype.Move = function (heroId, keycode) {
-        var hero_entity = this._entities[this._currentArea][heroId];
-        var loc = hero_entity.location;
-        var dir = new Point(0, 0);
-        switch (keycode) {
-            case 33:
-                dir.X = 1;
-                dir.Y = -1;
-                break;
-            case 34:
-                dir.X = 1;
-                dir.Y = 1;
-                break;
-            case 35:
-                dir.X = -1;
-                dir.Y = 1;
-                break;
-            case 36:
-                dir.X = -1;
-                dir.Y = -1;
-                break;
-            case 37:
-                dir.X = -1;
-                break;
-            case 38:
-                dir.Y = -1;
-                break;
-            case 39:
-                dir.X = 1;
-                break;
-            case 40:
-                dir.Y = 1;
-                break;
-            default:
-                return;
+    World.prototype.MoveMonsters = function (target) {
+        for (var k in this._entities[this._currentArea]) {
+            var entity = this._entities[this._currentArea][k];
+            if (entity instanceof Monster) {
+                (entity).Move(target);
+            }
+        }
+    };
+
+    World.prototype.TryMove = function (monsterId, dir) {
+        var monsterEntity = this._entities[this._currentArea][monsterId];
+        var loc = monsterEntity.location;
+        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+
+        for (var k in this._entities[this._currentArea]) {
+            var entity = this._entities[this._currentArea][k];
+            if (entity.type === EntityType.Actor) {
+                if (entity.location.position.Equals(newLoc)) {
+                    if (entity instanceof Player) {
+                        monsterEntity.Attack(entity);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            } else if (entity.type === EntityType.Building) {
+                if ((entity).PointInStructure(newLoc) != StructurePart.None) {
+                    return false;
+                }
+            }
         }
 
+        // nothing in the monster's way - move to new location
+        monsterEntity.location.position = newLoc;
+        return true;
+    };
+
+    World.prototype.MoveHero = function (heroId, dir) {
+        var heroEntity = this._entities[this._currentArea][heroId];
+        var loc = heroEntity.location;
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
         var collision = false;
 
@@ -95,12 +98,7 @@ var World = (function () {
                 var target = (entity);
                 if (entity.location.position.Equals(newLoc)) {
                     collision = true;
-                    hero_entity.Attack(target);
-                    if (target.isDead()) {
-                        this.RemoveEntity(entity);
-                    } else {
-                        target.Attack(hero_entity);
-                    }
+                    heroEntity.Attack(target);
                 }
             } else if (entity.type === EntityType.Building) {
                 var building = (entity);
@@ -112,11 +110,11 @@ var World = (function () {
                     if (building.structureType == StructureType.Gate_NS) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
                         newLoc = newMapLink.position;
-                        this._entities[this._currentArea][hero_entity.id] = hero_entity;
+                        this._entities[this._currentArea][heroEntity.id] = heroEntity;
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(hero_entity.inventory, (building));
+                        Game.Graphics.UpdateInventory(heroEntity.inventory, (building));
                     }
                     Log("You have entered: " + entity.id);
                 }
@@ -124,16 +122,16 @@ var World = (function () {
         }
 
         if (collision === false) {
-            hero_entity.location.position = newLoc;
+            heroEntity.location.position = newLoc;
             Game.Graphics.UpdateCenter(newLoc);
         }
+        var crap = 1;
+
+        //loop through monsters, move them
+        this.MoveMonsters(heroEntity.location.position);
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
-        //TODO: Check collision
-        // collision with monster
-        // collision with building door
-        // collision with map entry/exit
     };
 
     /**
