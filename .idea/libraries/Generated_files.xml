@@ -6,10 +6,11 @@
         <item url="file://$PROJECT_DIR$/js/world/world.js" />
         <item url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
         <item url="file://$PROJECT_DIR$/js/world/tile.js" />
-        <item url="file://$PROJECT_DIR$/js/items.js" />
+        <item url="file://$PROJECT_DIR$/js/TODO.js" />
         <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
         <item url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
         <item url="file://$PROJECT_DIR$/js/references.js" />
+        <item url="file://$PROJECT_DIR$/js/items.js" />
         <item url="file://$PROJECT_DIR$/js/libs/collections.js" />
         <item url="file://$PROJECT_DIR$/js/Sprites.js" />
         <item url="file://$PROJECT_DIR$/js/engines/Game.js" />
@@ -48,10 +49,11 @@
       <root url="file://$PROJECT_DIR$/js/world/world.js" />
       <root url="file://$PROJECT_DIR$/js/world/tile.js" />
       <root url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
-      <root url="file://$PROJECT_DIR$/js/items.js" />
+      <root url="file://$PROJECT_DIR$/js/TODO.js" />
       <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
       <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
       <root url="file://$PROJECT_DIR$/js/references.js" />
+      <root url="file://$PROJECT_DIR$/js/items.js" />
       <root url="file://$PROJECT_DIR$/js/libs/collections.js" />
       <root url="file://$PROJECT_DIR$/js/Sprites.js" />
       <root url="file://$PROJECT_DIR$/js/engines/Game.js" />

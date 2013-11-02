@@ -181,12 +181,15 @@ class GraphicsEngine {
         //show contents of main inventory
         var main_wares = shop.inventory.wares;
 
+        // clear shop, containers
         $('#equipment-side').empty();
+
         this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
         // clear equipment slots
         $('.equipment-slot-inner').empty();
         $('.equipment-slot label').show();
+
         for (var slot in equipment) {
 
             var item:Item = equipment[slot];
@@ -224,11 +227,6 @@ class GraphicsEngine {
                 "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>"+
                 "{3}"+
             "</div>", item.ID, item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
-    }
-
-    private AddToSlot(slot:string, sprite:Resource) {
-        var $slot = $('#slot-'+slot);
-        $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px');
     }
 
     private CreateInventoryView(id:string, name:string, container:Container) {
