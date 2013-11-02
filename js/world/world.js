@@ -54,6 +54,22 @@ var World = (function () {
         var loc = hero_entity.location;
         var dir = new Point(0, 0);
         switch (keycode) {
+            case 33:
+                dir.X = 1;
+                dir.Y = -1;
+                break;
+            case 34:
+                dir.X = 1;
+                dir.Y = 1;
+                break;
+            case 35:
+                dir.X = -1;
+                dir.Y = 1;
+                break;
+            case 36:
+                dir.X = -1;
+                dir.Y = -1;
+                break;
             case 37:
                 dir.X = -1;
                 break;

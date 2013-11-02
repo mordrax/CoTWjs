@@ -15,10 +15,10 @@ var Player = (function (_super) {
         this.att = 10;
 
         Game.Input.keyboardEvent.add(function (ev) {
-            //        LEFT: 37,
-            //        UP: 38,
-            //        RIGHT: 39,
-            //        DOWN: 40,
+            //        WEST: 37,
+            //        NORTH: 38,
+            //        EAST: 39,
+            //        SOUTH: 40,
             Game.World.Move(_this.id, ev.keyCode);
         });
 
