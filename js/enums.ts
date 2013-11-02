@@ -112,7 +112,7 @@ enum EntityType {
     Tile
 }
 
-// All structure types - changed to string to test something out, so not much point to this being enum now right?
+// All structure types
 enum StructureType{
         Bank_WF           ,
         BigHouse_NE       ,
