@@ -63,16 +63,32 @@ class World {
         var loc = hero_entity.location;
         var dir = new Point(0, 0);
         switch (keycode) {
-            case 37: //LEFT
-                dir.X = -1;
-                break;
-            case 38: //UP
+            case 33: //NORTHEAST
+                dir.X = 1;
                 dir.Y = -1;
                 break;
-            case 39: // RIGHT
+            case 34: //SOUTHEAST
+                dir.X = 1;
+                dir.Y = 1;
+                break;
+            case 35: // SOUTHWEST
+                dir.X = -1;
+                dir.Y = 1;
+                break;
+            case 36: // NORTHWEST
+                dir.X = -1;
+                dir.Y = -1;
+                break;
+            case 37: // WEST or LEFT
+                dir.X = -1;
+                break;
+            case 38: // NORTH or UP
+                dir.Y = -1;
+                break;
+            case 39: // EAST or RIGHT
                 dir.X = 1;
                 break;
-            case 40: // DOWN
+            case 40: // SOUTH or DOWN
                 dir.Y = 1;
                 break;
             default:    // do nothing
