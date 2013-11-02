@@ -123,19 +123,6 @@ var GraphicsEngine = (function () {
         $('#menu-nameobject').click(function () {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $(".equipment-slot-inner").sortable({
-            receive: function (event, ui) {
-                $(event.target.children).not("#" + ui.item[0].id).appendTo(ui.sender[0]);
-                if (event.target.children.length > 0) {
-                    $(event.target).siblings().hide();
-                }
-            },
-            remove: function (event, ui) {
-                if (event.target.children.length === 0) {
-                    $(event.target).siblings().show();
-                }
-            }
-        }).disableSelection();
     };
 
     GraphicsEngine.prototype.Screen = function (screen) {
@@ -155,14 +142,25 @@ var GraphicsEngine = (function () {
         }
     };
 
+    /**
+    * Show the hero equipment and all open containers.
+    * Allow moving between containers and triggers logic for buy/sell, identify, junk, etc etc
+    * @param equipment
+    * @param shop
+    * @constructor
+    */
     GraphicsEngine.prototype.UpdateInventory = function (equipment, shop) {
         //show contents of main inventory
         var main_wares = shop.inventory.wares;
+
+        // keeps track of all containers to their html id attribute so items can be placed into dropped containers and removed too
+        var containerRegister = {};
 
         // clear shop, containers
         $('#equipment-side').empty();
 
         this.CreateInventoryView("main", shop.id, shop.inventory.wares);
+        containerRegister["main"] = shop.inventory.wares;
 
         // clear equipment slots
         $('.equipment-slot-inner').empty();
@@ -181,13 +179,72 @@ var GraphicsEngine = (function () {
             if (!!item.container) {
                 if (item.container.opened) {
                     this.CreateInventoryView(item.ID.toString(), item.base.name, item.container);
-                    // show contents of container
+                    containerRegister[item.ID.toString()] = item.container;
                 }
             }
         }
 
-        $('.connectable').sortable({
-            connectWith: ".connectable"
+        $(".container").sortable({
+            connectWith: '.container',
+            receive: function (event, ui) {
+                // work out if sender, reciever from main or other containers or equipment slot
+                var $reciever = $(event.target);
+                var senderID = $(ui.sender[0]).parent().attr('id');
+                var recieverID = $reciever.parent().attr('id');
+                console.log("sender:" + senderID + " reciever:" + recieverID);
+
+                var sender;
+                var reciever;
+
+                if (senderID.indexOf('container-main') == 0) {
+                    sender = containerRegister["main"];
+                } else if (senderID.indexOf('container-') == 0) {
+                    sender = containerRegister[senderID.substring(10)];
+                } else if (senderID.indexOf('slot-') == 0) {
+                    sender = senderID.substring(5);
+                } else {
+                    console.log("ERROR: Unknown sender, not container or item");
+                    console.dir(ui.sender);
+                }
+
+                if (recieverID.indexOf('container-main') == 0) {
+                    reciever = containerRegister["main"];
+                } else if (recieverID.indexOf('container-') == 0) {
+                    reciever = containerRegister[recieverID.substring(10)];
+                } else if (recieverID.indexOf('slot-') == 0) {
+                    reciever = recieverID.substring(5);
+                } else {
+                    console.log("ERROR: Unknown reciever, not container or item");
+                    console.dir($reciever.parent());
+                }
+
+                console.dir(sender);
+                console.dir(reciever);
+
+                if ($reciever.hasClass('equipment-slot-inner')) {
+                    // move the slot item out
+                    $reciever.children().not("#" + ui.item[0].id).appendTo(ui.sender[0]);
+                    if ($reciever.children().length > 0) {
+                        $reciever.siblings('.equipment-slot-nulltext').hide();
+                    }
+
+                    // move item into slot
+                    equipment[reciever] = sender.items[ui.item[0].id.substring(5)];
+                } else {
+                    if (sender instanceof Container) {
+                        (reciever).Add((sender).Take(ui.item[0].id.substring(5)));
+                    } else {
+                        (reciever).Add(equipment[sender]);
+                        sender = null;
+                    }
+                }
+            },
+            remove: function (event, ui) {
+                var $reciever = $(event.target);
+                if ($reciever.children().length === 0) {
+                    $reciever.siblings('.equipment-slot-nulltext').show();
+                }
+            }
         }).disableSelection();
 
         //calculate all equipment-side window heights
@@ -200,12 +257,12 @@ var GraphicsEngine = (function () {
     };
 
     GraphicsEngine.prototype.AddToInventory = function (jqEle, item) {
-        jqEle.append(Format("<div id='item-{0}' class='equipment'>" + "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" + "{3}" + "</div>", item.ID, item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
+        jqEle.append(Format("<div id='{0}' class='equipment'>" + "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" + "{3}" + "</div>", Item.GetIDString(item), item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
     };
 
     GraphicsEngine.prototype.CreateInventoryView = function (id, name, container) {
         var $container = $(Format("<div id='container-{0}'>" + "<div class='title'>{1}</div>" + "</div>", id, name));
-        var $containerInner = $(Format("<div id='container-{0}-inner' class='container connectable'></div>", id));
+        var $containerInner = $(Format("<div id='container-{0}-inner' class='container'></div>", id));
 
         $container.append($containerInner);
 
