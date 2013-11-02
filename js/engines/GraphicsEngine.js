@@ -123,13 +123,17 @@ var GraphicsEngine = (function () {
         $('#menu-nameobject').click(function () {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $(".equipment-slot").sortable({
+        $(".equipment-slot-inner").sortable({
             receive: function (event, ui) {
-                console.dir(ui.item[0]);
-                console.dir(ui.sender[0]);
-
-                //this.AddToContainer(ui.sender[0], ui.item[0]);
-                $((event.target).children).not("#" + ui.item[0].id).not(".placeholder-slot").appendTo(ui.sender[0]);
+                $(event.target.children).not("#" + ui.item[0].id).appendTo(ui.sender[0]);
+                if (event.target.children.length > 0) {
+                    $(event.target).siblings().hide();
+                }
+            },
+            remove: function (event, ui) {
+                if (event.target.children.length === 0) {
+                    $(event.target).siblings().show();
+                }
             }
         }).disableSelection();
     };
@@ -163,7 +167,11 @@ var GraphicsEngine = (function () {
             if (!item)
                 continue;
 
-            this.AddToSlot(slot, item.base.sprite);
+            // add item to slot and hide label
+            var $slot = $('#slot-' + slot + ' .equipment-slot-inner');
+            this.AddToInventory($slot, item);
+            $slot.siblings().hide();
+
             if (item instanceof Container) {
                 var container = item;
                 if (container.opened) {
@@ -174,8 +182,7 @@ var GraphicsEngine = (function () {
         }
 
         $('.connectable').sortable({
-            connectWith: ".connectable",
-            items: '.equipment'
+            connectWith: ".connectable"
         }).disableSelection();
 
         //calculate all equipment-side window heights

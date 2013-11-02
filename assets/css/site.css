@@ -20,6 +20,7 @@
     color: white;
     text-align: center;
     font-weight: bold;
+    height: 10%;
 }
 
 #canvas {
@@ -123,9 +124,9 @@ nav ul li ul li a {
     height:600px;
 }
 
-.container {
-    height: 100%;
-    overflow: auto;
+#equipment-side .container {
+    height: 90%;
+    overflow-y: scroll;
 }
 
 .middle-bar,
@@ -143,17 +144,16 @@ nav ul li ul li a {
 
 .equipment,
 .equipment-slot {
-    height: 90px;
-    padding-top: 10px;
+    height: 100px;
     width: 70px;
 }
 
 .equipment-slot {
     border: 1px dashed black;
 }
-.placeholder-slot {
+.equipment-slot-inner {
     text-align: center;
-    margin-top: 10px;
+    height: 100%;
 }
 
 .equipment {
