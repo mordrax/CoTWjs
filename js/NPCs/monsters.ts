@@ -9,5 +9,11 @@ class Monster extends Actor {
         this._loot = "copper coins";
     }
 
-
+    Move() {
+        while(true) {
+            //do some funky algorith to get a point
+            if (Game.World.TryMove(this.id, new Point()))
+                break;
+        }
+    }
 }

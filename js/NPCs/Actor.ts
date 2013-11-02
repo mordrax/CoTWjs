@@ -10,7 +10,7 @@ class Actor extends Entity {
     private _def:number;              // defence
     private _toHit:number;            // % chance to hit
     public inventory: IEquipment;
-    IStat
+
 
     constructor(id:string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
@@ -34,6 +34,7 @@ class Actor extends Entity {
             target.TakeDamage(damage);
             if (target.isDead()) {
                 consoleMsg = this.msgKill(damage, target.id);
+                Game.World.RemoveEntity(target);
             }
             else {
                 consoleMsg = this.msgHit(damage, target.id);
