@@ -36,8 +36,8 @@ class Game {
 
         this._monsters = [];
         for (var i=0; i < 10; i++) {
-            var location = new WorldCoordinates(MapType.VillageMap,
-                new Point(D(20), D(20)));
+            var location = new WorldCoordinates(MapType.FarmMap,
+                new Point(D(40), D(20)));
             var sak : Resource = {
                 type:   CoTWSprites.Actors.Kobold.type,
                 offset: CoTWSprites.Actors.Kobold.offset,
