@@ -2,7 +2,7 @@
 
 class Player extends Actor {
     constructor(id:string, coord?:WorldCoordinates) {
-        super(id, CoTWSprites.Actors.Player, coord);
+        super(id, CoTWSprites.Actors.FemaleHero, coord);
 
          this.hp = 1000;
          this.att = 10;
