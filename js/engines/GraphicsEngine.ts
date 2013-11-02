@@ -145,10 +145,6 @@ class GraphicsEngine {
         $('#menu-nameobject').click(function() {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $('#bottom-window-inner, #top-window-inner, #slot-leftRing, #slot-armour').sortable({
-            connectWith: ".connectable"
-        }).disableSelection();
-
         $( ".equipment-slot" ).sortable({
             receive: ( event, ui ) => {
                 console.dir(ui.item[0]);
@@ -179,10 +175,9 @@ class GraphicsEngine {
     public UpdateInventory(equipment:IEquipment, shop:Shop) {
         //show contents of main inventory
         var main_wares = shop.inventory.wares;
-        var connectables = "#container-main-inner";
 
         $('#equipment-side').empty();
-        connectables = this.CreateInventoryView("main", shop.id, shop.inventory.wares);
+        this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
         for (var slot in equipment) {
             var item:Item = equipment[slot];
@@ -192,15 +187,15 @@ class GraphicsEngine {
             if (item instanceof Container) {
                 var container = <Container>item;
                 if (container.opened) {
-                    connectables += ", " + this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
+                    this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
                     // show contents of container
                 }
             }
         }
 
-        console.log("connecting: " + connectables);
-        $(connectables).sortable({
-            connectWith: ".connectable"
+        $('.connectable').sortable({
+            connectWith: ".connectable",
+            items: '.equipment'
         }).disableSelection();
 
         //calculate all equipment-side window heights
@@ -225,7 +220,7 @@ class GraphicsEngine {
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px');
     }
 
-    private CreateInventoryView(id:string, name:string, items:{[id:string]:Item}): string {
+    private CreateInventoryView(id:string, name:string, items:{[id:string]:Item}) {
         var $container = $(Format("<div id='container-{0}'>"+
             "<div class='title'>{1}</div>"+
             "</div>", id, name));
@@ -238,8 +233,6 @@ class GraphicsEngine {
         for (var itemID in items) {
             this.AddToInventory($containerInner, items[itemID]);
         }
-
-        return "#"+$containerInner.attr('id');
     }
 
 

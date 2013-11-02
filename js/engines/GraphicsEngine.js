@@ -123,10 +123,6 @@ var GraphicsEngine = (function () {
         $('#menu-nameobject').click(function () {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $('#bottom-window-inner, #top-window-inner, #slot-leftRing, #slot-armour').sortable({
-            connectWith: ".connectable"
-        }).disableSelection();
-
         $(".equipment-slot").sortable({
             receive: function (event, ui) {
                 console.dir(ui.item[0]);
@@ -158,10 +154,9 @@ var GraphicsEngine = (function () {
     GraphicsEngine.prototype.UpdateInventory = function (equipment, shop) {
         //show contents of main inventory
         var main_wares = shop.inventory.wares;
-        var connectables = "#container-main-inner";
 
         $('#equipment-side').empty();
-        connectables = this.CreateInventoryView("main", shop.id, shop.inventory.wares);
+        this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
         for (var slot in equipment) {
             var item = equipment[slot];
@@ -172,15 +167,15 @@ var GraphicsEngine = (function () {
             if (item instanceof Container) {
                 var container = item;
                 if (container.opened) {
-                    connectables += ", " + this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
+                    this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
                     // show contents of container
                 }
             }
         }
 
-        console.log("connecting: " + connectables);
-        $(connectables).sortable({
-            connectWith: ".connectable"
+        $('.connectable').sortable({
+            connectWith: ".connectable",
+            items: '.equipment'
         }).disableSelection();
 
         //calculate all equipment-side window heights
@@ -212,8 +207,6 @@ var GraphicsEngine = (function () {
         for (var itemID in items) {
             this.AddToInventory($containerInner, items[itemID]);
         }
-
-        return "#" + $containerInner.attr('id');
     };
     return GraphicsEngine;
 })();
