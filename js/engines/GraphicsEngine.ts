@@ -107,44 +107,47 @@ class GraphicsEngine {
         // create file menu, set to not visible
         $('#file-menu-file').click(function() {
             $('#menu-file').toggle();
-        })
+        });
 
         $('#file-menu-character').click(function() {
             console.log('Please implement the character menu!!!');
-        })
+        });
         $('#file-menu-inventory').click(function() {
             console.log('Please implement the inventory menu!!!');
-        })
+        });
         $('#file-menu-map').click(function() {
             console.log('Please implement the map menu!!!');
-        })
+        });
         $('#file-menu-spell').click(function() {
             console.log('Please implement the spell menu!!!');
-        })
+        });
         $('#file-menu-activate').click(function() {
             console.log('Please implement the activate menu!!!');
-        })
+        });
         $('#file-menu-verbs').click(function() {
             console.log('Please implement the verbs menu!!!');
-        })
+        });
         $('#file-menu-window').click(function() {
             console.log('Please implement the window menu!!!');
-        })
+        });
         $('#menu-window-main').click(() => {
             this.Screen(ScreenType.Main);
-        })
+        });
         $('#menu-window-shop').click(() => {
             this.Screen(ScreenType.Shop);
-        })
+        });
         $('#menu-exit').click(() => {
             this.Screen(ScreenType.Main);
         });
         $('#menu-sortpack').click(function() {
             $('#top-window').append('<div class="equipment"></div>');
-        })
+        });
         $('#menu-nameobject').click(function() {
             $('#bottom-window').append('<div class="equipment"></div>');
-        })
+        });
+        $('#bottom-window, #top-window, #slot-leftRing').sortable({
+            connectWith: ".connectable"
+        }).disableSelection();
     }
 
     public Screen(screen:ScreenType) {
