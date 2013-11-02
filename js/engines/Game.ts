@@ -6,7 +6,7 @@
  * World - Model that contains everything
  * Canvas - View that uses the current hero location in the world to update the screen
  * Engines - Controllers that changes the state of the world, talking to either each other via the world or manipulating entities in the world
- * Events - Input and world based events that transistions the world from one state to another
+ * Events - Input and world based events that transitions the world from one state to another
  *
  *
  * 1. Create character
@@ -35,7 +35,7 @@ class Game {
         Game.World.AddEntity(this._hero);
 
         this._monsters = [];
-        for (var i=0; i < 100; i++) {
+        for (var i=0; i < 1; i++) {
             var location = new WorldCoordinates(MapType.FarmMap,
                 new Point(D(40), D(30)));
             var sak : Resource = {

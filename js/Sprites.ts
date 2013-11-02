@@ -96,7 +96,8 @@ var CoTWSprites = {
         Crop:          {type:ResourceType.Tiles, offset: {x: 64 , y: 32 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Entry:         {type:ResourceType.Tiles, offset: {x: 192, y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Building:      {type:ResourceType.Tiles, offset: {x: 192, y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
-        Sign:          {type:ResourceType.Tiles, offset: {x: 160, y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
+        Sign:          {type:ResourceType.Tiles, offset: {x: 160, y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        MineEntrance:  {type:ResourceType.Tiles, offset: {x: 0  , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
     },
     Buildings: {
         Gate_NS             : {type:ResourceType.buildings_1x, offset: {x:0,  y:0}, size:{w:96, h:32},  turn:0},

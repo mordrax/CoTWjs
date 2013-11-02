@@ -179,6 +179,8 @@ class World {
                 return "Farm";
             case MapType.VillageMap:
                 return "Village";
+            case MapType.MinesLv1:
+                return "Mines: Level 1";
             default:
                 return "An unknown spooky area unintended by the developer!";
         }

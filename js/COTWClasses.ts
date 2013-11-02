@@ -68,10 +68,10 @@ class TileFactory {
         this._tileCollection.setValue('O', {name: 'LitDgn', sprite: CoTWSprites.Tiles.LitDgn});
         this._tileCollection.setValue('_', {name: 'PathRock', sprite: CoTWSprites.Tiles.PathRock});
         this._tileCollection.setValue(';', {name: 'PathGrass', sprite: CoTWSprites.Tiles.PathGrass});
-        this._tileCollection.setValue(' ', {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgn});
-        this._tileCollection.setValue(' ', {name: 'WaterGrass', sprite: CoTWSprites.Tiles.WaterGrass});
-        this._tileCollection.setValue(' ', {name: 'WaterPath', sprite: CoTWSprites.Tiles.WaterPath});
-        this._tileCollection.setValue(' ', {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgn});
+        this._tileCollection.setValue('c', {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgn});
+        this._tileCollection.setValue('w', {name: 'WaterGrass', sprite: CoTWSprites.Tiles.WaterGrass});
+        this._tileCollection.setValue('W', {name: 'WaterPath', sprite: CoTWSprites.Tiles.WaterPath});
+        this._tileCollection.setValue('C', {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgn});
         this._tileCollection.setValue(' ', {name: 'Grass50Cave50', sprite: CoTWSprites.Tiles.Grass50Cave50});
         this._tileCollection.setValue(' ', {name: 'Grass10Cave90', sprite: CoTWSprites.Tiles.Grass10Cave90});
         this._tileCollection.setValue(' ', {name: 'White50Cave50', sprite: CoTWSprites.Tiles.White50Cave50});
@@ -106,6 +106,7 @@ class BuildingFactory {
         this._buildingcollection.setValue(StructureType.Hut_EF, {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Hut_EF       });
         this._buildingcollection.setValue(StructureType.HutTemple_NF, {entryPoint: new Point(2, 1), sprite: CoTWSprites.Buildings.HutTemple_NF });
         this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF, {entryPoint: new Point(0, 1), sprite: CoTWSprites.Buildings.BurntStrawHouse_WF });
+        this._buildingcollection.setValue(StructureType.MineEntrance, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.MineEntrance });
     }
 
     public Create(type:StructureType, id:string, location:WorldCoordinates, goodsType:ItemType[], goodsQuality:number):Structure {

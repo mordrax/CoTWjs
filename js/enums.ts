@@ -136,5 +136,6 @@ enum StructureType{
         StrawHouse_EF     ,
         StrawHouse_WF     ,
         VegePatch         ,
-        Well              
+        Well              ,
+        MineEntrance
 }
