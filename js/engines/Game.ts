@@ -63,17 +63,15 @@ function D(high:number, low:number=1) : number {
 }
 
 function Log(msg:string, msgtype:MessageType=MessageType.Normal) {
-    $('#messages').prepend('<div class="{0}">{1}</div>'.format(msgtype, msg));
+    $('#messages').prepend(Format("<div class='{0}'>{1}</div>", msgtype, msg));
 }
 
-if (!String.prototype.format) {
-    String.prototype.format = function() {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function(match, number) {
-            return typeof args[number] != 'undefined'
-                ? args[number]
-                : match
-                ;
-        });
-    };
+function Format(str:string, ...argument:any[]):string {
+    var args = argument;
+    return str.replace(/{(\d+)}/g, function(match, number) {
+        return typeof args[number] != 'undefined'
+            ? args[number]
+            : match
+            ;
+    });
 }

@@ -110,7 +110,7 @@ class World {
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(hero_entity.inventory, (<Shop>building).inventory, building.id);
+                        Game.Graphics.UpdateInventory(hero_entity.inventory, (<Shop>building));
                     }
                     Log("You have entered: " + entity.id);
                 }

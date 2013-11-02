@@ -15,10 +15,8 @@ var __extends = this.__extends || function (d, b) {
 */
 var Inventory = (function () {
     function Inventory() {
+        this.wares = {};
     }
-    Inventory.prototype.GetItems = function () {
-        return this._items;
-    };
     return Inventory;
 })();
 
@@ -28,14 +26,13 @@ var ShopInventory = (function (_super) {
         var _this = this;
         _super.call(this);
 
-        this._items = [];
-
         goodsType.forEach(function (x) {
             // all items of type
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i = 0; i < 5; i++) {
-                _this._items.push(new Item(items[keys[D(keys.length - 1)]]));
+                var item = new Item(items[keys[D(keys.length - 1)]]);
+                _this.wares[item.ID] = item;
             }
         });
     }

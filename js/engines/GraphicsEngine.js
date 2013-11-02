@@ -123,6 +123,19 @@ var GraphicsEngine = (function () {
         $('#menu-nameobject').click(function () {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
+        $('#bottom-window-inner, #top-window-inner, #slot-leftRing, #slot-armour').sortable({
+            connectWith: ".connectable"
+        }).disableSelection();
+
+        $(".equipment-slot").sortable({
+            receive: function (event, ui) {
+                console.dir(ui.item[0]);
+                console.dir(ui.sender[0]);
+
+                //this.AddToContainer(ui.sender[0], ui.item[0]);
+                $((event.target).children).not("#" + ui.item[0].id).not(".placeholder-slot").appendTo(ui.sender[0]);
+            }
+        }).disableSelection();
     };
 
     GraphicsEngine.prototype.Screen = function (screen) {
@@ -142,37 +155,45 @@ var GraphicsEngine = (function () {
         }
     };
 
-    GraphicsEngine.prototype.UpdateInventory = function (equipment, mainInventory, mainInventoryTitle) {
-        var _this = this;
+    GraphicsEngine.prototype.UpdateInventory = function (equipment, shop) {
         //show contents of main inventory
-        var main_items = mainInventory.GetItems();
+        var main_wares = shop.inventory.wares;
+        var connectables = "#container-main-inner";
 
-        $('#top-window').empty();
-        $('#top-window').append("<div class='title'>{0}</div>".format(mainInventoryTitle));
-
-        main_items.forEach(function (x) {
-            _this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
-        });
+        $('#equipment-side').empty();
+        connectables = this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
         for (var slot in equipment) {
             var item = equipment[slot];
             if (!item)
                 continue;
 
-            this.AddToSlot(slot, item.item.sprite);
+            this.AddToSlot(slot, item.base.sprite);
             if (item instanceof Container) {
                 var container = item;
                 if (container.opened) {
-                    this.AddContainerToBottomWindow(container);
+                    connectables += ", " + this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
                     // show contents of container
                 }
             }
         }
+
+        console.log("connecting: " + connectables);
+        $(connectables).sortable({
+            connectWith: ".connectable"
+        }).disableSelection();
+
+        //calculate all equipment-side window heights
+        $("#equipment-side").each(function () {
+            var $this = $(this);
+            var $children = $this.children();
+
+            $children.height($this.height() / $children.length);
+        });
     };
 
-    GraphicsEngine.prototype.AddToMainInventory = function (id, sprite, label) {
-        $('#top-window').append('<div id=item-{0} class="equipment"><div style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -{1}px -{2}px;display:block;margin:0 auto;"></div>{3}</div>'.format(id, sprite.offset.x, sprite.offset.y, label));
-        console.log("trying to show shop inventory" + id + " " + sprite);
+    GraphicsEngine.prototype.AddToInventory = function (jqEle, item) {
+        jqEle.append(Format("<div id='item-{0}' class='equipment'>" + "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" + "{3}" + "</div>", item.ID, item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
     };
 
     GraphicsEngine.prototype.AddToSlot = function (slot, sprite) {
@@ -180,8 +201,19 @@ var GraphicsEngine = (function () {
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -' + sprite.offset.x + 'px -' + sprite.offset.y + 'px');
     };
 
-    GraphicsEngine.prototype.AddContainerToBottomWindow = function (container) {
-        $('#equipment-side').append("<div id='container-{0}' connectable></div>");
+    GraphicsEngine.prototype.CreateInventoryView = function (id, name, items) {
+        var $container = $(Format("<div id='container-{0}'>" + "<div class='title'>{1}</div>" + "</div>", id, name));
+        var $containerInner = $(Format("<div id='container-{0}-inner' class='container connectable'></div>", id));
+
+        $container.append($containerInner);
+
+        $('#equipment-side').append($container);
+
+        for (var itemID in items) {
+            this.AddToInventory($containerInner, items[itemID]);
+        }
+
+        return "#" + $containerInner.attr('id');
     };
     return GraphicsEngine;
 })();

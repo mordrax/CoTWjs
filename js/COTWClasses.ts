@@ -114,11 +114,11 @@ class BuildingFactory {
 class Item {
     static IDCount:number = 0;
     public ID: number;
-    public item: IItem;
+    public base: IItem;
 
-    constructor(item:IItem) {
+    constructor(base:IItem) {
         this.ID = Item.GenerateID();
-        this.item = item;
+        this.base = base;
     }
 
     static GenerateID():number {
@@ -129,8 +129,15 @@ class Item {
 
 class Container extends Item {
     opened: boolean;
+    items:{[id:string]:Item};
+
     constructor(obj:IItem) {
         super(obj);
         this.opened = true;
+        this.items = {};
+    }
+
+    public Add(item:Item) {
+        this.items[item.ID]=item;
     }
 }

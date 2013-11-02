@@ -16,7 +16,7 @@
 }
 
 .title {
-    background-color: blue;
+    background-color: red;
     color: white;
     text-align: center;
     font-weight: bold;
@@ -123,14 +123,9 @@ nav ul li ul li a {
     height:600px;
 }
 
-#top-window {
-    height: 50%;
-    overflow-y: scroll;
-}
-
-#bottom-window {
-    height: 50%;
-    overflow-y: scroll;
+.container {
+    height: 100%;
+    overflow: auto;
 }
 
 .middle-bar,

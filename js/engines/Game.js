@@ -58,15 +58,17 @@ function D(high, low) {
 
 function Log(msg, msgtype) {
     if (typeof msgtype === "undefined") { msgtype = MessageType.Normal; }
-    $('#messages').prepend('<div class="{0}">{1}</div>'.format(msgtype, msg));
+    $('#messages').prepend(Format("<div class='{0}'>{1}</div>", msgtype, msg));
 }
 
-if (!String.prototype.format) {
-    String.prototype.format = function () {
-        var args = arguments;
-        return this.replace(/{(\d+)}/g, function (match, number) {
-            return typeof args[number] != 'undefined' ? args[number] : match;
-        });
-    };
+function Format(str) {
+    var argument = [];
+    for (var _i = 0; _i < (arguments.length - 1); _i++) {
+        argument[_i] = arguments[_i + 1];
+    }
+    var args = argument;
+    return str.replace(/{(\d+)}/g, function (match, number) {
+        return typeof args[number] != 'undefined' ? args[number] : match;
+    });
 }
 //# sourceMappingURL=Game.js.map

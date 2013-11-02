@@ -145,9 +145,10 @@ class GraphicsEngine {
         $('#menu-nameobject').click(function() {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $('#bottom-window, #top-window, #slot-leftRing, #slot-armour').sortable({
+        $('#bottom-window-inner, #top-window-inner, #slot-leftRing, #slot-armour').sortable({
             connectWith: ".connectable"
         }).disableSelection();
+
         $( ".equipment-slot" ).sortable({
             receive: ( event, ui ) => {
                 console.dir(ui.item[0]);
@@ -175,35 +176,48 @@ class GraphicsEngine {
             }
     }
 
-    public UpdateInventory(equipment:IEquipment, mainInventory:Inventory, mainInventoryTitle:string) {
+    public UpdateInventory(equipment:IEquipment, shop:Shop) {
         //show contents of main inventory
-        var main_items = mainInventory.GetItems();
+        var main_wares = shop.inventory.wares;
+        var connectables = "#container-main-inner";
 
-        $('#top-window').empty();
-        $('#top-window').append("<div class='title'>{0}</div>".format(mainInventoryTitle));
-
-        main_items.forEach(x => {
-            this.AddToMainInventory(x.ID, x.item.sprite, x.item.name);
-        });
+        $('#equipment-side').empty();
+        connectables = this.CreateInventoryView("main", shop.id, shop.inventory.wares);
 
         for (var slot in equipment) {
             var item:Item = equipment[slot];
             if (!item) continue;
 
-            this.AddToSlot(slot, item.item.sprite);
+            this.AddToSlot(slot, item.base.sprite);
             if (item instanceof Container) {
                 var container = <Container>item;
                 if (container.opened) {
-                    this.AddContainerToBottomWindow(container);
+                    connectables += ", " + this.CreateInventoryView(container.ID.toString(), container.base.name, container.items);
                     // show contents of container
                 }
             }
         }
+
+        console.log("connecting: " + connectables);
+        $(connectables).sortable({
+            connectWith: ".connectable"
+        }).disableSelection();
+
+        //calculate all equipment-side window heights
+        $("#equipment-side").each(function(){
+            var $this = $(this);
+            var $children = $this.children();
+
+            $children.height($this.height() / $children.length);
+        });
     }
 
-    private AddToMainInventory(id:number, sprite:Resource, label:string) {
-        $('#top-window').append('<div id=item-{0} class="equipment"><div style="width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -{1}px -{2}px;display:block;margin:0 auto;"></div>{3}</div>'.format(id, sprite.offset.x, sprite.offset.y, label));
-        console.log("trying to show shop inventory" + id + " " + sprite);
+    private AddToInventory(jqEle:JQuery, item:Item) {// id:string, sprite:Resource, label:string) {
+        jqEle.append(Format(
+            "<div id='item-{0}' class='equipment'>"+
+                "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>"+
+                "{3}"+
+            "</div>", item.ID, item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
     }
 
     private AddToSlot(slot:string, sprite:Resource) {
@@ -211,8 +225,21 @@ class GraphicsEngine {
         $slot.attr('style', 'width:32px;height:32px;background:url(\'assets\/resources\/items.png\') -'+sprite.offset.x+'px -'+sprite.offset.y+'px');
     }
 
-    private AddContainerToBottomWindow(container:Container) {
-        $('#equipment-side').append("<div id='container-{0}' connectable></div>")
+    private CreateInventoryView(id:string, name:string, items:{[id:string]:Item}): string {
+        var $container = $(Format("<div id='container-{0}'>"+
+            "<div class='title'>{1}</div>"+
+            "</div>", id, name));
+        var $containerInner = $(Format("<div id='container-{0}-inner' class='container connectable'></div>", id));
+
+        $container.append($containerInner);
+
+        $('#equipment-side').append($container);
+
+        for (var itemID in items) {
+            this.AddToInventory($containerInner, items[itemID]);
+        }
+
+        return "#"+$containerInner.attr('id');
     }
 
 

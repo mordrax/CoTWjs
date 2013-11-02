@@ -15,7 +15,8 @@ class Player extends Actor {
             Game.World.Move(this.id, ev.keyCode);
         });
 
-        this.inventory.pack = new Item(Items.Container.MediumChest);
+        this.inventory.pack = new Container(Items.Container.MediumChest);
+        this.inventory.freeHand = new Container(Items.Container.LargeBag);
         this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
 
