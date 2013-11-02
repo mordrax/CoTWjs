@@ -35,9 +35,9 @@ class Game {
         Game.World.AddEntity(this._hero);
 
         this._monsters = [];
-        for (var i=0; i < 10; i++) {
+        for (var i=0; i < 100; i++) {
             var location = new WorldCoordinates(MapType.FarmMap,
-                new Point(D(40), D(20)));
+                new Point(D(40), D(30)));
             var sak : Resource = {
                 type:   CoTWSprites.Actors.Kobold.type,
                 offset: CoTWSprites.Actors.Kobold.offset,

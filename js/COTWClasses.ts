@@ -46,6 +46,10 @@ class Point {
     Add(otherPoint: Point):Point{
         return new Point(this.X + otherPoint.X, this.Y + otherPoint.Y);
     }
+
+    Difference(otherPoint: Point):Point{
+        return new Point(this.X - otherPoint.X, this.Y - otherPoint.Y);
+    }
 }
 
 class TileFactory {

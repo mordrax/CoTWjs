@@ -10,7 +10,7 @@ class Player extends Actor {
         Game.Input.keyboardEvent.add((ev) => {
             var direction = this.CalculateMovement(ev.keyCode);
             if (direction.X != 0 || direction.Y != 0) { //check if there is any movement
-                Game.World.Move(this.id, direction);
+                Game.World.MoveHero(this.id, direction);
             }
         });
 

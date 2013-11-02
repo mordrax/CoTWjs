@@ -7,7 +7,7 @@ class World {
     private _currentArea:MapType;
     private _areas:collections.Dictionary<MapType, Tile[][]>;
     //private _entities: collections.Dictionary<MapType, collections.Dictionary<string, Entity>>;
-    private _entities : {[area:string]:{[id:string]:Entity}};
+    private _entities:{[area:string]:{[id:string]:Entity}};
     private _tileFactory:TileFactory;
     private _buildingFactory:BuildingFactory;
 
@@ -17,7 +17,7 @@ class World {
      * World creation defaults to village _map
      * @param $el - Container element <background> for all tiles
      */
-     constructor() {
+        constructor() {
         this.updatedEvent = new Signal();
 
         this._tileFactory = new TileFactory();
@@ -35,7 +35,7 @@ class World {
         this._entities[entity.location.area][entity.id] = entity;
     }
 
-    RemoveEntity(entity:Entity){
+    RemoveEntity(entity:Entity) {
         Log(entity.id + ' is slain!');
         delete this._entities[entity.location.area][entity.id];
     }
@@ -48,9 +48,9 @@ class World {
      * Send out update events for all entities and tiles of the current area of the world
      * @constructor
      */
-    DispatchUpdatedEvent() {
+        DispatchUpdatedEvent() {
         this._areas.getValue(this._currentArea).forEach(x => {
-            (<Array>x).forEach(y=>{
+            (<Array>x).forEach(y=> {
                 this.updatedEvent.dispatch(y);
             })
         });
@@ -58,30 +58,45 @@ class World {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     }
 
-    TryMove(monsterId: string, dir:Point):boolean {
-        var monsterEntity = this._entities[this._currentArea][monsterId];
+
+    private MoveMonsters(target:Point) {
+        for (var k in this._entities[this._currentArea]) {
+            var entity = this._entities[this._currentArea][k];
+            if (entity instanceof Monster) {
+                (<Monster>entity).Move(target);
+            }
+        }
+    }
+
+    TryMove(monsterId:string, dir:Point):boolean {
+        var monsterEntity = <Monster>this._entities[this._currentArea][monsterId];
         var loc = monsterEntity.location;
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
 
         //check hero and obstruction free
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
-            if (entity.type === EntityType.Actor){
-                if (entity.location.position.Equals(newLoc)){
-                    // check if hero is here
-                    return false; // monster = invalid move
+            if (entity.type === EntityType.Actor) {
+                if (entity.location.position.Equals(newLoc)) {
+                    if (entity instanceof Player) {
+                        monsterEntity.Attack(<Player>entity);
+                        return true;
+                    } else {
+                        return false; // monster = invalid move
+                    }
                 }
             } else if (entity.type === EntityType.Building) {
-                if ((<Structure>entity).PointInStructure(newLoc)){
+                if ((<Structure>entity).PointInStructure(newLoc) != StructurePart.None) {
                     return false; // building = invalid move
                 }
             }
         }
-
+        // nothing in the monster's way - move to new location
+        monsterEntity.location.position = newLoc;
         return true;
     }
 
-    Move (heroId:string, dir:Point) {
+    MoveHero(heroId:string, dir:Point) {
         var heroEntity = <Player>this._entities[this._currentArea][heroId];
         var loc = heroEntity.location;
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
@@ -120,8 +135,9 @@ class World {
             heroEntity.location.position = newLoc;
             Game.Graphics.UpdateCenter(newLoc);
         }
-
+    var crap   = 1;
         //loop through monsters, move them
+        this.MoveMonsters(heroEntity.location.position);
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
@@ -141,10 +157,10 @@ class World {
                 if (y === 0) {
                     tiles[x] = new Array<Tile>();
                 }
-                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x,y)));
-                if (x>0 && y>0) {
-                 // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
-                    tiles[x][y].DetermineRotation(tiles[x-1][y].id, tiles[x][y-1].id);
+                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x, y)));
+                if (x > 0 && y > 0) {
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
                 }
             }
         }
@@ -157,8 +173,8 @@ class World {
         );
     }
 
-    private PrettyPrint (type : MapType) {
-        switch(type) {
+    private PrettyPrint(type:MapType) {
+        switch (type) {
             case MapType.FarmMap:
                 return "Farm";
             case MapType.VillageMap:
@@ -172,7 +188,7 @@ class World {
      * Called when a player moves to a point in the world, check if that location is a link
      * If yes, then change the map and send the new location of the player (on the new map) back
      */
-    MapLink(currentLocation:WorldCoordinates):WorldCoordinates {
+        MapLink(currentLocation:WorldCoordinates):WorldCoordinates {
         var link:WorldCoordinates = null;
 
         MAP_TO_MAP.forEach((k:WorldCoordinates, v:WorldCoordinates) => {
