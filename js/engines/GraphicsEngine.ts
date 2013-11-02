@@ -145,8 +145,16 @@ class GraphicsEngine {
         $('#menu-nameobject').click(function() {
             $('#bottom-window').append('<div class="equipment"></div>');
         });
-        $('#bottom-window, #top-window, #slot-leftRing').sortable({
+        $('#bottom-window, #top-window, #slot-leftRing, #slot-armour').sortable({
             connectWith: ".connectable"
+        }).disableSelection();
+        $( ".equipment-slot" ).sortable({
+            receive: ( event, ui ) => {
+                console.dir(ui.item[0]);
+                console.dir(ui.sender[0]);
+               //this.AddToContainer(ui.sender[0], ui.item[0]);
+                $(<HTMLElement>(event.target).children).not("#"+ui.item[0].id).not(".placeholder-slot").appendTo(ui.sender[0]);
+            }
         }).disableSelection();
     }
 
@@ -206,4 +214,6 @@ class GraphicsEngine {
     private AddContainerToBottomWindow(container:Container) {
         $('#equipment-side').append("<div id='container-{0}' connectable></div>")
     }
+
+
 }
