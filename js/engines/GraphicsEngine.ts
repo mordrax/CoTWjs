@@ -201,7 +201,7 @@ class GraphicsEngine {
             if (!!item.container) {
                 if (item.container.opened) {
                     this.CreateInventoryView(item.ID.toString(), item.base.name, item.container);
-                    containerRegister[item.ID.toString()] = item.container;                    
+                    containerRegister[item.ID.toString()] = item.container;
                 }
             }
         }
@@ -215,7 +215,7 @@ class GraphicsEngine {
                 var $reciever:JQuery = $(event.target);
                 var senderID = $(ui.sender[0]).parent().attr('id');
                 var recieverID = $reciever.parent().attr('id');
-                console.log("sender:"+senderID+" reciever:"+recieverID);
+                console.log("sender:" + senderID + " reciever:" + recieverID);
 
                 var sender:any;   // either a container or a equipment slot depending on sender
                 var reciever:any; // either a container or a equipment slot depending on sender
@@ -254,18 +254,18 @@ class GraphicsEngine {
                     if ($reciever.children().length > 0) {
                         $reciever.siblings('.equipment-slot-nulltext').hide();
                     }
-
-                    // move item into slot
-                    equipment[reciever] = sender.items[ui.item[0].id.substring(5)];
-                } else {
-                    if (sender instanceof Container) {
-                        (<Container>reciever).Add((<Container>sender).Take(ui.item[0].id.substring(5)));
-                    } else {
-                        (<Container>reciever).Add(equipment[sender]);
-                        sender = null;
-                    }
-
                 }
+
+                // order matters, giving items to sender/reciever clears their equipment
+                var senderItem = this.Take(sender, equipment, ui.item[0].id.substring(5));
+                if (!(reciever instanceof Container)) {
+                    // if reciever is a slot, swap out the items
+                    var recieverItem = this.Take(reciever, equipment, ui.item[0].id.substring(5));
+                    if (!!recieverItem) {
+                        this.Give(sender, equipment, recieverItem);
+                    }
+                }
+                this.Give(reciever, equipment, senderItem);
             },
             remove: (event, ui) => {
                 var $reciever:JQuery = $(event.target);
@@ -308,5 +308,21 @@ class GraphicsEngine {
         }
     }
 
+    private Take(source:any, equipment:IEquipment, itemId:string):Item {
+        if (source instanceof Container) {
+            return (<Container>source).Take(itemId);
+        } else {
+            var item = equipment[source];
+            delete equipment[source];
+            return item;
+        }
+    }
 
+    private Give(source:any, equipment:IEquipment, item:Item) {
+        if (source instanceof Container) {
+            (<Container>source).Add(item);
+        } else {
+            equipment[source] = item;
+        }
+    }
 }

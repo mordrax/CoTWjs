@@ -150,6 +150,7 @@ var GraphicsEngine = (function () {
     * @constructor
     */
     GraphicsEngine.prototype.UpdateInventory = function (equipment, shop) {
+        var _this = this;
         //show contents of main inventory
         var main_wares = shop.inventory.wares;
 
@@ -227,17 +228,18 @@ var GraphicsEngine = (function () {
                     if ($reciever.children().length > 0) {
                         $reciever.siblings('.equipment-slot-nulltext').hide();
                     }
+                }
 
-                    // move item into slot
-                    equipment[reciever] = sender.items[ui.item[0].id.substring(5)];
-                } else {
-                    if (sender instanceof Container) {
-                        (reciever).Add((sender).Take(ui.item[0].id.substring(5)));
-                    } else {
-                        (reciever).Add(equipment[sender]);
-                        sender = null;
+                // order matters, giving items to sender/reciever clears their equipment
+                var senderItem = _this.Take(sender, equipment, ui.item[0].id.substring(5));
+                if (!(reciever instanceof Container)) {
+                    // if reciever is a slot, swap out the items
+                    var recieverItem = _this.Take(reciever, equipment, ui.item[0].id.substring(5));
+                    if (!!recieverItem) {
+                        _this.Give(sender, equipment, recieverItem);
                     }
                 }
+                _this.Give(reciever, equipment, senderItem);
             },
             remove: function (event, ui) {
                 var $reciever = $(event.target);
@@ -270,6 +272,24 @@ var GraphicsEngine = (function () {
 
         for (var itemID in container.items) {
             this.AddToInventory($containerInner, container.items[itemID]);
+        }
+    };
+
+    GraphicsEngine.prototype.Take = function (source, equipment, itemId) {
+        if (source instanceof Container) {
+            return (source).Take(itemId);
+        } else {
+            var item = equipment[source];
+            delete equipment[source];
+            return item;
+        }
+    };
+
+    GraphicsEngine.prototype.Give = function (source, equipment, item) {
+        if (source instanceof Container) {
+            (source).Add(item);
+        } else {
+            equipment[source] = item;
         }
     };
     return GraphicsEngine;
