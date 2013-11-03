@@ -11,6 +11,8 @@ class World {
     private _tileFactory:TileFactory;
     private _buildingFactory:BuildingFactory;
 
+    private _hero:Player;
+
     public updatedEvent:Signal;
 
     /**
@@ -33,6 +35,10 @@ class World {
     AddEntity(entity:Entity) {
         this._entities[entity.location.area] = this._entities[entity.location.area] || {};
         this._entities[entity.location.area][entity.id] = entity;
+
+        if (entity instanceof Player) {
+            this._hero = <Player>entity;
+        }
     }
 
     RemoveEntity(entity:Entity) {
@@ -58,12 +64,11 @@ class World {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     }
 
-
-    private MoveMonsters(target:Point) {
+    private MoveMonsters() {
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
             if (entity instanceof Monster) {
-                (<Monster>entity).Move(target);
+                (<Monster>entity).Move(this._hero.location.position);
             }
         }
     }
@@ -73,17 +78,20 @@ class World {
         var loc = monsterEntity.location;
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
 
+        // if monster is next to hero, hit it instead of trying to move
+        if (newLoc.Equals(this._hero.location.position)) {
+            monsterEntity.Attack(this._hero);
+            return true
+        }
+
         //check hero and obstruction free
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
             if (entity.type === EntityType.Actor) {
-                if (entity.location.position.Equals(newLoc)) {
-                    if (entity instanceof Player) {
-                        monsterEntity.Attack(<Player>entity);
-                        return true;
-                    } else {
-                        return false; // monster = invalid move
-                    }
+                // monster = invalid move
+                // can never be hero, handled above
+                if ((<Actor>entity).location.position.Equals(newLoc)) {
+                    return false;
                 }
             } else if (entity.type === EntityType.Building) {
                 if ((<Structure>entity).PointInStructure(newLoc) != StructurePart.None) {
@@ -136,9 +144,9 @@ class World {
             heroEntity.location.position = newLoc;
             Game.Graphics.UpdateCenter(newLoc);
         }
-    var crap   = 1;
+
         //loop through monsters, move them
-        this.MoveMonsters(heroEntity.location.position);
+        this.MoveMonsters();
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();

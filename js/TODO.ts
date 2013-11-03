@@ -13,7 +13,6 @@
  * - belt, activate menu
 
  * Monsters:
- * TODO: Monster move alternatives
  * TODO: Monster hit hero on structure
  *
  * World:

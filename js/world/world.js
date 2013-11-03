@@ -23,6 +23,10 @@ var World = (function () {
     World.prototype.AddEntity = function (entity) {
         this._entities[entity.location.area] = this._entities[entity.location.area] || {};
         this._entities[entity.location.area][entity.id] = entity;
+
+        if (entity instanceof Player) {
+            this._hero = entity;
+        }
     };
 
     World.prototype.RemoveEntity = function (entity) {
@@ -49,11 +53,11 @@ var World = (function () {
             this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
     };
 
-    World.prototype.MoveMonsters = function (target) {
+    World.prototype.MoveMonsters = function () {
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
             if (entity instanceof Monster) {
-                (entity).Move(target);
+                (entity).Move(this._hero.location.position);
             }
         }
     };
@@ -63,16 +67,16 @@ var World = (function () {
         var loc = monsterEntity.location;
         var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
 
+        if (newLoc.Equals(this._hero.location.position)) {
+            monsterEntity.Attack(this._hero);
+            return true;
+        }
+
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
             if (entity.type === EntityType.Actor) {
-                if (entity.location.position.Equals(newLoc)) {
-                    if (entity instanceof Player) {
-                        monsterEntity.Attack(entity);
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if ((entity).location.position.Equals(newLoc)) {
+                    return false;
                 }
             } else if (entity.type === EntityType.Building) {
                 if ((entity).PointInStructure(newLoc) != StructurePart.None) {
@@ -125,10 +129,9 @@ var World = (function () {
             heroEntity.location.position = newLoc;
             Game.Graphics.UpdateCenter(newLoc);
         }
-        var crap = 1;
 
         //loop through monsters, move them
-        this.MoveMonsters(heroEntity.location.position);
+        this.MoveMonsters();
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
