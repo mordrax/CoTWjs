@@ -28,7 +28,7 @@ var Game = (function () {
         Game.World.AddEntity(this._hero);
 
         this._monsters = [];
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 1; i++) {
             var location = new WorldCoordinates(MapType.FarmMap, new Point(D(40), D(30)));
             var sak = {
                 type: CoTWSprites.Actors.Kobold.type,

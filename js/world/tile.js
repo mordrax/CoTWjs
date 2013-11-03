@@ -7,8 +7,11 @@ var __extends = this.__extends || function (d, b) {
 };
 var Tile = (function (_super) {
     __extends(Tile, _super);
-    function Tile(id, sprite, location) {
+    function Tile(id, sprite, location, solid) {
+        if (typeof solid === "undefined") { solid = false; }
         _super.call(this, id, EntityType.Tile, sprite, location);
+
+        this.ground = new Container();
     }
     Tile.prototype.DetermineRotation = function (westTile, northTile) {
         var southWestTile;

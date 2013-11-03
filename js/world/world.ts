@@ -133,7 +133,7 @@ class World {
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(heroEntity.inventory, (<Shop>building));
+                        Game.Graphics.ShowInventory(heroEntity.inventory, (<Shop>building).inventory.wares, building.id);
                     }
                     Log("You see " + entity.id + ".");
                 }
@@ -219,5 +219,10 @@ class World {
         }
 
         return link;
+    }
+
+    public PickFromGround() {
+        var pos = this._hero.location.position;
+        Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas.getValue(this._currentArea)[pos.X][pos.Y]).ground, "Ground");
     }
 }

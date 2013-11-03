@@ -118,9 +118,9 @@ var World = (function () {
                         break;
                     } else if (building instanceof Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.UpdateInventory(heroEntity.inventory, (building));
+                        Game.Graphics.ShowInventory(heroEntity.inventory, (building).inventory.wares, building.id);
                     }
-                    Log("You have entered: " + entity.id);
+                    Log("You see " + entity.id + ".");
                 }
             }
         }
@@ -151,7 +151,6 @@ var World = (function () {
                 if (y === 0) {
                     tiles[x] = new Array();
                 }
-                console.log(x + " " + y);
                 tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
@@ -201,10 +200,15 @@ var World = (function () {
         if (link !== null) {
             this._currentArea = link.area;
             this.InitialiseArea(this._currentArea);
-            Log('You have arrived at ' + this.PrettyPrint(this._currentArea));
+            Log('You have arrived at the ' + this.PrettyPrint(this._currentArea));
         }
 
         return link;
+    };
+
+    World.prototype.PickFromGround = function () {
+        var pos = this._hero.location.position;
+        Game.Graphics.ShowInventory(this._hero.inventory, (this._areas.getValue(this._currentArea)[pos.X][pos.Y]).ground, "Ground");
     };
     return World;
 })();

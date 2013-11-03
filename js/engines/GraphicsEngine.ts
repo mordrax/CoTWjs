@@ -19,24 +19,44 @@ class GraphicsEngine {
         this.InitialiseUI();
 
         Game.World.updatedEvent.add((entity:Entity) => {
-            this.Draw(entity);
+            this.DrawEntity(entity);
         });
 
         $(window).on('resize', () => this.InitialiseScreen());
     }
 
-    private Draw(entity:Entity) {
+    private DrawEntity(entity:Entity) {
         var sprite = entity.sprite;
-        var location = entity.location;
+        var position = entity.location.position;
 
-        var canvasPos = new Point(
-            (location.position.X - this._centerPoint.X + this._canvasTileSize.X / 2) * TILE_SIZE,
-            (location.position.Y - this._centerPoint.Y + this._canvasTileSize.Y / 2) * TILE_SIZE
+        this.Draw(sprite, position);
+
+        if (entity instanceof Tile) {
+            var groundItems = (<Tile>entity).ground.items;
+            var nGroundItems = Object.keys(groundItems).length;
+            switch (nGroundItems) {
+                case 0:
+                    break;
+                case 1:
+                    this.Draw((<Item>(groundItems[Object.keys(groundItems)[0]])).base.sprite, position);
+                    break;
+                case 2:
+                    this.Draw(CoTWSprites.Tiles.TreasurePile, position);
+                    break;
+            }
+        }
+
+    }
+
+    private Draw(sprite:Resource, point:Point) {
+        var canvasPos = new Point (
+            (point.X - this._centerPoint.X + this._canvasTileSize.X / 2) * TILE_SIZE,
+            (point.Y - this._centerPoint.Y + this._canvasTileSize.Y / 2) * TILE_SIZE
         );
-        if (entity.sprite.turn != 0) {
+        if (sprite.turn != 0) {
             this._ctx.save();
             this._ctx.translate(canvasPos.X + TILE_SIZE / 2, canvasPos.Y + TILE_SIZE / 2);
-            this._ctx.rotate(entity.sprite.turn);
+            this._ctx.rotate(sprite.turn);
             this._ctx.translate(-canvasPos.X - TILE_SIZE / 2, -canvasPos.Y - TILE_SIZE / 2);
         }
 
@@ -48,10 +68,12 @@ class GraphicsEngine {
             sprite.size.w, sprite.size.h       // pixel size on canvas
         );
 
-        if (entity.sprite.turn != 0) {
+        if (sprite.turn != 0) {
             this._ctx.restore();
         }
     }
+
+    DrawItem
 
     public UpdateCenter(point:Point) {
         this._centerPoint = point;
@@ -105,29 +127,29 @@ class GraphicsEngine {
         $('button.quick-menu').button();
 
         // create file menu, set to not visible
-        $('#file-menu-file').click(function () {
+        $('#menu-file').click(function () {
             $('#menu-file').toggle();
         });
 
-        $('#file-menu-character').click(function () {
+        $('#menu-character').click(function () {
             console.log('Please implement the character menu!!!');
         });
-        $('#file-menu-inventory').click(function () {
-            console.log('Please implement the inventory menu!!!');
+        $('#menu-inventory').click(function () {
+            Game.World.PickFromGround();
         });
-        $('#file-menu-map').click(function () {
+        $('#menu-map').click(function () {
             console.log('Please implement the map menu!!!');
         });
-        $('#file-menu-spell').click(function () {
+        $('#menu-spell').click(function () {
             console.log('Please implement the spell menu!!!');
         });
-        $('#file-menu-activate').click(function () {
+        $('#menu-activate').click(function () {
             console.log('Please implement the activate menu!!!');
         });
-        $('#file-menu-verbs').click(function () {
+        $('#menu-verbs').click(function () {
             console.log('Please implement the verbs menu!!!');
         });
-        $('#file-menu-window').click(function () {
+        $('#menu-window').click(function () {
             console.log('Please implement the window menu!!!');
         });
         $('#menu-window-main').click(() => {
@@ -171,9 +193,11 @@ class GraphicsEngine {
      * @param shop
      * @constructor
      */
-    public UpdateInventory(equipment:IEquipment, shop:Shop) {
+    public ShowInventory(equipment:IEquipment, shop:Container, mainLabel:string) {
+        this.Screen(ScreenType.Shop);
+
         //show contents of main inventory
-        var main_wares = shop.inventory.wares;
+        var main_wares = shop;
 
         // keeps track of all containers to their html id attribute so items can be placed into dropped containers and removed too
         var containerRegister:{[id:string]:Container} = {};
@@ -181,8 +205,8 @@ class GraphicsEngine {
         // clear shop, containers
         $('#equipment-side').empty();
 
-        this.CreateInventoryView("main", shop.id, shop.inventory.wares);
-        containerRegister["main"] = shop.inventory.wares;
+        this.CreateInventoryView("main", mainLabel, shop);
+        containerRegister["main"] = shop;
 
         // clear equipment slots
         $('.equipment-slot-inner').empty();

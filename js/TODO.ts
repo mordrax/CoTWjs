@@ -2,9 +2,9 @@
  * TODOs:
  *
  * Inventory:
- * TODO: Limit what can go into each equipment slot
- * TODO: Double click to open/close items with containers
- * TODO: Limit container contents
+ * Limit what can go into each equipment slot
+ * Double click to open/close items with containers
+ * Limit container contents
  * - (weight, bulk, quantity e.g belt slot, cannot put into itself)
  * - weight, bulk
  * - cost
@@ -13,20 +13,21 @@
  * - belt, activate menu
 
  * Monsters:
- * TODO: Monster hit hero on structure
+ * DONE - Monster move alternatives
+ * DONE - Monster hit hero on structure
  *
  * World:
- * TODO: Tiles hold containers and can open inventory
- * TODO: Solid tiles
+ * Tiles hold containers and can open inventory
+ * Solid tiles
  *
  * Dungeon:
- * TODO: Dungeon generation
- * TODO: Stair maplinks
- * TODO: Corner walls
+ * Dungeon generation
+ * Stair maplinks
+ * Corner walls
  *
  * HUD:
- * TODO: Hero status view
+ * Hero status view
  *
  * Combat system
- * TODO: weapon stats, armour stats, monster stas
+ * weapon stats, armour stats, monster stas
  */
