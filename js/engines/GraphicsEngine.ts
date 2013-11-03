@@ -73,10 +73,16 @@ class GraphicsEngine {
         }
     }
 
-    DrawItem
-
     public UpdateCenter(point:Point) {
         this._centerPoint = point;
+    }
+
+    public UpdateHeroStatus(){
+        $('#hero-status-hp').text("10 [10]");
+        $('#hero-status-mana').text("20 [20]");
+        $('#hero-status-speed').text("100%/200%");
+        $('#hero-status-time').text("0d,30h43m");
+        $('#hero-status-location').text("Hamlet");
     }
 
     private createImgElement(src:string):HTMLImageElement {

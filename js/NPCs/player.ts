@@ -12,6 +12,7 @@ class Player extends Actor {
             if (direction.X != 0 || direction.Y != 0) { //check if there is any movement
                 Game.World.MoveHero(this.id, direction);
             }
+            Game.Graphics.UpdateHeroStatus();
         });
 
         this.inventory.pack = new Item(Items.Chest.MediumChest, true);

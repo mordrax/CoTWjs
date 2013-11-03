@@ -150,6 +150,7 @@ class World {
 
         Game.Graphics.Clear();
         this.DispatchUpdatedEvent();
+
     }
 
     /**

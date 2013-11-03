@@ -85,10 +85,27 @@
         <div id="messages">
             <div>Game Initialised! Use the arrow keys to move about.</div>
         </div>
-        <textarea id="hero-status" readonly>
-Hero status:
-Still alive!
-        </textarea>
+        <table id="hero-status">
+            <tr>
+                <td>HP</td>
+                <td id="hero-status-hp">0/0</td>
+            </tr>
+            <tr>
+                <td>Mana</td>
+                <td id="hero-status-mana"></td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td id="hero-status-speed"></td>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td id="hero-status-time"></td>
+            </tr>
+            <tr>
+                <td id="hero-status-location"></td>
+            </tr>
+        </table>
     </div>
 
     <div id="shop-window">
