@@ -4,22 +4,22 @@
  * Base class for all living things in the game, hero, monsters, friendly npcs etc
  */
 class Actor extends Entity {
-    private _hpMax:number;            // maximum health points
-    public  hp:number;               // current health points
-    public  att:number;              // attack
-    private _def:number;              // defence
-    private _toHit:number;            // % chance to hit
+    public hpMax:number;            // maximum health points
+    public hp:number;               // current health points
+    public att:number;              // attack
+    public def:number;              // defence
+    public toHit:number;            // % chance to hit
     public inventory: IEquipment;
 
 
     constructor(id:string, sprite:Resource, coord:WorldCoordinates) {
         super(id, EntityType.Actor, sprite, coord);
 
-        this._hpMax = 50;
-        this.hp = this._hpMax;
+        this.hpMax = 50;
+        this.hp = this.hpMax;
         this.att = 2;
-        this._def = 1;
-        this._toHit = 50;
+        this.def = 1;
+        this.toHit = 50;
 
         this.inventory = {};
     }
@@ -27,10 +27,10 @@ class Actor extends Entity {
     // pass in the target that is being attacked
     Attack(target:Actor) {
         var consoleMsg;
-        var swing = D(100) + this._toHit;
+        var swing = D(100) + this.toHit;
         if (swing > 99) { //hit and deal damage
             var targetStats = target.getStats();
-            var damage = (this.att - targetStats._def) * D(10);
+            var damage = (this.att - targetStats.def) * D(10);
             target.TakeDamage(damage);
             if (target.isDead()) {
                 consoleMsg = this.msgKill(damage, target.id);

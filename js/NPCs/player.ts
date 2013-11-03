@@ -1,18 +1,23 @@
 /// <reference path="../references.ts"/>
 
 class Player extends Actor {
+    public manaMax:number;            // maximum mana points
+    public mana:number;               // current mana points
+
     constructor(id:string, coord?:WorldCoordinates) {
         super(id, CoTWSprites.Actors.FemaleHero, coord);
 
          this.hp = 1000;
          this.att = 10;
+         this.mana = 2;
+         this.manaMax = 10;
 
         Game.Input.keyboardEvent.add((ev) => {
             var direction = this.CalculateMovement(ev.keyCode);
             if (direction.X != 0 || direction.Y != 0) { //check if there is any movement
                 Game.World.MoveHero(this.id, direction);
             }
-            Game.Graphics.UpdateHeroStatus();
+            Game.Graphics.UpdateHeroStatus(this.hp, this.hpMax, this.mana, this.manaMax);
         });
 
         this.inventory.pack = new Item(Items.Container.MediumChest, true);

@@ -77,11 +77,11 @@ class GraphicsEngine {
         this._centerPoint = point;
     }
 
-    public UpdateHeroStatus(){
-        $('#hero-status-hp').text("10 [10]");
-        $('#hero-status-mana').text("20 [20]");
-        $('#hero-status-speed').text("100%/200%");
-        $('#hero-status-time').text("0d,30h43m");
+    public UpdateHeroStatus(hp:number, hpMax:number, mana:number, manaMax:number) {
+        $('#hero-status-hp').text(hp + " [" + hpMax + "]");
+        $('#hero-status-mana').text(Format("{0} [{1}]", mana, manaMax));
+        $('#hero-status-speed').text("100% / 200%");
+        $('#hero-status-time').text("0d,30:43:00");
         $('#hero-status-location').text("Hamlet");
     }
 
