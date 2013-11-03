@@ -18,7 +18,7 @@ AREA_STRUCTURES = {};
 interface IMapLink {
     LinkA: WorldCoordinates;
     LinkB: WorldCoordinates;
-};
+}
 
 var MAP_TO_MAP:IMapLink[] = [];
 MAP_TO_MAP.push({LinkA:new WorldCoordinates(MapType.VillageMap, new Point(11, 0)), LinkB:new WorldCoordinates(MapType.FarmMap, new Point(11, 32))});
@@ -30,15 +30,15 @@ ASCII_MAPS[MapType.VillageMap] = [
     '========,,,.,,,,========',
     '========,,,.,,,,========',
     '========,,,.,,,,========',
-    '========,,,.,,,,========',
-    '===,,,,,;...,,,,###=====',
+    '========,,,.,,,#========',
+    '===,,#,,;...,,,,###=====',
     '===###,;.;,.,,;.+##=====',
     '===##+..;,,.,;.;###=====',
     '===###,,,,,...;,,,,,,===',
-    '===,,=,,,,,.,,,,,,,,,===',
+    '===,,#,,,,,.,,,,,,,,,===',
     '====,,,,,,,.,,,,,,,,,===',
     '====,,,,,,,.,,,,,,,,,===',
-    '====,,,,,,,.,,###,,,,===',
+    '====,,,,,,,.,!###,,,,===',
     '====,,,#+.....+##,,,,===',
     '====,,,##!,.,,###,,,,===',
     '====,,,,,,,.,,,,,,,,,===',
@@ -58,18 +58,23 @@ ASCII_MAPS[MapType.VillageMap] = [
 
 AREA_STRUCTURES[MapType.VillageMap] =
     [
-        {id: "Village_Gate", type: StructureType.Gate_NS, location: new WorldCoordinates(MapType.VillageMap, new Point(10, 0))},
-        {id: "Farm1", type: StructureType.StrawHouse_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(3, 6))},
-        {id: "Farm2", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(16, 5))},
+        {id: "the village gate", type: StructureType.Gate_NS, location: new WorldCoordinates(MapType.VillageMap, new Point(10, 0))},
+        {id: "a locked farm", type: StructureType.StrawHouse_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(3, 6))},
+        {id: "a locked house", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(16, 5))},
         {id: "Snorri the Sage", type: StructureType.Hut_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(7, 13))},
         {id: "Olaf's Junk Store", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(14, 12))},
         {id: "Bjorn the Blacksmith", type: StructureType.StrawHouse_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(6, 17)), goodsType: [ItemType.Weapon, ItemType.Armour, ItemType.Shield, ItemType.Helmet, ItemType.Bracer, ItemType.Gauntlet], goodsQuality: 1},
         {id: "Gunnhild's General Store", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(14, 17))},
         {id: "Shrine of Odin", type: StructureType.HutTemple_NF, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 22))},
-        {id: "Sign1", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 17))},
-        {id: "Sign2", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(13, 17))},
-        {id: "Sign3", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(12, 21))},
-        {id: "Fountain", type: StructureType.Fountain, location: new WorldCoordinates(MapType.VillageMap, new Point(11, 18))}
+        {id: "a sign that says: Snorri the Sage", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 14))},
+        {id: "a sign that says: Olaf's Junk Store", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(13, 12))},
+        {id: "a sign that says: Bjorn the Blacksmith", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 17))},
+        {id: "a sign that says: Gunnhild's General Store", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(13, 17))},
+        {id: "a sign that says: Shrine of Odin", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(12, 21))},
+        {id: "a well", type: StructureType.Well, location: new WorldCoordinates(MapType.VillageMap, new Point(11, 18))},
+        {id: "a wagon", type: StructureType.Wagon, location: new WorldCoordinates(MapType.VillageMap, new Point(5, 9))},
+        {id: "a vegetable garden", type: StructureType.VegePatch, location: new WorldCoordinates(MapType.VillageMap, new Point(5, 5))},
+        {id: "a flower garden", type: StructureType.VegePatch, location: new WorldCoordinates(MapType.VillageMap, new Point(15, 4))}
     ];
 
 ASCII_MAPS[MapType.FarmMap] = [

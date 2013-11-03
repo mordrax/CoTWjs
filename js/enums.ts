@@ -140,7 +140,7 @@ enum StructureType{
         StrawHouse_WF     ,
         Sign              ,
         Fountain          ,
-        Cart              ,
+        Wagon             ,
         VegePatch         ,
         Well              ,
         MineEntrance      ,

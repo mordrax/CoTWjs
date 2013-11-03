@@ -135,7 +135,7 @@ class World {
                         Game.Graphics.Screen(ScreenType.Shop);
                         Game.Graphics.UpdateInventory(heroEntity.inventory, (<Shop>building));
                     }
-                    Log("You have entered: " + entity.id);
+                    Log("You see " + entity.id + ".");
                 }
             }
         }

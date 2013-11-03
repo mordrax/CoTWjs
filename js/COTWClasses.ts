@@ -83,8 +83,8 @@ class TileFactory {
         this._tileCollection.setValue(' ', {name: 'White50Cave50', sprite: CoTWSprites.Tiles.White50Cave50});
         this._tileCollection.setValue(' ', {name: 'White90Cave10', sprite: CoTWSprites.Tiles.White90Cave10});
         this._tileCollection.setValue('=', {name: 'Crop', sprite: CoTWSprites.Tiles.Crop});
-        this._tileCollection.setValue('+', {name: 'Entry', sprite: CoTWSprites.Tiles.Entry});
-        this._tileCollection.setValue('#', {name: 'Building', sprite: CoTWSprites.Tiles.Building});
+        this._tileCollection.setValue('+', {name: 'EntryOnGrass', sprite: CoTWSprites.Tiles.Grass});
+        this._tileCollection.setValue('#', {name: 'BuildingOnGrass', sprite: CoTWSprites.Tiles.Grass});
         this._tileCollection.setValue('!', {name: 'SignOnGrass', sprite: CoTWSprites.Tiles.Grass});
     }
 
@@ -115,6 +115,9 @@ class BuildingFactory {
         this._buildingcollection.setValue(StructureType.MineEntrance, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.MineEntrance });
         this._buildingcollection.setValue(StructureType.Sign, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Sign });
         this._buildingcollection.setValue(StructureType.Fountain, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Fountain });
+        this._buildingcollection.setValue(StructureType.Well, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Well });
+        this._buildingcollection.setValue(StructureType.VegePatch, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.VegePatch });
+        this._buildingcollection.setValue(StructureType.Wagon, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Wagon });
         this._buildingcollection.setValue(StructureType.StairsDown, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsDown });
         this._buildingcollection.setValue(StructureType.StairsUp, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsUp });
         this._buildingcollection.setValue(StructureType.DoorClosed, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.DoorClosed });
