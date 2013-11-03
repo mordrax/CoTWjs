@@ -75,7 +75,7 @@ var World = (function () {
         for (var k in this._entities[this._currentArea]) {
             var entity = this._entities[this._currentArea][k];
             if (entity.type === EntityType.Actor) {
-                if ((entity).location.position.Equals(monsterEntity)) {
+                if ((entity).location.position.Equals(newLoc)) {
                     return false;
                 }
             } else if (entity.type === EntityType.Building) {

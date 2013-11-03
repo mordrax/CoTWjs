@@ -90,7 +90,7 @@ class World {
             if (entity.type === EntityType.Actor) {
                 // monster = invalid move
                 // can never be hero, handled above
-                if ((<Actor>entity).location.position.Equals(monsterEntity)) {
+                if ((<Actor>entity).location.position.Equals(newLoc)) {
                     return false;
                 }
             } else if (entity.type === EntityType.Building) {
