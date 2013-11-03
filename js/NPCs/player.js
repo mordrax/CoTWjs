@@ -19,6 +19,7 @@ var Player = (function (_super) {
             if (direction.X != 0 || direction.Y != 0) {
                 Game.World.MoveHero(_this.id, direction);
             }
+            Game.Graphics.UpdateHeroStatus();
         });
 
         this.inventory.pack = new Item(Items.Chest.MediumChest, true);
