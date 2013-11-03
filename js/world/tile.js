@@ -26,12 +26,6 @@ var Tile = (function (_super) {
             case "WaterPath":
                 southWestTile = "Water";
                 break;
-            case "WallLitDgn":
-                southWestTile = "Wall";
-                break;
-            case "WallDarkDgn":
-                southWestTile = "Wall";
-                break;
             default:
                 return;
         }

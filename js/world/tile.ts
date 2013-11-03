@@ -25,12 +25,6 @@ class Tile extends Entity {
             case "WaterPath" :
                 southWestTile = "Water";
                 break;
-            case "WallLitDgn" :
-                southWestTile = "Wall";
-                break;
-            case "WallDarkDgn":
-                southWestTile = "Wall";
-                break;
             default :
                 return;
         }

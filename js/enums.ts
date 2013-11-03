@@ -92,6 +92,11 @@ enum ScreenType {
     Shop
 }
 
+enum TileForm {
+    Solid,
+    Open
+}
+
 enum ResourceType {
     buildings_1x    ,
     buildings_2x    ,

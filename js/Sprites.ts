@@ -81,10 +81,16 @@ var CoTWSprites = {
         LitDgn:        {type:ResourceType.Tiles, offset: {x: 0  , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         PathRock:      {type:ResourceType.Tiles, offset: {x: 32 , y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         PathGrass:     {type:ResourceType.Tiles, offset: {x: 32 , y: 32 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
-        WallDarkDgn:   {type:ResourceType.Tiles, offset: {x: 32 , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        WallDarkDgnSW: {type:ResourceType.Tiles, offset: {x: 32 , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        WallDarkDgnNW: {type:ResourceType.Tiles, offset: {x: 32 , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI/2},
+        WallDarkDgnNE: {type:ResourceType.Tiles, offset: {x: 32 , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI},
+        WallDarkDgnSE: {type:ResourceType.Tiles, offset: {x: 32 , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI*3/2},
         WaterGrass:    {type:ResourceType.Tiles, offset: {x: 32 , y: 96 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         WaterPath:     {type:ResourceType.Tiles, offset: {x: 32 , y: 128}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
-        WallLitDgn:    {type:ResourceType.Tiles, offset: {x: 32 , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        WallLitDgnSW:  {type:ResourceType.Tiles, offset: {x: 32 , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        WallLitDgnNW:  {type:ResourceType.Tiles, offset: {x: 32 , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI/2},
+        WallLitDgnNE:  {type:ResourceType.Tiles, offset: {x: 32 , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI},
+        WallLitDgnSE:  {type:ResourceType.Tiles, offset: {x: 32 , y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:Math.PI*3/2},
         Grass50Cave50: {type:ResourceType.Tiles, offset: {x: 0  , y: 192}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Grass10Cave90: {type:ResourceType.Tiles, offset: {x: 32 , y: 192}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         White50Cave50: {type:ResourceType.Tiles, offset: {x: 0  , y: 224}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
@@ -97,7 +103,7 @@ var CoTWSprites = {
         Entry:         {type:ResourceType.Tiles, offset: {x: 192, y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Building:      {type:ResourceType.Tiles, offset: {x: 192, y: 160}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Sign:          {type:ResourceType.Tiles, offset: {x: 160, y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
-        MineEntrance:  {type:ResourceType.Tiles, offset: {x: 0  , y: 64 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
+        MineEntrance:  {type:ResourceType.Tiles, offset: {x: 64  , y: 0 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
     },
     Buildings: {
         Gate_NS             : {type:ResourceType.buildings_1x, offset: {x:0,  y:0}, size:{w:96, h:32},  turn:0},
