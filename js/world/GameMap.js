@@ -15,11 +15,11 @@ ASCII_MAPS = new collections.Dictionary();
 var AREA_STRUCTURES;
 AREA_STRUCTURES = {};
 
-var MAP_TO_MAP;
-MAP_TO_MAP = new collections.Dictionary();
+;
 
-MAP_TO_MAP.setValue(new WorldCoordinates(MapType.VillageMap, new Point(11, 0)), new WorldCoordinates(MapType.FarmMap, new Point(11, 32)));
-MAP_TO_MAP.setValue(new WorldCoordinates(MapType.FarmMap, new Point(24, 1)), new WorldCoordinates(MapType.MinesLv1, new Point(22, 39)));
+var MAP_TO_MAP = [];
+MAP_TO_MAP.push({ LinkA: new WorldCoordinates(MapType.VillageMap, new Point(11, 0)), LinkB: new WorldCoordinates(MapType.FarmMap, new Point(11, 32)) });
+MAP_TO_MAP.push({ LinkA: new WorldCoordinates(MapType.FarmMap, new Point(24, 1)), LinkB: new WorldCoordinates(MapType.MinesLv1, new Point(22, 39)) });
 
 ASCII_MAPS[MapType.VillageMap] = [
     '========,,#+#,,,========',
@@ -108,7 +108,7 @@ AREA_STRUCTURES[MapType.FarmMap] = [
 ASCII_MAPS[MapType.MinesLv1] = [
     '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^',
     '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^',
-    '^^^^^^^^^^^^^^^^^^coooo^^ooc^^^^^^^^^^^^^',
+    '^^^^^^^^^^^^^^^^^^coooo^^ooc^^^^^^^^^^^^',
     '^^^^^^^^^^^^^^^^^^oooooccooo^^^^^^^^^^^^',
     '^^^^^^^^^^^^^^^^coccoooooooo^^^^^^^^^^^^',
     '^^^^^^^^^^^^^^^coc^^oooo^ooo^^^^^^^^^^^^',
@@ -126,7 +126,7 @@ ASCII_MAPS[MapType.MinesLv1] = [
     '^^^^^^^^^^^^^^^^^^^^^co^^^^^^^^^^^^^^^^^',
     '^^^^^^^^^^^^coooc^^^^^o^^^^^^^^^^^^^^^^^',
     '^^^^^^^^^^^^oooooc^^^^o^^^^^^^^^^coooc^^',
-    '^^^^^^^^^^^^ooooooo^^^o^^^^^^^^^^ooooo^^^',
+    '^^^^^^^^^^^^ooooooo^^^o^^^^^^^^^^ooooo^^',
     '^^^^^^^^^^^^coooooo^^^o^^^^^^^^^^ooooo^^',
     '^^^^^^^^^^^^^o^^^^^^^^o^^^^^^^^^cooooo^^',
     '^^^^^^^^^^^^^o^^^^^^^^o^^^^^cooooooooo^^',

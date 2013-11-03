@@ -24,12 +24,24 @@ var Monster = (function (_super) {
             dir.Y = diff.Y / Math.abs(diff.Y);
         }
 
-        var possibleMoves = [dir, new Point(dir.X, 0), new Point(0, dir.Y)];
-        for (var i = 0; i < possibleMoves.length; i++) {
-            if (possibleMoves[i].Equals(new Point(0, 0)))
-                continue;
+        var possibleMoves = [];
+        if (dir.X == 0) {
+            possibleMoves = [new Point(1, dir.Y), new Point(-1, dir.Y)];
+        }
+        if (dir.Y == 0) {
+            possibleMoves = [new Point(dir.X, 1), new Point(dir.X, -1)];
+        }
+        if (dir.X != 0 && dir.Y != 0) {
+            possibleMoves = [new Point(dir.X, 0), new Point(0, dir.Y)];
+        }
 
-            if (Game.World.TryMove(this.id, possibleMoves[i])) {
+        if (Game.World.TryMove(this.id, dir)) {
+            return;
+        }
+        ;
+
+        while (possibleMoves.length > 0) {
+            if (Game.World.TryMove(this.id, possibleMoves.splice(D(possibleMoves.length) - 1)[0])) {
                 break;
             }
         }

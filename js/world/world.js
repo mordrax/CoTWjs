@@ -107,7 +107,7 @@ var World = (function () {
                     collision = true;
                     Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
-                    if (building.structureType == StructureType.Gate_NS) {
+                    if (building.structureType == StructureType.Gate_NS || building.structureType == StructureType.MineEntrance) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][heroEntity.id] = heroEntity;
@@ -148,6 +148,7 @@ var World = (function () {
                 if (y === 0) {
                     tiles[x] = new Array();
                 }
+                console.log(x + " " + y);
                 tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
@@ -171,6 +172,8 @@ var World = (function () {
                 return "Farm";
             case MapType.VillageMap:
                 return "Village";
+            case MapType.MinesLv1:
+                return "Mines: Level 1";
             default:
                 return "An unknown spooky area unintended by the developer!";
         }
@@ -183,12 +186,12 @@ var World = (function () {
     World.prototype.MapLink = function (currentLocation) {
         var link = null;
 
-        MAP_TO_MAP.forEach(function (k, v) {
-            if (currentLocation.Equals(k)) {
-                link = v;
+        MAP_TO_MAP.forEach(function (x) {
+            if (currentLocation.Equals(x.LinkA)) {
+                link = x.LinkB;
             }
-            if (currentLocation.Equals(v)) {
-                link = k;
+            if (currentLocation.Equals(x.LinkB)) {
+                link = x.LinkA;
             }
         });
 
