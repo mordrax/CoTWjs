@@ -114,9 +114,9 @@ ASCII_MAPS[MapType.FarmMap] = [
 ];
 
 AREA_STRUCTURES[MapType.FarmMap] = [
-    {id: "Village_Gate", type: StructureType.Gate_NS, location: new WorldCoordinates(MapType.FarmMap, new Point(10, 32))},
-    {id: "HeroBurntFarm", type: StructureType.BurntStrawHouse_WF, location: new WorldCoordinates(MapType.FarmMap, new Point(43, 23))},
-    {id: "Mine Entrance", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.FarmMap, new Point(24, 1))}
+    {id: "a village gate", type: StructureType.Gate_NS, location: new WorldCoordinates(MapType.FarmMap, new Point(10, 32))},
+    {id: "the burnt remains of your farmhouse", type: StructureType.BurntStrawHouse_WF, location: new WorldCoordinates(MapType.FarmMap, new Point(43, 23))},
+    {id: "the mine entrance", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.FarmMap, new Point(24, 1))}
 ];
 
 ASCII_MAPS[MapType.MinesLv1] = [
@@ -165,6 +165,6 @@ ASCII_MAPS[MapType.MinesLv1] = [
 
 AREA_STRUCTURES[MapType.MinesLv1] =
     [
-        {id: "Mine Entrance", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.MinesLv1, new Point(22, 39))},
-        {id: "Stairs Down", type: StructureType.StairsDown, location: new WorldCoordinates(MapType.MinesLv1, new Point(25, 2))}
+        {id: "the mine exit", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.MinesLv1, new Point(22, 39))},
+        {id: "stairs down", type: StructureType.StairsDown, location: new WorldCoordinates(MapType.MinesLv1, new Point(25, 2))}
     ];
