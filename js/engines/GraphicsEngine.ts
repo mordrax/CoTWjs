@@ -86,6 +86,7 @@ class GraphicsEngine {
     }
 
     private LoadResources() {
+        this._resources[ResourceType.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
         this._resources[ResourceType.buildings_2x     ] = this.createImgElement('assets/resources/2x_buildings.png');
         this._resources[ResourceType.buildings_3x     ] = this.createImgElement('assets/resources/3x_buildings.png');
         this._resources[ResourceType.buildings_4x     ] = this.createImgElement('assets/resources/4x_buildings.png');
@@ -96,7 +97,6 @@ class GraphicsEngine {
         this._resources[ResourceType.Items            ] = this.createImgElement('assets/resources/items.png');
         this._resources[ResourceType.Spells           ] = this.createImgElement('assets/resources/spells.png');
         this._resources[ResourceType.Tiles            ] = this.createImgElement('assets/resources/tiles.png');
-        this._resources[ResourceType.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
     }
 
     private InitialiseUI() {

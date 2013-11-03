@@ -85,7 +85,7 @@ class TileFactory {
         this._tileCollection.setValue('=', {name: 'Crop', sprite: CoTWSprites.Tiles.Crop});
         this._tileCollection.setValue('+', {name: 'Entry', sprite: CoTWSprites.Tiles.Entry});
         this._tileCollection.setValue('#', {name: 'Building', sprite: CoTWSprites.Tiles.Building});
-        this._tileCollection.setValue('!', {name: 'Sign', sprite: CoTWSprites.Tiles.Sign});
+        this._tileCollection.setValue('!', {name: 'SignOnGrass', sprite: CoTWSprites.Tiles.Grass});
     }
 
     public Create(asciiTile:string, location:WorldCoordinates):Tile {
@@ -113,6 +113,12 @@ class BuildingFactory {
         this._buildingcollection.setValue(StructureType.HutTemple_NF, {entryPoint: new Point(2, 1), sprite: CoTWSprites.Buildings.HutTemple_NF });
         this._buildingcollection.setValue(StructureType.BurntStrawHouse_WF, {entryPoint: new Point(0, 1), sprite: CoTWSprites.Buildings.BurntStrawHouse_WF });
         this._buildingcollection.setValue(StructureType.MineEntrance, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.MineEntrance });
+        this._buildingcollection.setValue(StructureType.Sign, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Sign });
+        this._buildingcollection.setValue(StructureType.Fountain, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Fountain });
+        this._buildingcollection.setValue(StructureType.StairsDown, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsDown });
+        this._buildingcollection.setValue(StructureType.StairsUp, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsUp });
+        this._buildingcollection.setValue(StructureType.DoorClosed, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.DoorClosed });
+        this._buildingcollection.setValue(StructureType.DoorOpen, {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.DoorOpen });
     }
 
     public Create(type:StructureType, id:string, location:WorldCoordinates, goodsType:ItemType[], goodsQuality:number):Structure {

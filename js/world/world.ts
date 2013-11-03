@@ -215,7 +215,7 @@ class World {
         if (link !== null) {
             this._currentArea = link.area;
             this.InitialiseArea(this._currentArea);
-            Log('You have arrived at ' + this.PrettyPrint(this._currentArea));
+            Log('You have arrived at the ' + this.PrettyPrint(this._currentArea));
         }
 
         return link;
