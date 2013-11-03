@@ -226,7 +226,7 @@ var CoTWSprites = {
         PotionGainAttribute           : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:160, y:0}},
         PotionLoseAttribute           : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:192, y:0}},
         PotionDivination              : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:224, y:0}},
-        Purse                         : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:256, y:608}},
+        Purse                         : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:0, y:608}},
         Bag                           : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:32, y:608}},
         Pack                          : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:96, y:608}},
         Chest                         : {type:ResourceType.Items, size:{w:TILE_SIZE, h:TILE_SIZE}, offset:{x:64, y:608}},

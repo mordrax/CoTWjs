@@ -19,10 +19,11 @@ var Player = (function (_super) {
             if (direction.X != 0 || direction.Y != 0) {
                 Game.World.MoveHero(_this.id, direction);
             }
+            Game.Graphics.UpdateHeroStatus();
         });
 
-        this.inventory.pack = new Item(Items.Container.MediumChest, true);
-        this.inventory.freeHand = new Item(Items.Container.LargeBag, true);
+        this.inventory.pack = new Item(Items.Chest.MediumChest, true);
+        this.inventory.freeHand = new Item(Items.Bag.LargeBag, true);
         this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
     // Calculates the proposed displacement based on the keycode pressed by the user

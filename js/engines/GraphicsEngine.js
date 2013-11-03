@@ -61,6 +61,14 @@ var GraphicsEngine = (function () {
         this._centerPoint = point;
     };
 
+    GraphicsEngine.prototype.UpdateHeroStatus = function () {
+        $('#hero-status-hp').text("10 [10]");
+        $('#hero-status-mana').text("20 [20]");
+        $('#hero-status-speed').text("100%/200%");
+        $('#hero-status-time').text("0d,30h43m");
+        $('#hero-status-location').text("Hamlet");
+    };
+
     GraphicsEngine.prototype.createImgElement = function (src) {
         var elm = document.createElement('img');
         elm.src = src;

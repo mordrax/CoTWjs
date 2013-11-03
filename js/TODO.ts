@@ -11,6 +11,7 @@
  * - imbue effects
  * - merging
  * - belt, activate menu
+ * Opening bags only hooked onto items created before the open inventory screen
 
  * Monsters:
  * DONE - Monster move alternatives

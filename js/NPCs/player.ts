@@ -20,8 +20,8 @@ class Player extends Actor {
             Game.Graphics.UpdateHeroStatus(this.hp, this.hpMax, this.mana, this.manaMax);
         });
 
-        this.inventory.pack = new Item(Items.Container.MediumChest, true);
-        this.inventory.freeHand = new Item(Items.Container.LargeBag, true);
+        this.inventory.pack = new Item(Items.Chest.MediumChest, true);
+        this.inventory.freeHand = new Item(Items.Bag.LargeBag, true);
         this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
     }
 
