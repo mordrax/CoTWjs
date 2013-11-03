@@ -31,7 +31,7 @@ var ShopInventory = (function (_super) {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i = 0; i < 5; i++) {
-                _this.wares.Add(new Item(items[keys[D(keys.length - 1)]]));
+                _this.wares.Add(new Item(items[keys[D(keys.length) - 1]]));
             }
         });
     }

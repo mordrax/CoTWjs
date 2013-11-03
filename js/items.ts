@@ -109,17 +109,25 @@ var Items = {
         UtilityBelt:                  {type: ItemType.Belt,          name:'Utility Belt',                     weight:1350,  bulk:1800,   buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.UtilityBelt,                  level:NaN, weightCap:3100,   bulkCap:4100, slot:2, slotScroll:4, slotPotion:4},
         WandQuiverBelt:               {type: ItemType.Belt,          name:'Wand Quiver Belt',                 weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.WandQuiverBelt,               level:NaN, weightCap:3100,   bulkCap:4100, slot:2, slotWand:4}
     },
-    Container: {
+    Purse: {
         Purse:                        {type: ItemType.Purse,         name:'Purse',                            weight:300,   bulk:300,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Purse,                        level:NaN, weightCap:100300, bulkCap:100300},
+    },
+    Bag: {
         SmallBag:                     {type: ItemType.Bag,           name:'Small Bag',                        weight:300,   bulk:500,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Bag,                     level:NaN, weightCap:5000,   bulkCap:6000},
         MediumBag:                    {type: ItemType.Bag,           name:'Medium Bag',                       weight:500,   bulk:700,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Bag,                    level:NaN, weightCap:10000,  bulkCap:12000},
-        LargeBag:                     {type: ItemType.Bag,           name:'Large Bag',                        weight:900,   bulk:900,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Bag,                     level:NaN, weightCap:15000,  bulkCap:18000},
+        LargeBag:                     {type: ItemType.Bag,           name:'Large Bag',                        weight:900,   bulk:900,    buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Bag,                     level:NaN, weightCap:15000,  bulkCap:18000}
+    },
+    Pack: {
         SmallPack:                    {type: ItemType.Pack,          name:'Small Pack',                       weight:1000,  bulk:1000,   buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Pack,                    level:NaN, weightCap:12000,  bulkCap:50000},
         MediumPack:                   {type: ItemType.Pack,          name:'Medium Pack',                      weight:2000,  bulk:1500,   buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Pack,                   level:NaN, weightCap:22000,  bulkCap:75000},
-        LargePack:                    {type: ItemType.Pack,          name:'Large Pack',                       weight:4000,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Pack,                    level:NaN, weightCap:35000,  bulkCap:100000},
+        LargePack:                    {type: ItemType.Pack,          name:'Large Pack',                       weight:4000,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Pack,                    level:NaN, weightCap:35000,  bulkCap:100000}
+    },
+    Chest: {
         SmallChest:                   {type: ItemType.Chest,         name:'Small Chest',                      weight:5000,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                   level:NaN, weightCap:100000, bulkCap:50000},
         MediumChest:                  {type: ItemType.Chest,         name:'Medium Chest',                     weight:15000, bulk:150000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                  level:NaN, weightCap:100000, bulkCap:150000},
-        LargeChest:                   {type: ItemType.Chest,         name:'Large Chest',                      weight:25000, bulk:250000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                   level:NaN, weightCap:100000, bulkCap:250000},
+        LargeChest:                   {type: ItemType.Chest,         name:'Large Chest',                      weight:25000, bulk:250000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.Chest,                   level:NaN, weightCap:100000, bulkCap:250000}
+    },
+    PackOfHolding: {
         EnchantedSmallPackOfHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Small Pack of Holding',  weight:5000,  bulk:75000,  buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:50000,  bulkCap:150000},
         EnchantedMediumPackOfHolding: {type: ItemType.PackOfHolding, name:'Enchanted Medium Pack of Holding', weight:7500,  bulk:100000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack, level:NaN, weightCap:75000,  bulkCap:200000},
         EnchantedLargePackOfHolding:  {type: ItemType.PackOfHolding, name:'Enchanted Large Pack of Holding',  weight:10000, bulk:125000, buy:NaN,          sell:NaN,    sprite:CoTWSprites.Items.EnchantedPack,  level:NaN, weightCap:100000, bulkCap:250000}

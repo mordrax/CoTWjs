@@ -56,8 +56,20 @@ AREA_STRUCTURES[MapType.VillageMap] = [
     { id: "a locked house", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(16, 5)) },
     { id: "Snorri the Sage", type: StructureType.Hut_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(7, 13)) },
     { id: "Olaf's Junk Store", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(14, 12)) },
-    { id: "Bjorn the Blacksmith", type: StructureType.StrawHouse_EF, location: new WorldCoordinates(MapType.VillageMap, new Point(6, 17)), goodsType: [ItemType.Weapon, ItemType.Armour, ItemType.Shield, ItemType.Helmet, ItemType.Bracer, ItemType.Gauntlet], goodsQuality: 1 },
-    { id: "Gunnhild's General Store", type: StructureType.StrawHouse_WF, location: new WorldCoordinates(MapType.VillageMap, new Point(14, 17)) },
+    {
+        id: "Bjorn the Blacksmith",
+        type: StructureType.StrawHouse_EF,
+        location: new WorldCoordinates(MapType.VillageMap, new Point(6, 17)),
+        goodsType: [ItemType.Weapon, ItemType.Armour, ItemType.Shield, ItemType.Helmet, ItemType.Bracer, ItemType.Gauntlet],
+        goodsQuality: 1
+    },
+    {
+        id: "Gunnhild's General Store",
+        type: StructureType.StrawHouse_WF,
+        location: new WorldCoordinates(MapType.VillageMap, new Point(14, 17)),
+        goodsType: [ItemType.Belt, ItemType.Purse, ItemType.Pack, ItemType.Chest, ItemType.PackOfHolding],
+        goodsQuality: 1
+    },
     { id: "Shrine of Odin", type: StructureType.HutTemple_NF, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 22)) },
     { id: "a sign that says: Snorri the Sage", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(9, 14)) },
     { id: "a sign that says: Olaf's Junk Store", type: StructureType.Sign, location: new WorldCoordinates(MapType.VillageMap, new Point(13, 12)) },

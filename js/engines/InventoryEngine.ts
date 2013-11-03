@@ -24,7 +24,7 @@ class ShopInventory extends Inventory {
             var items = Items[ItemType[x]];
             var keys = Object.keys(items);
             for (var i=0; i<5; i++) {
-                this.wares.Add(new Item(items[keys[D(keys.length-1)]]));
+                this.wares.Add(new Item(items[keys[D(keys.length)-1]]));
             }
         });
 
