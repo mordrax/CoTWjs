@@ -107,7 +107,8 @@ var CoTWSprites = {
         Entry:         {type:ResourceType.Tiles, offset: {x: 0  , y: 32 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Building:      {type:ResourceType.Tiles, offset: {x: 0  , y: 32 }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
         Sign:          {type:ResourceType.Tiles, offset: {x: 160, y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
-        MineEntrance:  {type:ResourceType.Tiles, offset: {x: 64 , y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
+        MineEntrance:  {type:ResourceType.Tiles, offset: {x: 64 , y: 0  }, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0},
+        TreasurePile:  {type:ResourceType.Items, offset: {x: 128, y: 640}, size: {w: TILE_SIZE, h: TILE_SIZE}, turn:0}
     },
     Buildings: {
         Gate_NS             : {type:ResourceType.buildings_1x, offset: {x:0,  y:0}, size:{w:96, h:32},  turn:0},
