@@ -167,6 +167,6 @@ ASCII_MAPS[MapType.MinesLv1] = [
 
 AREA_STRUCTURES[MapType.MinesLv1] =
     [
-        {id: "the mine exit", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.MinesLv1, new Point(22, 39))},
+        {id: "the mine exit", type: StructureType.MineEntrance, location: new WorldCoordinates(MapType.MinesLv1, new Point(22, 40))},
         {id: "stairs down", type: StructureType.StairsDown, location: new WorldCoordinates(MapType.MinesLv1, new Point(25, 2))}
     ];
