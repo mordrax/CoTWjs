@@ -299,6 +299,15 @@ class GraphicsEngine {
             }
         }).disableSelection();
 
+        $(".equipment").click((event)=> {
+            var itemID = $(event.currentTarget).attr('id').substring(5);
+            var item = (<Item>Item.DB().items[itemID]);
+            if (!!item.container) {
+                item.container.opened = !item.container.opened;
+            }
+
+            this.ShowInventory(equipment, shop, mainLabel);
+        });
 
         //calculate all equipment-side window heights
         $("#equipment-side").each(function () {

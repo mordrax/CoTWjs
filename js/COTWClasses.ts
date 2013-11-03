@@ -137,6 +137,7 @@ class BuildingFactory {
 
 class Item {
     static IDCount:number = 0;
+    static _db:Container;
     public ID:number;
     public base:IItem;
     public container:Container;
@@ -149,6 +150,17 @@ class Item {
         } else {
             this.container = null;
         }
+
+        //register item with db
+        Item.DB().Add(this);
+    }
+
+    static DB(): Container {
+        if (Item._db == undefined) {
+            Item._db = new Container();
+        }
+
+        return Item._db;
     }
 
     static GenerateID():number {

@@ -270,6 +270,16 @@ var GraphicsEngine = (function () {
             }
         }).disableSelection();
 
+        $(".equipment").click(function (event) {
+            var itemID = $(event.currentTarget).attr('id').substring(5);
+            var item = (Item.DB().items[itemID]);
+            if (!!item.container) {
+                item.container.opened = !item.container.opened;
+            }
+
+            _this.ShowInventory(equipment, shop, mainLabel);
+        });
+
         //calculate all equipment-side window heights
         $("#equipment-side").each(function () {
             var $this = $(this);

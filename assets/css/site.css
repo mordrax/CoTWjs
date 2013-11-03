@@ -161,6 +161,7 @@ nav ul li ul li a {
     text-align: center;
     border: none;
     overflow: hidden;
+    cursor: default;
 }
 
 #slot-dude {
