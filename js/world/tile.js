@@ -7,9 +7,9 @@ var __extends = this.__extends || function (d, b) {
 };
 var Tile = (function (_super) {
     __extends(Tile, _super);
-    function Tile(id, sprite, location, solid) {
+    function Tile(tileResource, location, solid) {
         if (typeof solid === "undefined") { solid = false; }
-        _super.call(this, id, EntityType.Tile, sprite, location);
+        _super.call(this, tileResource.name, EntityType.Tile, tileResource.sprite, location);
 
         this.ground = new Container();
     }
@@ -35,14 +35,14 @@ var Tile = (function (_super) {
 
         if (westTile === southWestTile) {
             if (northTile === southWestTile) {
-                this.sprite.turn = Math.PI / 2;
+                this.turn = Math.PI / 2;
             } else {
                 // do nothing - no rotation required
             }
         } else if (northTile === southWestTile) {
-            this.sprite.turn = Math.PI;
+            this.turn = Math.PI;
         } else {
-            this.sprite.turn = Math.PI * 3 / 2;
+            this.turn = Math.PI * 3 / 2;
         }
     };
     return Tile;

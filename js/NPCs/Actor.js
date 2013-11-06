@@ -13,21 +13,21 @@ var Actor = (function (_super) {
     function Actor(id, sprite, coord) {
         _super.call(this, id, EntityType.Actor, sprite, coord);
 
-        this._hpMax = 50;
-        this.hp = this._hpMax;
+        this.hpMax = 50;
+        this.hp = this.hpMax;
         this.att = 2;
-        this._def = 1;
-        this._toHit = 50;
+        this.def = 1;
+        this.toHit = 50;
 
         this.inventory = {};
     }
     // pass in the target that is being attacked
     Actor.prototype.Attack = function (target) {
         var consoleMsg;
-        var swing = D(100) + this._toHit;
+        var swing = D(100) + this.toHit;
         if (swing > 99) {
             var targetStats = target.getStats();
-            var damage = (this.att - targetStats._def) * D(10);
+            var damage = (this.att - targetStats.def) * D(10);
             target.TakeDamage(damage);
             if (target.isDead()) {
                 consoleMsg = this.msgKill(damage, target.id);

@@ -15,15 +15,15 @@ var __extends = this.__extends || function (d, b) {
 var Structure = (function (_super) {
     __extends(Structure, _super);
     //constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
-    function Structure(id, type, entry, sprite, location) {
-        _super.call(this, id, EntityType.Building, sprite, location);
-        this.structureType = type;
-        this._entry = entry;
-    }
-    Structure.prototype.IsShop = function () {
-        return (this.id.indexOf('Sage') !== -1) || (this.id.indexOf('Store') !== -1) || (this.id.indexOf('Blacksmith') !== -1);
-    };
+    function Structure(structure) {
+        _super.call(this, structure.id, EntityType.Building, structure.resource.sprite, structure.location);
+        this.structureType = structure.type;
+        this._entry = structure.resource.entryPoint;
 
+        if (this.structureType.Shop) {
+            this.inventory = new ShopInventory(structure.goodsType, structure.goodsQuality);
+        }
+    }
     Structure.prototype.Enter = function () {
         throw "Not implemented exception.";
         // code called when player enters building
@@ -43,15 +43,6 @@ var Structure = (function (_super) {
     };
     return Structure;
 })(Entity);
-
-var Shop = (function (_super) {
-    __extends(Shop, _super);
-    function Shop(id, type, entry, sprite, location, inventory) {
-        _super.call(this, id, type, entry, sprite, location);
-        this.inventory = inventory;
-    }
-    return Shop;
-})(Structure);
 
 var StructurePart;
 (function (StructurePart) {

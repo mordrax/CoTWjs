@@ -3,9 +3,10 @@
 class Tile extends Entity {
     solid:boolean;
     ground:Container;
+    turn:number;
 
-    constructor(id: string, sprite:Resource, location:WorldCoordinates, solid:boolean=false) {
-        super(id, EntityType.Tile, sprite, location);
+    constructor(tileResource:TileResource, location:WorldCoordinates, solid:boolean=false) {
+        super(tileResource.name, EntityType.Tile, tileResource.sprite, location);
 
         this.ground = new Container();
     }
@@ -34,17 +35,17 @@ class Tile extends Entity {
 
         if (westTile === southWestTile) {
             if (northTile === southWestTile) {    // north and west
-                this.sprite.turn = Math.PI/2;
+                this.turn = Math.PI/2;
             }
             else {                          // north and east
                 // do nothing - no rotation required
             }
         }
         else if (northTile === southWestTile) {    // south and west
-            this.sprite.turn = Math.PI;
+            this.turn = Math.PI;
         }
         else {                              // south and east
-            this.sprite.turn = Math.PI*3/2;
+            this.turn = Math.PI*3/2;
         }
     }
 }

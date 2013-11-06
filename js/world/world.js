@@ -11,9 +11,6 @@ var World = (function () {
     function World() {
         this.updatedEvent = new Signal();
 
-        this._tileFactory = new TileFactory();
-        this._buildingFactory = new BuildingFactory();
-
         this._currentArea = MapType.VillageMap;
 
         this._entities = {};
@@ -111,14 +108,14 @@ var World = (function () {
                     collision = true;
                     Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
-                    if (building.structureType == StructureType.Gate_NS || building.structureType == StructureType.MineEntrance) {
+                    if (building.structureType == StructureType.Link) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][heroEntity.id] = heroEntity;
                         break;
-                    } else if (building instanceof Shop) {
+                    } else if (building.structureType == StructureType.Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.ShowInventory(heroEntity.inventory, (building).inventory.wares, building.id);
+                        Game.Graphics.ShowInventory(heroEntity.inventory, building.inventory.wares, building.id);
                     }
                     Log("You see " + entity.id + ".");
                 }
@@ -151,7 +148,7 @@ var World = (function () {
                 if (y === 0) {
                     tiles[x] = new Array();
                 }
-                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(CoTWData.Tiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
@@ -164,7 +161,7 @@ var World = (function () {
 
         //Initialise buildings for area
         AREA_STRUCTURES[mapType].forEach(function (x) {
-            return _this._entities[_this._currentArea][x.id] = _this._buildingFactory.Create(x.type, x.id, x.location, x.goodsType, x.goodsQuality);
+            return _this._entities[_this._currentArea][x.id] = new Structure(x);
         });
     };
 

@@ -10,18 +10,17 @@
 class Structure extends Entity {
     structureType:StructureType;
     _entry:Point;
+    inventory:Inventory;
 
     //constructor (name : string, type: string, entryPos : Point, startPos : Point, size : Point, offset : Point) {
-    constructor(id:string, type:StructureType, entry:Point, sprite:Resource, location:WorldCoordinates) {
-        super(id, EntityType.Building, sprite, location);
-        this.structureType = type;
-        this._entry = entry;
-    }
+    constructor(structure:IStructure) {
+        super(structure.id, EntityType.Building, structure.resource.sprite, structure.location);
+        this.structureType = structure.type;
+        this._entry = structure.resource.entryPoint;
 
-    IsShop():boolean {
-        return (this.id.indexOf('Sage') !== -1) ||
-            (this.id.indexOf('Store') !== -1) ||
-            (this.id.indexOf('Blacksmith') !== -1);
+        if (this.structureType.Shop) {
+            this.inventory = new ShopInventory(structure.goodsType, structure.goodsQuality);
+        }
     }
 
     Enter() {
@@ -43,16 +42,6 @@ class Structure extends Entity {
         }
     }
 }
-
-class Shop extends Structure {
-    public inventory:ShopInventory;
-
-    constructor(id:string, type:StructureType, entry:Point, sprite:Resource, location:WorldCoordinates, inventory:ShopInventory) {
-        super(id, type, entry, sprite, location);
-        this.inventory = inventory;
-    }
-}
-
 
 enum StructurePart {
     Wall,

@@ -69,6 +69,7 @@ interface IStructure {
     id : string;
     type : StructureType;
     location : WorldCoordinates;
+    resource: BuildingResource;
 
     //shop
     goodsType?: ItemType[];

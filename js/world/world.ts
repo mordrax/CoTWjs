@@ -8,9 +8,6 @@ class World {
     private _areas:collections.Dictionary<MapType, Tile[][]>;
     //private _entities: collections.Dictionary<MapType, collections.Dictionary<string, Entity>>;
     private _entities:{[area:string]:{[id:string]:Entity}};
-    private _tileFactory:TileFactory;
-    private _buildingFactory:BuildingFactory;
-
     private _hero:Player;
 
     public updatedEvent:Signal;
@@ -21,9 +18,6 @@ class World {
      */
         constructor() {
         this.updatedEvent = new Signal();
-
-        this._tileFactory = new TileFactory();
-        this._buildingFactory = new BuildingFactory();
 
         this._currentArea = <MapType>MapType.VillageMap;
 
@@ -125,15 +119,14 @@ class World {
                     collision = true;
                     Log('Ouch! You walked into a wall belonging to ' + entity.id);
                 } else if (structurePart === StructurePart.Entry) {
-                    if (building.structureType == StructureType.Gate_NS ||
-                        building.structureType == StructureType.MineEntrance) {
+                    if (building.structureType == StructureType.Link) {
                         var newMapLink = this.MapLink(new WorldCoordinates(this._currentArea, newLoc));
                         newLoc = newMapLink.position;
                         this._entities[this._currentArea][heroEntity.id] = heroEntity;
                         break;
-                    } else if (building instanceof Shop) {
+                    } else if (building.structureType == StructureType.Shop) {
                         Game.Graphics.Screen(ScreenType.Shop);
-                        Game.Graphics.ShowInventory(heroEntity.inventory, (<Shop>building).inventory.wares, building.id);
+                        Game.Graphics.ShowInventory(heroEntity.inventory, building.inventory.wares, building.id);
                     }
                     Log("You see " + entity.id + ".");
                 }
@@ -167,7 +160,7 @@ class World {
                 if (y === 0) {
                     tiles[x] = new Array<Tile>();
                 }
-                tiles[x][y] = this._tileFactory.Create(ASCII_MAPS[mapType][y][x], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(CoTWData.Tiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
@@ -179,7 +172,7 @@ class World {
         this._entities[this._currentArea] = this._entities[this._currentArea] || {};
         //Initialise buildings for area
         AREA_STRUCTURES[mapType].forEach(
-            (x:IStructure) => this._entities[this._currentArea][x.id] = this._buildingFactory.Create(x.type, x.id, x.location, x.goodsType, x.goodsQuality)
+            (x:IStructure) => this._entities[this._currentArea][x.id] = new Structure(x)
         );
     }
 

@@ -118,34 +118,11 @@ enum EntityType {
 }
 
 // All structure types
-enum StructureType{
-        Bank_WF           ,
-        BigHouse_NE       ,
-        BigHouseGarden_NE ,
-        BrickTemple_NF    ,
-        Building_EF       ,
-        Building_NF       ,
-        Building_SF       ,
-        BuildingYard_SF   ,
-        BurntHut_EF       ,
-        BurntStrawHouse_EF,
-        BurntStrawHouse_WF,
-        BurntTemple_NF    ,
-        Gate_NS           ,
-        HouseGroup_EW     ,
-        Hut_EF            ,
-        HutTemple_NF      ,
-        JunkYard_EF       ,
-        StrawHouse_EF     ,
-        StrawHouse_WF     ,
-        Sign              ,
-        Fountain          ,
-        Wagon             ,
-        VegePatch         ,
-        Well              ,
-        MineEntrance      ,
-        StairsDown        ,
-        StairsUp          ,
-        DoorClosed        ,
-        DoorOpen
+enum StructureType {
+    Door,
+    Link,
+    Quest,
+    Shop,
+    Sign,
+    NA
 }

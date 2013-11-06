@@ -29,13 +29,12 @@ class GraphicsEngine {
         var sprite = entity.sprite;
         var position = entity.location.position;
 
-        this.Draw(sprite, position);
-
         if (entity instanceof Tile) {
             var groundItems = (<Tile>entity).ground.items;
             var nGroundItems = Object.keys(groundItems).length;
             switch (nGroundItems) {
                 case 0:
+                    this.Draw(sprite, position, (<Tile>entity).turn);
                     break;
                 case 1:
                     this.Draw((<Item>(groundItems[Object.keys(groundItems)[0]])).base.sprite, position);
@@ -44,19 +43,21 @@ class GraphicsEngine {
                     this.Draw(CoTWSprites.Tiles.TreasurePile, position);
                     break;
             }
+        } else {
+            this.Draw(sprite, position);
         }
 
     }
 
-    private Draw(sprite:Resource, point:Point) {
+    private Draw(sprite:Resource, point:Point, turn:number=0) {
         var canvasPos = new Point (
             (point.X - this._centerPoint.X + this._canvasTileSize.X / 2) * TILE_SIZE,
             (point.Y - this._centerPoint.Y + this._canvasTileSize.Y / 2) * TILE_SIZE
         );
-        if (sprite.turn != 0) {
+        if (turn != 0) {
             this._ctx.save();
             this._ctx.translate(canvasPos.X + TILE_SIZE / 2, canvasPos.Y + TILE_SIZE / 2);
-            this._ctx.rotate(sprite.turn);
+            this._ctx.rotate(turn);
             this._ctx.translate(-canvasPos.X - TILE_SIZE / 2, -canvasPos.Y - TILE_SIZE / 2);
         }
 
@@ -68,7 +69,7 @@ class GraphicsEngine {
             sprite.size.w, sprite.size.h       // pixel size on canvas
         );
 
-        if (sprite.turn != 0) {
+        if (turn != 0) {
             this._ctx.restore();
         }
     }

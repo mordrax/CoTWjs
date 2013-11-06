@@ -23,13 +23,12 @@ var GraphicsEngine = (function () {
         var sprite = entity.sprite;
         var position = entity.location.position;
 
-        this.Draw(sprite, position);
-
         if (entity instanceof Tile) {
             var groundItems = (entity).ground.items;
             var nGroundItems = Object.keys(groundItems).length;
             switch (nGroundItems) {
                 case 0:
+                    this.Draw(sprite, position, (entity).turn);
                     break;
                 case 1:
                     this.Draw(((groundItems[Object.keys(groundItems)[0]])).base.sprite, position);
@@ -38,21 +37,24 @@ var GraphicsEngine = (function () {
                     this.Draw(CoTWSprites.Tiles.TreasurePile, position);
                     break;
             }
+        } else {
+            this.Draw(sprite, position);
         }
     };
 
-    GraphicsEngine.prototype.Draw = function (sprite, point) {
+    GraphicsEngine.prototype.Draw = function (sprite, point, turn) {
+        if (typeof turn === "undefined") { turn = 0; }
         var canvasPos = new Point((point.X - this._centerPoint.X + this._canvasTileSize.X / 2) * TILE_SIZE, (point.Y - this._centerPoint.Y + this._canvasTileSize.Y / 2) * TILE_SIZE);
-        if (sprite.turn != 0) {
+        if (turn != 0) {
             this._ctx.save();
             this._ctx.translate(canvasPos.X + TILE_SIZE / 2, canvasPos.Y + TILE_SIZE / 2);
-            this._ctx.rotate(sprite.turn);
+            this._ctx.rotate(turn);
             this._ctx.translate(-canvasPos.X - TILE_SIZE / 2, -canvasPos.Y - TILE_SIZE / 2);
         }
 
         this._ctx.drawImage(this._resources[sprite.type], sprite.offset.x, sprite.offset.y, sprite.size.w, sprite.size.h, canvasPos.X, canvasPos.Y, sprite.size.w, sprite.size.h);
 
-        if (sprite.turn != 0) {
+        if (turn != 0) {
             this._ctx.restore();
         }
     };
@@ -61,11 +63,11 @@ var GraphicsEngine = (function () {
         this._centerPoint = point;
     };
 
-    GraphicsEngine.prototype.UpdateHeroStatus = function () {
-        $('#hero-status-hp').text("10 [10]");
-        $('#hero-status-mana').text("20 [20]");
-        $('#hero-status-speed').text("100%/200%");
-        $('#hero-status-time').text("0d,30h43m");
+    GraphicsEngine.prototype.UpdateHeroStatus = function (hp, hpMax, mana, manaMax) {
+        $('#hero-status-hp').text(hp + " [" + hpMax + "]");
+        $('#hero-status-mana').text(Format("{0} [{1}]", mana, manaMax));
+        $('#hero-status-speed').text("100% / 200%");
+        $('#hero-status-time').text("0d,30:43:00");
         $('#hero-status-location').text("Hamlet");
     };
 
