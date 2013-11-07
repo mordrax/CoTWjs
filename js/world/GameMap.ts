@@ -22,7 +22,7 @@ interface IMapLink {
 
 var MAP_TO_MAP:IMapLink[] = [];
 MAP_TO_MAP.push({LinkA:new WorldCoordinates(MapType.VillageMap, new Point(11, 0)), LinkB:new WorldCoordinates(MapType.FarmMap, new Point(11, 32))});
-MAP_TO_MAP.push({LinkA:new WorldCoordinates(MapType.FarmMap, new Point(24, 1)), LinkB:new WorldCoordinates(MapType.MinesLv1, new Point(22, 39))});
+MAP_TO_MAP.push({LinkA:new WorldCoordinates(MapType.FarmMap, new Point(24, 1)), LinkB:new WorldCoordinates(MapType.MinesLv1, new Point(22, 40))});
 
 
 ASCII_MAPS[MapType.VillageMap] = [
@@ -168,6 +168,6 @@ ASCII_MAPS[MapType.MinesLv1] = [
 
 AREA_STRUCTURES[MapType.MinesLv1] =
     [
-        {id: "the mine exit",   type: StructureType.Link, location:new WorldCoordinates(MapType.MinesLv1, new Point(22, 40)), resource:CoTWData.Buildings['MineEntrance}']},
+        {id: "the mine exit",   type: StructureType.Link, location:new WorldCoordinates(MapType.MinesLv1, new Point(22, 40)), resource:CoTWData.Buildings['MineEntrance']},
         {id: "stairs down",     type: StructureType.Link, location:new WorldCoordinates(MapType.MinesLv1, new Point(25, 2)), resource:CoTWData.Buildings['StairsDown']}
     ];
