@@ -117,12 +117,13 @@ enum EntityType {
     Tile
 }
 
-// All structure types
 enum StructureType {
     Door,
     Link,
     Quest,
+    Sage,
     Shop,
+    Shrine,
     Sign,
     NA
 }

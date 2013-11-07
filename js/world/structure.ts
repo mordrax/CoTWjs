@@ -18,7 +18,7 @@ class Structure extends Entity {
         this.structureType = structure.type;
         this._entry = structure.resource.entryPoint;
 
-        if (this.structureType.Shop) {
+        if (this.structureType == StructureType.Shop) {
             this.inventory = new ShopInventory(structure.goodsType, structure.goodsQuality);
         }
     }
