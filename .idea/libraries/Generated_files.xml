@@ -48,7 +48,7 @@
       <root url="file://$PROJECT_DIR$/js/world/tile.js" />
       <root url="file://$PROJECT_DIR$/js/items.js" />
       <root url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
-      <root url="file://$PROJECT_DIR$/js/Sprites.js" />
+      <root url="file://$PROJECT_DIR$/js/sprites.js" />
       <root url="file://$PROJECT_DIR$/js/references.js" />
       <root url="file://$PROJECT_DIR$/js/world/world.js" />
       <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
