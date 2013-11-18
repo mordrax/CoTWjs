@@ -18,14 +18,10 @@ class GraphicsEngine {
         this.InitialiseScreen();
         this.InitialiseUI();
 
-        Game.World.updatedEvent.add((entity:Entity) => {
-            this.DrawEntity(entity);
-        });
-
         $(window).on('resize', () => this.InitialiseScreen());
     }
 
-    private DrawEntity(entity:Entity) {
+    public DrawEntity(entity:Entity) {
         var sprite = entity.sprite;
         var position = entity.location.position;
 

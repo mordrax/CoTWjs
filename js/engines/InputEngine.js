@@ -5,7 +5,6 @@ var InputEngine = (function () {
         document.addEventListener("keyup", function (evt) {
             return _this.KeyEvent(evt);
         }, false);
-        this.keyboardEvent = new Signal();
     }
     InputEngine.prototype.KeyEvent = function (ev) {
         this.keyboardEvent.dispatch(ev);

@@ -76,12 +76,16 @@ interface IStructure {
     goodsQuality?: number;
 }
 
-interface AreaToEntity {
-    area : MapType;
-    entities : {
-
-    }
+interface IEntity {
+    [mapType:string] : {[id:string]:Entity}
 }
 
+interface IArea {
+    [mapType:string] : Tile[][]
+}
 
+interface IMapLink {
+    LinkA: WorldCoordinates;
+    LinkB: WorldCoordinates;
+}
 

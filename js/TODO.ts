@@ -35,6 +35,7 @@
  *
  * World:
  * 1 Solid tiles (caves, crops, crap)
+ * 4 The hero shouldn't be positioned _on_ the link when entering a new area
  * DONE - Tiles hold containers and can open inventory
  *
  * Story:

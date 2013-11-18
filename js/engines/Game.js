@@ -20,16 +20,14 @@ var Game = (function () {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
         // testing just create these objects
         Game.World = new World();
-
-        Game.Input = new InputEngine();
         Game.Graphics = new GraphicsEngine();
 
-        this._hero = new Player('hero', new WorldCoordinates(MapType.VillageMap, new Point(10, 15)));
+        this._hero = new Player('hero', new WorldCoordinates(GameArea.Village, new Point(10, 15)));
         Game.World.AddEntity(this._hero);
 
         this._monsters = [];
         for (var i = 0; i < 10; i++) {
-            var location = new WorldCoordinates(MapType.FarmMap, new Point(D(40), D(30)));
+            var location = new WorldCoordinates(GameArea.Farm, new Point(D(40), D(30)));
             var sak = {
                 type: CoTWSprites.Actors.Kobold.type,
                 offset: CoTWSprites.Actors.Kobold.offset,
@@ -43,7 +41,7 @@ var Game = (function () {
             return Game.World.AddEntity(x);
         });
 
-        Game.World.Initialise();
+        Game.World.Draw();
     }
     Game.prototype.Start = function () {
     };

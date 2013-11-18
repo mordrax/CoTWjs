@@ -18,7 +18,6 @@
  */
 class Game {
     public static World : World;
-    public static Input : InputEngine;
     public static Graphics : GraphicsEngine;
     _hero : Player;
     _monsters : Entity[];
@@ -27,16 +26,14 @@ class Game {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
         // testing just create these objects
         Game.World = new World();
-
-        Game.Input = new InputEngine();
         Game.Graphics = new GraphicsEngine();
 
-        this._hero = new Player('hero', new WorldCoordinates(<MapType>MapType.VillageMap, new Point(10,15)));
+        this._hero = new Player('hero', new WorldCoordinates(<GameArea>GameArea.Village, new Point(10,15)));
         Game.World.AddEntity(this._hero);
 
         this._monsters = [];
         for (var i=0; i < 10; i++) {
-            var location = new WorldCoordinates(MapType.FarmMap,
+            var location = new WorldCoordinates(GameArea.Farm,
                 new Point(D(40), D(30)));
             var sak : Resource = {
                 type:   CoTWSprites.Actors.Kobold.type,
@@ -49,7 +46,7 @@ class Game {
 
         this._monsters.forEach(x => Game.World.AddEntity(x));
 
-        Game.World.Initialise();
+        Game.World.Draw();
     }
 
     Start() {

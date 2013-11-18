@@ -12,8 +12,8 @@ class Player extends Actor {
          this.mana = 2;
          this.manaMax = 10;
 
-        Game.Input.keyboardEvent.add((ev) => {
-            var direction = this.CalculateMovement(ev.keyCode);
+        window.addEventListener("keyup", (event : KeyboardEvent) => {
+            var direction = this.CalculateMovement(event.keyCode);
             if (direction.X != 0 || direction.Y != 0) { //check if there is any movement
                 Game.World.MoveHero(this.id, direction);
             }

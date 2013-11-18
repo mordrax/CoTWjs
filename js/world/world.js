@@ -9,10 +9,8 @@ var World = (function () {
     * @param $el - Container element <background> for all tiles
     */
     function World() {
-        this.updatedEvent = new Signal();
-
-        this._currentArea = MapType.VillageMap;
-
+        this._currentArea = GameArea.Village;
+        this._areas = {};
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
@@ -31,23 +29,16 @@ var World = (function () {
         delete this._entities[entity.location.area][entity.id];
     };
 
-    World.prototype.Initialise = function () {
-        this.DispatchUpdatedEvent();
-    };
+    World.prototype.Draw = function () {
+        Game.Graphics.Clear();
 
-    /**
-    * Send out update events for all entities and tiles of the current area of the world
-    * @constructor
-    */
-    World.prototype.DispatchUpdatedEvent = function () {
-        var _this = this;
-        this._areas.getValue(this._currentArea).forEach(function (x) {
+        this._areas[this._currentArea].forEach(function (x) {
             (x).forEach(function (y) {
-                _this.updatedEvent.dispatch(y);
+                Game.Graphics.DrawEntity(y);
             });
         });
         for (var k in this._entities[this._currentArea])
-            this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
+            Game.Graphics.DrawEntity(this._entities[this._currentArea][k]);
     };
 
     World.prototype.MoveMonsters = function () {
@@ -130,8 +121,7 @@ var World = (function () {
         //loop through monsters, move them
         this.MoveMonsters();
 
-        Game.Graphics.Clear();
-        this.DispatchUpdatedEvent();
+        this.Draw();
     };
 
     /**
@@ -139,9 +129,8 @@ var World = (function () {
     */
     World.prototype.InitialiseArea = function (mapType) {
         var _this = this;
-        // maps a MapType to a 2D array of tiles which represents the area
-        this._areas = new collections.Dictionary();
-        var tiles = new Array();
+        // maps a GameArea to a 2D array of tiles which represents the area
+        var tiles = [];
 
         for (var y = 0; y < ASCII_MAPS[mapType].length; y++) {
             for (var x = 0; x < ASCII_MAPS[mapType][y].length; x++) {
@@ -155,7 +144,7 @@ var World = (function () {
                 }
             }
         }
-        this._areas.setValue(mapType, tiles);
+        this._areas[mapType] = tiles;
 
         this._entities[this._currentArea] = this._entities[this._currentArea] || {};
 
@@ -167,11 +156,11 @@ var World = (function () {
 
     World.prototype.PrettyPrint = function (type) {
         switch (type) {
-            case MapType.FarmMap:
+            case GameArea.Farm:
                 return "Farm";
-            case MapType.VillageMap:
+            case GameArea.Village:
                 return "Village";
-            case MapType.MinesLv1:
+            case GameArea.MinesLv1:
                 return "Mines: Level 1";
             default:
                 return "An unknown spooky area unintended by the developer!";
@@ -205,7 +194,7 @@ var World = (function () {
 
     World.prototype.PickFromGround = function () {
         var pos = this._hero.location.position;
-        Game.Graphics.ShowInventory(this._hero.inventory, (this._areas.getValue(this._currentArea)[pos.X][pos.Y]).ground, "Ground");
+        Game.Graphics.ShowInventory(this._hero.inventory, (this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
     };
     return World;
 })();

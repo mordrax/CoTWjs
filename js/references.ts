@@ -7,13 +7,9 @@
 
 /// <reference path="libs/jquery/jquery.d.ts"/>
 /// <reference path="libs/jqueryui/jqueryui.d.ts"/>
-/// <reference path="libs/collections.ts"/>
-/// <reference path="libs/signals/Signal.ts"/>
-/// <reference path="libs/signals/SignalBinding.ts"/>
 
 /// <reference path="engines/PhysicsEngine.ts"/>
 /// <reference path="engines/GraphicsEngine.ts"/>
-/// <reference path="engines/InputEngine.ts"/>
 /// <reference path="engines/Game.ts"/>
 /// <reference path="engines/ShopEngine.ts"/>
 /// <reference path="engines/InventoryEngine.ts"/>

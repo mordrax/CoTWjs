@@ -4,23 +4,20 @@
  * world that the player is in when something has changed in the world.
  */
 class World {
-    private _currentArea:MapType;
-    private _areas:collections.Dictionary<MapType, Tile[][]>;
-    //private _entities: collections.Dictionary<MapType, collections.Dictionary<string, Entity>>;
-    private _entities:{[area:string]:{[id:string]:Entity}};
+    private _currentArea:GameArea;
+    private _areas:IArea;
+    //private _entities: collections.Dictionary<GameArea, collections.Dictionary<string, Entity>>;
+    private _entities:IEntity;
     private _hero:Player;
-
-    public updatedEvent:Signal;
 
     /**
      * World creation defaults to village _map
      * @param $el - Container element <background> for all tiles
      */
         constructor() {
-        this.updatedEvent = new Signal();
 
-        this._currentArea = <MapType>MapType.VillageMap;
-
+        this._currentArea = GameArea.Village;
+        this._areas = {};
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
@@ -40,22 +37,16 @@ class World {
         delete this._entities[entity.location.area][entity.id];
     }
 
-    Initialise() {
-        this.DispatchUpdatedEvent();
-    }
+    Draw() {
+        Game.Graphics.Clear();
 
-    /**
-     * Send out update events for all entities and tiles of the current area of the world
-     * @constructor
-     */
-        DispatchUpdatedEvent() {
-        this._areas.getValue(this._currentArea).forEach(x => {
-            (<Array>x).forEach(y=> {
-                this.updatedEvent.dispatch(y);
+        this._areas[this._currentArea].forEach(x => {
+            (<Array>x).forEach((y:Tile) => {
+                Game.Graphics.DrawEntity(y);
             })
         });
         for (var k in this._entities[this._currentArea])
-            this.updatedEvent.dispatch(this._entities[this._currentArea][k]);
+            Game.Graphics.DrawEntity(this._entities[this._currentArea][k]);
     }
 
     private MoveMonsters() {
@@ -141,18 +132,15 @@ class World {
         //loop through monsters, move them
         this.MoveMonsters();
 
-        Game.Graphics.Clear();
-        this.DispatchUpdatedEvent();
-
+        this.Draw();
     }
 
     /**
      * Populates each area with tiles, done once on construction
      */
-    private InitialiseArea(mapType:MapType) {
-        // maps a MapType to a 2D array of tiles which represents the area
-        this._areas = new collections.Dictionary<MapType, Tile[][]>();
-        var tiles = new Array<Array<Tile>>();
+    private InitialiseArea(mapType:GameArea) {
+        // maps a GameArea to a 2D array of tiles which represents the area
+        var tiles:Tile[][] = [];
 
         // Initialise tiles for area
         for (var y = 0; y < ASCII_MAPS[mapType].length; y++) {
@@ -167,7 +155,7 @@ class World {
                 }
             }
         }
-        this._areas.setValue(mapType, tiles);
+        this._areas[mapType] = tiles;
 
         this._entities[this._currentArea] = this._entities[this._currentArea] || {};
         //Initialise buildings for area
@@ -176,13 +164,13 @@ class World {
         );
     }
 
-    private PrettyPrint(type:MapType) {
+    private PrettyPrint(type:GameArea) {
         switch (type) {
-            case MapType.FarmMap:
+            case GameArea.Farm:
                 return "Farm";
-            case MapType.VillageMap:
+            case GameArea.Village:
                 return "Village";
-            case MapType.MinesLv1:
+            case GameArea.MinesLv1:
                 return "Mines: Level 1";
             default:
                 return "An unknown spooky area unintended by the developer!";
@@ -217,6 +205,6 @@ class World {
 
     public PickFromGround() {
         var pos = this._hero.location.position;
-        Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas.getValue(this._currentArea)[pos.X][pos.Y]).ground, "Ground");
+        Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
     }
 }

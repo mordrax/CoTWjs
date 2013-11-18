@@ -11,10 +11,6 @@ var GraphicsEngine = (function () {
         this.InitialiseScreen();
         this.InitialiseUI();
 
-        Game.World.updatedEvent.add(function (entity) {
-            _this.DrawEntity(entity);
-        });
-
         $(window).on('resize', function () {
             return _this.InitialiseScreen();
         });

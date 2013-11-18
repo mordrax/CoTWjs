@@ -20,9 +20,9 @@ class Entity {
 
 class WorldCoordinates {
     position:Point;
-    area:MapType;
+    area:GameArea;
 
-    constructor(area:MapType, position:Point) {
+    constructor(area:GameArea, position:Point) {
         this.position = position;
         this.area = area;
     }

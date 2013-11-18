@@ -16,8 +16,8 @@ var Player = (function (_super) {
         this.mana = 2;
         this.manaMax = 10;
 
-        Game.Input.keyboardEvent.add(function (ev) {
-            var direction = _this.CalculateMovement(ev.keyCode);
+        window.addEventListener("keyup", function (event) {
+            var direction = _this.CalculateMovement(event.keyCode);
             if (direction.X != 0 || direction.Y != 0) {
                 Game.World.MoveHero(_this.id, direction);
             }
