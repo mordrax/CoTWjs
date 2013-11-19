@@ -39,6 +39,7 @@ class World {
 
     Draw() {
         Game.Graphics.Clear();
+        Game.Graphics.UpdateCenter(this._hero.location.position);
 
         this._areas[this._currentArea].forEach(x => {
             (<Array>x).forEach((y:Tile) => {

@@ -31,6 +31,7 @@ var World = (function () {
 
     World.prototype.Draw = function () {
         Game.Graphics.Clear();
+        Game.Graphics.UpdateCenter(this._hero.location.position);
 
         this._areas[this._currentArea].forEach(function (x) {
             (x).forEach(function (y) {
