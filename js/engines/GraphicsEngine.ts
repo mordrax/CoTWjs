@@ -19,6 +19,15 @@ class GraphicsEngine {
         this.InitialiseUI();
 
         $(window).on('resize', () => this.InitialiseScreen());
+
+        window.addEventListener("keyup", (event : KeyboardEvent) => {
+            Log("key press-code: " + event.keyCode);
+            switch (event.keyCode) {
+                case KeyEvent.DOM_VK_ESCAPE:
+                    this.Screen(ScreenType.Main);
+                    break;
+            }
+        });
     }
 
     public DrawEntity(entity:Entity) {

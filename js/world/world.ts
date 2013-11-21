@@ -21,6 +21,15 @@ class World {
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
+
+        window.addEventListener("keyup", (event : KeyboardEvent) => {
+            var pos = this._hero.location.position;
+            switch (event.keyCode) {
+                case KeyEvent.DOM_VK_I:
+                    Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
+                break;
+            }
+        })
     }
 
     AddEntity(entity:Entity) {

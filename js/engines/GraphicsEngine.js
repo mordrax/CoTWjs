@@ -14,6 +14,15 @@ var GraphicsEngine = (function () {
         $(window).on('resize', function () {
             return _this.InitialiseScreen();
         });
+
+        window.addEventListener("keyup", function (event) {
+            Log("key press-code: " + event.keyCode);
+            switch (event.keyCode) {
+                case KeyEvent.DOM_VK_ESCAPE:
+                    _this.Screen(ScreenType.Main);
+                    break;
+            }
+        });
     }
     GraphicsEngine.prototype.DrawEntity = function (entity) {
         var sprite = entity.sprite;

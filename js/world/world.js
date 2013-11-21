@@ -9,11 +9,21 @@ var World = (function () {
     * @param $el - Container element <background> for all tiles
     */
     function World() {
+        var _this = this;
         this._currentArea = GameArea.Village;
         this._areas = {};
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
+
+        window.addEventListener("keyup", function (event) {
+            var pos = _this._hero.location.position;
+            switch (event.keyCode) {
+                case KeyEvent.DOM_VK_I:
+                    Game.Graphics.ShowInventory(_this._hero.inventory, (_this._areas[_this._currentArea][pos.X][pos.Y]).ground, "Ground");
+                    break;
+            }
+        });
     }
     World.prototype.AddEntity = function (entity) {
         this._entities[entity.location.area] = this._entities[entity.location.area] || {};
