@@ -53,7 +53,7 @@ interface IBelt extends IContainer {
 }
 
 interface Resource {
-    type : ResourceType;
+    type : ResourceFile;
     offset : {
         x:number;
         y:number;
@@ -62,7 +62,6 @@ interface Resource {
         w:number;
         h:number;
     };
-    turn? : number;
 }
 
 interface IStructure {

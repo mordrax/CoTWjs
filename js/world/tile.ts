@@ -13,39 +13,46 @@ class Tile extends Entity {
 
     DetermineRotation(westTile:string, northTile:string) {
 
-        var southWestTile:string;   // tile type which if is of a certain type, no rotation is required
+        var baseTile:string;   // tile type which if is of a certain type, no rotation is required
 
         // check if tile type is one that requires rotation - exits with 0 if not one of the expected types
         switch (this.id) {
             case "PathRock" :
-                southWestTile = "Path";
+                baseTile = "Rock";
                 break;
             case "PathGrass" :
-                southWestTile = "Path";
+                baseTile = "Grass";
                 break;
             case "WaterGrass" :
-                southWestTile = "Water";
+                baseTile = "Grass";
                 break;
             case "WaterPath" :
-                southWestTile = "Water";
+                baseTile = "Path";
+                break;
+            case "WallDarkDgn" :
+                baseTile = "DarkDgn";
+                break;
+            case "WallLitDgn" :
+                baseTile = "LitDgn";
                 break;
             default :
                 return;
         }
 
-        if (westTile === southWestTile) {
-            if (northTile === southWestTile) {    // north and west
-                this.turn = Math.PI/2;
+        if (westTile === baseTile) {
+            if (northTile === baseTile) {    // north and west
+                this.turn = Math.PI*3/2;
             }
             else {                          // north and east
                 // do nothing - no rotation required
+                this.turn = Math.PI;
             }
         }
-        else if (northTile === southWestTile) {    // south and west
-            this.turn = Math.PI;
+        else if (northTile === baseTile) {    // south and west
+            this.turn = 0;
         }
         else {                              // south and east
-            this.turn = Math.PI*3/2;
+            this.turn = Math.PI/2;
         }
     }
 }

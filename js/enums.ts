@@ -97,7 +97,7 @@ enum TileForm {
     Open
 }
 
-enum ResourceType {
+enum ResourceFile {
     buildings_1x    ,
     buildings_2x    ,
     buildings_3x    ,

@@ -68,6 +68,9 @@ class World {
         }
     }
 
+    /**
+     * Try to move the monster in a direction, return true if moved, false otherwise
+     */
     TryMove(monsterId:string, dir:Point):boolean {
         var monsterEntity = <Monster>this._entities[this._currentArea][monsterId];
         var loc = monsterEntity.location;
@@ -136,6 +139,7 @@ class World {
 
         if (collision === false) {
             heroEntity.location.position = newLoc;
+            Log("Hero loc:" + newLoc.X + "," + newLoc.Y);
             Game.Graphics.UpdateCenter(newLoc);
         }
 

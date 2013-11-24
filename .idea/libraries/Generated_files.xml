@@ -2,29 +2,25 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/js/world/tile.js" />
-        <item url="file://$PROJECT_DIR$/js/items.js" />
         <item url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
-        <item url="file://$PROJECT_DIR$/js/world/world.js" />
-        <item url="file://$PROJECT_DIR$/js/references.js" />
         <item url="file://$PROJECT_DIR$/js/NPCs/player.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
-        <item url="file://$PROJECT_DIR$/js/TODO.js" />
-        <item url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/Game.js" />
-        <item url="file://$PROJECT_DIR$/js/COTWClasses.js" />
-        <item url="file://$PROJECT_DIR$/js/cotw.js" />
-        <item url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
-        <item url="file://$PROJECT_DIR$/js/enums.js" />
         <item url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
-        <item url="file://$PROJECT_DIR$/js/world/GameMap.js" />
-        <item url="file://$PROJECT_DIR$/js/world/DungeonGenerator.js" />
-        <item url="file://$PROJECT_DIR$/js/input.js" />
-        <item url="file://$PROJECT_DIR$/js/world/structure.js" />
-        <item url="file://$PROJECT_DIR$/js/libs/collections.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
+        <item url="file://$PROJECT_DIR$/js/COTWClasses.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
+        <item url="file://$PROJECT_DIR$/js/sprites.js" />
+        <item url="file://$PROJECT_DIR$/js/enums.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/Game.js" />
         <item url="file://$PROJECT_DIR$/js/interfaces.js" />
-        <item url="file://$PROJECT_DIR$/js/libs/signals/Signal.js" />
+        <item url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
+        <item url="file://$PROJECT_DIR$/js/cotw.js" />
+        <item url="file://$PROJECT_DIR$/js/world/GameMap.js" />
+        <item url="file://$PROJECT_DIR$/js/items.js" />
+        <item url="file://$PROJECT_DIR$/js/world/structure.js" />
+        <item url="file://$PROJECT_DIR$/js/references.js" />
+        <item url="file://$PROJECT_DIR$/js/world/world.js" />
+        <item url="file://$PROJECT_DIR$/js/TODO.js" />
+        <item url="file://$PROJECT_DIR$/js/world/tile.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
@@ -45,30 +41,30 @@
       <root url="file://$PROJECT_DIR$/js/interfaces/IPhysical.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IDrawable.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces/IState.js" />
-      <root url="file://$PROJECT_DIR$/js/world/tile.js" />
-      <root url="file://$PROJECT_DIR$/js/items.js" />
-      <root url="file://$PROJECT_DIR$/js/sprites.js" />
-      <root url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
-      <root url="file://$PROJECT_DIR$/js/references.js" />
-      <root url="file://$PROJECT_DIR$/js/world/world.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/NPCs/player.js" />
-      <root url="file://$PROJECT_DIR$/js/TODO.js" />
       <root url="file://$PROJECT_DIR$/js/libs/signals/SignalBinding.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/Game.js" />
-      <root url="file://$PROJECT_DIR$/js/cotw.js" />
+      <root url="file://$PROJECT_DIR$/js/world/DungeonGenerator.js" />
+      <root url="file://$PROJECT_DIR$/js/input.js" />
+      <root url="file://$PROJECT_DIR$/js/libs/collections.js" />
+      <root url="file://$PROJECT_DIR$/js/libs/signals/Signal.js" />
+      <root url="file://$PROJECT_DIR$/js/NPCs/Actor.js" />
+      <root url="file://$PROJECT_DIR$/js/NPCs/player.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/InventoryEngine.js" />
       <root url="file://$PROJECT_DIR$/js/COTWClasses.js" />
       <root url="file://$PROJECT_DIR$/js/engines/InputEngine.js" />
-      <root url="file://$PROJECT_DIR$/js/engines/PhysicsEngine.js" />
+      <root url="file://$PROJECT_DIR$/js/sprites.js" />
       <root url="file://$PROJECT_DIR$/js/enums.js" />
-      <root url="file://$PROJECT_DIR$/js/world/DungeonGenerator.js" />
-      <root url="file://$PROJECT_DIR$/js/world/GameMap.js" />
-      <root url="file://$PROJECT_DIR$/js/input.js" />
       <root url="file://$PROJECT_DIR$/js/interfaces.js" />
-      <root url="file://$PROJECT_DIR$/js/libs/collections.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/Game.js" />
+      <root url="file://$PROJECT_DIR$/js/engines/GraphicsEngine.js" />
+      <root url="file://$PROJECT_DIR$/js/world/GameMap.js" />
+      <root url="file://$PROJECT_DIR$/js/cotw.js" />
+      <root url="file://$PROJECT_DIR$/js/items.js" />
       <root url="file://$PROJECT_DIR$/js/world/structure.js" />
-      <root url="file://$PROJECT_DIR$/js/libs/signals/Signal.js" />
+      <root url="file://$PROJECT_DIR$/js/references.js" />
+      <root url="file://$PROJECT_DIR$/js/TODO.js" />
+      <root url="file://$PROJECT_DIR$/js/world/world.js" />
+      <root url="file://$PROJECT_DIR$/js/world/tile.js" />
     </CLASSES>
     <SOURCES />
   </library>

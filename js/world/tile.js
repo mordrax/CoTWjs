@@ -14,35 +14,42 @@ var Tile = (function (_super) {
         this.ground = new Container();
     }
     Tile.prototype.DetermineRotation = function (westTile, northTile) {
-        var southWestTile;
+        var baseTile;
 
         switch (this.id) {
             case "PathRock":
-                southWestTile = "Path";
+                baseTile = "Rock";
                 break;
             case "PathGrass":
-                southWestTile = "Path";
+                baseTile = "Grass";
                 break;
             case "WaterGrass":
-                southWestTile = "Water";
+                baseTile = "Grass";
                 break;
             case "WaterPath":
-                southWestTile = "Water";
+                baseTile = "Path";
+                break;
+            case "WallDarkDgn":
+                baseTile = "DarkDgn";
+                break;
+            case "WallLitDgn":
+                baseTile = "LitDgn";
                 break;
             default:
                 return;
         }
 
-        if (westTile === southWestTile) {
-            if (northTile === southWestTile) {
-                this.turn = Math.PI / 2;
+        if (westTile === baseTile) {
+            if (northTile === baseTile) {
+                this.turn = Math.PI * 3 / 2;
             } else {
                 // do nothing - no rotation required
+                this.turn = Math.PI;
             }
-        } else if (northTile === southWestTile) {
-            this.turn = Math.PI;
+        } else if (northTile === baseTile) {
+            this.turn = 0;
         } else {
-            this.turn = Math.PI * 3 / 2;
+            this.turn = Math.PI / 2;
         }
     };
     return Tile;

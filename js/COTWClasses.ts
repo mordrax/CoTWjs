@@ -76,16 +76,10 @@ var CoTWData:ICoTWData = {
         'O': {name: 'LitDgn', sprite: CoTWSprites.Tiles.LitDgn},
         '_': {name: 'PathRock', sprite: CoTWSprites.Tiles.PathRock},
         ';': {name: 'PathGrass', sprite: CoTWSprites.Tiles.PathGrass},
-        'z': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgnSW},
-        'a': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgnNW},
-        's': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgnNE},
-        'x': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgnSE},
+        'd': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgn},
         'w': {name: 'WaterGrass', sprite: CoTWSprites.Tiles.WaterGrass},
         'W': {name: 'WaterPath', sprite: CoTWSprites.Tiles.WaterPath},
-        'Z': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgnSW},
-        'A': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgnNW},
-        'S': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgnNE},
-        'X': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgnSE},
+        'D': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgn},
         'g': {name: 'Grass50Cave50', sprite: CoTWSprites.Tiles.Grass50Cave50},
         'G': {name: 'Grass10Cave90', sprite: CoTWSprites.Tiles.Grass10Cave90},
         'c': {name: 'White50Cave50', sprite: CoTWSprites.Tiles.White50Cave50},
@@ -96,7 +90,7 @@ var CoTWData:ICoTWData = {
         '!': {name: 'SignOnGrass', sprite: CoTWSprites.Tiles.Grass}
     },
     Buildings: {
-        Gate_NS: {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Gate_NS            },
+        Gate_NS: {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Gate_NS },
         StrawHouse_EF: {entryPoint: new Point(2, 1), sprite: CoTWSprites.Buildings.StrawHouse_EF      },
         StrawHouse_WF: {entryPoint: new Point(0, 1), sprite: CoTWSprites.Buildings.StrawHouse_WF      },
         Hut_EF: {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Hut_EF             },
@@ -156,7 +150,8 @@ class Item {
 
 class Container {
     opened:boolean;
-    items:{[id:string]:Item};
+    items:{[id:string]:Item
+    };
 
     constructor() {
         this.opened = true;

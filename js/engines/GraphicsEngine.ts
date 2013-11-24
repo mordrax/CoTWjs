@@ -120,17 +120,17 @@ class GraphicsEngine {
     }
 
     private LoadResources() {
-        this._resources[ResourceType.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
-        this._resources[ResourceType.buildings_2x     ] = this.createImgElement('assets/resources/2x_buildings.png');
-        this._resources[ResourceType.buildings_3x     ] = this.createImgElement('assets/resources/3x_buildings.png');
-        this._resources[ResourceType.buildings_4x     ] = this.createImgElement('assets/resources/4x_buildings.png');
-        this._resources[ResourceType.buildings_5x     ] = this.createImgElement('assets/resources/5x_buildings.png');
-        this._resources[ResourceType.SpellEffects     ] = this.createImgElement('assets/resources/spell_effects.png');
-        this._resources[ResourceType.DifficultyLevel  ] = this.createImgElement('assets/resources/difficulty_level.png');
-        this._resources[ResourceType.Monsters         ] = this.createImgElement('assets/resources/monsters.png');
-        this._resources[ResourceType.Items            ] = this.createImgElement('assets/resources/items.png');
-        this._resources[ResourceType.Spells           ] = this.createImgElement('assets/resources/spells.png');
-        this._resources[ResourceType.Tiles            ] = this.createImgElement('assets/resources/tiles.png');
+        this._resources[ResourceFile.buildings_1x     ] = this.createImgElement('assets/resources/1x_buildings.png');
+        this._resources[ResourceFile.buildings_2x     ] = this.createImgElement('assets/resources/2x_buildings.png');
+        this._resources[ResourceFile.buildings_3x     ] = this.createImgElement('assets/resources/3x_buildings.png');
+        this._resources[ResourceFile.buildings_4x     ] = this.createImgElement('assets/resources/4x_buildings.png');
+        this._resources[ResourceFile.buildings_5x     ] = this.createImgElement('assets/resources/5x_buildings.png');
+        this._resources[ResourceFile.SpellEffects     ] = this.createImgElement('assets/resources/spell_effects.png');
+        this._resources[ResourceFile.DifficultyLevel  ] = this.createImgElement('assets/resources/difficulty_level.png');
+        this._resources[ResourceFile.Monsters         ] = this.createImgElement('assets/resources/monsters.png');
+        this._resources[ResourceFile.Items            ] = this.createImgElement('assets/resources/items.png');
+        this._resources[ResourceFile.Spells           ] = this.createImgElement('assets/resources/spells.png');
+        this._resources[ResourceFile.Tiles            ] = this.createImgElement('assets/resources/tiles.png');
     }
 
     private InitialiseUI() {

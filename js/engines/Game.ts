@@ -38,8 +38,7 @@ class Game {
             var sak : Resource = {
                 type:   CoTWSprites.Actors.Kobold.type,
                 offset: CoTWSprites.Actors.Kobold.offset,
-                size:   CoTWSprites.Actors.Kobold.size,
-                turn:   CoTWSprites.Actors.Kobold.turn
+                size:   CoTWSprites.Actors.Kobold.size
             };
             this._monsters.push(new Monster('Kobold'+i, sak, location));
         }
