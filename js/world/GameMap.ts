@@ -3,7 +3,8 @@
 enum GameArea {
     Village,
     Farm,
-    MinesLv1
+    MinesLv1,
+    MinesLv2
 }
 
 /**

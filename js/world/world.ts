@@ -21,6 +21,7 @@ class World {
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
+        this.GenerateRandomMap(GameArea.MinesLv2, new Point(40,30));
 
         window.addEventListener("keyup", (event : KeyboardEvent) => {
             var pos = this._hero.location.position;
@@ -178,6 +179,39 @@ class World {
         );
     }
 
+    /**
+     * Generates a random dungeon map of tiles for the area that is passed in.
+     * Currently done once on construction, but need to change it to generate only when map does not exist & when player uses the stairs
+     */
+    private GenerateRandomMap(mapType:GameArea, mapSize:Point) {
+        // maps a GameArea to a 2D array of tiles which represents the area
+        var tiles:Tile[][] = [];
+
+        // Initialise tiles for area
+        for (var y = 0; y < mapSize.Y; y++) {
+            for (var x = 0; x < mapSize.X; x++) {
+                if (y === 0) {
+                    tiles[x] = new Array<Tile>();
+                }
+                tiles[x][y] = new Tile(CoTWData.Tiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
+                if (x > 0 && y > 0) {
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
+                }
+            }
+        }
+        this._areas[mapType] = tiles;
+
+        MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.Village, new Point(11, 18)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(21, 12))});
+/*
+        this._entities[this._currentArea] = this._entities[this._currentArea] || {};
+        //Initialise buildings for area
+        AREA_STRUCTURES[mapType].forEach(
+            (x:IStructure) => this._entities[this._currentArea][x.id] = new Structure(x)
+        );
+*/
+    }
+
     private PrettyPrint(type:GameArea) {
         switch (type) {
             case GameArea.Farm:
@@ -186,6 +220,8 @@ class World {
                 return "Village";
             case GameArea.MinesLv1:
                 return "Mines: Level 1";
+            case GameArea.MinesLv2:
+                return "Mines: Level 2";
             default:
                 return "An unknown spooky area unintended by the developer!";
         }

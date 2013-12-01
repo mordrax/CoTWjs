@@ -22,3 +22,4 @@
 /// <reference path="world/world.ts"/>
 /// <reference path="world/structure.ts"/>
 /// <reference path="world/GameMap.ts"/>
+/// <reference path="world/DungeonGenerator.ts"/>
