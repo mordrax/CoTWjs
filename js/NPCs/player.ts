@@ -5,7 +5,7 @@ class Player extends Actor {
     public mana:number;               // current mana points
 
     constructor(id:string, coord?:WorldCoordinates) {
-        super(id, CoTWSprites.Actors.FemaleHero, coord);
+        super(id, CoTWContent.Actors.FemaleHero.sprite, coord);
 
          this.hp = 1000;
          this.att = 10;
@@ -14,15 +14,15 @@ class Player extends Actor {
 
         window.addEventListener("keyup", (event : KeyboardEvent) => {
             var direction = this.CalculateMovement(event.keyCode);
-            if (direction.X != 0 || direction.Y != 0) { //check if there is any movement
+            if (direction.x != 0 || direction.y != 0) { //check if there is any movement
                 Game.World.MoveHero(this.id, direction);
             }
             Game.Graphics.UpdateHeroStatus(this.hp, this.hpMax, this.mana, this.manaMax);
         });
 
-        this.inventory.pack = new Item(Items.Chest.MediumChest, true);
-        this.inventory.freeHand = new Item(Items.Bag.LargeBag, true);
-        this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
+        this.inventory.pack = new Item(CoTWContent.Items.Chest.MediumChest, true);
+        this.inventory.freeHand = new Item(CoTWContent.Items.Bag.LargeBag, true);
+        this.inventory.weapon = new Item(CoTWContent.Items.Helmet.BrokenHelmet);
     }
 
     // Calculates the proposed displacement based on the keycode pressed by the user
@@ -31,32 +31,32 @@ class Player extends Actor {
 
         switch (keycode) {
             case 33: //NORTHEAST
-                movement.X = 1;
-                movement.Y = -1;
+                movement.x = 1;
+                movement.y = -1;
                 break;
             case 34: //SOUTHEAST
-                movement.X = 1;
-                movement.Y = 1;
+                movement.x = 1;
+                movement.y = 1;
                 break;
             case 35: // SOUTHWEST
-                movement.X = -1;
-                movement.Y = 1;
+                movement.x = -1;
+                movement.y = 1;
                 break;
             case 36: // NORTHWEST
-                movement.X = -1;
-                movement.Y = -1;
+                movement.x = -1;
+                movement.y = -1;
                 break;
             case 37: // WEST or LEFT
-                movement.X = -1;
+                movement.x = -1;
                 break;
             case 38: // NORTH or UP
-                movement.Y = -1;
+                movement.y = -1;
                 break;
             case 39: // EAST or RIGHT
-                movement.X = 1;
+                movement.x = 1;
                 break;
             case 40: // SOUTH or DOWN
-                movement.Y = 1;
+                movement.y = 1;
                 break;
             default:    // do nothing
         }

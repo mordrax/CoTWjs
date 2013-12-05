@@ -9,7 +9,7 @@ var Player = (function (_super) {
     __extends(Player, _super);
     function Player(id, coord) {
         var _this = this;
-        _super.call(this, id, CoTWSprites.Actors.FemaleHero, coord);
+        _super.call(this, id, CoTWContent.Actors.FemaleHero.sprite, coord);
 
         this.hp = 1000;
         this.att = 10;
@@ -18,15 +18,15 @@ var Player = (function (_super) {
 
         window.addEventListener("keyup", function (event) {
             var direction = _this.CalculateMovement(event.keyCode);
-            if (direction.X != 0 || direction.Y != 0) {
+            if (direction.x != 0 || direction.y != 0) {
                 Game.World.MoveHero(_this.id, direction);
             }
             Game.Graphics.UpdateHeroStatus(_this.hp, _this.hpMax, _this.mana, _this.manaMax);
         });
 
-        this.inventory.pack = new Item(Items.Chest.MediumChest, true);
-        this.inventory.freeHand = new Item(Items.Bag.LargeBag, true);
-        this.inventory.weapon = new Item(Items.Helmet.BrokenHelmet);
+        this.inventory.pack = new Item(CoTWContent.Items.Chest.MediumChest, true);
+        this.inventory.freeHand = new Item(CoTWContent.Items.Bag.LargeBag, true);
+        this.inventory.weapon = new Item(CoTWContent.Items.Helmet.BrokenHelmet);
     }
     // Calculates the proposed displacement based on the keycode pressed by the user
     Player.prototype.CalculateMovement = function (keycode) {
@@ -34,32 +34,32 @@ var Player = (function (_super) {
 
         switch (keycode) {
             case 33:
-                movement.X = 1;
-                movement.Y = -1;
+                movement.x = 1;
+                movement.y = -1;
                 break;
             case 34:
-                movement.X = 1;
-                movement.Y = 1;
+                movement.x = 1;
+                movement.y = 1;
                 break;
             case 35:
-                movement.X = -1;
-                movement.Y = 1;
+                movement.x = -1;
+                movement.y = 1;
                 break;
             case 36:
-                movement.X = -1;
-                movement.Y = -1;
+                movement.x = -1;
+                movement.y = -1;
                 break;
             case 37:
-                movement.X = -1;
+                movement.x = -1;
                 break;
             case 38:
-                movement.Y = -1;
+                movement.y = -1;
                 break;
             case 39:
-                movement.X = 1;
+                movement.x = 1;
                 break;
             case 40:
-                movement.Y = 1;
+                movement.y = 1;
                 break;
             default:
         }

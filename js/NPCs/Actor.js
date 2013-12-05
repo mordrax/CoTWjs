@@ -11,6 +11,8 @@ var __extends = this.__extends || function (d, b) {
 var Actor = (function (_super) {
     __extends(Actor, _super);
     function Actor(id, sprite, coord) {
+        sprite.file = sprite.file || ResourceFile.Monsters;
+
         _super.call(this, id, EntityType.Actor, sprite, coord);
 
         this.hpMax = 50;

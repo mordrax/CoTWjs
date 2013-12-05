@@ -15,12 +15,13 @@ var World = (function () {
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
+        this.GenerateRandomMap(GameArea.MinesLv2, new Point(40, 30));
 
         window.addEventListener("keyup", function (event) {
             var pos = _this._hero.location.position;
             switch (event.keyCode) {
                 case KeyEvent.DOM_VK_I:
-                    Game.Graphics.ShowInventory(_this._hero.inventory, (_this._areas[_this._currentArea][pos.X][pos.Y]).ground, "Ground");
+                    Game.Graphics.ShowInventory(_this._hero.inventory, (_this._areas[_this._currentArea][pos.x][pos.y]).ground, "Ground");
                     break;
             }
         });
@@ -67,7 +68,7 @@ var World = (function () {
     World.prototype.TryMove = function (monsterId, dir) {
         var monsterEntity = this._entities[this._currentArea][monsterId];
         var loc = monsterEntity.location;
-        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+        var newLoc = new Point(loc.position.x + dir.x, loc.position.y + dir.y);
 
         if (newLoc.Equals(this._hero.location.position)) {
             monsterEntity.Attack(this._hero);
@@ -95,7 +96,7 @@ var World = (function () {
     World.prototype.MoveHero = function (heroId, dir) {
         var heroEntity = this._entities[this._currentArea][heroId];
         var loc = heroEntity.location;
-        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+        var newLoc = new Point(loc.position.x + dir.x, loc.position.y + dir.y);
         var collision = false;
 
         for (var k in this._entities[this._currentArea]) {
@@ -129,7 +130,7 @@ var World = (function () {
 
         if (collision === false) {
             heroEntity.location.position = newLoc;
-            Log("Hero loc:" + newLoc.X + "," + newLoc.Y);
+            Log("Hero loc:" + newLoc.x + "," + newLoc.y);
             Game.Graphics.UpdateCenter(newLoc);
         }
 
@@ -152,7 +153,7 @@ var World = (function () {
                 if (y === 0) {
                     tiles[x] = new Array();
                 }
-                tiles[x][y] = new Tile(CoTWData.Tiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(ASCIITiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
@@ -169,6 +170,38 @@ var World = (function () {
         });
     };
 
+    /**
+    * Generates a random dungeon map of tiles for the area that is passed in.
+    * Currently done once on construction, but need to change it to generate only when map does not exist & when player uses the stairs
+    */
+    World.prototype.GenerateRandomMap = function (mapType, mapSize) {
+        // maps a GameArea to a 2D array of tiles which represents the area
+        var tiles = [];
+
+        for (var y = 0; y < mapSize.y; y++) {
+            for (var x = 0; x < mapSize.x; x++) {
+                if (y === 0) {
+                    tiles[x] = new Array();
+                }
+                tiles[x][y] = new Tile(ASCIITiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
+                if (x > 0 && y > 0) {
+                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
+                }
+            }
+        }
+        this._areas[mapType] = tiles;
+
+        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(GameArea.Village, new Point(11, 18)), LinkB: new WorldCoordinates(GameArea.MinesLv1, new Point(21, 12)) });
+        /*
+        this._entities[this._currentArea] = this._entities[this._currentArea] || {};
+        //Initialise buildings for area
+        AREA_STRUCTURES[mapType].forEach(
+        (x:IStructure) => this._entities[this._currentArea][x.id] = new Structure(x)
+        );
+        */
+    };
+
     World.prototype.PrettyPrint = function (type) {
         switch (type) {
             case GameArea.Farm:
@@ -177,6 +210,8 @@ var World = (function () {
                 return "Village";
             case GameArea.MinesLv1:
                 return "Mines: Level 1";
+            case GameArea.MinesLv2:
+                return "Mines: Level 2";
             default:
                 return "An unknown spooky area unintended by the developer!";
         }
@@ -209,7 +244,7 @@ var World = (function () {
 
     World.prototype.PickFromGround = function () {
         var pos = this._hero.location.position;
-        Game.Graphics.ShowInventory(this._hero.inventory, (this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
+        Game.Graphics.ShowInventory(this._hero.inventory, (this._areas[this._currentArea][pos.x][pos.y]).ground, "Ground");
     };
     return World;
 })();

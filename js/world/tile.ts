@@ -5,10 +5,13 @@ class Tile extends Entity {
     ground:Container;
     turn:number;
 
-    constructor(tileResource:TileResource, location:WorldCoordinates, solid:boolean=false) {
-        super(tileResource.name, EntityType.Tile, tileResource.sprite, location);
+    constructor(tile:ITile, location:WorldCoordinates) {
+        tile.sprite.file = tile.sprite.file || ResourceFile.Tiles;
+        super(tile.name, EntityType.Tile, tile.sprite, location);
 
+        this.resourceFile = ResourceFile.Tiles;
         this.ground = new Container();
+        this.turn = 0;
     }
 
     DetermineRotation(westTile:string, northTile:string) {

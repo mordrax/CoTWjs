@@ -10,6 +10,8 @@ var WINDOW_WIDTH = Math.min($(window).width(), 640);
 var WINDOW_HEIGHT = Math.min($(window).height(), 640);
 // pixel size of each tile
 var TILE_SIZE = 32;
+var DEFAULT_SIZE:ISize = {w:TILE_SIZE, h:TILE_SIZE};
+var DEFAULT_POINT:IPoint = {x:0, y:0};
 // Amount of tiles to display
 var TILES_X = parseInt((WINDOW_WIDTH/TILE_SIZE).toString());
 var TILES_Y = parseInt((WINDOW_HEIGHT/TILE_SIZE).toString());

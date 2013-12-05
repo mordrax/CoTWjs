@@ -35,12 +35,7 @@ class Game {
         for (var i=0; i < 10; i++) {
             var location = new WorldCoordinates(GameArea.Farm,
                 new Point(D(40), D(30)));
-            var sak : Resource = {
-                type:   CoTWSprites.Actors.Kobold.type,
-                offset: CoTWSprites.Actors.Kobold.offset,
-                size:   CoTWSprites.Actors.Kobold.size
-            };
-            this._monsters.push(new Monster('Kobold'+i, sak, location));
+            this._monsters.push(new Monster(MonsterType.Kobold, CoTWContent.Actors.Kobold.sprite, location));
         }
 
         this._monsters.forEach(x => Game.World.AddEntity(x));

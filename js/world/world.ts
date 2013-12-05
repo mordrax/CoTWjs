@@ -27,7 +27,7 @@ class World {
             var pos = this._hero.location.position;
             switch (event.keyCode) {
                 case KeyEvent.DOM_VK_I:
-                    Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
+                    Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.x][pos.y]).ground, "Ground");
                 break;
             }
         })
@@ -75,7 +75,7 @@ class World {
     TryMove(monsterId:string, dir:Point):boolean {
         var monsterEntity = <Monster>this._entities[this._currentArea][monsterId];
         var loc = monsterEntity.location;
-        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+        var newLoc = new Point(loc.position.x + dir.x, loc.position.y + dir.y);
 
         // if monster is next to hero, hit it instead of trying to move
         if (newLoc.Equals(this._hero.location.position)) {
@@ -106,7 +106,7 @@ class World {
     MoveHero(heroId:string, dir:Point) {
         var heroEntity = <Player>this._entities[this._currentArea][heroId];
         var loc = heroEntity.location;
-        var newLoc = new Point(loc.position.X + dir.X, loc.position.Y + dir.Y);
+        var newLoc = new Point(loc.position.x + dir.x, loc.position.y + dir.y);
         var collision = false;
 
         for (var k in this._entities[this._currentArea]) {
@@ -140,7 +140,7 @@ class World {
 
         if (collision === false) {
             heroEntity.location.position = newLoc;
-            Log("Hero loc:" + newLoc.X + "," + newLoc.Y);
+            Log("Hero loc:" + newLoc.x + "," + newLoc.y);
             Game.Graphics.UpdateCenter(newLoc);
         }
 
@@ -163,7 +163,7 @@ class World {
                 if (y === 0) {
                     tiles[x] = new Array<Tile>();
                 }
-                tiles[x][y] = new Tile(CoTWData.Tiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(ASCIITiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
@@ -188,12 +188,12 @@ class World {
         var tiles:Tile[][] = [];
 
         // Initialise tiles for area
-        for (var y = 0; y < mapSize.Y; y++) {
-            for (var x = 0; x < mapSize.X; x++) {
+        for (var y = 0; y < mapSize.y; y++) {
+            for (var x = 0; x < mapSize.x; x++) {
                 if (y === 0) {
                     tiles[x] = new Array<Tile>();
                 }
-                tiles[x][y] = new Tile(CoTWData.Tiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(ASCIITiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
@@ -255,6 +255,6 @@ class World {
 
     public PickFromGround() {
         var pos = this._hero.location.position;
-        Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.X][pos.Y]).ground, "Ground");
+        Game.Graphics.ShowInventory(this._hero.inventory, (<Tile>this._areas[this._currentArea][pos.x][pos.y]).ground, "Ground");
     }
 }

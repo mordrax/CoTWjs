@@ -7,11 +7,13 @@ var __extends = this.__extends || function (d, b) {
 };
 var Tile = (function (_super) {
     __extends(Tile, _super);
-    function Tile(tileResource, location, solid) {
-        if (typeof solid === "undefined") { solid = false; }
-        _super.call(this, tileResource.name, EntityType.Tile, tileResource.sprite, location);
+    function Tile(tile, location) {
+        tile.sprite.file = tile.sprite.file || ResourceFile.Tiles;
+        _super.call(this, tile.name, EntityType.Tile, tile.sprite, location);
 
+        this.resourceFile = ResourceFile.Tiles;
         this.ground = new Container();
+        this.turn = 0;
     }
     Tile.prototype.DetermineRotation = function (westTile, northTile) {
         var baseTile;

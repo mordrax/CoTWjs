@@ -7,9 +7,10 @@ var __extends = this.__extends || function (d, b) {
 };
 var Monster = (function (_super) {
     __extends(Monster, _super);
-    function Monster(id, sprite, coord) {
-        _super.call(this, id, sprite, coord);
+    function Monster(type, sprite, coord) {
+        _super.call(this, MonsterType[type], sprite, coord);
 
+        this.monsterType = type;
         this._loot = "copper coins";
     }
     Monster.prototype.Move = function (target) {
@@ -17,22 +18,22 @@ var Monster = (function (_super) {
         var diff = target.Difference(this.location.position);
         var dir = new Point(0, 0);
 
-        if (diff.X !== 0) {
-            dir.X = diff.X / Math.abs(diff.X);
+        if (diff.x !== 0) {
+            dir.x = diff.x / Math.abs(diff.x);
         }
-        if (diff.Y !== 0) {
-            dir.Y = diff.Y / Math.abs(diff.Y);
+        if (diff.y !== 0) {
+            dir.y = diff.y / Math.abs(diff.y);
         }
 
         var possibleMoves = [];
-        if (dir.X == 0) {
-            possibleMoves = [new Point(1, dir.Y), new Point(-1, dir.Y)];
+        if (dir.x == 0) {
+            possibleMoves = [new Point(1, dir.y), new Point(-1, dir.y)];
         }
-        if (dir.Y == 0) {
-            possibleMoves = [new Point(dir.X, 1), new Point(dir.X, -1)];
+        if (dir.y == 0) {
+            possibleMoves = [new Point(dir.x, 1), new Point(dir.x, -1)];
         }
-        if (dir.X != 0 && dir.Y != 0) {
-            possibleMoves = [new Point(dir.X, 0), new Point(0, dir.Y)];
+        if (dir.x != 0 && dir.y != 0) {
+            possibleMoves = [new Point(dir.x, 0), new Point(0, dir.y)];
         }
 
         if (Game.World.TryMove(this.id, dir)) {

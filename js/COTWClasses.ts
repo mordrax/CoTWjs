@@ -5,15 +5,17 @@
  * or behaviour of the COTWObject.
  */
 class Entity {
-    sprite:Resource;
+    cotwItem:ISprite;
     location:WorldCoordinates;
     type:EntityType;
     id:string;
+    resourceFile : ResourceFile;
 
-    constructor(id:string, type:EntityType, sprite:Resource, location:WorldCoordinates) {
+    constructor(id:string, type:EntityType, sprite:ISprite, location:WorldCoordinates) {
+        sprite.size = sprite.size || DEFAULT_SIZE;
         this.id = id;
         this.location = location;
-        this.sprite = sprite;
+        this.cotwItem = sprite;
         this.type = type;
     }
 }
@@ -32,86 +34,39 @@ class WorldCoordinates {
     }
 }
 
-class Point {
-    X:number;
-    Y:number;
+class Point implements IPoint {
+    x:number;
+    y:number;
 
     constructor(x?:number, y?:number) {
-        this.X = x;
-        this.Y = y;
+        this.x = x;
+        this.y = y;
     }
 
-    Equals(otherPoint:Point):boolean {
-        return (this.X === otherPoint.X && this.Y === otherPoint.Y);
+    Equals(otherPoint:IPoint):boolean {
+        return (this.x === otherPoint.x && this.y === otherPoint.y);
     }
 
-    Add(otherPoint:Point):Point {
-        return new Point(this.X + otherPoint.X, this.Y + otherPoint.Y);
+    Add(otherPoint:IPoint):IPoint {
+        return new Point(this.x + otherPoint.x, this.y + otherPoint.y);
     }
 
-    Difference(otherPoint:Point):Point {
-        return new Point(this.X - otherPoint.X, this.Y - otherPoint.Y);
+    Difference(otherPoint:IPoint):IPoint {
+        return new Point(this.x - otherPoint.x, this.y - otherPoint.y);
     }
 }
 
-interface TileResource {
-    name:string;
-    sprite:Resource;
-}
-interface BuildingResource {
-    entryPoint:Point;
-    sprite:Resource;
-}
-interface ICoTWData {
-    Tiles:{[id:string]:TileResource};
-    Buildings:{[id:string]:BuildingResource};
-}
-var CoTWData:ICoTWData = {
-    Tiles: {
-        '^': {name: 'Rock', sprite: CoTWSprites.Tiles.Rock},
-        ',': {name: 'Grass', sprite: CoTWSprites.Tiles.Grass},
-        'o': {name: 'DarkDgn', sprite: CoTWSprites.Tiles.DarkDgn},
-        '~': {name: 'Water', sprite: CoTWSprites.Tiles.Water},
-        '.': {name: 'Path', sprite: CoTWSprites.Tiles.Path},
-        'O': {name: 'LitDgn', sprite: CoTWSprites.Tiles.LitDgn},
-        '_': {name: 'PathRock', sprite: CoTWSprites.Tiles.PathRock},
-        ';': {name: 'PathGrass', sprite: CoTWSprites.Tiles.PathGrass},
-        'd': {name: 'WallDarkDgn', sprite: CoTWSprites.Tiles.WallDarkDgn},
-        'w': {name: 'WaterGrass', sprite: CoTWSprites.Tiles.WaterGrass},
-        'W': {name: 'WaterPath', sprite: CoTWSprites.Tiles.WaterPath},
-        'D': {name: 'WallLitDgn', sprite: CoTWSprites.Tiles.WallLitDgn},
-        'g': {name: 'Grass50Cave50', sprite: CoTWSprites.Tiles.Grass50Cave50},
-        'G': {name: 'Grass10Cave90', sprite: CoTWSprites.Tiles.Grass10Cave90},
-        'c': {name: 'White50Cave50', sprite: CoTWSprites.Tiles.White50Cave50},
-        'C': {name: 'White90Cave10', sprite: CoTWSprites.Tiles.White90Cave10},
-        '=': {name: 'Crop', sprite: CoTWSprites.Tiles.Crop},
-        '+': {name: 'EntryOnGrass', sprite: CoTWSprites.Tiles.Grass},
-        '#': {name: 'BuildingOnGrass', sprite: CoTWSprites.Tiles.Grass},
-        '!': {name: 'SignOnGrass', sprite: CoTWSprites.Tiles.Grass}
-    },
-    Buildings: {
-        Gate_NS: {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Gate_NS },
-        StrawHouse_EF: {entryPoint: new Point(2, 1), sprite: CoTWSprites.Buildings.StrawHouse_EF      },
-        StrawHouse_WF: {entryPoint: new Point(0, 1), sprite: CoTWSprites.Buildings.StrawHouse_WF      },
-        Hut_EF: {entryPoint: new Point(1, 0), sprite: CoTWSprites.Buildings.Hut_EF             },
-        HutTemple_NF: {entryPoint: new Point(2, 1), sprite: CoTWSprites.Buildings.HutTemple_NF       },
-        BurntStrawHouse_WF: {entryPoint: new Point(0, 1), sprite: CoTWSprites.Buildings.BurntStrawHouse_WF },
-        MineEntrance: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.MineEntrance           },
-        Sign: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Sign                   },
-        Fountain: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Fountain               },
-        Well: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Well                   },
-        VegePatch: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.VegePatch              },
-        Wagon: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.Wagon                  },
-        StairsDown: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsDown             },
-        StairsUp: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.StairsUp               },
-        DoorClosed: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.DoorClosed             },
-        DoorOpen: {entryPoint: new Point(0, 0), sprite: CoTWSprites.Tiles.DoorOpen               }
-    }
-
-}
-
+/**
+ * Represents a game item e.g wooden shield
+ */
 class Item {
+    /**
+     * When items are created, IDCount is incremented, this class keeps a record of unique item ids
+     */
     static IDCount:number = 0;
+    /**
+     * Holds a set of all items in a game
+     */
     static _db:Container;
     public ID:number;
     public base:IItem;
@@ -120,6 +75,10 @@ class Item {
     constructor(base:IItem, isContainer:boolean = false) {
         this.ID = Item.GenerateID();
         this.base = base;
+
+        base.sprite.size = base.sprite.size || {x:TILE_SIZE, y:TILE_SIZE};
+        base.sprite.file = base.sprite.file || ResourceFile.Items;
+
         if (isContainer) {
             this.container = new Container();
         } else {

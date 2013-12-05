@@ -25,7 +25,7 @@ var GraphicsEngine = (function () {
         });
     }
     GraphicsEngine.prototype.DrawEntity = function (entity) {
-        var sprite = entity.sprite;
+        var sprite = entity.cotwItem;
         var position = entity.location.position;
 
         if (entity instanceof Tile) {
@@ -39,7 +39,10 @@ var GraphicsEngine = (function () {
                     this.Draw(((groundItems[Object.keys(groundItems)[0]])).base.sprite, position);
                     break;
                 case 2:
-                    this.Draw(CoTWSprites.Tiles.TreasurePile, position);
+                    var treasure = CoTWContent.Tiles.TreasurePile.sprite;
+                    treasure.file = ResourceFile.Tiles;
+                    treasure.size = { w: TILE_SIZE, h: TILE_SIZE };
+                    this.Draw(treasure, position);
                     break;
             }
         } else {
@@ -49,15 +52,18 @@ var GraphicsEngine = (function () {
 
     GraphicsEngine.prototype.Draw = function (sprite, point, turn) {
         if (typeof turn === "undefined") { turn = 0; }
-        var canvasPos = new Point((point.X - this._centerPoint.X + this._canvasTileSize.X / 2) * TILE_SIZE, (point.Y - this._centerPoint.Y + this._canvasTileSize.Y / 2) * TILE_SIZE);
+        var canvasPos = new Point((point.x - this._centerPoint.x + this._canvasTileSize.x / 2) * TILE_SIZE, (point.y - this._centerPoint.y + this._canvasTileSize.y / 2) * TILE_SIZE);
         if (turn != 0) {
             this._ctx.save();
-            this._ctx.translate(canvasPos.X + TILE_SIZE / 2, canvasPos.Y + TILE_SIZE / 2);
+            this._ctx.translate(canvasPos.x + TILE_SIZE / 2, canvasPos.y + TILE_SIZE / 2);
             this._ctx.rotate(turn);
-            this._ctx.translate(-canvasPos.X - TILE_SIZE / 2, -canvasPos.Y - TILE_SIZE / 2);
+            this._ctx.translate(-canvasPos.x - TILE_SIZE / 2, -canvasPos.y - TILE_SIZE / 2);
         }
 
-        this._ctx.drawImage(this._resources[sprite.type], sprite.offset.x, sprite.offset.y, sprite.size.w, sprite.size.h, canvasPos.X, canvasPos.Y, sprite.size.w, sprite.size.h);
+        var width = sprite.size != undefined ? sprite.size.w : TILE_SIZE;
+        var height = sprite.size != undefined ? sprite.size.h : TILE_SIZE;
+
+        this._ctx.drawImage(this._resources[sprite.file], sprite.offset.x, sprite.offset.y, width, height, canvasPos.x, canvasPos.y, width, height);
 
         if (turn != 0) {
             this._ctx.restore();
@@ -84,8 +90,8 @@ var GraphicsEngine = (function () {
 
     GraphicsEngine.prototype.InitialiseScreen = function () {
         var screenSize = new Point($(window).width(), $(window).height());
-        this._canvas.width = screenSize.X - 128;
-        this._canvas.height = screenSize.Y - $('#file-menu').height() - $('#button-menu').height() - $('#messages').height() - $('.title').height() - 100;
+        this._canvas.width = screenSize.x - 128;
+        this._canvas.height = screenSize.y - $('#file-menu').height() - $('#button-menu').height() - $('#messages').height() - $('.title').height() - 100;
 
         this._canvasTileSize = new Point(Math.floor(this._canvas.width / TILE_SIZE), Math.floor(this._canvas.height / TILE_SIZE));
 
@@ -215,7 +221,7 @@ var GraphicsEngine = (function () {
 
             if (!!item.container) {
                 if (item.container.opened) {
-                    this.CreateInventoryView(item.ID.toString(), item.base.name, item.container);
+                    this.CreateInventoryView(item.ID.toString(), item.base.toString(), item.container);
                     containerRegister[item.ID.toString()] = item.container;
                 }
             }
@@ -305,7 +311,8 @@ var GraphicsEngine = (function () {
     };
 
     GraphicsEngine.prototype.AddToInventory = function (jqEle, item) {
-        jqEle.append(Format("<div id='{0}' class='equipment'>" + "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" + "{3}" + "</div>", Item.GetIDString(item), item.base.sprite.offset.x, item.base.sprite.offset.y, item.base.name));
+        var itemOffset = item.base.sprite.offset;
+        jqEle.append(Format("<div id='{0}' class='equipment'>" + "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" + "{3}" + "</div>", Item.GetIDString(item), itemOffset.x, itemOffset.y, item.base.toString()));
     };
 
     GraphicsEngine.prototype.CreateInventoryView = function (id, name, container) {

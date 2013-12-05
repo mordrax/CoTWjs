@@ -12,7 +12,9 @@ class Actor extends Entity {
     public inventory: IEquipment;
 
 
-    constructor(id:string, sprite:Resource, coord:WorldCoordinates) {
+    constructor(id:string, sprite:ISprite, coord:WorldCoordinates) {
+        sprite.file = sprite.file || ResourceFile.Monsters;
+
         super(id, EntityType.Actor, sprite, coord);
 
         this.hpMax = 50;
