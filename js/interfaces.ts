@@ -60,6 +60,7 @@ interface ITile {
 }
 
 interface IItem {
+    name:string;
     sprite:ISprite;
     weight: number;
     bulk: number;

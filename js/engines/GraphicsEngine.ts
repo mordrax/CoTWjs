@@ -342,7 +342,7 @@ class GraphicsEngine {
             "<div id='{0}' class='equipment'>" +
                 "<div style=\"width:32px;height:32px;background:url('assets\/resources\/items.png') -{1}px -{2}px;display:block;margin:0 auto;\"></div>" +
                 "{3}" +
-                "</div>", Item.GetIDString(item), itemOffset.x, itemOffset.y, item.base.toString()));
+                "</div>", Item.GetIDString(item), itemOffset.x, itemOffset.y, item.base.name));
     }
 
     private CreateInventoryView(id:string, name:string, container:Container) {
