@@ -191,15 +191,8 @@ var World = (function () {
             }
         }
         this._areas[mapType] = tiles;
-
-        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(GameArea.Village, new Point(11, 18)), LinkB: new WorldCoordinates(GameArea.MinesLv1, new Point(21, 12)) });
-        /*
-        this._entities[this._currentArea] = this._entities[this._currentArea] || {};
-        //Initialise buildings for area
-        AREA_STRUCTURES[mapType].forEach(
-        (x:IStructure) => this._entities[this._currentArea][x.id] = new Structure(x)
-        );
-        */
+        this._entities[GameArea.MinesLv2] = {};
+        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(GameArea.MinesLv1, new Point(25, 2)), LinkB: new WorldCoordinates(GameArea.MinesLv2, new Point(0, 0)) });
     };
 
     World.prototype.PrettyPrint = function (type) {
@@ -235,7 +228,8 @@ var World = (function () {
 
         if (link !== null) {
             this._currentArea = link.area;
-            this.InitialiseArea(this._currentArea);
+            if (!this._areas[this._currentArea])
+                this.InitialiseArea(this._currentArea);
             Log('You have arrived at the ' + this.PrettyPrint(this._currentArea));
         }
 
