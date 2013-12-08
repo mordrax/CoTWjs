@@ -17,8 +17,8 @@ var AREA_STRUCTURES:{[gameArea:string]:IStructure[]} = {};
 var MAP_TO_MAP:IMapLink[] = [
 {LinkA:new WorldCoordinates(GameArea.Village, new Point(11, 0)), LinkB:new WorldCoordinates(GameArea.Farm, new Point(11, 32))},
 {LinkA:new WorldCoordinates(GameArea.Farm, new Point(24, 1)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(22, 40))},
-{LinkA:new WorldCoordinates(GameArea.Village, new Point(11, 18)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(25, 3))},
-]
+{LinkA:new WorldCoordinates(GameArea.Village, new Point(11, 18)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(25, 3))}
+];
 
 ASCII_MAPS[GameArea.Village] = [
     '========,,#+#,,,========',
