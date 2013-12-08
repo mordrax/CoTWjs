@@ -33,8 +33,7 @@ class Game {
 
         this._monsters = [];
         for (var i=0; i < 10; i++) {
-            var location = new WorldCoordinates(GameArea.Farm,
-                new Point(D(40), D(30)));
+            var location = new WorldCoordinates(GameArea.Farm, new Point(D(40), D(30)));
             this._monsters.push(new Monster(MonsterType.Kobold, CoTWContent.Actors.Kobold.sprite, location));
         }
 
