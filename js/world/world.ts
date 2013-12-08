@@ -186,6 +186,7 @@ class World {
     private GenerateRandomMap(currentArea:GameArea, mapType:GameArea, mapSize:Point) {
         // maps a GameArea to a 2D array of tiles which represents the area
         var tiles:Tile[][] = [];
+        var newMap = new DungeonLevel(mapType, mapSize);
 
         // Initialise tiles for area
         for (var y = 0; y < mapSize.y; y++) {
