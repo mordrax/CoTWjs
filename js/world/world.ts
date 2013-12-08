@@ -202,7 +202,8 @@ class World {
         }
         this._areas[mapType] = tiles;
         this._entities[GameArea.MinesLv2]={};
-        MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.MinesLv1, new Point(25, 2)), LinkB:new WorldCoordinates(GameArea.MinesLv2, new Point(0,0))});
+        MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.MinesLv1, new Point(25,2)), LinkB:new WorldCoordinates(GameArea.MinesLv2, new Point(10,10))});
+        //MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.MinesLv2, new Point(9,9)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(26,1))});
     }
 
     private PrettyPrint(type:GameArea) {
