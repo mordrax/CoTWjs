@@ -9,59 +9,72 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site.css" />
 </head>
 <body>
-<div class="title">Castle of the Winds</div>
-<nav>
-    <ul id="mainmenu" class="clear">
-        <li id="menu-exit" data-visible-menu="shop">
-            <a href="#">E<u>x</u>it</a></li>
-        <li id="menu-file" data-visible-menu="main">
-            <a href="#"><u>F</u>ile</a>
-            <ul id="file-menu" class="clear">
-                <li><a href="#">New Game</a></li>
-                <li><a href="#">Load Game</a></li>
-                <li><a href="#">Save Game</a></li>
-                <li><a href="#">Quit</a></li>
-            </ul>
-        </li>
-        <li id="menu-character" data-visible-menu="both">
-            <a href="#"><u>C</u>haracter</a></li>
-        <li id="menu-sortpack" data-visible-menu="shop">
-            <a href="#">Sort <u>P</u>ack</a></li>
-        <li id="menu-nameobject" data-visible-menu="shop">
-            <a href="#"><u>N</u>ame Object</a></li>
-        <li id="menu-inventory" data-visible-menu="main">
-            <a href="#"><u>I</u>nventory</a></li>
-        <li id="menu-map" data-visible-menu="main">
-            <a href="#"><u>M</u>ap</a></li>
-        <li id="menu-spell" data-visible-menu="both">
-            <a href="#"><u>S</u>pell</a></li>
-        <li id="menu-activate" data-visible-menu="both">
-            <a href="#"><u>A</u>ctivate</a></li>
-        <li id="menu-verbs" data-visible-menu="main">
-            <a href="#"><u>V</u>erbs</a>
-            <ul>
-                <li><a href="#"><u>G</u>et</a></li>
-                <li><a href="#">E<u>x</u>amine</a></li>
-                <li><a href="#"><u>F</u>ree Hand</a></li>
-                <li><a href="#"><u>S</u>earch</a></li>
-                <li><a href="#"><u>D</u>isarm Trap</a></li>
-                <li><a href="#"><u>R</u>est Until Healed</a></li>
-                <li><a href="#"><u>O</u>pen</a></li>
-                <li><a href="#"><u>C</u>lose</a></li>
-                <li><a href="#"><u>&lt;</u> Climb Up Stairs</a></li>
-                <li><a href="#"><u>&gt;</u> Climb Up Stairs</a></li>
-            </ul>
-        </li>
-        <li id="menu-window" data-visible-menu="both" class="main">
-            <a href="#"><u>W</u>indow</a>
-            <ul>
-                <li id="menu-window-main"><a href="#">Main</a></li>
-                <li id="menu-window-shop"><a href="#">Shop</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-    <div id="main-game-window">
+<div id="splash-window" class="window">
+
+</div>
+<div id="main-menu-window" class="window">
+
+</div>
+<div id="char-creation-popup" class="popup">
+
+</div>
+<div id="in-game-window" class="window">
+    <div class="title">Castle of the Winds</div>
+    <nav>
+        <ul id="mainmenu" class="clear">
+            <li id="menu-exit" data-visible-menu="shop">
+                <a href="#">E<u>x</u>it</a></li>
+            <li id="menu-file" data-visible-menu="main">
+                <a href="#"><u>F</u>ile</a>
+                <ul id="file-menu" class="clear">
+                    <li><a href="#">New Game</a></li>
+                    <li><a href="#">Load Game</a></li>
+                    <li><a href="#">Save Game</a></li>
+                    <li><a href="#">Quit</a></li>
+                </ul>
+            </li>
+            <li id="menu-character" data-visible-menu="both">
+                <a href="#"><u>C</u>haracter</a></li>
+            <li id="menu-sortpack" data-visible-menu="shop">
+                <a href="#">Sort <u>P</u>ack</a></li>
+            <li id="menu-nameobject" data-visible-menu="shop">
+                <a href="#"><u>N</u>ame Object</a></li>
+            <li id="menu-inventory" data-visible-menu="main">
+                <a href="#"><u>I</u>nventory</a></li>
+            <li id="menu-map" data-visible-menu="main">
+                <a href="#"><u>M</u>ap</a></li>
+            <li id="menu-spell" data-visible-menu="both">
+                <a href="#"><u>S</u>pell</a></li>
+            <li id="menu-activate" data-visible-menu="both">
+                <a href="#"><u>A</u>ctivate</a></li>
+            <li id="menu-verbs" data-visible-menu="main">
+                <a href="#"><u>V</u>erbs</a>
+                <ul>
+                    <li><a href="#"><u>G</u>et</a></li>
+                    <li><a href="#">E<u>x</u>amine</a></li>
+                    <li><a href="#"><u>F</u>ree Hand</a></li>
+                    <li><a href="#"><u>S</u>earch</a></li>
+                    <li><a href="#"><u>D</u>isarm Trap</a></li>
+                    <li><a href="#"><u>R</u>est Until Healed</a></li>
+                    <li><a href="#"><u>O</u>pen</a></li>
+                    <li><a href="#"><u>C</u>lose</a></li>
+                    <li><a href="#"><u>&lt;</u> Climb Up Stairs</a></li>
+                    <li><a href="#"><u>&gt;</u> Climb Up Stairs</a></li>
+                </ul>
+            </li>
+            <li id="menu-window" data-visible-menu="both" class="main">
+                <a href="#"><u>W</u>indow</a>
+                <ul>
+                    <li id="menu-window-main"><a href="#">Main</a></li>
+                    <li id="menu-window-shop"><a href="#">Shop</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="main-game-window" class="window">
+        <div id="background" class="layer"></div>
+        <div id="hero"></div>
+
         <div id="button-menu">
             <button class="menu">Get</button>
             <button class="menu">Free Hand</button>
@@ -107,8 +120,7 @@
             </tr>
         </table>
     </div>
-
-    <div style="display:none" id="shop-window">
+    <div id="shop-window" class="window">
         <div id="equipment-main">
             <div class="top-bar clear">
                 <div id="slot-armour" class="equipment-slot" data-equipment-id="armour">
@@ -190,19 +202,7 @@
             </div>
         </div>
     </div>
-
-    <div id="background" class="layer"></div>
-    <div id="hero"></div>
-
-    <div id="controls" class="layer">
-        <div id="touchSegment0" class="touchSegment"></div>
-        <div id="touchSegment1" class="touchSegment"></div>
-        <div id="compass"></div>
-        <div id="touch"></div>
-    </div>
-
-    <div id="fps"></div>
-
+</div>
 
 </body>
 

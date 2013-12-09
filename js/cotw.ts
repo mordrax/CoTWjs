@@ -3,6 +3,12 @@
 var game = new Game();
 
 $(document).ready(function() {
+    if (getUrlVars("testing")) {
+        game.Start();
+
+        return;
+    }
+
     // show the cotw intro screen
 
     // show the menu
@@ -13,5 +19,6 @@ $(document).ready(function() {
 
     // 3. quit
 
-    game.Start();
+
+
 });

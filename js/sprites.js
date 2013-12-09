@@ -342,4 +342,4 @@ var ASCIITiles = {
     '#': CoTWContent.Tiles.Building,
     '!': CoTWContent.Buildings.Sign
 };
-//# sourceMappingURL=Sprites.js.map
+//# sourceMappingURL=sprites.js.map

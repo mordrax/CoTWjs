@@ -15,7 +15,7 @@ var World = (function () {
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
-        this.GenerateRandomMap(GameArea.MinesLv2, new Point(40, 30));
+        this.GenerateRandomMap(GameArea.MinesLv1, GameArea.MinesLv2, new Point(40, 30));
 
         window.addEventListener("keyup", function (event) {
             var pos = _this._hero.location.position;
@@ -174,9 +174,10 @@ var World = (function () {
     * Generates a random dungeon map of tiles for the area that is passed in.
     * Currently done once on construction, but need to change it to generate only when map does not exist & when player uses the stairs
     */
-    World.prototype.GenerateRandomMap = function (mapType, mapSize) {
+    World.prototype.GenerateRandomMap = function (currentArea, mapType, mapSize) {
         // maps a GameArea to a 2D array of tiles which represents the area
         var tiles = [];
+        var newMap = new DungeonLevel(mapType, mapSize);
 
         for (var y = 0; y < mapSize.y; y++) {
             for (var x = 0; x < mapSize.x; x++) {
@@ -185,14 +186,16 @@ var World = (function () {
                 }
                 tiles[x][y] = new Tile(ASCIITiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
                 if (x > 0 && y > 0) {
-                    // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
+                    // Pass in west and north. Note: north
+                    // = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
                 }
             }
         }
         this._areas[mapType] = tiles;
-        this._entities[GameArea.MinesLv2] = {};
-        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(GameArea.MinesLv1, new Point(25, 2)), LinkB: new WorldCoordinates(GameArea.MinesLv2, new Point(0, 0)) });
+        this._entities[mapType] = {};
+        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(currentArea, new Point(25, 2)), LinkB: new WorldCoordinates(mapType, new Point(10, 10)) });
+        //MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.MinesLv2, new Point(9,9)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(26,1))});
     };
 
     World.prototype.PrettyPrint = function (type) {

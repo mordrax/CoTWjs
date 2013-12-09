@@ -34,10 +34,12 @@ var Game = (function () {
         this._monsters.forEach(function (x) {
             return Game.World.AddEntity(x);
         });
-
-        Game.World.Draw();
     }
     Game.prototype.Start = function () {
+        Game.World.Draw();
+        $(".window").hide();
+        $("#main-game-window").show();
+        $('#in-game-window').show();
     };
     return Game;
 })();
@@ -51,6 +53,22 @@ function D(high, low) {
 function Log(msg, msgtype) {
     if (typeof msgtype === "undefined") { msgtype = MessageType.Normal; }
     $('#messages').prepend(Format("<div class='{0}'>{1}</div>", msgtype, msg));
+}
+
+//http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
+function getUrlVars(key) {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    if (!!key) {
+        return vars[key];
+    } else {
+        return vars;
+    }
 }
 
 function Format(str) {
