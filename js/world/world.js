@@ -15,8 +15,8 @@ var World = (function () {
         this._entities = {};
 
         this.InitialiseArea(this._currentArea);
-        this.GenerateRandomMap(GameArea.MinesLv1, GameArea.MinesLv2, new Point(40, 30));
 
+        //this.GenerateRandomMap(GameArea.MinesLv1, GameArea.MinesLv2, new Point(40,30));
         window.addEventListener("keyup", function (event) {
             var pos = _this._hero.location.position;
             switch (event.keyCode) {
@@ -143,59 +143,46 @@ var World = (function () {
     /**
     * Populates each area with tiles, done once on construction
     */
-    World.prototype.InitialiseArea = function (mapType) {
+    World.prototype.InitialiseArea = function (newArea) {
         var _this = this;
         // maps a GameArea to a 2D array of tiles which represents the area
         var tiles = [];
 
-        for (var y = 0; y < ASCII_MAPS[mapType].length; y++) {
-            for (var x = 0; x < ASCII_MAPS[mapType][y].length; x++) {
+        for (var y = 0; y < ASCII_MAPS[newArea].length; y++) {
+            for (var x = 0; x < ASCII_MAPS[newArea][y].length; x++) {
                 if (y === 0) {
                     tiles[x] = new Array();
                 }
-                tiles[x][y] = new Tile(ASCIITiles[ASCII_MAPS[mapType][y][x]], new WorldCoordinates(mapType, new Point(x, y)));
+                tiles[x][y] = new Tile(ASCIITiles[ASCII_MAPS[newArea][y][x]], new WorldCoordinates(newArea, new Point(x, y)));
                 if (x > 0 && y > 0) {
                     // Pass in west and north. Note: north = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
                     tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
                 }
             }
         }
-        this._areas[mapType] = tiles;
+        this._areas[newArea] = tiles;
 
         this._entities[this._currentArea] = this._entities[this._currentArea] || {};
 
-        //Initialise buildings for area
-        AREA_STRUCTURES[mapType].forEach(function (x) {
-            return _this._entities[_this._currentArea][x.id] = new Structure(x);
-        });
+        if (!!AREA_STRUCTURES[newArea])
+            AREA_STRUCTURES[newArea].forEach(function (x) {
+                return _this._entities[_this._currentArea][x.id] = new Structure(x);
+            });
     };
 
     /**
     * Generates a random dungeon map of tiles for the area that is passed in.
     * Currently done once on construction, but need to change it to generate only when map does not exist & when player uses the stairs
     */
-    World.prototype.GenerateRandomMap = function (currentArea, mapType, mapSize) {
+    World.prototype.GenerateRandomMap = function (currentArea, newArea, linkA) {
         // maps a GameArea to a 2D array of tiles which represents the area
-        var tiles = [];
-        var newMap = new DungeonLevel(mapType, mapSize);
+        var newMap = new DungeonLevel(newArea);
+        ASCII_MAPS[newArea] = newMap.dungeonASCIIMap;
 
-        for (var y = 0; y < mapSize.y; y++) {
-            for (var x = 0; x < mapSize.x; x++) {
-                if (y === 0) {
-                    tiles[x] = new Array();
-                }
-                tiles[x][y] = new Tile(ASCIITiles['^'], new WorldCoordinates(mapType, new Point(x, y)));
-                if (x > 0 && y > 0) {
-                    // Pass in west and north. Note: north
-                    // = [x][y-1], west = [x-1][y], south = [x][y+1], east = [x+1][y]
-                    tiles[x][y].DetermineRotation(tiles[x - 1][y].id, tiles[x][y - 1].id);
-                }
-            }
-        }
-        this._areas[mapType] = tiles;
-        this._entities[mapType] = {};
-        MAP_TO_MAP.push({ LinkA: new WorldCoordinates(currentArea, new Point(25, 2)), LinkB: new WorldCoordinates(mapType, new Point(10, 10)) });
-        //MAP_TO_MAP.push({LinkA:new WorldCoordinates(GameArea.MinesLv2, new Point(9,9)), LinkB:new WorldCoordinates(GameArea.MinesLv1, new Point(26,1))});
+        var linkB = new WorldCoordinates(newArea, new Point(10, 10));
+        var link = { LinkA: linkA, LinkB: linkB };
+        MAP_TO_MAP.push(link);
+        return linkB;
     };
 
     World.prototype.PrettyPrint = function (type) {
@@ -229,12 +216,18 @@ var World = (function () {
             }
         });
 
-        if (link !== null) {
-            this._currentArea = link.area;
-            if (!this._areas[this._currentArea])
-                this.InitialiseArea(this._currentArea);
-            Log('You have arrived at the ' + this.PrettyPrint(this._currentArea));
+        if (link === null) {
+            var newArea = GameArea.MinesLv2;
+            if (!ASCII_MAPS[newArea]) {
+                link = this.GenerateRandomMap(this._currentArea, newArea, currentLocation);
+            }
         }
+
+        // update the map
+        this._currentArea = link.area;
+        if (!this._areas[this._currentArea])
+            this.InitialiseArea(this._currentArea);
+        Log('You have arrived at the ' + this.PrettyPrint(this._currentArea));
 
         return link;
     };
