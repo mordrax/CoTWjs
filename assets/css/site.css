@@ -3,6 +3,35 @@
     display: none;
 }
 
+/* splash-window */
+#splash-window .splash-title {
+    padding-top: 40px;
+}
+#splash-window .splash-title,
+#splash-window .splash-sub-title {
+    color: black;
+    text-align: center;
+}
+#splash-window .splash-sub-title {
+    display:none;
+}
+#splash-window div.nav {
+    padding-top: 150px;
+    text-align: center;
+}
+
+#splash-window div.nav button {
+    width:10%;
+    margin: 0 0 0 10px;
+}
+#splash-window {
+    width:100%;
+    height:100%;
+    background-color: #000000;
+}
+
+
+/* main-game-window */
 #messages {
     display: inline-block;
     float: left;
