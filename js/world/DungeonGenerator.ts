@@ -12,7 +12,7 @@ class DungeonLevel {
 
     constructor(area: GameArea) {
 
-        this.dungeonSize = new Point(30,40);
+        this.dungeonSize = new Point(20,20);
         this.dungeonName = area;
         this.minRooms = 2;
         this.maxRooms = 1;
@@ -21,23 +21,18 @@ class DungeonLevel {
         this.dungeonRooms = this.CreateRooms(this.maxRooms);
 
         this.MergeToASCIIMap(this.dungeonRooms);
-
     }
 
     // Create a blank ASCII map with all elements containing the Rock symbol '^'
     CreateBlankASCIIMap() {
-        var map = [];
-
+        this.dungeonASCIIMap = [];
         // loop through and assign each array element with the Rock symbol '^'
         for (var i=0; i<this.dungeonSize.y; i++){
-            map[i] = [];
+            this.dungeonASCIIMap[i] = '';
             for (var j=0; j<this.dungeonSize.x; j++){
-                map[i][j] = '^';
+                this.dungeonASCIIMap[i] += '^';
             }
         }
-
-        // assign the "blank" map full of rock as an instance of this dungeon map.
-        this.dungeonASCIIMap = map;
     }
 
     // Create a number of rooms for the dungeon map (the number will be between the minRooms and maxRooms)
@@ -54,9 +49,9 @@ class DungeonLevel {
     // Add ASCII symbols to blank ASCIIMAP for Rooms, Connectors and Exits
     MergeToASCIIMap(rooms:Room[]){
         rooms.forEach((room:Room) => {
-            for (var i=room.startCoords.y; i<room.roomSize.y; i++){
-                for (var j=room.startCoords.x; j<room.roomSize.x; j++){
-                    this.dungeonASCIIMap[i][j] = '.';
+            for (var i=room.startCoords.y; i<room.startCoords.y+room.roomSize.y; i++){
+                for (var j=room.startCoords.x; j<room.startCoords.x+room.roomSize.x; j++){
+                    this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'o');
                 }
 
             }
