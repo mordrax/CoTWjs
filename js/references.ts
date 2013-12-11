@@ -4,6 +4,8 @@
 /// <reference path="enums.ts"/>
 /// <reference path="items.ts"/>
 /// <reference path="sprites.ts"/>
+/// <reference path="blockui.ts"/>
+/// <reference path="web.d.ext.ts"/>
 
 /// <reference path="libs/jquery/jquery.d.ts"/>
 /// <reference path="libs/jqueryui/jqueryui.d.ts"/>

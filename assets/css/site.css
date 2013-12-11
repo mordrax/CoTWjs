@@ -1,5 +1,6 @@
 /*hide all windows at the start, */
-.window {
+.window,
+.popup {
     display: none;
 }
 
@@ -21,7 +22,7 @@
 }
 
 #splash-window div.nav button {
-    width:10%;
+    width: 20%;
     margin: 0 0 0 10px;
 }
 #splash-window {
@@ -29,7 +30,29 @@
     height:100%;
     background-color: #000000;
 }
+/* char creation */
 
+.attribute-bar {
+    width: 20%;
+    float:left;
+    text-align: center;
+}
+
+.attribute-bar .bar {
+    display:inline-block;
+    height: 100px;
+    width: 30px;
+    margin: 0 auto;
+    border: 1px black solid;
+}
+
+.attribute-bar .bar-slider {
+    display:inline-block;
+    height: 100px;
+    width: 30px;
+    margin: 0 auto;
+    border: 1px black solid;
+}
 
 /* main-game-window */
 #messages {

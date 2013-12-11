@@ -21,9 +21,24 @@ var startNewGame = function () {
     game.Start();
 };
 
+var charCreation = function () {
+};
+
 var splashScreenEvents = function () {
     $('#start-game').click(function () {
-        startNewGame();
+        $('span.bar-slider').slider({
+            orientation: "vertical",
+            range: "min",
+            min: 0,
+            max: 100,
+            value: 40
+        });
+        $.blockUI({
+            message: $('#char-creation-popup').html(),
+            onOverlayClick: $.unblockUI,
+            bindEvents: true
+        });
+        //startNewGame();
     });
     $('#load-game').click(function () {
     });

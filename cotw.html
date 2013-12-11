@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes">
 
     <title>Castle of the Winds - Act One</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/site.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.min.css"/>
 </head>
 <body>
 <div id="splash-window" class="window">
@@ -18,10 +20,83 @@
         <button id="overview-game"><u>O</u>verview</button>
     </div>
 </div>
-<div id="main-menu-window" class="window">
-
-</div>
 <div id="char-creation-popup" class="popup">
+    <h1>Character Creation</h1>
+    <div id="char-name-outer">
+        <label for="char-name"><u>C</u>haracter name:</label>
+        <input id="char-name"/>
+    </div>
+    <div>
+        <div class="attribute-bar"> 
+            <div>
+                <span class="bar"></span>
+                <span class="bar-slider"></span>
+            </div>
+            <label>Attribute</label>
+        </div>
+
+        <div class="attribute-bar"> 
+            <div>
+                <span class="bar"></span>
+                <span class="bar-slider"></span>
+            </div>
+            <label>Strength</label>
+        </div>
+
+        <div class="attribute-bar"> 
+            <div>
+                <span class="bar"></span>
+                <span class="bar-slider"></span>
+            </div>
+            <label>Intelligence</label>
+        </div>
+
+        <div class="attribute-bar"> 
+            <div>
+                <span class="bar"></span>
+                <span class="bar-slider"></span>
+            </div>
+            <label>Constitution</label>
+        </div>
+
+        <div class="attribute-bar"> 
+            <div>
+                <span class="bar"></span>
+                <span class="bar-slider"></span>
+            </div>
+            <label>Dexterity</label>
+        </div>
+    </div>
+
+    <div id="gender">
+        <input type="radio" name="sex" value="male">Male</input>
+        <input type="radio" name="sex" value="female">Female</input>
+    </div>
+
+    <div id="custom-char-icon">
+        <input type="checkbox"> <label>Custom Character Icon</label>
+        <label for="alternate-icon">Icon Filename:</label>
+        <input id="alternate-icon" type="text">
+    </div>
+
+    <div id="game-difficulty">
+        <div>
+            <img src="">
+            <input type="radio" name="difficulty">Easy</input>
+        </div>
+        <div>
+            <img src="">
+            <input type="radio" name="difficulty">Intermediate</input>
+        </div>
+        <div>
+            <img src="">
+            <input type="radio" name="difficulty">Difficult</input>
+        </div>
+        <div>
+            <img src="">
+            <input type="radio" name="difficulty">Experts Only</input>
+        </div>
+    </div>
 
 </div>
 <div id="in-game-window" class="window">
@@ -131,71 +206,87 @@
             <div class="top-bar clear">
                 <div id="slot-armour" class="equipment-slot" data-equipment-id="armour">
                     <label class="equipment-slot-nulltext">Armour</label>
+
                     <div class="equipment-slot-inner container"></div>
                 </div>
                 <div id="slot-pendant" class="equipment-slot" data-equipment-id="pendant">
                     <label class="equipment-slot-nulltext">Pendant</label>
+
                     <div class="equipment-slot-inner container"></div>
                 </div>
                 <div id="slot-cloak" class="equipment-slot" data-equipment-id="cloak">
                     <label class="equipment-slot-nulltext">Cloak</label>
+
                     <div class="equipment-slot-inner container"></div>
                 </div>
                 <div id="slot-helmet" class="equipment-slot" data-equipment-id="helmet">
                     <label class="equipment-slot-nulltext">Helmet</label>
+
                     <div class="equipment-slot-inner container"></div>
                 </div>
                 <div id="slot-shield" class="equipment-slot" data-equipment-id="shield">
                     <label class="equipment-slot-nulltext">Shield</label>
+
                     <div class="equipment-slot-inner container"></div>
                 </div>
             </div>
             <div class="bottom-bar clear">
-            <div class="middle-bar">
-                <div id="slot-bracer" class="equipment-slot" data-equipment-id="bracer">
-                    <label class="equipment-slot-nulltext">Bracer</label>
-                    <div class="equipment-slot-inner container"></div>
+                <div class="middle-bar">
+                    <div id="slot-bracer" class="equipment-slot" data-equipment-id="bracer">
+                        <label class="equipment-slot-nulltext">Bracer</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-weapon" class="equipment-slot" data-equipment-id="weapon">
+                        <label class="equipment-slot-nulltext">Weapon</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-leftRing" class="equipment-slot" data-equipment-id="leftRing">
+                        <label class="equipment-slot-nulltext">Right Ring</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-belt" class="equipment-slot" data-equipment-id="belt">
+                        <label class="equipment-slot-nulltext">Belt</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-pack" class="equipment-slot" data-equipment-id="pack">
+                        <label class="equipment-slot-nulltext">Pack</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
                 </div>
-                <div id="slot-weapon" class="equipment-slot" data-equipment-id="weapon">
-                    <label class="equipment-slot-nulltext">Weapon</label>
-                    <div class="equipment-slot-inner container"></div>
+                <img id="slot-dude" src="assets\resources\equipment-dude.jpg">
+
+                <div class="middle-right-bar">
+                    <div id="slot-gauntlet" class="equipment-slot" data-equipment-id="gauntlet">
+                        <label class="equipment-slot-nulltext">Gauntlet</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-freeHand" class="equipment-slot" data-equipment-id="freeHand">
+                        <label class="equipment-slot-nulltext">Freehand</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-rightRing" class="equipment-slot" data-equipment-id="rightRing">
+                        <label class="equipment-slot-nulltext">Left Ring</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-boot" class="equipment-slot" data-equipment-id="boot">
+                        <label class="equipment-slot-nulltext">Boot</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
+                    <div id="slot-purse" class="equipment-slot" data-equipment-id="purse">
+                        <label class="equipment-slot-nulltext">Purse</label>
+
+                        <div class="equipment-slot-inner container"></div>
+                    </div>
                 </div>
-                <div id="slot-leftRing" class="equipment-slot" data-equipment-id="leftRing">
-                    <label class="equipment-slot-nulltext">Right Ring</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-belt" class="equipment-slot" data-equipment-id="belt">
-                    <label class="equipment-slot-nulltext">Belt</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-pack" class="equipment-slot" data-equipment-id="pack">
-                    <label class="equipment-slot-nulltext">Pack</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-            </div>
-            <img id="slot-dude" src="assets\resources\equipment-dude.jpg">
-            <div class="middle-right-bar">
-                <div id="slot-gauntlet" class="equipment-slot" data-equipment-id="gauntlet">
-                    <label class="equipment-slot-nulltext">Gauntlet</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-freeHand" class="equipment-slot" data-equipment-id="freeHand">
-                    <label class="equipment-slot-nulltext">Freehand</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-rightRing" class="equipment-slot" data-equipment-id="rightRing">
-                    <label class="equipment-slot-nulltext">Left Ring</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-boot" class="equipment-slot" data-equipment-id="boot">
-                    <label class="equipment-slot-nulltext">Boot</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-                <div id="slot-purse" class="equipment-slot" data-equipment-id="purse">
-                    <label class="equipment-slot-nulltext">Purse</label>
-                    <div class="equipment-slot-inner container"></div>
-                </div>
-            </div>
             </div>
         </div>
         <div id="equipment-side">
@@ -203,7 +294,7 @@
                 <div class="title">Shop</div>
                 <div id="top-window-inner" class="container"></div>
             </div>
-            <div id="bottom-window" class ="container">
+            <div id="bottom-window" class="container">
                 <div class="title">Inventory</div>
             </div>
         </div>
@@ -213,13 +304,15 @@
 </body>
 
 
-
 <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.blockUI.js"></script>
 
 <script type="text/javascript" src="js/globals.js"></script>
-<script type="text/javascript" src="js/enums.js"></script> <!--enums before sprites-->
-<script type="text/javascript" src="js/sprites.js"></script> <!--sprites before COTWClasses-->
+<script type="text/javascript" src="js/enums.js"></script>
+<!--enums before sprites-->
+<script type="text/javascript" src="js/sprites.js"></script>
+<!--sprites before COTWClasses-->
 <script type="text/javascript" src="js/COTWClasses.js"></script>
 
 <script type="text/javascript" src="js/interfaces.js"></script>

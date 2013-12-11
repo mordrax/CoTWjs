@@ -51,7 +51,7 @@ class DungeonLevel {
         rooms.forEach((room:Room) => {
             for (var i=room.startCoords.y; i<room.startCoords.y+room.roomSize.y; i++){
                 for (var j=room.startCoords.x; j<room.startCoords.x+room.roomSize.x; j++){
-                    this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'o');
+                    this.dungeonASCIIMap[i][j] = 'o';
                 }
 
             }
