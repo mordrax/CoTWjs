@@ -32,13 +32,13 @@
 }
 /* char creation */
 
-.attribute-bar {
+.bar-outer {
     width: 20%;
     float:left;
     text-align: center;
 }
 
-.attribute-bar .bar {
+.bar-outer .bar {
     display:inline-block;
     height: 100px;
     width: 30px;
@@ -46,12 +46,24 @@
     border: 1px black solid;
 }
 
-.attribute-bar .bar-slider {
+.bar-weight {
+    background-color: blue;
+    height: 100px;
+    width: 100%;
+    display:inline-block;
+}
+
+.bar-slider {
     display:inline-block;
     height: 100px;
-    width: 30px;
-    margin: 0 auto;
     border: 1px black solid;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.bar-slider-weight {
+    height: 1000px;
+    display: inline-block;
 }
 
 /* main-game-window */
