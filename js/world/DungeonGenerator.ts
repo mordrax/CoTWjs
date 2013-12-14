@@ -12,10 +12,10 @@ class DungeonLevel {
 
     constructor(area: GameArea) {
 
-        this.dungeonSize = new Point(20,20);
+        this.dungeonSize = new Point(25,25);
         this.dungeonName = area;
         this.minRooms = 2;
-        this.maxRooms = 1;
+        this.maxRooms = 2;
 
         this.CreateBlankASCIIMap();
         this.dungeonRooms = this.CreateRooms(this.maxRooms);
@@ -50,10 +50,13 @@ class DungeonLevel {
     MergeToASCIIMap(rooms:Room[]){
         rooms.forEach((room:Room) => {
             for (var i=room.startCoords.y; i<room.startCoords.y+room.roomSize.y; i++){
-                for (var j=room.startCoords.x; j<room.startCoords.x+room.roomSize.x; j++){
-                    this.dungeonASCIIMap[i][j] = 'o';
+                var startIndex = room.startCoords.x;
+                var originalString = this.dungeonASCIIMap[i];
+                var innerString = '';
+                for (var j=0; j<room.roomSize.x; j++){
+                    innerString += 'o';
                 }
-
+                this.dungeonASCIIMap[i] = originalString.substr(0,startIndex) + innerString + originalString.substr(startIndex + innerString.length);
             }
 
         });
@@ -68,6 +71,6 @@ class Room {
 
     constructor(startCoords: Point) {
         this.startCoords = startCoords;
-        this.roomSize = new Point(D(6)+2,D(6)+2);
+        this.roomSize = new Point(D(5)+3,D(5)+3);
     }
 }
