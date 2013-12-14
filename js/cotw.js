@@ -6,9 +6,6 @@ $(document).ready(function () {
         return;
     }
 
-    $('.popup').show();
-    return;
-
     // show the cotw intro screen
     $('#splash-window').show();
     $('#splash-window .splash-sub-title').fadeIn(3000);
@@ -31,7 +28,8 @@ var splashScreenEvents = function () {
         $.blockUI({
             message: $('#char-creation-popup').html(),
             onOverlayClick: $.unblockUI,
-            bindEvents: true
+            bindEvents: true,
+            css: { width: '440px', height: '440px', top: '20%' }
         });
         //startNewGame();
     });

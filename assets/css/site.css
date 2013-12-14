@@ -3,8 +3,19 @@
 .popup {
     display: none;
 }
-
-/* splash-window */
+.clear:before, .clear:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.clear:after {
+    clear: both;
+}
+.inlineblock {
+    display: inline-block;
+}
+/********************************************* splash-window *********************************************/
 #splash-window .splash-title {
     padding-top: 40px;
 }
@@ -30,20 +41,43 @@
     height:100%;
     background-color: #000000;
 }
-/* char creation */
 
-.bar-outer {
-    width: 20%;
-    float:left;
-    text-align: center;
+/********************************************* char creation *********************************************/
+#char-creation-popup {
+    width: 540px;
+    height: 440px;
+}
+#char-name-outer label {
+    float: left;
+}
+#char-name-outer span {
+    overflow: hidden;
+    display: block;
+    padding: 0 5px;
+}
+#char-name-outer input {
+    width: 100%;
 }
 
+#attribute-bar {
+    text-align: justify;
+}
+.bar-outer {
+    text-align: left;
+    display: inline-block;
+}
+#attribute-bar:after {
+    content: '';
+    width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
+    display: inline-block;
+}
 .bar-outer .bar {
     display:inline-block;
     height: 100px;
     width: 30px;
     margin: 0 auto;
     border: 1px black solid;
+    position: relative;
 }
 
 .bar-weight {
@@ -52,7 +86,6 @@
     width: 100%;
     display:inline-block;
 }
-
 .bar-slider {
     display:inline-block;
     height: 100px;
@@ -60,13 +93,103 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
 .bar-slider-weight {
     height: 1000px;
     display: inline-block;
 }
 
-/* main-game-window */
+.bar-line {
+    border-top-color: red;
+    width: 100%;
+    display: inline-block;
+    height: 1px;
+    position: absolute;
+    border-top: black 1px solid;
+}
+.bar-line.line1 { top: 25%; }
+.bar-line.line2 { top: 50%; }
+.bar-line.line3 { top: 75%; }
+
+#gender {
+    display: inline-block;
+}
+
+#custom-char-icon-outer {
+    display: inline-block;
+}
+.img-outer {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 32px;
+    width: 32px;
+}
+#custom-char-icon-outer img.char-icon {
+    position: absolute;
+}
+.change-char-icon {
+    display: inline-block;
+}
+
+#game-difficulty {
+    text-align: justify;
+}
+#game-difficulty:after {
+    content: '';
+    width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
+    display: inline-block;
+}
+.difficulty-outer {
+    display: inline-block;
+    text-align: center;
+}
+
+.difficulty-outer > div {
+    margin: 0 auto;
+}
+#game-difficulty .circle {
+    width: 2em;
+    height: 2em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    background: greenyellow;
+}
+#game-difficulty .square {
+    width: 2em;
+    height: 2em;
+    background: blue;
+}
+#game-difficulty .diamond {
+    width: 0;
+    height: 0;
+    border: 1em solid transparent;
+    border-bottom-color: #000000;
+    position: relative;
+    top: -1em;
+}
+#game-difficulty .diamond:after {
+    content: '';
+    position: absolute;
+    left: -1em;
+    top: 1em;
+    width: 0;
+    height: 0;
+    border: 1em solid transparent;
+    border-top-color: #000000;
+}
+#char-creation-commands button {
+    width: 20%;
+}
+#char-creation-commands {
+    text-align: justify;
+}
+#char-creation-commands:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+}
+/********************************************* main-game-window *********************************************/
 #messages {
     display: inline-block;
     float: left;

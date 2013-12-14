@@ -22,22 +22,29 @@
 </div>
 <div id="char-creation-popup" class="popup">
     <h1>Character Creation</h1>
+
     <div id="char-name-outer">
         <label for="char-name"><u>C</u>haracter name:</label>
-        <input id="char-name"/>
+        <span><input type="text" name="charname" id="char-name"/></span>
     </div>
-    <div id="attribute-bar">
+    <div id="attribute-bar" class="clear">
         <div class="bar-outer">
             <div>
-                <span class="bar"><span class="bar-weight"></span></span>
+                <span class="bar">
+                    <span class="bar-weight"></span>
+                </span>
                 <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
-            <label>Attribute</label>
+            <label>Available</label>
         </div>
 
         <div class="bar-outer">
             <div>
-                <span class="bar"><span class="bar-weight"></span></span>
+                <span class="bar">
+                    <span class="bar-line line1"></span>
+                    <span class="bar-line line2"></span>
+                    <span class="bar-line line3"></span>
+                    <span class="bar-weight"></span></span>
                 <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
             <label>Strength</label>
@@ -45,7 +52,11 @@
 
         <div class="bar-outer">
             <div>
-                <span class="bar"><span class="bar-weight"></span></span>
+                <span class="bar">
+                    <span class="bar-line line1"></span>
+                    <span class="bar-line line2"></span>
+                    <span class="bar-line line3"></span>
+                    <span class="bar-weight"></span></span>
                 <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
             <label>Intelligence</label>
@@ -53,7 +64,11 @@
 
         <div class="bar-outer">
             <div>
-                <span class="bar"><span class="bar-weight"></span></span>
+                <span class="bar">
+                    <span class="bar-line line1"></span>
+                    <span class="bar-line line2"></span>
+                    <span class="bar-line line3"></span>
+                    <span class="bar-weight"></span></span>
                 <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
             <label>Constitution</label>
@@ -61,43 +76,60 @@
 
         <div class="bar-outer">
             <div>
-                <span class="bar"><span class="bar-weight"></span></span>
+                <span class="bar">
+                    <span class="bar-line line1"></span>
+                    <span class="bar-line line2"></span>
+                    <span class="bar-line line3"></span>
+                    <span class="bar-weight"></span></span>
                 <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
             <label>Dexterity</label>
         </div>
     </div>
-
-    <div id="gender">
+    <fieldset id="gender">
+        <legend>Character Gender</legend>
         <input type="radio" name="sex" value="male">Male</input>
         <input type="radio" name="sex" value="female">Female</input>
+    </fieldset>
+    <div id="custom-char-icon-outer">
+        <div class="img-outer"><img class="char-icon" src="assets/resources/monsters.png"></div>
+        <div class="change-char-icon">
+            <input type="checkbox"> <label>Custom Character Icon</label>
+            <br/>
+            <label for="alternate-icon">Icon Filename:</label>
+            <br/>
+            <input id="alternate-icon" type="text">
+        </div>
     </div>
 
-    <div id="custom-char-icon">
-        <input type="checkbox"> <label>Custom Character Icon</label>
-        <label for="alternate-icon">Icon Filename:</label>
-        <input id="alternate-icon" type="text">
-    </div>
-
-    <div id="game-difficulty">
-        <div>
-            <img src="">
+    <fieldset id="game-difficulty">
+        <legend>Game Difficulty</legend>
+        <div class="difficulty-outer">
+            <div class="circle"></div>
             <input type="radio" name="difficulty">Easy</input>
         </div>
-        <div>
-            <img src="">
+        <div class="difficulty-outer">
+            <div class="square"></div>
             <input type="radio" name="difficulty">Intermediate</input>
         </div>
-        <div>
-            <img src="">
+        <div class="difficulty-outer">
+            <div class="diamond"></div>
             <input type="radio" name="difficulty">Difficult</input>
         </div>
-        <div>
-            <img src="">
+        <div class="difficulty-outer">
+            <div class="img-outer"></div>
             <input type="radio" name="difficulty">Experts Only</input>
         </div>
+    </fieldset>
+
+    <div id="char-creation-commands">
+        <button>OK</button>
+        <button>Cancel</button>
+        <button><u>V</u>iew Icon</button>
+        <button>Help</button>
     </div>
 
+    <div class="clear"></div>
 </div>
 <div id="in-game-window" class="window">
     <div class="title">Castle of the Winds</div>
