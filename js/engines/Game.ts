@@ -37,7 +37,8 @@ class Game {
             this._monsters.push(new Monster(MonsterType.Kobold, CoTWContent.Actors.Kobold.sprite, location));
         }
 
-        this._monsters.forEach(x => Game.World.AddEntity(x));
+        this._monsters.forEach(x => Game.World.
+            AddEntity(x));
     }
 
     Start() {
@@ -86,7 +87,3 @@ function Format(str:string, ...argument:any[]):string {
             ;
     });
 }
-
-String.prototype.splice = function( idx, rem, s ) {
-    return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
-};

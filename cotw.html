@@ -8,7 +8,6 @@
 
     <title>Castle of the Winds - Act One</title>
     <link rel="stylesheet" type="text/css" href="assets/css/site.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.min.css"/>
 </head>
 <body>
 <div id="splash-window" class="window">
@@ -25,70 +24,81 @@
 
     <div id="char-name-outer">
         <label for="char-name"><u>C</u>haracter name:</label>
-        <span><input type="text" name="charname" id="char-name"/></span>
+        <span><input type="text" name="charname" id="char-name" placeholder="unnamed"/></span>
     </div>
     <div id="attribute-bar" class="clear">
         <div class="bar-outer">
-            <div>
+            <div id="available">
                 <span class="bar">
                     <span class="bar-weight"></span>
                 </span>
-                <span class="bar-slider"><span class="bar-slider-weight"></span></span>
             </div>
             <label>Available</label>
         </div>
 
         <div class="bar-outer">
-            <div>
+            <div id="strength">
                 <span class="bar">
                     <span class="bar-line line1"></span>
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
-                <span class="bar-slider"><span class="bar-slider-weight"></span></span>
+                <div class="bar-slider">
+                    <button class="increase ui-icon ui-icon-triangle-1-n"></button>
+                    <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
+                </div>
             </div>
             <label>Strength</label>
         </div>
 
         <div class="bar-outer">
-            <div>
+            <div id="intelligence">
                 <span class="bar">
                     <span class="bar-line line1"></span>
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
-                <span class="bar-slider"><span class="bar-slider-weight"></span></span>
+                <div class="bar-slider">
+                    <button class="increase ui-icon ui-icon-triangle-1-n"></button>
+                    <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
+                </div>
             </div>
             <label>Intelligence</label>
         </div>
 
         <div class="bar-outer">
-            <div>
+            <div id="constitution">
                 <span class="bar">
                     <span class="bar-line line1"></span>
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
-                <span class="bar-slider"><span class="bar-slider-weight"></span></span>
+                <div class="bar-slider">
+                    <button class="increase ui-icon ui-icon-triangle-1-n"></button>
+                    <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
+                </div>
             </div>
             <label>Constitution</label>
         </div>
 
         <div class="bar-outer">
-            <div>
+            <div id="dexterity">
                 <span class="bar">
                     <span class="bar-line line1"></span>
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
-                <span class="bar-slider"><span class="bar-slider-weight"></span></span>
+                <div class="bar-slider">
+                    <button class="increase ui-icon ui-icon-triangle-1-n"></button>
+                    <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
+                </div>
             </div>
             <label>Dexterity</label>
         </div>
     </div>
     <fieldset id="gender">
         <legend>Character Gender</legend>
-        <input type="radio" name="sex" value="male">Male</input>
+        <input type="radio" name="sex" value="male" checked="checked">Male</input>
         <input type="radio" name="sex" value="female">Female</input>
     </fieldset>
     <div id="custom-char-icon-outer">
@@ -110,7 +120,7 @@
         </div>
         <div class="difficulty-outer">
             <div class="square"></div>
-            <input type="radio" name="difficulty">Intermediate</input>
+            <input type="radio" name="difficulty" checked="checked">Intermediate</input>
         </div>
         <div class="difficulty-outer">
             <div class="diamond"></div>

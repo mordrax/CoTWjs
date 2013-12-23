@@ -1,5 +1,24 @@
 /// <reference path="references.ts"/>
-
+interface ICharCreation {
+    name: string;
+    gender: GenderType;
+    available:number;
+    strength:number;
+    dexterity:number;
+    constitution:number;
+    intelligence:number;
+    difficulty:DifficultyType;
+}
+enum GenderType {
+    Male,
+    Female
+}
+enum DifficultyType {
+    Easy,
+    Intermediate,
+    Difficult,
+    ExpertsOnly
+}
 enum ItemType {
     Weapon,
     Armour,

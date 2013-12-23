@@ -81,8 +81,4 @@ function Format(str) {
         return typeof args[number] != 'undefined' ? args[number] : match;
     });
 }
-
-String.prototype.splice = function (idx, rem, s) {
-    return (this.slice(0, idx) + s + this.slice(idx + Math.abs(rem)));
-};
 //# sourceMappingURL=Game.js.map
