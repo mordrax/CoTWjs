@@ -18,6 +18,7 @@ var TILES_Y = parseInt((WINDOW_HEIGHT/TILE_SIZE).toString());
 
 var renders = 0;
 
+
 var HERO_IMG = new Image();
 HERO_IMG.src = "assets/resources/monsters.png";
 

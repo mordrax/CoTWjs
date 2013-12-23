@@ -1,6 +1,8 @@
 /// <reference path="../references.ts"/>
 
-// Randomly generates a dungeon level for the specified MapType
+/**
+ * Randomly generates a dungeon level for the specified MapType
+ */
 class DungeonLevel {
     public maxRooms:number;
     public dungeonSize:Point;
@@ -21,7 +23,9 @@ class DungeonLevel {
         this.MergeToASCIIMap(this.dungeonRooms);
     }
 
-    // Create a blank ASCII map with all elements containing the Rock symbol '^'
+    /**
+     * Create a blank ASCII map with all elements containing the Rock symbol '^'
+     */
     CreateBlankASCIIMap() {
         this.dungeonASCIIMap = [];
         // loop through and assign each array element with the Rock symbol '^'
@@ -33,7 +37,9 @@ class DungeonLevel {
         }
     }
 
-    // Create a number of rooms for the dungeon map (the number will be between the minRooms and maxRooms)
+    /**
+     * Create a number of rooms for the dungeon map (the number will be between the minRooms and maxRooms)
+     */
     CreateRooms(numberOfRooms:number):Room[] {
         var rooms:Room[] = [];
         var tempRoom;
@@ -67,6 +73,10 @@ class DungeonLevel {
         return num >= min && num <= max;
     }
 
+    /**
+     * Checks whether the room is valid by checking that the start point for all rooms are not "in between" the axis
+     * of any other room.
+     */
     IsRoomValid(rooms:Room[], tempRoom:Room):Boolean {
         for (var i = 0; i < rooms.length; i++) {
             // check if temporary room and an existing room intersect on the x AND y axis
@@ -77,11 +87,12 @@ class DungeonLevel {
                      return false;  // overlap exists for both x and y axis - therefore this is an invalid room
             }
         }
-
         return true;
     }
 
-    // Add ASCII symbols to blank ASCIIMAP for Rooms, Connectors and Exits
+    /**
+     * Add ASCII symbols to blank ASCIIMAP for Rooms, Connectors and Exits
+      */
     MergeToASCIIMap(rooms:Room[]) {
         rooms.forEach((room:Room) => {
             for (var i = room.startCoords.y; i < room.startCoords.y + room.roomSize.y; i++) {
@@ -93,13 +104,58 @@ class DungeonLevel {
     }
 }
 
-
+/**
+ * Stores all of the fields and functions required by a dungeon room.
+ */
 class Room {
     public roomSize:Point;
+    public roomType:RoomType;
     public startCoords:Point;
+    public isConnected:Boolean;
+    public roomWalls:Wall[];
+    public roomExits:Exit[];
 
     constructor(startCoords:Point) {
         this.startCoords = startCoords;
         this.roomSize = new Point(D(5) + 3, D(5) + 3);
+        this.isConnected = false;
+        this.roomType = RoomType.Rectangle;
+        this.CreateWalls(this.roomType);
     }
+
+    /**
+     * Creates walls depending on the type of room.
+     * @param roomType is a variety of different shapes that rooms can be.
+     */
+    CreateWalls(roomType:RoomType) {
+        this.roomWalls = [];
+        switch (roomType) {
+            case RoomType.Rectangle:
+                this.roomWalls.push (new Wall(CardinalDirection.North, new Point(this.startCoords.x-1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y-1)));
+                this.roomWalls.push (new Wall(CardinalDirection.East, new Point(this.startCoords.x+1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y+1)));
+                this.roomWalls.push (new Wall(CardinalDirection.South, new Point(this.startCoords.x-1,this.startCoords.y+1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y+1)));
+                this.roomWalls.push (new Wall(CardinalDirection.West, new Point(this.startCoords.x-1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x-1, this.startCoords.y+1)));
+                console.log(this.roomWalls);
+                break;
+            default:    // do nothing
+                break;
+        }
+    }
+}
+
+class Wall {
+    public cardinalDirection: CardinalDirection;
+    public startCoords:Point;
+    public endCoords:Point;
+
+    constructor (direction:CardinalDirection, start:Point, end:Point) {
+        this.cardinalDirection = direction;
+        this.startCoords = start;
+        this.endCoords = end;
+    }
+
+}
+
+class Exit {
+    public exitCoords:Point;
 }

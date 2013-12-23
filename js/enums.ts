@@ -13,6 +13,30 @@ enum MessageType {
 
 }
 
+enum RoomType {
+    Rectangle,
+    Throne,
+    Diamond,
+    Cross,
+    Hexagon,
+    Irregular,
+    Lshape,
+    Sshape,
+    RectangleDonut,
+    CrossDonut
+}
+
+enum CardinalDirection {
+    North,
+    NorthEast,
+    NorthWest,
+    South,
+    SouthEast,
+    SouthWest,
+    East,
+    West
+}
+
 enum MonsterType {
     MaleHero,
     FemaleHero,
