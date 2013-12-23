@@ -7,10 +7,11 @@ var __extends = this.__extends || function (d, b) {
 };
 var Player = (function (_super) {
     __extends(Player, _super);
-    function Player(id, coord) {
+    function Player(id, char, coord) {
         var _this = this;
         _super.call(this, id, CoTWContent.Actors.FemaleHero.sprite, coord);
 
+        this.attributes = char;
         this.hp = 1000;
         this.att = 10;
         this.mana = 2;

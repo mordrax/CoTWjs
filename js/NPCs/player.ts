@@ -1,16 +1,18 @@
 /// <reference path="../references.ts"/>
 
 class Player extends Actor {
+    attributes:ICharCreation;
     public manaMax:number;            // maximum mana points
     public mana:number;               // current mana points
 
-    constructor(id:string, coord?:WorldCoordinates) {
+    constructor(id:string, char:ICharCreation, coord?:WorldCoordinates) {
         super(id, CoTWContent.Actors.FemaleHero.sprite, coord);
 
-         this.hp = 1000;
-         this.att = 10;
-         this.mana = 2;
-         this.manaMax = 10;
+        this.attributes = char;
+        this.hp = 1000;
+        this.att = 10;
+        this.mana = 2;
+        this.manaMax = 10;
 
         window.addEventListener("keyup", (event : KeyboardEvent) => {
             var direction = this.CalculateMovement(event.keyCode);

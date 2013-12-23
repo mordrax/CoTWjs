@@ -19,17 +19,17 @@
 class Game {
     public static World : World;
     public static Graphics : GraphicsEngine;
-    _hero : Player;
+    public static Hero : Player;
     _monsters : Entity[];
 
-    constructor() {
+    constructor(char:ICharCreation) {
         // TODO: these should really be done after character creation, while char creation isn't implemented, or for
         // testing just create these objects
         Game.World = new World();
         Game.Graphics = new GraphicsEngine();
 
-        this._hero = new Player('hero', new WorldCoordinates(<GameArea>GameArea.Village, new Point(10,15)));
-        Game.World.AddEntity(this._hero);
+        Game.Hero = new Player('hero', char, new WorldCoordinates(<GameArea>GameArea.Village, new Point(11,17)));
+        Game.World.AddEntity(Game.Hero);
 
         this._monsters = [];
         for (var i=0; i < 10; i++) {
