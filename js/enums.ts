@@ -34,7 +34,8 @@ enum CardinalDirection {
     SouthEast,
     SouthWest,
     East,
-    West
+    West,
+    None
 }
 
 enum MonsterType {

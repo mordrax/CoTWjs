@@ -60,6 +60,8 @@ class DungeonLevel {
             }
             //check no overlap with other rooms
             if (this.IsRoomValid(rooms, tempRoom)) {
+                // set the position of the room in relation to the dungeon level
+                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
                 rooms.push(tempRoom);
             } else {
                 retries--;
@@ -97,7 +99,7 @@ class DungeonLevel {
         rooms.forEach((room:Room) => {
             for (var i = room.startCoords.y; i < room.startCoords.y + room.roomSize.y; i++) {
                 for (var j = room.startCoords.x; j < room.startCoords.x + room.roomSize.x; j++) {
-                    this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'o');
+                    this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'O');
                 }
             }
         });
@@ -111,38 +113,46 @@ class Room {
     public roomSize:Point;
     public roomType:RoomType;
     public startCoords:Point;
+    public endCoords:Point;
     public isConnected:Boolean;
-    public roomWalls:Wall[];
     public roomExits:Exit[];
+    public mapPosition:CardinalDirection;
 
     constructor(startCoords:Point) {
+        this.isConnected = false;
         this.startCoords = startCoords;
         this.roomSize = new Point(D(5) + 3, D(5) + 3);
-        this.isConnected = false;
+        this.endCoords = new Point(this.startCoords.x + this.roomSize.x, this.startCoords.y + this.roomSize.y);
+       // this.mapPosition = this.IsNearMapEdge(this.startCoords, this.endCoords);
         this.roomType = RoomType.Rectangle;
-        this.CreateWalls(this.roomType);
+        this.CreateExits();
     }
 
     /**
-     * Creates walls depending on the type of room.
-     * @param roomType is a variety of different shapes that rooms can be.
+     * Checks if a room is near a map edge (ie. within 10 tiles of the edge of the map)
      */
-    CreateWalls(roomType:RoomType) {
-        this.roomWalls = [];
-        switch (roomType) {
-            case RoomType.Rectangle:
-                this.roomWalls.push (new Wall(CardinalDirection.North, new Point(this.startCoords.x-1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y-1)));
-                this.roomWalls.push (new Wall(CardinalDirection.East, new Point(this.startCoords.x+1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y+1)));
-                this.roomWalls.push (new Wall(CardinalDirection.South, new Point(this.startCoords.x-1,this.startCoords.y+1), new Point(this.startCoords.x+this.roomSize.x+1, this.startCoords.y+1)));
-                this.roomWalls.push (new Wall(CardinalDirection.West, new Point(this.startCoords.x-1,this.startCoords.y-1), new Point(this.startCoords.x+this.roomSize.x-1, this.startCoords.y+1)));
-                console.log(this.roomWalls);
-                break;
-            default:    // do nothing
-                break;
+   IsNearMapEdge(dungeonSize:Point, minRoomPoint:Point, maxRoomPoint:Point):CardinalDirection {
+        var currentEdge = CardinalDirection.None;
+
+        if (minRoomPoint.x < 10) {
+
         }
+
+        return currentEdge;
+
+    }
+
+
+    /**
+     * Creates exits randomly based on the room's position on the map
+     */
+    CreateExits() {
+        this.roomExits = [];
+
+
     }
 }
-
+/*
 class Wall {
     public cardinalDirection: CardinalDirection;
     public startCoords:Point;
@@ -153,9 +163,12 @@ class Wall {
         this.startCoords = start;
         this.endCoords = end;
     }
-
 }
+*/
 
 class Exit {
     public exitCoords:Point;
+    public exitDirection: CardinalDirection;
+
+
 }
