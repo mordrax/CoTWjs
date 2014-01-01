@@ -3,11 +3,11 @@
 interface String {
     splice: any;
     format: any;
-};
+}
 
 interface Number {
     clamp(min:number, max:number): number;
-};
+}
 
 /**
  * Removes a portion of the string starting at a index and replaces with another string
@@ -43,4 +43,4 @@ String.prototype.format = function (...argument:any[]):string {
             : match
             ;
     });
-}
+};

@@ -27,15 +27,15 @@ enum RoomType {
 }
 
 enum CardinalDirection {
+    None,
     North,
     NorthEast,
-    NorthWest,
-    South,
-    SouthEast,
-    SouthWest,
     East,
+    SouthEast,
+    South,
+    SouthWest,
     West,
-    None
+    NorthWest
 }
 
 enum MonsterType {

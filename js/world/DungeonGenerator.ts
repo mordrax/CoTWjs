@@ -26,7 +26,7 @@ class DungeonLevel {
     /**
      * Create a blank ASCII map with all elements containing the Rock symbol '^'
      */
-    CreateBlankASCIIMap() {
+        CreateBlankASCIIMap() {
         this.dungeonASCIIMap = [];
         // loop through and assign each array element with the Rock symbol '^'
         for (var i = 0; i < this.dungeonSize.y; i++) {
@@ -40,7 +40,7 @@ class DungeonLevel {
     /**
      * Create a number of rooms for the dungeon map (the number will be between the minRooms and maxRooms)
      */
-    CreateRooms(numberOfRooms:number):Room[] {
+        CreateRooms(numberOfRooms:number):Room[] {
         var rooms:Room[] = [];
         var tempRoom;
 
@@ -60,9 +60,10 @@ class DungeonLevel {
             }
             //check no overlap with other rooms
             if (this.IsRoomValid(rooms, tempRoom)) {
-                // set the position of the room in relation to the dungeon level
-                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
+                // determine the position of the room in relation to the dungeon level
+//                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
                 rooms.push(tempRoom);
+                console.dir(tempRoom);
             } else {
                 retries--;
             }
@@ -79,14 +80,14 @@ class DungeonLevel {
      * Checks whether the room is valid by checking that the start point for all rooms are not "in between" the axis
      * of any other room.
      */
-    IsRoomValid(rooms:Room[], tempRoom:Room):Boolean {
+        IsRoomValid(rooms:Room[], tempRoom:Room):Boolean {
         for (var i = 0; i < rooms.length; i++) {
             // check if temporary room and an existing room intersect on the x AND y axis
             if ((this.InBetween(tempRoom.startCoords.x, rooms[i].startCoords.x, rooms[i].startCoords.x + rooms[i].roomSize.x) ||
                 this.InBetween(rooms[i].startCoords.x, tempRoom.startCoords.x, tempRoom.startCoords.x + tempRoom.roomSize.x)) &&
                 (this.InBetween(tempRoom.startCoords.y, rooms[i].startCoords.y, rooms[i].startCoords.y + rooms[i].roomSize.y) ||
-                this.InBetween(rooms[i].startCoords.y, tempRoom.startCoords.y, tempRoom.startCoords.y + tempRoom.roomSize.y))) {
-                     return false;  // overlap exists for both x and y axis - therefore this is an invalid room
+                    this.InBetween(rooms[i].startCoords.y, tempRoom.startCoords.y, tempRoom.startCoords.y + tempRoom.roomSize.y))) {
+                return false;  // overlap exists for both x and y axis - therefore this is an invalid room
             }
         }
         return true;
@@ -94,8 +95,8 @@ class DungeonLevel {
 
     /**
      * Add ASCII symbols to blank ASCIIMAP for Rooms, Connectors and Exits
-      */
-    MergeToASCIIMap(rooms:Room[]) {
+     */
+        MergeToASCIIMap(rooms:Room[]) {
         rooms.forEach((room:Room) => {
             for (var i = room.startCoords.y; i < room.startCoords.y + room.roomSize.y; i++) {
                 for (var j = room.startCoords.x; j < room.startCoords.x + room.roomSize.x; j++) {
@@ -123,7 +124,7 @@ class Room {
         this.startCoords = startCoords;
         this.roomSize = new Point(D(5) + 3, D(5) + 3);
         this.endCoords = new Point(this.startCoords.x + this.roomSize.x, this.startCoords.y + this.roomSize.y);
-       // this.mapPosition = this.IsNearMapEdge(this.startCoords, this.endCoords);
+        // this.mapPosition = this.IsNearMapEdge(this.startCoords, this.endCoords);
         this.roomType = RoomType.Rectangle;
         this.CreateExits();
     }
@@ -131,40 +132,78 @@ class Room {
     /**
      * Checks if a room is near a map edge (ie. within 10 tiles of the edge of the map)
      */
-   IsNearMapEdge(dungeonSize:Point, minRoomPoint:Point, maxRoomPoint:Point):CardinalDirection {
-        var currentEdge = CardinalDirection.None;
+        IsNearMapEdge(dungeonSize:Point, minRoomPoint:Point, maxRoomPoint:Point):CardinalDirection {
+        var mapEdgeTolerance = 3;
+        var edgeX = CardinalDirection.None;
+        var edgeY = CardinalDirection.None;
 
-        if (minRoomPoint.x < 10) {
+        if (minRoomPoint.x < mapEdgeTolerance) {
+            edgeX = CardinalDirection.North;
+        } else if (maxRoomPoint.x > (dungeonSize.x - mapEdgeTolerance)) {
+            edgeX = CardinalDirection.South;
+        }
+        if (minRoomPoint.y < mapEdgeTolerance) {
+            edgeY = CardinalDirection.East;
+        } else if (maxRoomPoint.y > (dungeonSize.y - mapEdgeTolerance)) {
+            edgeY = CardinalDirection.West;
+        }
+        // pass in both edges and return the Cardinal Direction of the room's position on the map
+        return this.DetermineRoomToMapPosition(edgeX, edgeY);
+    }
 
+    /**
+     * Pass in the x and y map edges that the room is near.
+     * Return the Cardinal Direction of the room's position on the map.
+     */
+        DetermineRoomToMapPosition(edgeX:CardinalDirection, edgeY:CardinalDirection):CardinalDirection {
+        if (edgeX === CardinalDirection.None) {
+            return edgeY;       // if edgeX is None, then return edgeY (which is either None, East or West)
+        } else if (edgeY === CardinalDirection.None){
+            return edgeX;       // if edgeY is None, then return edgeX (which is either North or South)
+        }
+        // if code reaches this point, that means that both X and Y have values (i.e. room is near a corner)
+        if (edgeX === CardinalDirection.North){
+            if (edgeY === CardinalDirection.East){
+                return CardinalDirection.NorthEast;
+            } else if (edgeY === CardinalDirection.West) {          //redundant check for clarity
+                return CardinalDirection.NorthWest;
+            }
+        }
+        // separated check into a different IF to improve clarity, but code can be minimised if required to an ELSE IF
+        if (edgeX === CardinalDirection.South){
+            if (edgeY === CardinalDirection.East){
+                return CardinalDirection.SouthEast;
+            } else if (edgeY === CardinalDirection.West) {          //redundant check for clarity
+                return CardinalDirection.SouthWest;
+            }
         }
 
-        return currentEdge;
-
+        return CardinalDirection.None;                   // default return of None - this should never occur
     }
 
 
     /**
      * Creates exits randomly based on the room's position on the map
      */
-    CreateExits() {
+        CreateExits() {
         this.roomExits = [];
 
 
     }
 }
 /*
-class Wall {
-    public cardinalDirection: CardinalDirection;
-    public startCoords:Point;
-    public endCoords:Point;
+ class Wall {
+ public cardinalDirection: CardinalDirection;
+ public startCoords:Point;
+ public endCoords:Point;
 
-    constructor (direction:CardinalDirection, start:Point, end:Point) {
-        this.cardinalDirection = direction;
-        this.startCoords = start;
-        this.endCoords = end;
-    }
-}
-*/
+ constructor (direction:CardinalDirection, start:Point, end:Point) {
+ this.cardinalDirection = direction;
+ this.startCoords = start;
+ this.endCoords = end;
+ }
+ }
+ */
 
 class Exit {
     public exitCoords:Point;
