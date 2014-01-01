@@ -125,7 +125,7 @@ function charCreation() {
     });
 
     $('.blockUI #char-name').change(function (event) {
-        char.name = event.currentTarget.value; 
+        char.name = event.currentTarget.value;
     });
 
     $('#char-creation-commands .ok').click(function() {
