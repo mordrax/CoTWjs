@@ -61,7 +61,7 @@ class DungeonLevel {
             //check no overlap with other rooms
             if (this.IsRoomValid(rooms, tempRoom)) {
                 // determine the position of the room in relation to the dungeon level
-//                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
+                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
                 rooms.push(tempRoom);
                 console.dir(tempRoom);
             } else {
@@ -133,19 +133,19 @@ class Room {
      * Checks if a room is near a map edge (ie. within 10 tiles of the edge of the map)
      */
         IsNearMapEdge(dungeonSize:Point, minRoomPoint:Point, maxRoomPoint:Point):CardinalDirection {
-        var mapEdgeTolerance = 3;
+        var mapEdgeTolerance = 5;
         var edgeX = CardinalDirection.None;
         var edgeY = CardinalDirection.None;
 
         if (minRoomPoint.x < mapEdgeTolerance) {
-            edgeX = CardinalDirection.North;
+            edgeX = CardinalDirection.West;
         } else if (maxRoomPoint.x > (dungeonSize.x - mapEdgeTolerance)) {
-            edgeX = CardinalDirection.South;
+            edgeX = CardinalDirection.East;
         }
         if (minRoomPoint.y < mapEdgeTolerance) {
-            edgeY = CardinalDirection.East;
+            edgeY = CardinalDirection.North;
         } else if (maxRoomPoint.y > (dungeonSize.y - mapEdgeTolerance)) {
-            edgeY = CardinalDirection.West;
+            edgeY = CardinalDirection.South;
         }
         // pass in both edges and return the Cardinal Direction of the room's position on the map
         return this.DetermineRoomToMapPosition(edgeX, edgeY);
@@ -157,23 +157,23 @@ class Room {
      */
         DetermineRoomToMapPosition(edgeX:CardinalDirection, edgeY:CardinalDirection):CardinalDirection {
         if (edgeX === CardinalDirection.None) {
-            return edgeY;       // if edgeX is None, then return edgeY (which is either None, East or West)
+            return edgeY;       // if edgeX is None, then return edgeY (which is either None, North or South)
         } else if (edgeY === CardinalDirection.None){
-            return edgeX;       // if edgeY is None, then return edgeX (which is either North or South)
+            return edgeX;       // if edgeY is None, then return edgeX (which is either East or West)
         }
         // if code reaches this point, that means that both X and Y have values (i.e. room is near a corner)
-        if (edgeX === CardinalDirection.North){
-            if (edgeY === CardinalDirection.East){
+        if (edgeY === CardinalDirection.North){
+            if (edgeX === CardinalDirection.East){
                 return CardinalDirection.NorthEast;
-            } else if (edgeY === CardinalDirection.West) {          //redundant check for clarity
+            } else if (edgeX === CardinalDirection.West) {          //redundant check for clarity
                 return CardinalDirection.NorthWest;
             }
         }
         // separated check into a different IF to improve clarity, but code can be minimised if required to an ELSE IF
-        if (edgeX === CardinalDirection.South){
-            if (edgeY === CardinalDirection.East){
+        if (edgeY === CardinalDirection.South){
+            if (edgeX === CardinalDirection.East){
                 return CardinalDirection.SouthEast;
-            } else if (edgeY === CardinalDirection.West) {          //redundant check for clarity
+            } else if (edgeX === CardinalDirection.West) {          //redundant check for clarity
                 return CardinalDirection.SouthWest;
             }
         }
