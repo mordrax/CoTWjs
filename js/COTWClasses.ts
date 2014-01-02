@@ -43,15 +43,15 @@ class Point implements IPoint {
         this.y = y;
     }
 
-    Equals(otherPoint:IPoint):boolean {
+    Equals(otherPoint:Point):boolean {
         return (this.x === otherPoint.x && this.y === otherPoint.y);
     }
 
-    Add(otherPoint:IPoint):IPoint {
+    Add(otherPoint:Point):Point {
         return new Point(this.x + otherPoint.x, this.y + otherPoint.y);
     }
 
-    Difference(otherPoint:IPoint):IPoint {
+    Difference(otherPoint:Point):Point {
         return new Point(this.x - otherPoint.x, this.y - otherPoint.y);
     }
 }

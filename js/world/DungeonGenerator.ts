@@ -196,6 +196,9 @@ class Room {
     CreateExits() {
         this.roomExits = [];
 
+        var startCoordsWithWalls = this.startCoords.Difference(new Point (1,1));
+        var endCoordsWithWalls = this.endCoords.Add(new Point (1,1));
+        this.roomExits.push(new Exit(startCoordsWithWalls, endCoordsWithWalls, this.mapPosition));
 
     }
 }
@@ -203,7 +206,91 @@ class Room {
 
 class Exit {
     public exitCoords:Point;
+    public exitWall:CardinalDirection;
     public exitDirection: CardinalDirection;
 
+    constructor(startWallPoint:Point, endWallPoint:Point, roomPosition:CardinalDirection) {
+        this.exitWall = this.DetermineExitWall(roomPosition);
+
+    }
+
+    /**
+     * Randomly selects a wall until a valid one is found, then returns it.
+     */
+    private DetermineExitWall(roomPosition:CardinalDirection){
+        var validWall:CardinalDirection;
+        var directionTypes = 4;                 // 4 for N/E/S/W, 8 for N/E/S/W/NE/SE/SW/NW
+        for (var retries=100; retries>0; retries--){
+            validWall = this.SelectRandomWall(directionTypes);
+            if (this.IsDirectionPermitted(validWall, roomPosition)){
+                return validWall;
+            }
+        }
+        return CardinalDirection.None;          //failed to find a valid wall
+    }
+
+    /**
+     * Returns TRUE if direction is permitted; FALSE when direction is NOT permitted.
+     * Used for checking if exits and corridor directions are valid for the room (i.e. if a room is in the NorthWest
+     *  part of the map level, then an exit/corridor going North/West/NorthWest/SouthWest/NorthEast are not allowed.
+     */
+    public IsDirectionPermitted(direction:CardinalDirection, roomPosition:CardinalDirection):boolean {
+        switch (roomPosition){
+            case CardinalDirection.North:           // true if NOT N/NE/NW
+                return !(direction === CardinalDirection.North || direction === CardinalDirection.NorthEast ||
+                    direction === CardinalDirection.NorthWest);
+            case CardinalDirection.NorthEast:       // true if S/W/SW
+                return (direction === CardinalDirection.South || direction === CardinalDirection.West ||
+                    direction === CardinalDirection.SouthWest);
+            case CardinalDirection.East:            // true if NOT E/NE/SE
+                return !(direction === CardinalDirection.East || direction === CardinalDirection.NorthEast ||
+                    direction === CardinalDirection.SouthEast);
+            case CardinalDirection.SouthEast:       // true if N/W/NW
+                return (direction === CardinalDirection.North || direction === CardinalDirection.West ||
+                    direction === CardinalDirection.NorthWest);
+            case CardinalDirection.South:           // true if NOT S/SE/SW
+                return !(direction === CardinalDirection.South || direction === CardinalDirection.SouthEast ||
+                    direction === CardinalDirection.NorthWest);
+            case CardinalDirection.SouthWest:       // true if N/E/NE
+                return (direction === CardinalDirection.North || direction === CardinalDirection.East ||
+                    direction === CardinalDirection.NorthEast);
+            case CardinalDirection.West:            // true if NOT W/NW/SW
+                return !(direction === CardinalDirection.West || direction === CardinalDirection.NorthWest ||
+                    direction === CardinalDirection.SouthWest);
+            case CardinalDirection.NorthWest:       // true if S/E/SE
+                return (direction === CardinalDirection.South || direction === CardinalDirection.East ||
+                    direction === CardinalDirection.SouthEast);
+            default:                                // None
+                return true;
+        }
+    }
+
+    /**
+     * Randomly selects a number from 1 to the number that was passed in as parameter "directionTypes"
+     * @directionTypes should typically be 4 for standard N/E/S/W, 8 for all N/E/S/W/NE/SE/SW/NW
+     */
+    public SelectRandomWall(directionTypes:number):CardinalDirection {
+        var randomNumber = D(directionTypes);        // random number between 1 and number passed in (usually 4 or 8)
+        switch (randomNumber){
+            case 1:
+                return CardinalDirection.North;
+            case 2:
+                return CardinalDirection.East;
+            case 3:
+                return CardinalDirection.South;
+            case 4:
+                return CardinalDirection.West;
+            case 5:
+                return CardinalDirection.NorthEast;
+            case 6:
+                return CardinalDirection.SouthEast;
+            case 7:
+                return CardinalDirection.SouthWest;
+            case 8:
+                return CardinalDirection.NorthWest;
+            default:
+                return CardinalDirection.None;
+        }
+    }
 
 }
