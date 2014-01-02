@@ -356,5 +356,7 @@ var ASCIITiles = {
     '=': CoTWContent.Tiles.Crop,
     '+': CoTWContent.Tiles.Entry,
     '#': CoTWContent.Tiles.Building,
+    '[': CoTWContent.Buildings.DoorClosed,
+    '/': CoTWContent.Buildings.DoorOpen,
     '!': CoTWContent.Buildings.Sign
-}
+};
