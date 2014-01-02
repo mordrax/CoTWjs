@@ -104,6 +104,9 @@ class DungeonLevel {
                     this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'O');
                 }
             }
+            room.roomExits.forEach((exit:Exit) => {
+                this.dungeonASCIIMap[exit.coords.y] = this.dungeonASCIIMap[exit.coords.y].splice(exit.coords.x,1,'[');
+            })
         });
     }
 
@@ -195,25 +198,23 @@ class Room {
      */
     CreateExits() {
         this.roomExits = [];
-
         var startCoordsWithWalls = this.startCoords.Difference(new Point (1,1));
         var endCoordsWithWalls = this.endCoords.Add(new Point (1,1));
         this.roomExits.push(new Exit(startCoordsWithWalls, endCoordsWithWalls, this.roomSize, this.mapPosition));
-
     }
 }
 
 
 class Exit {
-    public exitCoords: Point;
-    public exitWall:CardinalDirection;
-    public exitDirection: CardinalDirection;
+    public coords: Point;
+    public wall:CardinalDirection;
+    public direction: CardinalDirection;
     public baseDirections = 4;      // refers to N/E/S/W
 
     constructor(wallStart:Point, wallEnd:Point, roomSize:Point, roomPosition:CardinalDirection) {
-        this.exitWall = this.DetermineExitWall(roomPosition, this.baseDirections);
-        this.exitCoords = this.DetermineExitCoords(wallStart, wallEnd, roomSize, this.exitWall);
-        this.exitDirection = this.DetermineCorridorDirection(roomPosition);
+        this.wall = this.DetermineExitWall(roomPosition, this.baseDirections);
+        this.coords = this.DetermineExitCoords(wallStart, wallEnd, roomSize, this.wall);
+        this.direction = this.DetermineCorridorDirection(roomPosition);
     }
 
     /**
@@ -233,7 +234,7 @@ class Exit {
      */
     private DetermineCorridorDirection(roomPosition:CardinalDirection):CardinalDirection{
         var possibleDirections:CardinalDirection[];
-        possibleDirections = this.DeterminePossibleCorridorDirection(this.exitWall);
+        possibleDirections = this.DeterminePossibleCorridorDirection(this.wall);
         return this.LoopThroughDirections(roomPosition,possibleDirections);
     }
 
