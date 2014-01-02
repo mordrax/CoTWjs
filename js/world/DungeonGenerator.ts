@@ -133,7 +133,7 @@ class Room {
         this.isConnected = false;
         this.startCoords = startCoords;
         this.roomSize = new Point(D(5) + 3, D(5) + 3);
-        this.endCoords = new Point(this.startCoords.x + this.roomSize.x, this.startCoords.y + this.roomSize.y);
+        this.endCoords = new Point(this.startCoords.x + this.roomSize.x - 1, this.startCoords.y + this.roomSize.y - 1);
         this.roomType = RoomType.Rectangle;
     }
 
@@ -198,35 +198,79 @@ class Room {
 
         var startCoordsWithWalls = this.startCoords.Difference(new Point (1,1));
         var endCoordsWithWalls = this.endCoords.Add(new Point (1,1));
-        this.roomExits.push(new Exit(startCoordsWithWalls, endCoordsWithWalls, this.mapPosition));
+        this.roomExits.push(new Exit(startCoordsWithWalls, endCoordsWithWalls, this.roomSize, this.mapPosition));
 
     }
 }
 
 
 class Exit {
-    public exitCoords:Point;
+    public exitCoords: Point;
     public exitWall:CardinalDirection;
     public exitDirection: CardinalDirection;
+    public baseDirections = 4;      // refers to N/E/S/W
 
-    constructor(startWallPoint:Point, endWallPoint:Point, roomPosition:CardinalDirection) {
-        this.exitWall = this.DetermineExitWall(roomPosition);
-
+    constructor(wallStart:Point, wallEnd:Point, roomSize:Point, roomPosition:CardinalDirection) {
+        this.exitWall = this.DetermineExitWall(roomPosition, this.baseDirections);
+        this.exitCoords = this.DetermineExitCoords(wallStart, wallEnd, roomSize, this.exitWall);
+        this.exitDirection = this.DetermineCorridorDirection(roomPosition);
     }
 
     /**
-     * Randomly selects a wall until a valid one is found, then returns it.
+     * Determines all of the possible wall directions, then loops through each one randomly until a valid one is found
+     * @param roomPosition - position of the room in relation to the map level
+     * @param directionTypes - 4 for N/E/S/W, 8 for N/E/S/W/NE/SE/SW/NW
      */
-    private DetermineExitWall(roomPosition:CardinalDirection){
-        var validWall:CardinalDirection;
-        var directionTypes = 4;                 // 4 for N/E/S/W, 8 for N/E/S/W/NE/SE/SW/NW
-        for (var retries=100; retries>0; retries--){
-            validWall = this.SelectRandomWall(directionTypes);
-            if (this.IsDirectionPermitted(validWall, roomPosition)){
-                return validWall;
+    private DetermineExitWall(roomPosition:CardinalDirection, directionTypes:number){
+        var possibleWalls:CardinalDirection[];
+        possibleWalls = this.GetAllDirections(directionTypes);
+        return this.LoopThroughDirections(roomPosition,possibleWalls);
+    }
+
+    /**
+     * Determines all of the possible corridor directions, then loops through each one randomly until a valid one is found
+     * @param roomPosition - position of the room in relation to the map level
+     */
+    private DetermineCorridorDirection(roomPosition:CardinalDirection):CardinalDirection{
+        var possibleDirections:CardinalDirection[];
+        possibleDirections = this.DeterminePossibleCorridorDirection(this.exitWall);
+        return this.LoopThroughDirections(roomPosition,possibleDirections);
+    }
+
+    /**
+     * Loops through each possible direction randomly, checks if it is valid in regards to the room position,
+     * and returns a valid Cardinal Direction as soon as it is found.
+     * @param roomPosition - position of the room in relation to the map level.
+     * @param possibleDirections - array of Cardinal Directions that are possible before checking against room position.
+     */
+    private LoopThroughDirections(roomPosition:CardinalDirection, possibleDirections:CardinalDirection[]):CardinalDirection{
+        var randomNumber:number;
+        var validDirection:CardinalDirection;
+        while (possibleDirections.length > 0){
+            randomNumber = D(possibleDirections.length) - 1;         // deduct 1 because arrays start at 0
+            validDirection = possibleDirections[randomNumber];
+            if (this.IsDirectionPermitted(validDirection, roomPosition)){
+                return validDirection;
+            } else {
+                possibleDirections.splice(randomNumber,1);           // remove the direction option that was not valid
             }
         }
-        return CardinalDirection.None;          //failed to find a valid wall
+        return CardinalDirection.None;
+    }
+
+    /**
+     * Returns the number of possible directions was passed in as parameter "directionTypes"
+     * @param directionTypes should typically be 4 for standard N/E/S/W, 8 for all N/E/S/W/NE/SE/SW/NW
+     */
+    public GetAllDirections(directionTypes:number){
+        var possibleDirections: CardinalDirection[];
+        possibleDirections = [];
+        possibleDirections.push(CardinalDirection.North,CardinalDirection.East,CardinalDirection.South, CardinalDirection.West);
+        // for diagonals
+        if (directionTypes === 8){
+            possibleDirections.push(CardinalDirection.NorthEast,CardinalDirection.SouthEast,CardinalDirection.SouthWest,CardinalDirection.NorthWest);
+        }
+        return possibleDirections;
     }
 
     /**
@@ -266,31 +310,53 @@ class Exit {
     }
 
     /**
-     * Randomly selects a number from 1 to the number that was passed in as parameter "directionTypes"
-     * @directionTypes should typically be 4 for standard N/E/S/W, 8 for all N/E/S/W/NE/SE/SW/NW
+     * Randomly selects an exit position on the specified wall and returns the Point.
      */
-    public SelectRandomWall(directionTypes:number):CardinalDirection {
-        var randomNumber = D(directionTypes);        // random number between 1 and number passed in (usually 4 or 8)
-        switch (randomNumber){
-            case 1:
-                return CardinalDirection.North;
-            case 2:
-                return CardinalDirection.East;
-            case 3:
-                return CardinalDirection.South;
-            case 4:
-                return CardinalDirection.West;
-            case 5:
-                return CardinalDirection.NorthEast;
-            case 6:
-                return CardinalDirection.SouthEast;
-            case 7:
-                return CardinalDirection.SouthWest;
-            case 8:
-                return CardinalDirection.NorthWest;
+    private DetermineExitCoords(wallStart:Point, wallEnd:Point, roomSize:Point, wall:CardinalDirection):Point {
+        var randomNumber:number;
+        switch (wall){
+            case CardinalDirection.North:       // y = min (wallStart.y)
+                randomNumber = D(roomSize.x);
+                return new Point(wallStart.x + randomNumber, wallStart.y);
+            case CardinalDirection.East:        // x = max (wallEnd.x)
+                randomNumber = D(roomSize.y);
+                return new Point(wallEnd.x, wallStart.y + randomNumber);
+            case CardinalDirection.South:       // y = max (wallEnd.y)
+                randomNumber = D(roomSize.x);
+                return new Point(wallStart.x + randomNumber, wallEnd.y);
+            case CardinalDirection.West:        // x = min (wallStart.x)
+                randomNumber = D(roomSize.y);
+                return new Point(wallStart.x, wallStart.y + randomNumber);
             default:
-                return CardinalDirection.None;
+                return new Point(0,0);
         }
     }
+
+    /**
+     * Randomly selects an exit direction on the specified exit.
+     */
+    private DeterminePossibleCorridorDirection(wall:CardinalDirection):CardinalDirection[] {
+        var possibleDirections: CardinalDirection[];
+        possibleDirections = [];
+
+        switch (wall){
+            case CardinalDirection.North:       // N/NE/NW
+                possibleDirections.push(CardinalDirection.North,CardinalDirection.NorthEast,CardinalDirection.NorthWest);
+                break;
+            case CardinalDirection.East:        // E/NE/SE
+                possibleDirections.push(CardinalDirection.East,CardinalDirection.NorthEast,CardinalDirection.SouthEast);
+                break;
+            case CardinalDirection.South:       // S/SE/SW
+                possibleDirections.push(CardinalDirection.South,CardinalDirection.SouthEast,CardinalDirection.SouthWest);
+                break;
+            case CardinalDirection.West:        // W/NW/SW
+                possibleDirections.push(CardinalDirection.West,CardinalDirection.NorthWest,CardinalDirection.SouthWest);
+                break;
+            default:
+                possibleDirections.push(CardinalDirection.None);
+        }
+        return possibleDirections;
+    }
+
 
 }
