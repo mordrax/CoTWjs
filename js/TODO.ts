@@ -1,4 +1,4 @@
-/**
+ /**
  * Priorities - 1-Highest, 5-Lowest
  *
  * TODOs:
@@ -95,4 +95,38 @@
  * Game concepts:
  * 5 identifyable items
  *
+ *
+ *
+ *
+ * Corridor heuristics:
+  * Corridors require:
+  * - knowledge of room locations
+  * - exits
+  * - other corridors
+  *
+  * Foreach exit, try to create:
+  *    1. 2 point corridor (only one from exit in the cardinal direction)
+  *    2. 3 point corridors (n-1 from the 2 point working backwards trying the two perpendicular directions)
+  *    3. 4 point corridors
+  *
+  *
+  * Heuristics:
+  * - Corridors are defined by either 2, 3 or 4 points
+  * - Corridors must start at an exit
+  * - Corridors will intersect with one of the following: end of map, exit, room, corridor
+  * - A heuristic is a set of rules govening how corridors will be formed AND give a point feedback of what this
+  * corridor is worth to the dungeon.
+  * A. The highest worth heuristic is chosen
+  * B. Each heuristic has a probability of being chosen depending on it's rating (rating / Sum of ratings)
+  *
+  * Corridor definition:
+  * - Begins adjacent to a exit
+  * - A point for each 45 or 90 deg turn (these are the only turns available)
+  * - Ends at another exit or room edge, an intersection or a dead end
+  *
+  *
+  *
+  * Deadend - 1:
+  * - Hits map end with no other intersection
+  *
  */

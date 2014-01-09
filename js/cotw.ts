@@ -125,7 +125,7 @@ function charCreation() {
     });
 
     $('.blockUI #char-name').change(function (event) {
-        char.name = event.currentTarget.value;
+        char.name = (<HTMLInputElement>event.currentTarget).value;
     });
 
     $('#char-creation-commands .ok').click(function() {
