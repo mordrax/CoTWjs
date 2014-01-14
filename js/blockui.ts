@@ -1,5 +1,5 @@
 interface BlockUIOptions {
-    message?: string;
+    message?: any;
     onOverLayClick?: ()=>any;
 
 }

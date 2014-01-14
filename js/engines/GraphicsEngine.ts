@@ -149,7 +149,7 @@ class GraphicsEngine {
             $('#menu-file').toggle();
         });
 
-        $('#menu-character').click(function () {
+        $('#menu-character').click(() => {
             this.Screen(ScreenType.Character);
         });
         $('#menu-inventory').click(function () {
@@ -197,7 +197,7 @@ class GraphicsEngine {
                 break;
             case ScreenType.Character:
                 $.blockUI({
-                    message: $('#character-popup').html(),
+                    message: $('#character-popup')[0],
                     onOverlayClick: $.unblockUI,
                     bindEvents:true,
                     css: {width: '440px', height: '440px', top:'20%', cursor:'default'}

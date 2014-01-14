@@ -128,7 +128,7 @@ var GraphicsEngine = (function () {
         });
 
         $('#menu-character').click(function () {
-            this.Screen(ScreenType.Character);
+            _this.Screen(ScreenType.Character);
         });
         $('#menu-inventory').click(function () {
             Game.World.PickFromGround();
@@ -175,7 +175,7 @@ var GraphicsEngine = (function () {
                 break;
             case ScreenType.Character:
                 $.blockUI({
-                    message: $('#character-popup').html(),
+                    message: $('#character-popup')[0],
                     onOverlayClick: $.unblockUI,
                     bindEvents: true,
                     css: { width: '440px', height: '440px', top: '20%', cursor: 'default' }

@@ -19,6 +19,87 @@
         <button id="overview-game"><u>O</u>verview</button>
     </div>
 </div>
+<div id="character-popup" class="popup">
+    <p class="blue-title">Edit Character</p>
+
+    <div id="edit-char-name-outer">
+        <label for="char-name"><u>C</u>haracter name:</label>
+        <span><input type="text" name="charname" id="edit-char-name" placeholder="unnamed"/></span>
+    </div>
+
+<div class="justify-blocks">
+    <div class="bar-outer">
+        <div id="strength">
+            <span class="blue-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="blue-bar-weight bar-weight"></span>
+            </span>
+            <span class="green-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="green-bar-weight bar-weight"></span>
+            </span>
+        </div>
+        <label>Strength</label>
+    </div>
+
+    <div class="bar-outer">
+        <div id="intelligence">
+            <span class="blue-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="blue-bar-weight bar-weight"></span>
+            </span>
+            <span class="green-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="green-bar-weight bar-weight"></span>
+            </span>
+        </div>
+        <label>Intelligence</label>
+    </div>
+
+    <div class="bar-outer">
+        <div id="constitution">
+            <span class="blue-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="blue-bar-weight bar-weight"></span>
+            </span>
+            <span class="green-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="green-bar-weight bar-weight"></span>
+            </span>
+        </div>
+        <label>Constitution</label>
+    </div>
+
+    <div class="bar-outer">
+        <div id="dexterity">
+            <span class="blue-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="blue-bar-weight bar-weight"></span>
+            </span>
+            <span class="green-bar bar">
+                <span class="bar-line line2"></span>
+                <span class="green-bar-weight bar-weight"></span>
+            </span>
+
+
+        </div>
+        <label>Dexterity</label>
+    </div>
+</div>
+<div id="character-stats">
+    <div><label>Character Level:</label>      <label data-stat="CharacterLevel">Lorum</label></div>
+    <div><label>Character Experience:</label> <label data-stat="CharacterExperience">Lorum</label></div>
+    <div><label>Next Level At:</label>        <label data-stat="NextLevelAt">Lorum</label></div>
+    <div><label>Weight:</label>               <label data-stat="Weight">Lorum</label></div>
+    <div><label>Bulk:</label>                 <label data-stat="Bulk">Lorum</label></div>
+    <div><label>Speed:</label>                <label data-stat="Speed">Lorum</label></div>
+    <div><label>Hit Points:</label>           <label data-stat="HitPoints">Lorum</label></div>
+    <div><label>Mana Points:</label>          <label data-stat="ManaPoints">Lorum</label></div>
+    <div><label>Copper:</label>               <label data-stat="Copper">Lorum</label></div>
+    <div><label>Armour Value:</label>         <label data-stat="ArmourValue">Lorum</label></div>
+
+</div>
+</div>
 <div id="char-creation-popup" class="popup">
     <p class="blue-title">Character Creation</p>
 
@@ -26,7 +107,7 @@
         <label for="char-name"><u>C</u>haracter name:</label>
         <span><input type="text" name="charname" id="char-name" placeholder="unnamed"/></span>
     </div>
-    <div id="attribute-bar" class="clear">
+    <div id="attribute-bar" class="justify-blocks">
         <div class="bar-outer">
             <div id="available">
                 <span class="bar">
@@ -43,6 +124,7 @@
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
+
                 <div class="bar-slider">
                     <button class="increase ui-icon ui-icon-triangle-1-n"></button>
                     <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
@@ -58,6 +140,7 @@
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
+
                 <div class="bar-slider">
                     <button class="increase ui-icon ui-icon-triangle-1-n"></button>
                     <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
@@ -73,6 +156,7 @@
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
+
                 <div class="bar-slider">
                     <button class="increase ui-icon ui-icon-triangle-1-n"></button>
                     <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
@@ -88,6 +172,7 @@
                     <span class="bar-line line2"></span>
                     <span class="bar-line line3"></span>
                     <span class="bar-weight"></span></span>
+
                 <div class="bar-slider">
                     <button class="increase ui-icon ui-icon-triangle-1-n"></button>
                     <button class="decrease ui-icon ui-icon-triangle-1-s"></button>
