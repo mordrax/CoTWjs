@@ -128,7 +128,7 @@ var GraphicsEngine = (function () {
         });
 
         $('#menu-character').click(function () {
-            console.log('Please implement the character menu!!!');
+            this.Screen(ScreenType.Character);
         });
         $('#menu-inventory').click(function () {
             Game.World.PickFromGround();
@@ -173,6 +173,13 @@ var GraphicsEngine = (function () {
                 $('[data-visible-menu="main"]').hide();
                 $('[data-visible-menu="shop"]').show();
                 break;
+            case ScreenType.Character:
+                $.blockUI({
+                    message: $('#character-popup').html(),
+                    onOverlayClick: $.unblockUI,
+                    bindEvents: true,
+                    css: { width: '440px', height: '440px', top: '20%', cursor: 'default' }
+                });
             case ScreenType.Main:
             default:
                 $('#main-game-window').show();

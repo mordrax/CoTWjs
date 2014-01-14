@@ -187,7 +187,8 @@ enum GauntletType {
 
 enum ScreenType {
     Main,
-    Shop
+    Shop,
+    Character
 }
 
 enum TileForm {

@@ -47,8 +47,6 @@ class Game {
         $("#main-game-window").show();
         $('#in-game-window').show();
     }
-
-
 }
 
 // returns a random number from low (i.e. 1) to the high number that is passed in.

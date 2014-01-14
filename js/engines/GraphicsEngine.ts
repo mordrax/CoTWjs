@@ -150,7 +150,7 @@ class GraphicsEngine {
         });
 
         $('#menu-character').click(function () {
-            console.log('Please implement the character menu!!!');
+            this.Screen(ScreenType.Character);
         });
         $('#menu-inventory').click(function () {
             Game.World.PickFromGround();
@@ -195,6 +195,13 @@ class GraphicsEngine {
                 $('[data-visible-menu="main"]').hide();
                 $('[data-visible-menu="shop"]').show();
                 break;
+            case ScreenType.Character:
+                $.blockUI({
+                    message: $('#character-popup').html(),
+                    onOverlayClick: $.unblockUI,
+                    bindEvents:true,
+                    css: {width: '440px', height: '440px', top:'20%', cursor:'default'}
+                });
             case ScreenType.Main:
             default:
                 $('#main-game-window').show();
