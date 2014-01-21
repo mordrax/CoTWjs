@@ -2,6 +2,7 @@
 .window,
 .popup {
     display: none;
+    padding: 5px;
 }
 .clear:before, .clear:after {
     content: "\0020";
@@ -58,34 +59,76 @@
     background-color: #000000;
 }
 
+/********************************************* death *********************************************/
+div#death {
+    position: relative;
+}
+
+div#death img {
+    position: absolute;
+    left: 0;
+}
+
+div#death label {
+    position: absolute;
+    display: block;
+    width: 360px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+label#death-name {
+    top: 100px;
+
+}
+label#death-date {
+    top: 150px;
+
+}
+label#death-reason {
+    top: 175px;
+
+}
 /********************************************* edit char *********************************************/
 .green-bar-weight.bar-weight {
     background-color: chartreuse;
 }
-#character-popup .bar-outer .bar {
+#edit-char-popup .bar-outer .bar {
     width:20px;
 }
 
-#character-stats label {
+#edit-char-attribute-outer {
+    text-align: left;
+    width: 300px;
+    float: left;
 }
-#character-stats label[data-stat] {
+#edit-char-stats {
+    margin-left: 310px;
+    text-align: left;
+}
+
+#edit-char-stats label[data-stat] {
+    float: right;
 }
 /********************************************* char creation *********************************************/
-#char-creation-popup {
-    width: 540px;
-    height: 440px;
+ {
 }
+#edit-char-name-outer,
 #char-name-outer {
     padding: 5px 0;
 }
+#edit-char-name-outer label,
 #char-name-outer label {
     float: left;
 }
+#edit-char-name-outer span,
 #char-name-outer span {
     overflow: hidden;
     display: block;
     padding: 0 5px;
 }
+#edit-char-name-outer input,
 #char-name-outer input {
     width: 100%;
 }
@@ -131,6 +174,7 @@
     height: 15px;
     background: lightgray;
     margin-bottom: -0.5em;
+    left: 0;
 }
 .bar-slider button,
 .bar-slider button:focus{
@@ -149,10 +193,12 @@
 
 .bar-slider button.increase {
     top: 0;
+    left: 0;
 }
 
 .bar-slider button.decrease {
     bottom: 0;
+    left: 0;
 }
 
 .bar-line {
@@ -184,7 +230,6 @@
     width: 32px;
 }
 #custom-char-icon-outer img.char-icon {
-    position: absolute;
 }
 .change-char-icon {
     display: inline-block;
@@ -237,13 +282,13 @@
     border: 1em solid transparent;
     border-top-color: #000000;
 }
-#char-creation-commands button {
-    width: 20%;
-}
-#char-creation-commands {
+#char-creation-popup .command-bar button { width: 20%; }
+#edit-char-popup .command-bar button { width: 15%; }
+#char-creation-popup .command-bar,
+#edit-char-popup .command-bar{
     text-align: justify;
 }
-#char-creation-commands:after {
+.command-bar:after {
     content: '';
     width: 100%;
     display: inline-block;

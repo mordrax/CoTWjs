@@ -55,10 +55,10 @@ function startNewGame(char?:ICharCreation) {
 function charCreation() {
     // create the char creation element jquery.blockui
     $.blockUI({
-        message: $('#char-creation-popup').html(),
+        message: $('#char-creation-popup')[0],
         onOverlayClick: $.unblockUI,
         bindEvents:true,
-        css: {width: '440px', height: '440px', top:'20%', cursor:'default'}
+        css: {width: '500px', height: '440px', top:'20%', cursor:'default'}
     });
 
     // char object to be used for created hero
@@ -138,7 +138,8 @@ function charCreation() {
 function splashScreenEvents() {
     $('#start-game').click(charCreation);
     $('#load-game').click(function () {
-
+        $('.window').hide();
+        $('#death').show();
     });
     $('#overview').click(function () {
 

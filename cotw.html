@@ -10,6 +10,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/site.css"/>
 </head>
 <body>
+<div id="death" class="window">
+    <img src="assets/resources/RIP_blank.png">
+    <label id="death-name">Karnage</label>
+    <label id="death-date">1-2-1234</label>
+    <label id="death-reason">Fart!</label>
+</div>
 <div id="splash-window" class="window">
     <div class="splash-title"><img src="assets/resources/splash_cotw.bmp"/></div>
     <div class="splash-sub-title"><img src="assets/resources/splash_partone.bmp"/></div>
@@ -19,17 +25,19 @@
         <button id="overview-game"><u>O</u>verview</button>
     </div>
 </div>
-<div id="character-popup" class="popup">
+<div id="edit-char-popup" class="popup">
     <p class="blue-title">Edit Character</p>
 
     <div id="edit-char-name-outer">
-        <label for="char-name"><u>C</u>haracter name:</label>
-        <span><input type="text" name="charname" id="edit-char-name" placeholder="unnamed"/></span>
+        <label for="edit-char-name"><u>C</u>haracter name:</label>
+        <span><input type="text" id="edit-char-name" placeholder="unnamed"/></span>
     </div>
 
-<div class="justify-blocks">
-    <div class="bar-outer">
-        <div id="strength">
+    <div>
+        <div id="edit-char-attribute-outer">
+            <div id="edit-char-attributes">
+                <div class="bar-outer">
+                    <div id="strength">
             <span class="blue-bar bar">
                 <span class="bar-line line2"></span>
                 <span class="blue-bar-weight bar-weight"></span>
@@ -38,12 +46,12 @@
                 <span class="bar-line line2"></span>
                 <span class="green-bar-weight bar-weight"></span>
             </span>
-        </div>
-        <label>Strength</label>
-    </div>
+                    </div>
+                    <label>Strength</label>
+                </div>
 
-    <div class="bar-outer">
-        <div id="intelligence">
+                <div class="bar-outer">
+                    <div id="intelligence">
             <span class="blue-bar bar">
                 <span class="bar-line line2"></span>
                 <span class="blue-bar-weight bar-weight"></span>
@@ -52,12 +60,12 @@
                 <span class="bar-line line2"></span>
                 <span class="green-bar-weight bar-weight"></span>
             </span>
-        </div>
-        <label>Intelligence</label>
-    </div>
+                    </div>
+                    <label>Intelligence</label>
+                </div>
 
-    <div class="bar-outer">
-        <div id="constitution">
+                <div class="bar-outer">
+                    <div id="constitution">
             <span class="blue-bar bar">
                 <span class="bar-line line2"></span>
                 <span class="blue-bar-weight bar-weight"></span>
@@ -66,12 +74,12 @@
                 <span class="bar-line line2"></span>
                 <span class="green-bar-weight bar-weight"></span>
             </span>
-        </div>
-        <label>Constitution</label>
-    </div>
+                    </div>
+                    <label>Constitution</label>
+                </div>
 
-    <div class="bar-outer">
-        <div id="dexterity">
+                <div class="bar-outer">
+                    <div id="dexterity">
             <span class="blue-bar bar">
                 <span class="bar-line line2"></span>
                 <span class="blue-bar-weight bar-weight"></span>
@@ -82,30 +90,45 @@
             </span>
 
 
+                    </div>
+                    <label>Dexterity</label>
+                </div>
+            </div>
+            <fieldset id="edit-char-game-difficulty">
+                <legend>Game Difficulty</legend>
+                <div class="difficulty-outer">
+                    <div class="circle"></div>
+                </div>
+            </fieldset>
         </div>
-        <label>Dexterity</label>
-    </div>
-</div>
-<div id="character-stats">
-    <div><label>Character Level:</label>      <label data-stat="CharacterLevel">Lorum</label></div>
-    <div><label>Character Experience:</label> <label data-stat="CharacterExperience">Lorum</label></div>
-    <div><label>Next Level At:</label>        <label data-stat="NextLevelAt">Lorum</label></div>
-    <div><label>Weight:</label>               <label data-stat="Weight">Lorum</label></div>
-    <div><label>Bulk:</label>                 <label data-stat="Bulk">Lorum</label></div>
-    <div><label>Speed:</label>                <label data-stat="Speed">Lorum</label></div>
-    <div><label>Hit Points:</label>           <label data-stat="HitPoints">Lorum</label></div>
-    <div><label>Mana Points:</label>          <label data-stat="ManaPoints">Lorum</label></div>
-    <div><label>Copper:</label>               <label data-stat="Copper">Lorum</label></div>
-    <div><label>Armour Value:</label>         <label data-stat="ArmourValue">Lorum</label></div>
+        <div id="edit-char-stats">
+            <div><label>Character Level:</label> <label data-stat="CharacterLevel">Lorum</label></div>
+            <div><label>Character Experience:</label> <label data-stat="CharacterExperience">Lorum</label></div>
+            <div><label>Next Level At:</label> <label data-stat="NextLevelAt">Lorum</label></div>
+            <div><label>Weight:</label> <label data-stat="Weight">Lorum</label></div>
+            <div><label>Bulk:</label> <label data-stat="Bulk">Lorum</label></div>
+            <div><label>Speed:</label> <label data-stat="Speed">Lorum</label></div>
+            <div><label>Hit Points:</label> <label data-stat="HitPoints">Lorum</label></div>
+            <div><label>Mana Points:</label> <label data-stat="ManaPoints">Lorum</label></div>
+            <div><label>Copper:</label> <label data-stat="Copper">Lorum</label></div>
+            <div><label>Armour Value:</label> <label data-stat="ArmourValue">Lorum</label></div>
+        </div>
+        <div class="command-bar">
+            <button class="ok">OK</button>
+            <button class="cancel">Cancel</button>
+            <button>Attributes</button>
+            <button><u>V</u>iew Icon</button>
+            <button>Help</button>
+        </div>
 
-</div>
+    </div>
 </div>
 <div id="char-creation-popup" class="popup">
     <p class="blue-title">Character Creation</p>
 
     <div id="char-name-outer">
         <label for="char-name"><u>C</u>haracter name:</label>
-        <span><input type="text" name="charname" id="char-name" placeholder="unnamed"/></span>
+        <span><input type="text" id="char-name" placeholder="unnamed"/></span>
     </div>
     <div id="attribute-bar" class="justify-blocks">
         <div class="bar-outer">
@@ -217,7 +240,7 @@
         </div>
     </fieldset>
 
-    <div id="char-creation-commands">
+    <div class="command-bar">
         <button class="ok">OK</button>
         <button class="cancel">Cancel</button>
         <button><u>V</u>iew Icon</button>

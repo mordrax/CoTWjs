@@ -190,22 +190,22 @@ class GraphicsEngine {
     public Screen(screen:ScreenType) {
         switch (screen) {
             case ScreenType.Shop:
-                $('#main-game-window').hide();
+                $('.window').hide();
                 $('#shop-window').show();
                 $('[data-visible-menu="main"]').hide();
                 $('[data-visible-menu="shop"]').show();
                 break;
             case ScreenType.Character:
                 $.blockUI({
-                    message: $('#character-popup')[0],
+                    message: $('#edit-char-popup')[0],
                     onOverlayClick: $.unblockUI,
                     bindEvents:true,
-                    css: {width: '440px', height: '440px', top:'20%', cursor:'default'}
+                    css: {width: '640px', height: '300px', top:'20%', cursor:'default'}
                 });
             case ScreenType.Main:
             default:
+                $('.window').hide();
                 $('#main-game-window').show();
-                $('#shop-window').hide();
                 $('[data-visible-menu="main"]').show();
                 $('[data-visible-menu="shop"]').hide();
         }
