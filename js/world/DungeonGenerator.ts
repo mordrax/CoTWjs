@@ -36,7 +36,7 @@ class DungeonLevel {
                 this.dungeonASCIIMap[i] += '^';
             }
         }
-    }
+    }  
 
     /**
      * Create a number of rooms for the dungeon map (the number will be between the minRooms and maxRooms)
