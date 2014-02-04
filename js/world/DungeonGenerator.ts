@@ -1,66 +1,39 @@
 /// <reference path="../references.ts"/>
 
-interface IHeuristic {
-    (exit:Exit, rooms:Room[], corridors:Corridor[]): Corridor;
-}
-
-//from exit, loop through each cardinal direction
-// using the heuristic to find the first impact point (exit/wall/corridor/end of map)
-var Heuristics:IHeuristic[] = [];
-
-/**
- * Only uses N,E,S,W directions, go straight until impact point, end corridor
- */
-var TwoPointCorridor:IHeuristic = function(exit, rooms, corridors) {
-    var incPoint = CardinalDirectionToPoint(exit.direction);
-
-    var start = exit.coords;
-    start = start.Add(incPoint);
-
-    var end = start;
-
-    //keep adding incPoint to end until end hits impact point
-
-    return new Corridor([start, end]);
-}
-
-Heuristics.push(TwoPointCorridor);
-
-
 /**
  * Randomly generates a dungeon level for the specified MapType
  */
 class DungeonLevel {
     public maxRooms:number;
-    public size:Point;
-    public name:GameArea;
+    public dungeonSize:Point;
+    public dungeonName:GameArea;
     //public dungeonLevel:number;
-    public ASCIIMap:string[];
-    public rooms:Room[];
-    public corridors:Corridor[];
-
+    public dungeonASCIIMap:string[];
+    public dungeonRooms:Room[];
 
     constructor(area:GameArea) {
-        this.size = new Point(25, 25);
-        this.name = area;
+
+        this.dungeonSize = new Point(25, 25);
+        this.dungeonName = area;
         this.maxRooms = 15;
 
-        this.ASCIIMap = this.CreateBlankASCIIMap();
-        this.rooms = this.CreateRooms();
-        this.corridors = this.CreateCorridors();
-        this.MergeToASCIIMap(this.rooms, this.corridors);          // excavates the randomly-generated level from the ASCIIMAP
+        this.CreateBlankASCIIMap();                       // creates a blank ASCIIMAP for the dungeon level
+        this.CreateRooms();                               // creates random rooms
+        this.CreateRoomConnectors();                      // creates room exits/doors and the corridor connections
+        this.MergeToASCIIMap(this.dungeonRooms);          // excavates the randomly-generated level from the ASCIIMAP
+
     }
 
     /**
      * Create a blank ASCII map with all elements containing the Rock symbol '^'
      */
-    CreateBlankASCIIMap():string[] {
-        var map = [];
+    CreateBlankASCIIMap() {
+        this.dungeonASCIIMap = [];
         // loop through and assign each array element with the Rock symbol '^'
-        for (var i = 0; i < this.size.y; i++) {
-            map[i] = '';
-            for (var j = 0; j < this.size.x; j++) {
-                map[i] += '^';
+        for (var i = 0; i < this.dungeonSize.y; i++) {
+            this.dungeonASCIIMap[i] = '';
+            for (var j = 0; j < this.dungeonSize.x; j++) {
+                this.dungeonASCIIMap[i] += '^';
             }
         }
         return map;
@@ -79,19 +52,18 @@ class DungeonLevel {
                 break;      //exit loop when maximum number of rooms for the map is reached
             }
             //create temporary room with random location and size
-            tempRoom = new Room(new Point(D(this.size.x), D(this.size.y)));
+            tempRoom = new Room(new Point(D(this.dungeonSize.x), D(this.dungeonSize.y)));
 
             //check if the temporary room is out of bounds of the dungeon map
-            if (tempRoom.startCoords.y + tempRoom.roomSize.y > (this.size.y - 1) ||
-                tempRoom.startCoords.x + tempRoom.roomSize.x > (this.size.x - 1)) {
+            if (tempRoom.startCoords.y + tempRoom.roomSize.y > (this.dungeonSize.y - 1) ||
+                tempRoom.startCoords.x + tempRoom.roomSize.x > (this.dungeonSize.x - 1)) {
                 retries--;
                 continue;   //continue while loop
             }
             //check no overlap with other rooms
             if (this.IsRoomValid(rooms, tempRoom)) {
                 // determine the position of the room in relation to the dungeon level
-                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.size, tempRoom.startCoords, tempRoom.endCoords);
-                tempRoom.CreateExits();
+                tempRoom.mapPosition = tempRoom.IsNearMapEdge(this.dungeonSize, tempRoom.startCoords, tempRoom.endCoords);
                 rooms.push(tempRoom);
                 console.dir(tempRoom);
             } else {
@@ -99,7 +71,7 @@ class DungeonLevel {
             }
         }
 
-        return rooms;
+        this.dungeonRooms = rooms;
     }
 
     InBetween(num, min, max) {
@@ -126,60 +98,26 @@ class DungeonLevel {
     /**
      * Add ASCII symbols to blank ASCIIMAP for Rooms, Connectors and Exits
      */
-    MergeToASCIIMap(rooms:Room[], corridors:Corridor[]) {
+    MergeToASCIIMap(rooms:Room[]) {
         rooms.forEach((room:Room) => {
             for (var i = room.startCoords.y; i < room.startCoords.y + room.roomSize.y; i++) {
                 for (var j = room.startCoords.x; j < room.startCoords.x + room.roomSize.x; j++) {
-                    this.ASCIIMap[i] = this.ASCIIMap[i].splice(j, 1, 'O');
+                    this.dungeonASCIIMap[i] = this.dungeonASCIIMap[i].splice(j, 1, 'O');
                 }
             }
             room.roomExits.forEach((exit:Exit) => {
-                this.ASCIIMap[exit.coords.y] = this.ASCIIMap[exit.coords.y].splice(exit.coords.x,1,'[');
+                this.dungeonASCIIMap[exit.coords.y] = this.dungeonASCIIMap[exit.coords.y].splice(exit.coords.x,1,'[');
             })
-        });
-
-        // corridors assume straight lines or 45 deg
-        corridors.forEach((corridor:Corridor) => {
-            var endPoint = 1;
-
-            while(endPoint < corridor.points.length) {
-                // draw from start to end
-                var start = corridor.points[endPoint-1];
-                var end = corridor.points[endPoint];
-
-                if (start.y === end.y) {
-                    var corridorLength = end.x - start.x;
-                    this.ASCIIMap[start.y] = this.ASCIIMap[start.y].splice(start.x, corridorLength, 'o'.repeat(corridorLength));
-                }
-                endPoint++;
-            }
         });
     }
 
     /**
-     *
+     * Add random exits (i.e. doors) for each room
      */
-    CreateCorridors(): Corridor[] {
-        var corridors:Corridor[] = [];
-
-        // loop through each room, loop through each exit
-        this.rooms.forEach((room:Room) => {
-            room.roomExits.forEach((exit:Exit) => {
-                // loop through heuristics (also taking into account newly created corridors), pick best corridor
-                Heuristics.forEach((heuristic:IHeuristic) => {
-                    corridors.push(heuristic(exit, this.rooms, corridors));
-                })
-            });
-        });
-
-        return corridors;
-    }
-}
-
-class Corridor {
-    points:Point[];
-    constructor(points: Point[]) {
-        this.points = points;
+    CreateRoomConnectors() {
+        for (var i = 0; i < this.dungeonRooms.length; i++){
+            this.dungeonRooms[i].CreateExits();
+        }
     }
 }
 
