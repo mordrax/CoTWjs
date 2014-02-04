@@ -187,7 +187,7 @@ class World {
     private GenerateRandomMap(currentArea:GameArea, newArea:GameArea, linkA:WorldCoordinates): WorldCoordinates {
         // maps a GameArea to a 2D array of tiles which represents the area
         var newMap = new DungeonLevel(newArea);
-        ASCII_MAPS[newArea] = newMap.dungeonASCIIMap;
+        ASCII_MAPS[newArea] = newMap.ASCIIMap;
 
         var linkB = new WorldCoordinates(newArea, new Point(10,10));
         var link = {LinkA:linkA, LinkB:linkB};

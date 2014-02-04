@@ -99,12 +99,12 @@
  *
  *
  * Corridor heuristics:
-  * Corridors require:
+  * Corridors require for exploring:
   * - knowledge of room locations
   * - exits
   * - other corridors
   *
-  * Foreach exit, try to create:
+  * Foreach exit from a room, try to create:
   *    1. 2 point corridor (only one from exit in the cardinal direction)
   *    2. 3 point corridors (n-1 from the 2 point working backwards trying the two perpendicular directions)
   *    3. 4 point corridors

@@ -3,6 +3,7 @@
 interface String {
     splice: any;
     format: any;
+    repeat: any;
 }
 
 interface Number {
@@ -18,6 +19,15 @@ interface Number {
  */
 String.prototype.splice = function( startIndex:number, removeStrSize:number, replaceStr:string ) {
     return (this.slice(0,startIndex) + replaceStr + this.slice(startIndex + Math.abs(removeStrSize)));
+};
+
+/**
+ * Repeats the given string n times
+ * @param nTimes
+ * @returns {string}
+ */
+String.prototype.repeat = function(nTimes): String {
+    return (new Array(nTimes + 1)).join(this);
 };
 
 /**

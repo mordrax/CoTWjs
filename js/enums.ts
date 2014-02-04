@@ -38,6 +38,18 @@ enum CardinalDirection {
     NorthWest
 }
 
+function CardinalDirectionToPoint( cd: CardinalDirection):Point {
+    if (cd === CardinalDirection.North)     return new Point(0,1);
+    if (cd === CardinalDirection.NorthEast) return new Point(1,1);
+    if (cd === CardinalDirection.East)      return new Point(1,0);
+    if (cd === CardinalDirection.SouthEast) return new Point(1,-1);
+    if (cd === CardinalDirection.South)     return new Point(0,-1);
+    if (cd === CardinalDirection.SouthWest) return new Point(-1,-1);
+    if (cd === CardinalDirection.West)      return new Point(-1,0);
+    if (cd === CardinalDirection.NorthWest) return new Point(-1,1);
+    return new Point(0,0);
+}
+
 enum MonsterType {
     MaleHero,
     FemaleHero,
