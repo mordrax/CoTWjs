@@ -217,29 +217,33 @@ class Exit {
     constructor(wallStart:Point, wallEnd:Point, roomSize:Point, roomPosition:CardinalDirection) {
         this.wall = this.DetermineExitWall(roomPosition, this.numberOfBaseDirections);
         this.coords = this.DetermineExitCoords(wallStart, wallEnd, roomSize, this.wall);
-        this.corridorDirections = this.DetermineCorridorDirection(roomPosition);
+        this.corridorDirections = this.DetermineCorridorDirections(roomPosition);
         this.corridorPoint.push(this.coords);          // set the first corridor point to the exit
     }
 
     /**
      * Determines all of the possible wall directions, then loops through each one randomly until a valid one is found
      * @param roomPosition - position of the room in relation to the map level
-    private DetermineCorridorDirection(roomPosition:CardinalDirection):CardinalDirection{
-        var possibleDirections:CardinalDirection[];
-    * @param numberOfWalls - 4 for N/E/S/W, 8 for N/E/S/W/NE/SE/SW/NW
-                                                       */
-    public function DetermineExitWall(roomPosition:CardinalDirection, numberOfWalls:number):CardinalDirection{
+     * @param numberOfWalls - 4 for N/E/S/W, 8 for N/E/S/W/NE/SE/SW/NW
+     */
+    DetermineExitWall(roomPosition:CardinalDirection, numberOfWalls:number):CardinalDirection{
             var possibleWalls:CardinalDirection[];
             possibleWalls = this.GetAllDirections(numberOfWalls);
             return this.LoopThroughDirections(roomPosition,possibleWalls);
-        }
+    }
 
         /**
          * Determines all of the possible corridor directions, then loops through each one randomly until a valid one is found
          * @param roomPosition - position of the room in relation to the map level
          */
-        possibleDirections = this.DeterminePossibleCorridorDirection(this.wall);
-        return this.LoopThroughDirections(roomPosition,possibleDirections);
+    DetermineCorridorDirections(roomPosition:CardinalDirection):CardinalDirection[]{
+         var possibleDirections:CardinalDirection[];
+        possibleDirections = this.DeterminePossibleCorridorDirections(this.wall);
+
+
+            // loop and remove impossible corridor directions
+
+        return possibleDirections;
     }
 
     /**
@@ -248,7 +252,7 @@ class Exit {
      * @param roomPosition - position of the room in relation to the map level.
      * @param possibleDirections - array of Cardinal Directions that are possible before checking against room position.
      */
-    private function LoopThroughDirections(roomPosition:CardinalDirection, possibleDirections:CardinalDirection[]):CardinalDirection{
+    private LoopThroughDirections(roomPosition:CardinalDirection, possibleDirections:CardinalDirection[]):CardinalDirection{
         var randomNumber:number;
         var validDirection:CardinalDirection;
         while (possibleDirections.length > 0){
@@ -267,7 +271,7 @@ class Exit {
      * Returns the number of possible directions was passed in as parameter "directionTypes"
      * @param directionTypes should typically be 4 for standard N/E/S/W, 8 for all N/E/S/W/NE/SE/SW/NW
      */
-    public function GetAllDirections(directionTypes:number):CardinalDirection[]{
+    GetAllDirections(directionTypes:number):CardinalDirection[]{
         var possibleDirections: CardinalDirection[];
         possibleDirections = [];
         possibleDirections.push(CardinalDirection.North,CardinalDirection.East,CardinalDirection.South, CardinalDirection.West);
@@ -283,7 +287,7 @@ class Exit {
      * Used for checking if exits and corridor directions are valid for the room (i.e. if a room is in the NorthWest
      *  part of the map level, then an exit/corridor going North/West/NorthWest/SouthWest/NorthEast are not allowed.
      */
-    public function IsDirectionPermitted(direction:CardinalDirection, roomPosition:CardinalDirection):boolean {
+    IsDirectionPermitted(direction:CardinalDirection, roomPosition:CardinalDirection):boolean {
         switch (roomPosition){
             case CardinalDirection.North:           // true if NOT N/NE/NW
                 return !(direction === CardinalDirection.North || direction === CardinalDirection.NorthEast ||
@@ -317,7 +321,7 @@ class Exit {
     /**
      * Randomly selects an exit position on the specified wall and returns the Point.
      */
-    private function DetermineExitCoords(wallStart:Point, wallEnd:Point, roomSize:Point, wall:CardinalDirection):Point {
+    DetermineExitCoords(wallStart:Point, wallEnd:Point, roomSize:Point, wall:CardinalDirection):Point {
         var randomNumber:number;
         switch (wall){
             case CardinalDirection.North:       // y = min (wallStart.y)
@@ -340,7 +344,7 @@ class Exit {
     /**
      * Randomly selects an exit corridorDirections on the specified exit.
      */
-    private function DeterminePossibleCorridorDirection(wall:CardinalDirection):CardinalDirection[] {
+    DeterminePossibleCorridorDirections(wall:CardinalDirection):CardinalDirection[] {
         var possibleDirections: CardinalDirection[];
         possibleDirections = [];
 
