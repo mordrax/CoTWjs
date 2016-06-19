@@ -1,3 +1,7 @@
+## Notice
+
+This project has been abandoned, writing a game using jQuery and vanilla Html/Css is cRazZy! Efforts continue at https://github.com/mordrax/cotwelm
+
 # Castle of the Winds js
 
 Castle of the Winds is a tile-based RPG made by Rick Saada in the late 80s. Many old school RPGers remember the game
